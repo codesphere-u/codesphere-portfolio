@@ -23,7 +23,7 @@ import {
   renderPhilosophyCardHtml
 } from '../src/ui/app.mjs';
 import { generatePortfolioHtml } from '../scripts/build.mjs';
-import { createPortfolioServer } from '../server.mjs';
+import defaultServerHandler, { createPortfolioServer } from '../server.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
@@ -434,6 +434,18 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       const html = await res.text();
       assert.match(html, /AKANDWANAHO IVAN ALVIN/);
       assert.match(html, /Engineering what comes next\./);
+    });
+
+    it('exports a default (req, res) handler compatible with Vercel Serverless Function invocation and serves CSS/JS assets', async () => {
+      assert.equal(typeof defaultServerHandler, 'function');
+
+      const cssRes = await fetch(`${baseUrl}/src/ui/styles.css`);
+      assert.equal(cssRes.status, 200);
+      assert.match(cssRes.headers.get('content-type'), /text\/css/);
+
+      const jsRes = await fetch(`${baseUrl}/src/ui/app.mjs`);
+      assert.equal(jsRes.status, 200);
+      assert.match(jsRes.headers.get('content-type'), /text\/javascript/);
     });
   });
 });

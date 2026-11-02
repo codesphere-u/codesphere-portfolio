@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/codesphere-u/codesphere-portfolio",
   "engines": {
-    "node": ">=20.0.0"
+    "node": "22.x"
   }
 }

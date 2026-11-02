@@ -8,6 +8,7 @@ import {
   computePortfolioSummary,
   sortBenchmarks
 } from './src/core/explorer.mjs';
+import { generatePortfolioHtml } from './scripts/build.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,8 +23,34 @@ const MIME_TYPES = {
   '.ico': 'image/x-icon'
 };
 
-export function createPortfolioServer() {
-  return http.createServer((req, res) => {
+// Explicit literal path reads so Vercel's Node File Trace (@vercel/nft) always bundles assets
+const STATIC_ASSET_PATHS = {
+  '/src/ui/styles.css': path.join(__dirname, 'src', 'ui', 'styles.css'),
+  '/src/ui/app.mjs': path.join(__dirname, 'src', 'ui', 'app.mjs'),
+  '/src/core/explorer.mjs': path.join(__dirname, 'src', 'core', 'explorer.mjs'),
+  '/src/data/portfolio-data.mjs': path.join(__dirname, 'src', 'data', 'portfolio-data.mjs'),
+  '/src/data/portfolio-data.d.ts': path.join(__dirname, 'src', 'data', 'portfolio-data.d.ts')
+};
+
+let cachedHtml = null;
+
+function getIndexHtml() {
+  const diskIndex = path.join(__dirname, 'index.html');
+  if (fs.existsSync(diskIndex)) {
+    try {
+      return fs.readFileSync(diskIndex, 'utf8');
+    } catch {
+      // Fall through to in-memory generator
+    }
+  }
+  if (!cachedHtml) {
+    cachedHtml = generatePortfolioHtml().html;
+  }
+  return cachedHtml;
+}
+
+export function handlePortfolioRequest(req, res) {
+  try {
     const url = new URL(req.url || '/', 'http://localhost');
 
     // Security headers
@@ -79,9 +106,23 @@ export function createPortfolioServer() {
       return;
     }
 
-    // Serve static files from root directory (prevent path traversal)
-    const requestedPath = url.pathname === '/' ? '/index.html' : url.pathname;
-    const safePath = path.normalize(requestedPath).replace(/^(\.\.(\/|\\|$))+/, '');
+    if (url.pathname === '/' || url.pathname === '/index.html') {
+      const html = getIndexHtml();
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(html);
+      return;
+    }
+
+    if (STATIC_ASSET_PATHS[url.pathname] && fs.existsSync(STATIC_ASSET_PATHS[url.pathname])) {
+      const assetPath = STATIC_ASSET_PATHS[url.pathname];
+      const ext = path.extname(assetPath).toLowerCase();
+      const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(fs.readFileSync(assetPath));
+      return;
+    }
+
+    const safePath = path.normalize(url.pathname).replace(/^(\.\.(\/|\\|$))+/, '');
     const fullPath = path.join(__dirname, safePath);
 
     if (!fullPath.startsWith(__dirname)) {
@@ -99,9 +140,19 @@ export function createPortfolioServer() {
     const ext = path.extname(fullPath).toLowerCase();
     const contentType = MIME_TYPES[ext] || 'application/octet-stream';
     res.writeHead(200, { 'Content-Type': contentType });
-    fs.createReadStream(fullPath).pipe(res);
-  });
+    res.end(fs.readFileSync(fullPath));
+  } catch (err) {
+    res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ error: 'Internal Server Error', message: err?.message }));
+  }
 }
+
+export function createPortfolioServer() {
+  return http.createServer(handlePortfolioRequest);
+}
+
+// Default export for Vercel Serverless Function entrypoint (`Using server.mjs as the root entrypoint`)
+export default handlePortfolioRequest;
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const port = Number(process.env.PORT || 4173);
