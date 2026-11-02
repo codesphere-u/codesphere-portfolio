@@ -195,6 +195,7 @@ export function generatePortfolioHtml() {
 
   <link rel="stylesheet" href="./src/ui/styles.css" />
   <link rel="stylesheet" href="./src/ui/editorial.css" />
+  <link rel="stylesheet" href="./src/ui/polish.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -209,15 +210,29 @@ export function generatePortfolioHtml() {
         </span>
       </a>
 
-      <nav class="nav-links" aria-label="Primary Portfolio Navigation">
-        <a href="#projects" class="nav-link">Work</a>
-        <a href="#journey" class="nav-link">Journey</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <button type="button" id="theme-toggle" class="btn" aria-label="Switch to light theme"><span aria-hidden="true">◐</span><span class="theme-label">Light Mode</span></button>
+      <nav class="nav-links" aria-label="Primary Portfolio Navigation" id="desktop-nav">
+        <a href="#projects" class="nav-link" data-section-link="projects">Work</a>
+        <a href="#journey" class="nav-link" data-section-link="journey">Story</a>
+        <a href="#experience" class="nav-link" data-section-link="experience">Experience</a>
+        <a href="#about" class="nav-link" data-section-link="about">About</a>
       </nav>
+      <div class="header-actions">
+        <a href="#contact" class="header-contact" data-section-link="contact">Let's connect <span aria-hidden="true">↗</span></a>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu"><span></span><span></span></button>
+      </div>
     </div>
   </header>
+  <div class="page-progress" aria-hidden="true"><span id="page-progress-bar"></span></div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation" hidden>
+    <div class="mobile-menu-head"><span>EXPLORE THE PORTFOLIO</span><span>MENU / 2026</span></div>
+    <a href="#projects" data-mobile-link data-section-link="projects"><span class="menu-index">01</span> Selected work <span aria-hidden="true">↗</span></a>
+    <a href="#journey" data-mobile-link data-section-link="journey"><span class="menu-index">02</span> My journey <span aria-hidden="true">↗</span></a>
+    <a href="#experience" data-mobile-link data-section-link="experience"><span class="menu-index">03</span> Experience <span aria-hidden="true">↗</span></a>
+    <a href="#about" data-mobile-link data-section-link="about"><span class="menu-index">04</span> About me <span aria-hidden="true">↗</span></a>
+    <a href="#mindmap" data-mobile-link data-section-link="mindmap"><span class="menu-index">05</span> Engineering mind <span aria-hidden="true">↗</span></a>
+    <a href="#contact" data-mobile-link data-section-link="contact"><span class="menu-index">06</span> Let's connect <span aria-hidden="true">↗</span></a>
+    <div class="mobile-menu-footer">AKANDWANAHO IVAN ALVIN · KAMPALA, UGANDA</div>
+  </nav>
 
   <main id="main-content" role="main">
     <!-- EXPERIENCE 01 — CINEMATIC OPENING -->
@@ -315,12 +330,52 @@ export function generatePortfolioHtml() {
       </div>
     </section>
 
+    <!-- EXPERIENCE 03 — INTERACTIVE PROJECT UNIVERSE -->
+    <section id="projects" class="section" aria-labelledby="explorer-heading">
+      <div id="flagship-explorer" class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-eyebrow">02 / SELECTED WORK</span>
+            <h2 id="explorer-heading" class="section-title">Selected work.<br/>Built to matter.</h2>
+            <p class="section-subtitle">A selection of things I've designed, engineered, and built. Each project opens into the decisions behind it.</p>
+            <p class="project-results" id="projects-results-count" role="status" aria-live="polite">8 engineering projects</p>
+          </div>
+        </div>
+
+        <div class="featured-heading"><span>THE FEATURED THREE</span><span>SCROLL TO EXPLORE ↘</span></div>
+        <div class="editorial-featured" aria-label="Selected flagship projects" id="featured-work">
+          ${featuredWorkHtml}
+        </div>
+        <div class="explorer-controls" role="region" aria-label="Filter and search flagship systems">
+          <div class="domain-tabs" role="toolbar" aria-label="Filter by engineering domain">
+            ${domainTabsHtml}
+          </div>
+
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input
+              type="search"
+              id="project-search"
+              class="search-input"
+              placeholder="Search projects, tools, technologies..."
+              aria-label="Search flagship systems"
+            />
+          </div>
+        </div>
+
+        <div class="project-list-heading"><span>PROJECT INDEX</span><span>SELECT A CARD FOR ITS CASE STUDY</span></div>
+        <div id="projects-grid" class="projects-grid">
+          ${cardsHtml}
+        </div>
+      </div>
+    </section>
+
     <!-- EXPERIENCE 02 — MY JOURNEY (INTERACTIVE CAREER DOCUMENTARY) -->
     <section id="journey" class="section" aria-labelledby="journey-heading">
       <div class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">EXPERIENCE 02 // CAREER STORYTELLING SYSTEM</span>
+            <span class="section-eyebrow">03 / MY JOURNEY</span>
             <h2 id="journey-heading" class="section-title">One system at a time. One chapter at a time.</h2>
             <p class="section-subtitle">
               From engineering foundations at ISBAT University and founding 4codex Technologies to leading engineering at Waanverse Labs (until March 2025), founding Codesphere Innovations (U) Limited, leading Funa Gigs under Jaminsa Ventures Limited, and architecting open-source AI and cybersecurity systems.
@@ -347,50 +402,12 @@ export function generatePortfolioHtml() {
       </div>
     </section>
 
-    <!-- EXPERIENCE 03 — INTERACTIVE PROJECT UNIVERSE -->
-    <section id="projects" class="section" aria-labelledby="explorer-heading">
-      <div id="flagship-explorer" class="container">
-        <div class="section-header">
-          <div>
-            <span class="section-eyebrow">EXPERIENCE 03 // INTERACTIVE PROJECT UNIVERSE</span>
-            <h2 id="explorer-heading" class="section-title">Selected work.<br/>Built to matter.</h2>
-            <p class="section-subtitle" id="projects-results-count">
-              Real projects. Hard problems. The engineering decisions behind the interfaces. Explore the work or open a case study for the details.
-            </p>
-          </div>
-        </div>
-
-        <div class="editorial-featured" aria-label="Selected flagship projects">
-          ${featuredWorkHtml}
-        </div>
-        <div class="explorer-controls" role="region" aria-label="Filter and search flagship systems">
-          <div class="domain-tabs" role="toolbar" aria-label="Filter by engineering domain">
-            ${domainTabsHtml}
-          </div>
-
-          <div class="search-box">
-            <input
-              type="search"
-              id="project-search"
-              class="search-input"
-              placeholder="Search systems, ADRs, languages (press /)..."
-              aria-label="Search flagship systems"
-            />
-          </div>
-        </div>
-
-        <div id="projects-grid" class="projects-grid">
-          ${cardsHtml}
-        </div>
-      </div>
-    </section>
-
     <!-- EXPERIENCE 04 — EXPLORE MY ENGINEERING MIND (KNOWLEDGE MAP) -->
     <section id="mindmap" class="section" aria-labelledby="mindmap-heading">
       <div class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">EXPERIENCE 04 // EXPLORE MY ENGINEERING MIND</span>
+            <span class="section-eyebrow">04 / EXPLORING IDEAS</span>
             <h2 id="mindmap-heading" class="section-title">How I think in systems.</h2>
             <p class="section-subtitle">
               Select any node in the constellation — AI Systems, Backend Architecture, Cybersecurity, Databases, Flutter, Cloud Infrastructure, Distributed Systems, or DevOps — to inspect the exact repositories and commercial systems that prove that capability.
@@ -428,7 +445,7 @@ export function generatePortfolioHtml() {
       <div class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">EXPERIENCE 05 // SANDBOXED COMMAND INTERFACE</span>
+            <span class="section-eyebrow">05 / EXPERIMENTAL SPACE</span>
             <h2 id="terminal-heading" class="section-title">A different way to explore.</h2>
             <p class="section-subtitle">
               Inspect my biography, career chapters, open-source repositories, technical specialties, and contact channels using keyboard commands or one-click command chips.
@@ -643,6 +660,8 @@ export function generatePortfolioHtml() {
     </section>
   </main>
 
+  <a class="back-to-top" id="back-to-top" href="#hero" aria-label="Back to top">↑ <span>TOP</span></a>
+
   <!-- Interactive Case Study & ADR Deep-Dive Drawer -->
   <div id="adr-drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
   <aside
@@ -680,6 +699,7 @@ export function generatePortfolioHtml() {
   </footer>
 
   <script type="module" src="./src/ui/app.mjs"></script>
+  <script type="module" src="./src/ui/navigation.mjs"></script>
 </body>
 </html>`;
 

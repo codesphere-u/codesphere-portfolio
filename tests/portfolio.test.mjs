@@ -365,6 +365,21 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     assert.match(html, /editorial\.css/);
     assert.match(html, /class="editorial-featured"/);
     assert.match(html, /class="art-stage"/);
+    // Navigation & information architecture quality gates.
+    assert.ok(html.indexOf('id="projects"') < html.indexOf('id="journey"'), 'Work must precede the career timeline');
+    for (const id of ['menu-toggle', 'mobile-menu', 'page-progress-bar', 'back-to-top', 'featured-work']) {
+      assert.ok(html.includes('id="' + id + '"'), 'Missing navigation/UX element: ' + id);
+    }
+    assert.match(html, /src\/ui\/navigation\.mjs/);
+    assert.match(html, /src\/ui\/polish\.css/);
+    const navSource = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'navigation.mjs'), 'utf8');
+    const polishCss = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'polish.css'), 'utf8');
+    assert.match(navSource, /aria-expanded/);
+    assert.match(navSource, /Escape/);
+    assert.match(navSource, /prefers-reduced-motion/);
+    assert.match(polishCss, /max-width:900px/);
+    assert.match(polishCss, /prefers-reduced-motion/);
+
 
     const css = fs.readFileSync(
       path.join(ROOT_DIR, 'src', 'ui', 'styles.css'),

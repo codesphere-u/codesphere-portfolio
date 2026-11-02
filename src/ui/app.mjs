@@ -766,8 +766,12 @@ export function initPortfolioApp() {
     if (!projectsGrid) return;
     const filtered = filterProjects(PORTFOLIO_DATA.projects, activeDomain, searchQuery);
     if (resultsCounter) {
-      resultsCounter.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} verified repositories`;
+      resultsCounter.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} projects`;
     }
+    // The featured collection is an editorial introduction to all projects.
+    // Hide it while filters/search are active so search results are unambiguous.
+    const featured = document.getElementById('featured-work');
+    if (featured) featured.hidden = activeDomain !== 'All' || searchQuery.trim().length > 0;
     if (filtered.length === 0) {
       projectsGrid.innerHTML = `
         <div class="empty-filter-state" role="status">
@@ -1042,9 +1046,21 @@ export function initPortfolioApp() {
   if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && drawerPanel && drawerPanel.classList.contains('is-open')) {
-      e.preventDefault();
-      closeDrawer();
+    if (drawerPanel?.classList.contains('is-open')) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeDrawer();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const focusables = [...drawerPanel.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')]
+          .filter(el => el.getClientRects().length > 0);
+        if (focusables.length) {
+          const first = focusables[0], last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
     }
     if (
       e.key === '/' &&
