@@ -1,7 +1,7 @@
 {
   "name": "codesphere-portfolio",
-  "version": "1.0.0",
-  "description": "Interactive Engineering Portfolio & Architecture Case-Study Application for codesphere-u — AI Systems, Cybersecurity, Fintech Ledgers, Cloud Observability, and Offline-First Decision Support.",
+  "version": "1.1.0",
+  "description": "Executive Engineering Portfolio & Architecture Case-Study Application for Akandwanaho Ivan Alvin (codesphere-u) — AI Systems, Cybersecurity, Fintech Ledgers, Cloud Observability, and Commercial Platforms.",
   "type": "module",
   "main": "src/core/explorer.mjs",
   "types": "src/data/portfolio-data.d.ts",

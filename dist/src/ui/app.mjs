@@ -28,6 +28,10 @@ export function renderProjectCardHtml(project) {
     .map((d) => `<span class="badge">${escapeHtml(d)}</span>`)
     .join('');
 
+  const flagshipBadge = project.isPrimaryFlagship
+    ? `<span class="badge badge-gold">★ Primary Flagship</span>`
+    : `<span class="badge badge-version">${escapeHtml(project.version)}</span>`;
+
   const langBadges = project.languages
     .map((l) => `<span class="badge badge-version">${escapeHtml(l)}</span>`)
     .join('');
@@ -51,7 +55,7 @@ export function renderProjectCardHtml(project) {
       <div>
         <div class="card-top-row">
           <div class="domain-badges">${domainBadges}</div>
-          <span class="badge badge-version">${escapeHtml(project.version)}</span>
+          ${flagshipBadge}
         </div>
         <h3 class="project-title">${escapeHtml(project.name)}</h3>
         <p class="project-tagline">${escapeHtml(project.tagline)}</p>
@@ -81,6 +85,102 @@ export function renderProjectCardHtml(project) {
           </a>
           ${liveDemoButton}
         </div>
+      </div>
+    </article>
+  `;
+}
+
+export function renderExperienceCardHtml(item) {
+  const statusClass = item.isCurrent ? 'badge-gold' : 'badge-version';
+  const websiteLink = item.websiteUrl
+    ? `<a class="btn" href="${escapeHtml(item.websiteUrl)}" target="_blank" rel="noopener noreferrer" style="padding: 4px 10px; font-size: 0.78rem;">${escapeHtml(item.websiteUrl.replace(/^https?:\/\//, ''))} ↗</a>`
+    : '';
+
+  const ownershipBanner = item.ownershipNote
+    ? `<div class="ownership-callout" role="note">
+         <strong>Organizational Boundary:</strong> ${escapeHtml(item.ownershipNote)}
+       </div>`
+    : '';
+
+  const highlightsHtml = item.highlights
+    .map((h) => `<li>${escapeHtml(h)}</li>`)
+    .join('');
+
+  const techBadges = item.technologies
+    .map((t) => `<span class="badge badge-version">${escapeHtml(t)}</span>`)
+    .join('');
+
+  return `
+    <article class="experience-card" data-experience-id="${escapeHtml(item.id)}">
+      <div class="experience-header">
+        <div>
+          <div class="domain-badges" style="margin-bottom: 8px;">
+            <span class="badge ${statusClass}">${escapeHtml(item.status)}</span>
+            <span class="badge">${escapeHtml(item.location)}</span>
+          </div>
+          <h3 class="experience-role">${escapeHtml(item.role)}</h3>
+          <div class="experience-org">${escapeHtml(item.organization)}</div>
+        </div>
+        ${websiteLink}
+      </div>
+
+      ${ownershipBanner}
+
+      <p class="project-summary" style="margin-bottom: 12px;">${escapeHtml(item.summary)}</p>
+
+      <ul class="experience-highlights">
+        ${highlightsHtml}
+      </ul>
+
+      <div class="domain-badges" style="margin-top: 14px;">
+        ${techBadges}
+      </div>
+    </article>
+  `;
+}
+
+export function renderJourneyStageHtml(stage) {
+  return `
+    <div class="journey-stage" data-stage="${stage.stageNumber}">
+      <div class="journey-step-header">
+        <span class="journey-step-num">0${stage.stageNumber}</span>
+        <span class="badge badge-gold">${escapeHtml(stage.theme)}</span>
+      </div>
+      <h3 class="journey-title">${escapeHtml(stage.title)}</h3>
+      <p class="journey-desc">${escapeHtml(stage.description)}</p>
+    </div>
+  `;
+}
+
+export function renderBroaderProjectCardHtml(project) {
+  const highlightsHtml = project.highlights
+    .map((h) => `<li>${escapeHtml(h)}</li>`)
+    .join('');
+
+  const techBadges = project.technologies
+    .map((t) => `<span class="badge badge-version">${escapeHtml(t)}</span>`)
+    .join('');
+
+  return `
+    <article class="project-card broader-project-card" data-broader-id="${escapeHtml(project.id)}">
+      <div>
+        <div class="card-top-row">
+          <span class="badge badge-gold">${escapeHtml(project.status)}</span>
+          <span class="badge badge-version">${escapeHtml(project.category)}</span>
+        </div>
+        <h3 class="project-title">${escapeHtml(project.name)}</h3>
+        ${
+          project.organization
+            ? `<p class="project-tagline">${escapeHtml(project.organization)}</p>`
+            : ''
+        }
+        <p class="project-summary">${escapeHtml(project.summary)}</p>
+        <ul class="experience-highlights" style="margin-bottom: 16px;">
+          ${highlightsHtml}
+        </ul>
+      </div>
+      <div class="domain-badges">
+        ${techBadges}
       </div>
     </article>
   `;
@@ -278,7 +378,7 @@ export function initPortfolioBrowser() {
              </div>`;
     }
     if (countEl) {
-      countEl.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} verified flagship systems`;
+      countEl.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} verified open-source systems`;
     }
     domainButtons.forEach((btn) => {
       const isSelected = btn.getAttribute('data-domain') === state.activeDomain;

@@ -65,6 +65,12 @@ export function getProjectById(idOrSlug, projects = PORTFOLIO_DATA.projects) {
  */
 export function computePortfolioSummary(data = PORTFOLIO_DATA) {
   const totalProjects = data.projects.length;
+  const primaryFlagshipsCount = data.projects.filter(
+    (p) => p.isPrimaryFlagship
+  ).length;
+  const totalBroaderProjects = Array.isArray(data.broaderProjects)
+    ? data.broaderProjects.length
+    : 0;
   const totalAutomatedTests = data.projects.reduce(
     (sum, project) => sum + project.automatedTests,
     0
@@ -94,6 +100,8 @@ export function computePortfolioSummary(data = PORTFOLIO_DATA) {
 
   return {
     totalProjects,
+    primaryFlagshipsCount,
+    totalBroaderProjects,
     totalAutomatedTests,
     totalAdrs,
     domainsCovered,
@@ -125,24 +133,48 @@ export function sortBenchmarks(
 }
 
 /**
- * Validate structural integrity and verified metrics of PORTFOLIO_DATA.
+ * Validate structural integrity, executive identity rules, and verified metrics of PORTFOLIO_DATA.
  * @param {object} [data=PORTFOLIO_DATA]
  */
 export function validatePortfolioIntegrity(data = PORTFOLIO_DATA) {
   const errors = [];
 
+  if (data?.profile?.name !== 'Akandwanaho Ivan Alvin') {
+    errors.push('Profile name must be Akandwanaho Ivan Alvin');
+  }
+
   if (!data?.profile?.githubUrl?.startsWith('https://github.com/codesphere-u')) {
     errors.push('Profile githubUrl must point to https://github.com/codesphere-u');
   }
 
+  if (data?.profile?.companyWebsiteUrl !== 'https://www.codesphereug.com') {
+    errors.push('Profile companyWebsiteUrl must point to https://www.codesphereug.com');
+  }
+
+  if (data?.profile?.linkedinUrl !== 'https://www.linkedin.com/in/the4codex') {
+    errors.push('Profile linkedinUrl must point to https://www.linkedin.com/in/the4codex');
+  }
+
+  const serialized = JSON.stringify(data);
+  if (/makerere/i.test(serialized)) {
+    errors.push('Strict accuracy rule violation: Makerere must never appear in portfolio data');
+  }
+  if (/whitehathackerpr/i.test(serialized)) {
+    errors.push('Strict accuracy rule violation: dead link whitehathackerpr must not appear');
+  }
+  if (!/ISBAT University/i.test(data?.profile?.education?.institution || '')) {
+    errors.push('Profile education must reference ISBAT University');
+  }
+
   const requiredSlugs = [
-    'agentshield',
     'cyber-dragon',
     'auralis-local',
-    'flowledger',
+    'agentshield',
     'ARGUS-AI',
+    'flowledger',
     'stackpulse',
-    'agrisignal'
+    'agrisignal',
+    'Clinical-Virtual-Health-Platform'
   ];
 
   for (const slug of requiredSlugs) {
@@ -163,6 +195,18 @@ export function validatePortfolioIntegrity(data = PORTFOLIO_DATA) {
     if (!Array.isArray(found.cliQuickstart) || found.cliQuickstart.length === 0) {
       errors.push(`Project ${slug} must include CLI quickstart commands`);
     }
+  }
+
+  if (!Array.isArray(data.experience) || data.experience.length < 4) {
+    errors.push('Portfolio must include all 4 verified leadership & career roles');
+  }
+
+  if (!Array.isArray(data.journey) || data.journey.length !== 7) {
+    errors.push('Portfolio must include the 7-stage thematic engineering journey');
+  }
+
+  if (!Array.isArray(data.broaderProjects) || data.broaderProjects.length < 6) {
+    errors.push('Portfolio must include the broader product & commercial engineering archive');
   }
 
   const totalTests = data.projects.reduce((acc, p) => acc + p.automatedTests, 0);

@@ -38,8 +38,10 @@ export function createPortfolioServer() {
         JSON.stringify({
           status: 'ok',
           service: 'codesphere-portfolio',
-          version: '1.0.0',
+          version: '1.1.0',
+          owner: PORTFOLIO_DATA.profile.name,
           totalProjects: summary.totalProjects,
+          totalBroaderProjects: summary.totalBroaderProjects,
           totalAutomatedTests: summary.totalAutomatedTests
         })
       );

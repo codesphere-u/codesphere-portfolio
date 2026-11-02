@@ -21,37 +21,132 @@ import { createPortfolioServer } from '../server.mjs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-describe('Codesphere Portfolio — Data Integrity & Positioning', () => {
-  it('validates overall portfolio schema and 260+ automated test threshold', () => {
+describe('Codesphere Portfolio v1.1 — Executive Identity, Career & Strict Accuracy Rules', () => {
+  it('validates overall portfolio schema and 340+ automated test threshold', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.ok(
-      check.totalTests >= 260,
-      `Expected at least 260 automated tests across portfolio, got ${check.totalTests}`
+      check.totalTests >= 340,
+      `Expected at least 340 automated tests across portfolio, got ${check.totalTests}`
     );
   });
 
-  it('includes exact required hero positioning, Kampala location, and GitHub profile link', () => {
+  it('includes exact verified identity, positioning, and principal links for Akandwanaho Ivan Alvin', () => {
     const { profile } = PORTFOLIO_DATA;
+    assert.equal(profile.name, 'Akandwanaho Ivan Alvin');
+    assert.equal(profile.shortName, 'Alvin');
     assert.equal(
       profile.headline,
-      'Software Engineer | AI Systems Builder | Cybersecurity | Full-Stack & Cloud Engineering | Building Technology for Real-World Problems'
+      'Software Engineer · AI Systems Builder · Cybersecurity · Full-Stack & Cloud Engineering'
+    );
+    assert.equal(
+      profile.subtitle,
+      'Founder & Managing Director, Codesphere Innovations (U) Limited'
+    );
+    assert.equal(
+      profile.tagline,
+      'Building intelligent, secure, and scalable software — from Uganda to the world.'
     );
     assert.match(profile.location, /Kampala, Uganda/);
+    assert.equal(profile.companyWebsiteUrl, 'https://www.codesphereug.com');
+    assert.equal(profile.linkedinUrl, 'https://www.linkedin.com/in/the4codex');
     assert.equal(profile.githubUrl, 'https://github.com/codesphere-u');
+    assert.equal(profile.liveDemoUrl, 'https://cyber-dragon-ivory.vercel.app');
   });
 
-  it('verifies all 7 flagship systems and their exact repository URLs', () => {
+  it('enforces education accuracy: ISBAT University — Uganda is present and Makerere is never mentioned', () => {
+    const { html } = generatePortfolioHtml();
+    assert.match(PORTFOLIO_DATA.profile.education.institution, /ISBAT University/);
+    assert.match(html, /ISBAT University — Uganda/);
+    assert.doesNotMatch(html, /Makerere/i);
+    assert.doesNotMatch(JSON.stringify(PORTFOLIO_DATA), /Makerere/i);
+    assert.doesNotMatch(html, /whitehathackerpr/i);
+  });
+
+  it('verifies career leadership roles and strict organizational boundaries (Codesphere, Funa Gigs / Jaminsa Ventures, Waanverse Labs, 4codex)', () => {
+    const { html } = generatePortfolioHtml();
+
+    const codesphere = PORTFOLIO_DATA.experience.find(
+      (e) => e.id === 'codesphere-innovations'
+    );
+    assert.ok(codesphere);
+    assert.equal(codesphere.isCurrent, true);
+    assert.equal(codesphere.websiteUrl, 'https://www.codesphereug.com');
+    assert.match(codesphere.organization, /CODESPHERE INNOVATIONS \(U\) LIMITED/);
+
+    const funaGigs = PORTFOLIO_DATA.experience.find(
+      (e) => e.id === 'funa-gigs-jaminsa'
+    );
+    assert.ok(funaGigs);
+    assert.equal(funaGigs.isCurrent, true);
+    assert.match(funaGigs.organization, /Jaminsa Ventures Limited/);
+    assert.match(funaGigs.ownershipNote, /Jaminsa Ventures Limited/);
+    assert.match(funaGigs.ownershipNote, /distinct from Codesphere Innovations/);
+
+    const waanverse = PORTFOLIO_DATA.experience.find(
+      (e) => e.id === 'waanverse-labs'
+    );
+    assert.ok(waanverse);
+    assert.equal(waanverse.isCurrent, false);
+    assert.match(waanverse.status, /Former — Departed March 2025/);
+
+    const fourCodex = PORTFOLIO_DATA.experience.find(
+      (e) => e.id === '4codex-technologies'
+    );
+    assert.ok(fourCodex);
+    assert.equal(fourCodex.isCurrent, false);
+    assert.match(fourCodex.organization, /4codex Technologies/);
+
+    assert.match(html, /Akandwanaho Ivan Alvin/);
+    assert.match(html, /Jaminsa Ventures Limited/);
+    assert.match(html, /Departed March 2025/);
+    assert.match(html, /https:\/\/www\.codesphereug\.com/);
+  });
+
+  it('renders the 7-stage thematic engineering journey and broader commercial archive', () => {
+    assert.equal(PORTFOLIO_DATA.journey.length, 7);
+    const themes = PORTFOLIO_DATA.journey.map((j) => j.theme);
+    assert.deepEqual(themes, [
+      'Foundation',
+      'Entrepreneurship',
+      'Technical Leadership',
+      'Business Leadership',
+      'Product Engineering',
+      'Advanced Engineering',
+      'Open Source'
+    ]);
+
+    const broaderNames = PORTFOLIO_DATA.broaderProjects.map((p) => p.name);
+    assert.ok(broaderNames.includes('Funa Gigs'));
+    assert.ok(broaderNames.includes('BizManage Pro'));
+    assert.ok(broaderNames.includes('PesaFlow'));
+    assert.ok(broaderNames.includes('AI Energy Efficiency Tool'));
+    assert.ok(broaderNames.includes('Trip Planner & Electronic Logging Application'));
+
+    const { html } = generatePortfolioHtml();
+    assert.match(html, /2K Restaurant Management/);
+    assert.match(html, /BKK Pharmacy Management/);
+    assert.match(html, /City Star Supermarket Management/);
+    assert.match(html, /OM SAI Hardware Software/);
+  });
+
+  it('verifies all 8 open-source systems (6 Primary Flagships + AgriSignal + Clinical Virtual Health Platform)', () => {
     const expectedSlugs = [
-      'agentshield',
       'cyber-dragon',
       'auralis-local',
-      'flowledger',
+      'agentshield',
       'ARGUS-AI',
+      'flowledger',
       'stackpulse',
-      'agrisignal'
+      'agrisignal',
+      'Clinical-Virtual-Health-Platform'
     ];
-    assert.equal(PORTFOLIO_DATA.projects.length, 7);
+    assert.equal(PORTFOLIO_DATA.projects.length, 8);
+    const primaryCount = PORTFOLIO_DATA.projects.filter(
+      (p) => p.isPrimaryFlagship
+    ).length;
+    assert.equal(primaryCount, 6);
+
     for (const slug of expectedSlugs) {
       const project = getProjectById(slug);
       assert.ok(project, `Missing flagship system: ${slug}`);
@@ -105,8 +200,9 @@ describe('Codesphere Portfolio — Data Integrity & Positioning', () => {
     assert.match(stackpulse.headlineMetric.value, /51\.2 µs\/trace/);
   });
 
-  it('verifies exact measured metrics for AgriSignal v1.0 (≤160-char SMS advisories in en, lg, sw)', () => {
+  it('verifies exact measured metrics for AgriSignal v1.0 (60 passing pytest tests, ≤160-char SMS advisories in en, lg, sw)', () => {
     const agrisignal = getProjectById('agrisignal');
+    assert.equal(agrisignal.automatedTests, 60);
     assert.match(agrisignal.headlineMetric.value, /160 Chars/);
     assert.match(agrisignal.summary, /`en`/);
     assert.match(agrisignal.summary, /`lg`/);
@@ -126,12 +222,12 @@ describe('Codesphere Portfolio — Interactive Domain Filtering & Search', () =>
     ];
     assert.deepEqual(PORTFOLIO_DATA.domains, expectedDomains);
 
-    assert.equal(filterProjects({ domain: 'All' }).length, 7);
+    assert.equal(filterProjects({ domain: 'All' }).length, 8);
     assert.ok(filterProjects({ domain: 'AI & Agents' }).length >= 3);
     assert.ok(filterProjects({ domain: 'Cybersecurity' }).length >= 3);
     assert.ok(filterProjects({ domain: 'Fintech & Ledgers' }).length >= 2);
     assert.equal(filterProjects({ domain: 'Cloud & SRE' }).length, 1);
-    assert.equal(filterProjects({ domain: 'AgriTech & HealthTech' }).length, 1);
+    assert.equal(filterProjects({ domain: 'AgriTech & HealthTech' }).length, 2);
   });
 
   it('filters projects by search query across ADRs and architectural trade-offs', () => {
@@ -194,12 +290,12 @@ describe('Codesphere Portfolio — Architecture & ADR Deep-Dive Drawer Rendering
   });
 });
 
-describe('Codesphere Portfolio — Static Build & Accessibility Output', () => {
-  it('builds self-contained index.html and dist/index.html in under 500ms', () => {
+describe('Codesphere Portfolio — Static Build, Visual Palette & Accessibility Output', () => {
+  it('builds self-contained index.html and dist/index.html in under 500ms with executive color palette', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
-    assert.equal(summary.totalProjects, 7);
-    assert.ok(summary.totalAutomatedTests >= 260);
+    assert.equal(summary.totalProjects, 8);
+    assert.ok(summary.totalAutomatedTests >= 340);
 
     // Check semantic landmarks & accessibility features
     assert.match(html, /class="skip-link"/);
@@ -218,6 +314,12 @@ describe('Codesphere Portfolio — Static Build & Accessibility Output', () => {
       path.join(ROOT_DIR, 'src', 'ui', 'styles.css'),
       'utf8'
     );
+    assert.match(css, /#070d19/);
+    assert.match(css, /#0b1528/);
+    assert.match(css, /#111827/);
+    assert.match(css, /#38bdf8/);
+    assert.match(css, /#2563eb/);
+    assert.match(css, /#fbbf24/);
     assert.match(css, /prefers-reduced-motion:\s*reduce/);
     assert.match(css, /\[data-theme="light"\]/);
   });
@@ -249,8 +351,9 @@ describe('Codesphere Portfolio — HTTP Server & API Endpoints', () => {
     assert.equal(res.status, 200);
     const body = await res.json();
     assert.equal(body.status, 'ok');
-    assert.equal(body.totalProjects, 7);
-    assert.ok(body.totalAutomatedTests >= 260);
+    assert.equal(body.owner, 'Akandwanaho Ivan Alvin');
+    assert.equal(body.totalProjects, 8);
+    assert.ok(body.totalAutomatedTests >= 340);
   });
 
   it('serves /api/projects with domain and query filtering', async () => {
@@ -275,6 +378,7 @@ describe('Codesphere Portfolio — HTTP Server & API Endpoints', () => {
     assert.equal(res.status, 200);
     assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
     const html = await res.text();
+    assert.match(html, /Akandwanaho Ivan Alvin/);
     assert.match(html, /Interactive Flagship Systems Explorer/);
   });
 

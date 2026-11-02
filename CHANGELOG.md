@@ -2,17 +2,22 @@
 
 All notable changes to `codesphere-portfolio` are documented in this file.
 
+## [1.1.0] - 2026-11-02
+
+### Added
+- **Executive Biographical & Career Identity for Akandwanaho Ivan Alvin (“Alvin”)**:
+  - Added full executive positioning, tagline (*"Building intelligent, secure, and scalable software — from Uganda to the world."*), and verified links (`https://www.codesphereug.com`, `https://www.linkedin.com/in/the4codex`, `https://github.com/codesphere-u`, `https://cyber-dragon-ivory.vercel.app`).
+  - Added long-form **About Me & Education** section highlighting studies at **ISBAT University — Uganda** and continuous independent systems engineering.
+  - Added **Executive Leadership & Career Experience** section detailing roles at **Codesphere Innovations (U) Limited**, **Funa Gigs** (*Jaminsa Ventures Limited* — explicitly distinguished from Codesphere Innovations), **Waanverse Labs Inc.** (*Former CTO & Head of Engineering — Departed March 2025*), and **4codex Technologies**.
+  - Added **7-Stage Thematic Engineering Journey** (*Foundation, Entrepreneurship, Technical Leadership, Business Leadership, Product Engineering, Advanced Engineering, Open Source*).
+  - Added **Product & Commercial Engineering Archive** covering **Funa Gigs**, **BizManage Pro**, **PesaFlow**, **AI Energy Efficiency Tool**, **Trip Planner & Electronic Logging Application**, and **Sector-Specific Business Systems** (*2K Restaurant*, *BKK Pharmacy*, *City Star Supermarket*, *OM SAI Hardware*, *Library & Resume Analysis Tools*).
+  - Added `Clinical-Virtual-Health-Platform` to the interactive open-source architecture explorer and updated `agrisignal` to reflect 60 passing pytest tests (346+ total automated tests across 8 open-source repositories).
+  - Upgraded the visual design system (`src/ui/styles.css`) with deep navy (`#070d19`, `#0b1528`), charcoal (`#111827`), refined blue (`#38bdf8`, `#2563eb`), and subtle executive gold (`#f59e0b`, `#fbbf24`) accents.
+
 ## [1.0.0] - 2026-11-02
 
 ### Added
-- **Interactive Flagship Systems Explorer** featuring 7 verified repositories across *AI & Agents*, *Cybersecurity*, *Fintech & Ledgers*, *Cloud & SRE*, and *AgriTech & HealthTech*:
-  - `agentshield` — OWASP 2026 AI Agent Security & Capability Firewall (42 tests, 25-scenario red-team suite, 100% recall, 0% FPR, SHA-256 audit ledger).
-  - `cyber-dragon` — SSRF-Free Community Cyber Defense & Mobile Money/USSD Fraud Engine (21 tests, 0.28 ms mean latency, 8/8 scenario benchmark, live at `https://cyber-dragon-ivory.vercel.app`).
-  - `auralis-local` — Privacy-First Apple Silicon AI Workspace with Hybrid BM25 RAG & Local Voice (36 tests, 0.245 ms P50 BM25 retrieval latency, 3,110 docs/sec indexing throughput).
-  - `flowledger` — Integer Minor-Unit Double-Entry Payment & Mobile Money Reconciliation Engine (51 tests, 97 hash-chained entries with 0 imbalance across UGX & KES, 50-tx 3-way reconciliation).
-  - `ARGUS-AI` — 7-Agent Adversarial Investment Committee with Devil's Advocate Veto & Leakage-Free Backtester (61 tests, 3 catastrophic trap trades vetoed, MCP server).
-  - `stackpulse` — OpenTelemetry DAG Critical-Path Analyzer, N+1 Query Detector & Multi-Window SLO Platform (47 tests, 19,525 traces/sec DAG assembly, 51.2 µs/trace critical-path latency).
-  - `agrisignal` — Offline-First Smallholder Agricultural Decision Support with Uncertainty Bounds & Multilingual ≤160-char SMS Advisories (`en`, `lg`, `sw`).
+- **Interactive Flagship Systems Explorer** featuring 7 verified repositories across *AI & Agents*, *Cybersecurity*, *Fintech & Ledgers*, *Cloud & SRE*, and *AgriTech & HealthTech*.
 - **Interactive Architecture & ADR Deep-Dive Drawer** with ASCII system blueprints, layered responsibilities, deterministic safety invariants, Architecture Decision Records (ADRs), one-click CLI quickstart commands, and direct links to source & test files on GitHub.
-- **Verified Engineering Benchmarks Matrix** with sortable test counts, latencies, visual comparison bars, and determinism guarantees across 290+ automated tests.
-- **Zero-Bloat Static Generator & Preview Server** (`scripts/build.mjs` + `server.mjs`) building in under 5 ms with dark/light theme toggle, keyboard navigation (`/` and `Esc`), `prefers-reduced-motion` support, and a 22-test Node `--test` verification suite (`tests/portfolio.test.mjs`).
+- **Verified Engineering Benchmarks Matrix** with sortable test counts, latencies, visual comparison bars, and determinism guarantees.
+- **Zero-Bloat Static Generator & Preview Server** (`scripts/build.mjs` + `server.mjs`).

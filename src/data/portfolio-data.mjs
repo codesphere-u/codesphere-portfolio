@@ -1,5 +1,5 @@
 /**
- * Verified Engineering Portfolio Data — codesphere-u
+ * Verified Engineering Portfolio Data — Akandwanaho Ivan Alvin (codesphere-u)
  * Zero synthetic vanity numbers: every benchmark, test count, and architectural invariant
  * corresponds directly to executable test suites in https://github.com/codesphere-u
  */
@@ -7,15 +7,35 @@
 export const PORTFOLIO_DATA = {
   profile: {
     handle: 'codesphere-u',
-    name: 'Codesphere Engineering',
+    name: 'Akandwanaho Ivan Alvin',
+    shortName: 'Alvin',
     headline:
-      'Software Engineer | AI Systems Builder | Cybersecurity | Full-Stack & Cloud Engineering | Building Technology for Real-World Problems',
+      'Software Engineer · AI Systems Builder · Cybersecurity · Full-Stack & Cloud Engineering',
+    subtitle: 'Founder & Managing Director, Codesphere Innovations (U) Limited',
+    tagline:
+      'Building intelligent, secure, and scalable software — from Uganda to the world.',
     location: 'Kampala, Uganda · Global Remote / International Engineering',
-    availability: 'Open to Senior / Staff Full-Stack, AI Systems, Security & Distributed Systems Roles',
+    availability:
+      'Founder & Managing Director at Codesphere Innovations (U) Limited · Open to High-Impact Systems, AI & Security Engineering Collaborations',
+    companyName: 'Codesphere Innovations (U) Limited',
+    companyWebsiteUrl: 'https://www.codesphereug.com',
+    linkedinUrl: 'https://www.linkedin.com/in/the4codex',
     githubUrl: 'https://github.com/codesphere-u',
+    liveDemoUrl: 'https://cyber-dragon-ivory.vercel.app',
     portfolioRepoUrl: 'https://github.com/codesphere-u/codesphere-portfolio',
     missionStatement:
-      'Designing deterministic, adversarial-resilient software systems—from capability-gated AI firewalls and integer-exact mobile money ledgers to sub-millisecond local RAG workspaces and offline-first agricultural decision support.'
+      'Designing deterministic, adversarial-resilient software systems and commercial platforms — from capability-gated AI firewalls, local-first RAG workspaces, and integer-exact mobile money ledgers to real-time two-sided service marketplaces and enterprise digital transformation.',
+    aboutParagraphs: [
+      'I am Akandwanaho Ivan Alvin (commonly known as Alvin), a Ugandan Software Engineer, AI Systems Builder, Cybersecurity practitioner, and technology entrepreneur based in Kampala, Uganda. My work sits at the intersection of production full-stack engineering, applied artificial intelligence, defensive security, and cloud-native systems architecture.',
+      'As Founder and Managing Director of Codesphere Innovations (U) Limited (codesphereug.com), I lead the architecture and delivery of custom software platforms, web and mobile applications, AI-powered workflows, cybersecurity engineering, and digital transformation initiatives for businesses and institutions. Alongside this, I serve as Founder and Project Lead of Funa Gigs under Jaminsa Ventures Limited — a distinct technology marketplace venture connecting service seekers with verified service providers through real-time matching, live geospatial discovery, Instant Hire workflows, and integrated digital payments.',
+      'Previously, I served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. (departed March 2025), where I directed technical strategy, system architecture, and engineering execution, and earlier founded 4codex Technologies as an independent software and cybersecurity consultancy. Across both commercial products and open-source systems on GitHub (@codesphere-u), I focus on software that solves real-world African and global challenges with verifiable engineering rigor.'
+    ],
+    education: {
+      institution: 'ISBAT University — Uganda',
+      location: 'Kampala, Uganda',
+      summary:
+        'Studied at ISBAT University — Uganda, complemented by continuous independent learning, applied systems engineering, cybersecurity research, and hands-on experimentation across AI agents, distributed backends, and cloud infrastructure.'
+    }
   },
 
   domains: [
@@ -27,12 +47,386 @@ export const PORTFOLIO_DATA = {
     'AgriTech & HealthTech'
   ],
 
+  experience: [
+    {
+      id: 'codesphere-innovations',
+      role: 'Founder & Managing Director',
+      organization: 'CODESPHERE INNOVATIONS (U) LIMITED',
+      status: 'Current',
+      isCurrent: true,
+      location: 'Kampala, Uganda',
+      websiteUrl: 'https://www.codesphereug.com',
+      summary:
+        'Leading a Ugandan technology company focused on custom software engineering, web and mobile application development, AI-powered applications, business digital transformation, cybersecurity, cloud solutions, product architecture, and intelligent automation.',
+      highlights: [
+        'Directs company strategy, executive client partnerships, and end-to-end product architecture across web, mobile, AI, and cloud platforms.',
+        'Spearheads engineering governance, secure SDLC practices, and open-source R&D across AI agent security, financial ledgers, and distributed observability.',
+        'Delivers operational and enterprise digital transformation solutions tailored to East African and international business workflows.'
+      ],
+      technologies: [
+        'TypeScript',
+        'Python',
+        'React / Next.js',
+        'Node.js',
+        'FastAPI',
+        'PostgreSQL',
+        'Cloud & DevOps',
+        'AI Systems & Security'
+      ]
+    },
+    {
+      id: 'funa-gigs-jaminsa',
+      role: 'Founder & Project Lead',
+      organization: 'Funa Gigs (Jaminsa Ventures Limited)',
+      status: 'Current',
+      isCurrent: true,
+      location: 'Kampala, Uganda',
+      ownershipNote:
+        'Funa Gigs belongs to Jaminsa Ventures Limited and is an independent product venture distinct from Codesphere Innovations (U) Limited.',
+      summary:
+        'Architecting and leading Funa Gigs, a two-sided technology marketplace under Jaminsa Ventures Limited that connects service seekers with verified service providers across Uganda.',
+      highlights: [
+        'Engineered cross-platform Flutter mobile applications alongside high-concurrency Elixir/Phoenix and Supabase/PostgreSQL backend services.',
+        'Built real-time job matching, Instant Hire workflows, and live location discovery for on-demand service fulfillment.',
+        'Integrated mobile money & digital payment workflows, identity verification (KYC), in-app real-time messaging, trust & safety controls, and operational admin tooling.'
+      ],
+      technologies: [
+        'Flutter',
+        'Dart',
+        'Elixir',
+        'Phoenix',
+        'PostgreSQL',
+        'Supabase',
+        'Google Cloud',
+        'Real-Time Geolocation & Payments'
+      ]
+    },
+    {
+      id: 'waanverse-labs',
+      role: 'Former CTO & Head of Engineering',
+      organization: 'Waanverse Labs Inc.',
+      status: 'Former — Departed March 2025',
+      isCurrent: false,
+      location: 'Uganda / Remote',
+      summary:
+        'Led technical strategy, software architecture, project planning, development workflows, and core engineering decision-making until departing the role in March 2025.',
+      highlights: [
+        'Defined platform architecture, technical roadmaps, and engineering standards across product teams.',
+        'Guided code review culture, release orchestration, and cross-functional collaboration between product design and backend/frontend engineering.',
+        'Concluded tenure in March 2025 to focus full-time on Codesphere Innovations (U) Limited and flagship product ventures.'
+      ],
+      technologies: [
+        'System Architecture',
+        'Technical Strategy',
+        'Full-Stack Engineering',
+        'Cloud Infrastructure',
+        'Engineering Leadership'
+      ]
+    },
+    {
+      id: '4codex-technologies',
+      role: 'Founder',
+      organization: '4codex Technologies',
+      status: 'Historical Venture',
+      isCurrent: false,
+      location: 'Kampala, Uganda',
+      summary:
+        'Early technology venture through which Alvin delivered custom software development, web application engineering, cybersecurity assessments, workflow automation, and technical consultancy.',
+      highlights: [
+        'Designed and deployed practical business management systems for retail, hospitality, pharmacy, and hardware operations.',
+        'Provided web engineering, defensive security hardening, and automation consulting that laid the technical foundation for subsequent ventures.'
+      ],
+      technologies: [
+        'Python',
+        'JavaScript',
+        'Web Engineering',
+        'Cybersecurity',
+        'Relational Databases',
+        'Business Automation'
+      ]
+    }
+  ],
+
+  journey: [
+    {
+      stageNumber: 1,
+      theme: 'Foundation',
+      title: 'Practical Business Applications & ISBAT University Studies',
+      description:
+        'Built a strong foundation in software construction by studying at ISBAT University — Uganda while combining academic inquiry with continuous self-driven experimentation and building operational software for local businesses.'
+    },
+    {
+      stageNumber: 2,
+      theme: 'Entrepreneurship',
+      title: 'Establishing 4codex Technologies',
+      description:
+        'Founded 4codex Technologies as an early venture delivering custom software development, web applications, cybersecurity services, automation scripts, and hands-on technical consultancy.'
+    },
+    {
+      stageNumber: 3,
+      theme: 'Technical Leadership',
+      title: 'CTO & Head of Engineering at Waanverse Labs Inc.',
+      description:
+        'Stepped into executive technical leadership as CTO and Head of Engineering at Waanverse Labs Inc. (departed March 2025), directing software architecture, engineering workflows, and technical strategy.'
+    },
+    {
+      stageNumber: 4,
+      theme: 'Business Leadership',
+      title: 'Founder & Managing Director at Codesphere Innovations (U) Limited',
+      description:
+        'Established Codesphere Innovations (U) Limited (codesphereug.com) in Uganda to deliver enterprise-grade custom software, AI-powered applications, cybersecurity, cloud engineering, and business digital transformation.'
+    },
+    {
+      stageNumber: 5,
+      theme: 'Product Engineering',
+      title: 'Leading Funa Gigs under Jaminsa Ventures Limited',
+      description:
+        'Founded and leads product engineering for Funa Gigs (a Jaminsa Ventures Limited marketplace product distinct from Codesphere Innovations), combining Flutter, Elixir/Phoenix, PostgreSQL, Supabase, live location discovery, and Instant Hire workflows.'
+    },
+    {
+      stageNumber: 6,
+      theme: 'Advanced Engineering',
+      title: 'AI Agents, Local LLMs, Cybersecurity, Ledgers & Observability',
+      description:
+        'Engineered specialized systems spanning OWASP AI capability firewalls (AgentShield), Apple Silicon hybrid RAG workspaces (Auralis Local), SSRF-free USSD/phishing defense (Cyber Dragon), adversarial quant committees (ARGUS AI), BigInt double-entry ledgers (FlowLedger), and OpenTelemetry DAG analyzers (StackPulse).'
+    },
+    {
+      stageNumber: 7,
+      theme: 'Open Source',
+      title: 'Verifiable Public Engineering from Uganda to the World',
+      description:
+        'Publishes reproducible, benchmark-backed open-source engineering platforms under @codesphere-u on GitHub—demonstrating that world-class, high-assurance systems engineering thrives in Kampala, Uganda.'
+    }
+  ],
+
   projects: [
+    {
+      id: 'cyber-dragon',
+      slug: 'cyber-dragon',
+      name: 'Cyber Dragon v1.0',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      tagline: 'SSRF-Free Community Cyber Defense & Mobile Money/USSD Fraud Engine',
+      summary:
+        'Dual-runtime (TypeScript Web + Python FastAPI) threat analyzer built for East African & global community defense. Detects phishing URLs, homograph/typosquatting domains, fake mobile money reversal SMS, and predatory USSD strings (*165#, *185#, *334#) without ever making outbound network requests.',
+      domains: ['Cybersecurity', 'Fintech & Ledgers'],
+      primaryDomain: 'Cybersecurity',
+      repoUrl: 'https://github.com/codesphere-u/cyber-dragon',
+      liveDemoUrl: 'https://cyber-dragon-ivory.vercel.app',
+      languages: ['TypeScript', 'Python', 'FastAPI', 'React'],
+      automatedTests: 21,
+      headlineMetric: {
+        label: 'Mean Threat Analysis Latency',
+        value: '0.28 ms · 8/8 Corpus',
+        detail: '100% offline/SSRF-free lexical & USSD heuristic scoring across 8 real-world East African & global threat scenarios'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '21 passing (TS + Python)' },
+        { label: 'Mean Latency', value: '0.28 ms / payload' },
+        { label: 'Outbound Network Calls', value: '0 (Strictly SSRF-Free)' },
+        { label: 'Live Deployment', value: 'cyber-dragon-ivory.vercel.app' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Suspicious URL / SMS / USSD String (*165*...#)]
+        │
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ 1. Zero-Egress Lexical URL Parser (No DNS / No HTTP Fetch)│
+├───────────────────────────────────────────────────────────┤
+│ 2. Brand Impersonation & IDN Punycode Homograph Detector  │
+├───────────────────────────────────────────────────────────┤
+│ 3. Mobile Money Social Engineering & Reversal Scam Scorer │
+├───────────────────────────────────────────────────────────┤
+│ 4. USSD PIN-Trap & Call-Forwarding (*21*) AST Inspector   │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+    [Explainable Risk Breakdown + Actionable Playbook]`,
+        layers: [
+          {
+            name: 'Zero-Egress Lexical URL & Hostname Inspector',
+            responsibility:
+              'Parses URLs strictly as strings/URL objects—flagging raw IP hosts, credential-in-URL (@) tricks, excessive subdomain nesting, high Shannon entropy, and Punycode (`xn--`) homographs.'
+          },
+          {
+            name: 'Mobile Money & USSD Fraud Heuristic Engine',
+            responsibility:
+              'Detects MTN MoMo (*165#), Airtel Money (*185#), and M-Pesa (*334#) social engineering patterns, fake cash-in reversal alerts, SIM-swap urgency cues, and *21*/*67* call-forwarding hijacks.'
+          },
+          {
+            name: 'Dual-Runtime Parity Layer (TypeScript UI + FastAPI Backend)',
+            responsibility:
+              'Provides identical deterministic risk scoring in the browser-side interactive analyzer and the Python FastAPI REST service.'
+          }
+        ],
+        invariants: [
+          'Zero outbound HTTP/DNS requests when analyzing user-submitted URLs—eliminating SSRF, internal port scanning, and attacker beacon callbacks.',
+          'Every risk verdict includes human-readable evidence signals and concrete remediation steps tailored for non-technical users.',
+          'Sub-millisecond execution (0.28 ms mean latency) enables real-time client-side scanning on low-end mobile devices.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-01',
+          title: 'Refusal to Fetch User-Submitted URLs (SSRF-Free by Construction)',
+          context:
+            'Many URL scanners fetch the target page to inspect DOM content, inadvertently turning the scanner into an SSRF proxy and tipping off attackers via unique tracking URLs.',
+          decision:
+            'Perform 100% lexical, structural, Shannon-entropy, Levenshtein brand-distance, and USSD/SMS pattern analysis without making any DNS or HTTP requests.',
+          tradeOffs:
+            'Cannot inspect post-redirect DOM payloads behind neutral shorteners without user expansion, but completely eliminates SSRF vulnerabilities, attacker canary triggers, and network latency.',
+          verification:
+            'Verified across 21 automated tests (TypeScript + FastAPI) and an 8/8 real-world threat corpus benchmark completing in 0.28 ms mean latency.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/cyber-dragon.git',
+        'cd cyber-dragon && npm test',
+        'pytest backend/tests'
+      ],
+      sourceLinks: [
+        {
+          label: 'Live Web Application',
+          path: 'https://cyber-dragon-ivory.vercel.app',
+          url: 'https://cyber-dragon-ivory.vercel.app',
+          kind: 'demo'
+        },
+        {
+          label: 'Repository Root',
+          path: '/',
+          url: 'https://github.com/codesphere-u/cyber-dragon',
+          kind: 'source'
+        },
+        {
+          label: 'Threat Analyzer & USSD Fraud Engine',
+          path: 'src/',
+          url: 'https://github.com/codesphere-u/cyber-dragon/tree/main/src',
+          kind: 'source'
+        }
+      ]
+    },
+
+    {
+      id: 'auralis-local',
+      slug: 'auralis-local',
+      name: 'Auralis Local v0.2',
+      version: 'v0.2.0',
+      isPrimaryFlagship: true,
+      tagline: 'Privacy-First Apple Silicon AI Workspace with Hybrid BM25 RAG & Local Voice',
+      summary:
+        'Local-first AI workspace engineered for Apple Silicon (`mlx-lm` / Ollama) with deterministic Okapi BM25 + semantic hybrid RAG, cite-or-abstain grounding verification, local Whisper STT / Kokoro TTS voice pipeline, and loopback-only capability sandboxing.',
+      domains: ['AI & Agents', 'Cybersecurity'],
+      primaryDomain: 'AI & Agents',
+      repoUrl: 'https://github.com/codesphere-u/auralis-local',
+      languages: ['Python', 'TypeScript', 'SQLite', 'Apple MLX'],
+      automatedTests: 36,
+      headlineMetric: {
+        label: 'BM25 RAG Retrieval Latency',
+        value: '0.245 ms P50 · 3,110 docs/s',
+        detail: 'Sub-millisecond hybrid retrieval with cite-or-abstain grounding enforcement and zero cloud telemetry'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '36 passing' },
+        { label: 'Retrieval P50 Latency', value: '0.245 ms' },
+        { label: 'Indexing Throughput', value: '3,110 docs/sec' },
+        { label: 'Network Binding', value: '127.0.0.1 Loopback Only' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Local Documents / Code / Voice Audio]
+        │
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ 1. Heading-Aware Chunker & Okapi BM25 Inverted Index      │
+├───────────────────────────────────────────────────────────┤
+│ 2. Hybrid RRF Retriever (0.245 ms P50) + Citation Guard   │
+├───────────────────────────────────────────────────────────┤
+│ 3. Local Inference Router (Apple MLX / Ollama Loopback)   │
+├───────────────────────────────────────────────────────────┤
+│ 4. Path-Jailed Tool Sandbox + Single-Use Approval Tokens  │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+       [Grounded Answer with [doc#chunk] Citations]`,
+        layers: [
+          {
+            name: 'Deterministic Okapi BM25 + Reciprocal Rank Fusion (RRF) Engine',
+            responsibility:
+              'Indexes local Markdown, code, and PDFs at 3,110 docs/sec and retrieves top-k grounded chunks in 0.245 ms P50 without external vector DB daemons.'
+          },
+          {
+            name: 'Cite-or-Abstain Grounding Verifier',
+            responsibility:
+              'Validates that every synthesized claim references a retrieved `[source_id]` span above the minimum relevance threshold, abstaining when evidence is insufficient.'
+          },
+          {
+            name: 'Loopback-Bound Daemon & Symlink-Safe Path Jail',
+            responsibility:
+              'Binds strictly to `127.0.0.1`, resolves `realpath` to block symlink escapes (`../`), and requires single-use approval tokens for any file write.'
+          }
+        ],
+        invariants: [
+          'Zero external API calls or telemetry—all indexing, retrieval, speech-to-text, and LLM inference stay on the local machine.',
+          'Daemon refuses to bind to `0.0.0.0` unless explicitly overridden, preventing LAN exposure of local workspace tools.',
+          'File tools verify canonical `realpath` containment inside the workspace root before reading or mutating any byte.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-01',
+          title: 'In-Process Okapi BM25 + RRF Over Heavyweight External Vector Databases',
+          context:
+            'Running Dockerized vector databases (Milvus/Qdrant) for a local desktop workspace consumes 1–2 GB of RAM away from unified Apple Silicon memory needed for LLM weights.',
+          decision:
+            'Implement an in-process Okapi BM25 inverted index (`k1=1.5, b=0.75`) fused with lightweight cosine embeddings via Reciprocal Rank Fusion (RRF) backed by SQLite.',
+          tradeOffs:
+            'Not designed for 100M-document distributed clusters, but delivers 0.245 ms P50 query latency and 3,110 docs/sec indexing with near-zero RAM overhead for personal/team repositories.',
+          verification:
+            'Verified via reproducible benchmark script and 36 automated tests covering retrieval precision, citation verification, and sandbox security.'
+        },
+        {
+          id: 'ADR-02',
+          title: 'Strict Loopback Binding and Single-Use Write Approval Tokens',
+          context:
+            'Local AI daemons often bind to `0.0.0.0` without authentication, allowing malicious websites (via DNS rebinding/CORS) or LAN peers to execute arbitrary file writes.',
+          decision:
+            'Enforce `127.0.0.1` loopback binding, strict Origin checking, realpath symlink resolution, and single-use cryptographic approval tokens for state-changing operations.',
+          tradeOffs:
+            'Interactive write operations require an explicit user confirmation handshake, preventing silent background file corruption or exfiltration.',
+          verification:
+            'Tested against path traversal (`../../etc/passwd`), symlink escape, and unapproved write attempts in the test suite.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/auralis-local.git',
+        'cd auralis-local && npm test',
+        'node src/cli.mjs benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'Repository Root',
+          path: '/',
+          url: 'https://github.com/codesphere-u/auralis-local',
+          kind: 'source'
+        },
+        {
+          label: 'BM25 RAG & Grounding Engine',
+          path: 'src/',
+          url: 'https://github.com/codesphere-u/auralis-local/tree/main/src',
+          kind: 'source'
+        },
+        {
+          label: '36 Automated Security & Retrieval Tests',
+          path: 'tests/',
+          url: 'https://github.com/codesphere-u/auralis-local/tree/main/tests',
+          kind: 'test'
+        }
+      ]
+    },
+
     {
       id: 'agentshield',
       slug: 'agentshield',
       name: 'AgentShield',
       version: 'v1.0.0',
+      isPrimaryFlagship: true,
       tagline: 'OWASP 2026 AI Agent Security & Capability Firewall',
       summary:
         'Deterministic capability firewall and runtime policy engine intercepting tool calls before execution. Mitigates indirect prompt injection, SSRF/cloud metadata exfiltration, credential leakage, and privilege escalation with a tamper-evident SHA-256 hash-chained audit ledger.',
@@ -149,219 +543,104 @@ export const PORTFOLIO_DATA = {
     },
 
     {
-      id: 'cyber-dragon',
-      slug: 'cyber-dragon',
-      name: 'Cyber Dragon v1.0',
-      version: 'v1.0.0',
-      tagline: 'SSRF-Free Community Cyber Defense & Mobile Money/USSD Fraud Engine',
+      id: 'argus-ai',
+      slug: 'ARGUS-AI',
+      name: 'ARGUS AI v2.1',
+      version: 'v2.1.0',
+      isPrimaryFlagship: true,
+      tagline: "7-Agent Adversarial Investment Committee with Devil's Advocate Veto & Leakage-Free Backtester",
       summary:
-        'Dual-runtime (TypeScript Web + Python FastAPI) threat analyzer built for East African & global community defense. Detects phishing URLs, homograph/typosquatting domains, fake mobile money reversal SMS, and predatory USSD strings (*165#, *185#, *334#) without ever making outbound network requests.',
-      domains: ['Cybersecurity', 'Fintech & Ledgers'],
-      primaryDomain: 'Cybersecurity',
-      repoUrl: 'https://github.com/codesphere-u/cyber-dragon',
-      liveDemoUrl: 'https://cyber-dragon-ivory.vercel.app',
-      languages: ['TypeScript', 'Python', 'FastAPI', 'React'],
-      automatedTests: 21,
-      headlineMetric: {
-        label: 'Mean Threat Analysis Latency',
-        value: '0.28 ms · 8/8 Corpus',
-        detail: '100% offline/SSRF-free lexical & USSD heuristic scoring across 8 real-world East African & global threat scenarios'
-      },
-      secondaryMetrics: [
-        { label: 'Automated Tests', value: '21 passing (TS + Python)' },
-        { label: 'Mean Latency', value: '0.28 ms / payload' },
-        { label: 'Outbound Network Calls', value: '0 (Strictly SSRF-Free)' },
-        { label: 'Live Deployment', value: 'cyber-dragon-ivory.vercel.app' }
-      ],
-      architectureBlueprint: {
-        diagram: `[Suspicious URL / SMS / USSD String (*165*...#)]
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│ 1. Zero-Egress Lexical URL Parser (No DNS / No HTTP Fetch)│
-├───────────────────────────────────────────────────────────┤
-│ 2. Brand Impersonation & IDN Punycode Homograph Detector  │
-├───────────────────────────────────────────────────────────┤
-│ 3. Mobile Money Social Engineering & Reversal Scam Scorer │
-├───────────────────────────────────────────────────────────┤
-│ 4. USSD PIN-Trap & Call-Forwarding (*21*) AST Inspector   │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-    [Explainable Risk Breakdown + Actionable Playbook]`,
-        layers: [
-          {
-            name: 'Zero-Egress Lexical URL & Hostname Inspector',
-            responsibility:
-              'Parses URLs strictly as strings/URL objects—flagging raw IP hosts, credential-in-URL (@) tricks, excessive subdomain nesting, high Shannon entropy, and Punycode (`xn--`) homographs.'
-          },
-          {
-            name: 'Mobile Money & USSD Fraud Heuristic Engine',
-            responsibility:
-              'Detects MTN MoMo (*165#), Airtel Money (*185#), and M-Pesa (*334#) social engineering patterns, fake cash-in reversal alerts, SIM-swap urgency cues, and *21*/*67* call-forwarding hijacks.'
-          },
-          {
-            name: 'Dual-Runtime Parity Layer (TypeScript UI + FastAPI Backend)',
-            responsibility:
-              'Provides identical deterministic risk scoring in the browser-side interactive analyzer and the Python FastAPI REST service.'
-          }
-        ],
-        invariants: [
-          'Zero outbound HTTP/DNS requests when analyzing user-submitted URLs—eliminating SSRF, internal port scanning, and attacker beacon callbacks.',
-          'Every risk verdict includes human-readable evidence signals and concrete remediation steps tailored for non-technical users.',
-          'Sub-millisecond execution (0.28 ms mean latency) enables real-time client-side scanning on low-end mobile devices.'
-        ]
-      },
-      adrs: [
-        {
-          id: 'ADR-01',
-          title: 'Refusal to Fetch User-Submitted URLs (SSRF-Free by Construction)',
-          context:
-            'Many URL scanners fetch the target page to inspect DOM content, inadvertently turning the scanner into an SSRF proxy and tipping off attackers via unique tracking URLs.',
-          decision:
-            'Perform 100% lexical, structural, Shannon-entropy, Levenshtein brand-distance, and USSD/SMS pattern analysis without making any DNS or HTTP requests.',
-          tradeOffs:
-            'Cannot inspect post-redirect DOM payloads behind neutral shorteners without user expansion, but completely eliminates SSRF vulnerabilities, attacker canary triggers, and network latency.',
-          verification:
-            'Verified across 21 automated tests (TypeScript + FastAPI) and an 8/8 real-world threat corpus benchmark completing in 0.28 ms mean latency.'
-        }
-      ],
-      cliQuickstart: [
-        'git clone https://github.com/codesphere-u/cyber-dragon.git',
-        'cd cyber-dragon && npm test',
-        'pytest backend/tests'
-      ],
-      sourceLinks: [
-        {
-          label: 'Live Web Application',
-          path: 'https://cyber-dragon-ivory.vercel.app',
-          url: 'https://cyber-dragon-ivory.vercel.app',
-          kind: 'demo'
-        },
-        {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/cyber-dragon',
-          kind: 'source'
-        },
-        {
-          label: 'Threat Analyzer & USSD Fraud Engine',
-          path: 'src/',
-          url: 'https://github.com/codesphere-u/cyber-dragon/tree/main/src',
-          kind: 'source'
-        }
-      ]
-    },
-
-    {
-      id: 'auralis-local',
-      slug: 'auralis-local',
-      name: 'Auralis Local v0.2',
-      version: 'v0.2.0',
-      tagline: 'Privacy-First Apple Silicon AI Workspace with Hybrid BM25 RAG & Local Voice',
-      summary:
-        'Local-first AI workspace engineered for Apple Silicon (`mlx-lm` / Ollama) with deterministic Okapi BM25 + semantic hybrid RAG, cite-or-abstain grounding verification, local Whisper STT / Kokoro TTS voice pipeline, and loopback-only capability sandboxing.',
-      domains: ['AI & Agents', 'Cybersecurity'],
+        "Multi-agent quantitative research & risk governance platform where 5 specialist analysts debate a mandatory Devil's Advocate agent equipped with hard veto authority, guarded by a strict point-in-time (as-of timestamp) data gateway and walk-forward backtester with MCP server integration.",
+      domains: ['AI & Agents', 'Fintech & Ledgers'],
       primaryDomain: 'AI & Agents',
-      repoUrl: 'https://github.com/codesphere-u/auralis-local',
-      languages: ['Python', 'TypeScript', 'SQLite', 'Apple MLX'],
-      automatedTests: 36,
+      repoUrl: 'https://github.com/codesphere-u/ARGUS-AI',
+      languages: ['Python', 'TypeScript', 'MCP'],
+      automatedTests: 61,
       headlineMetric: {
-        label: 'BM25 RAG Retrieval Latency',
-        value: '0.245 ms P50 · 3,110 docs/s',
-        detail: 'Sub-millisecond hybrid retrieval with cite-or-abstain grounding enforcement and zero cloud telemetry'
+        label: 'Adversarial Risk Governance',
+        value: '3 Trap Trades Vetoed · 61 Tests',
+        detail: "Devil's Advocate hard veto + point-in-time lookahead leakage guard verified in walk-forward simulation"
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '36 passing' },
-        { label: 'Retrieval P50 Latency', value: '0.245 ms' },
-        { label: 'Indexing Throughput', value: '3,110 docs/sec' },
-        { label: 'Network Binding', value: '127.0.0.1 Loopback Only' }
+        { label: 'Automated Tests', value: '61 passing' },
+        { label: 'Committee Architecture', value: '7 Adversarial Agents' },
+        { label: 'Walk-Forward Guard', value: '3 Catastrophic Traps Vetoed' },
+        { label: 'Protocol Support', value: 'Model Context Protocol (MCP)' }
       ],
       architectureBlueprint: {
-        diagram: `[Local Documents / Code / Voice Audio]
+        diagram: `[Point-in-Time Market & Fundamental Feed (timestamp <= as_of)]
         │
         ▼
 ┌───────────────────────────────────────────────────────────┐
-│ 1. Heading-Aware Chunker & Okapi BM25 Inverted Index      │
+│ 1. Temporal Leakage Guard (Rejects Future Timestamps)     │
 ├───────────────────────────────────────────────────────────┤
-│ 2. Hybrid RRF Retriever (0.245 ms P50) + Citation Guard   │
+│ 2. 5 Specialist Agents (Macro, Quant, Fundamental, etc.)  │
 ├───────────────────────────────────────────────────────────┤
-│ 3. Local Inference Router (Apple MLX / Ollama Loopback)   │
+│ 3. Devil's Advocate Agent (Tail-Risk, Crowding, Veto Gate)│
 ├───────────────────────────────────────────────────────────┤
-│ 4. Path-Jailed Tool Sandbox + Single-Use Approval Tokens  │
+│ 4. Risk-Adjusted Sizing & Walk-Forward Backtest Engine    │
 └───────────────────────────┬───────────────────────────────┘
                             ▼
-       [Grounded Answer with [doc#chunk] Citations]`,
+    [Auditable Committee Memo + MCP Tool Surface]`,
         layers: [
           {
-            name: 'Deterministic Okapi BM25 + Reciprocal Rank Fusion (RRF) Engine',
+            name: 'Point-in-Time Temporal Data Gateway',
             responsibility:
-              'Indexes local Markdown, code, and PDFs at 3,110 docs/sec and retrieves top-k grounded chunks in 0.245 ms P50 without external vector DB daemons.'
+              'Enforces strict `record.available_at <= simulation_clock` checks on every fundamental, price, and sentiment record—throwing `LookaheadLeakageError` if future information leaks into a historical decision.'
           },
           {
-            name: 'Cite-or-Abstain Grounding Verifier',
+            name: "7-Agent Adversarial Committee & Devil's Advocate Veto",
             responsibility:
-              'Validates that every synthesized claim references an retrieved `[source_id]` span above the minimum relevance threshold, abstaining when evidence is insufficient.'
+              "Runs 5 domain analysts, 1 Devil's Advocate tasked exclusively with falsifying the bull/bear thesis (accounting anomalies, liquidity traps, drawdowns), and 1 Portfolio Chair."
           },
           {
-            name: 'Loopback-Bound Daemon & Symlink-Safe Path Jail',
+            name: 'Walk-Forward Simulation & MCP Server',
             responsibility:
-              'Binds strictly to `127.0.0.1`, resolves `realpath` to block symlink escapes (`../`), and requires single-use approval tokens for any file write.'
+              'Evaluates Sharpe, Sortino, Max Drawdown, and Calmar ratios net of slippage/fees, and exposes committee inspection tools over Model Context Protocol (MCP).'
           }
         ],
         invariants: [
-          'Zero external API calls or telemetry—all indexing, retrieval, speech-to-text, and LLM inference stay on the local machine.',
-          'Daemon refuses to bind to `0.0.0.0` unless explicitly overridden, preventing LAN exposure of local workspace tools.',
-          'File tools verify canonical `realpath` containment inside the workspace root before reading or mutating any byte.'
+          'Any data record with `available_at > as_of` is deterministically rejected before reaching any agent prompt or factor calculation.',
+          "A single critical structural red flag from the Devil's Advocate triggers a hard veto regardless of bullish consensus among the 5 specialist agents.",
+          'All backtests include realistic transaction cost and slippage penalties—never zero-cost paper fills.'
         ]
       },
       adrs: [
         {
           id: 'ADR-01',
-          title: 'In-Process Okapi BM25 + RRF Over Heavyweight External Vector Databases',
+          title: "Mandatory Devil's Advocate Agent with Hard Veto Power",
           context:
-            'Running Dockerized vector databases (Milvus/Qdrant) for a local desktop workspace consumes 1–2 GB of RAM away from unified Apple Silicon memory needed for LLM weights.',
+            'Multi-agent LLM ensembles suffer from sycophantic consensus, amplifying momentum narratives while ignoring balance-sheet fragility or liquidity cliffs.',
           decision:
-            'Implement an in-process Okapi BM25 inverted index (`k1=1.5, b=0.75`) fused with lightweight cosine embeddings via Reciprocal Rank Fusion (RRF) backed by SQLite.',
+            "Dedicate Agent #6 as an adversarial Devil's Advocate scored on identifying thesis-invalidating risks, with hard veto power when leverage, drawdown, or accounting risk exceeds policy bounds.",
           tradeOffs:
-            'Not designed for 100M-document distributed clusters, but delivers 0.245 ms P50 query latency and 3,110 docs/sec indexing with near-zero RAM overhead for personal/team repositories.',
+            'Reduces raw trade frequency during frothy bull runs, but prevented 3 catastrophic trap trades in walk-forward simulation and materially reduced maximum drawdown.',
           verification:
-            'Verified via reproducible benchmark script and 36 automated tests covering retrieval precision, citation verification, and sandbox security.'
-        },
-        {
-          id: 'ADR-02',
-          title: 'Strict Loopback Binding and Single-Use Write Approval Tokens',
-          context:
-            'Local AI daemons often bind to `0.0.0.0` without authentication, allowing malicious websites (via DNS rebinding/CORS) or LAN peers to execute arbitrary file writes.',
-          decision:
-            'Enforce `127.0.0.1` loopback binding, strict Origin checking, realpath symlink resolution, and single-use cryptographic approval tokens for state-changing operations.',
-          tradeOffs:
-            'Interactive write operations require an explicit user confirmation handshake, preventing silent background file corruption or exfiltration.',
-          verification:
-            'Tested against path traversal (`../../etc/passwd`), symlink escape, and unapproved write attempts in the test suite.'
+            'Verified across 61 automated tests covering lookahead leakage prevention, veto enforcement, and walk-forward metrics.'
         }
       ],
       cliQuickstart: [
-        'git clone https://github.com/codesphere-u/auralis-local.git',
-        'cd auralis-local && npm test',
-        'node src/cli.mjs benchmark'
+        'git clone https://github.com/codesphere-u/ARGUS-AI.git',
+        'cd ARGUS-AI && pytest',
+        'python3 -m argus.cli backtest'
       ],
       sourceLinks: [
         {
           label: 'Repository Root',
           path: '/',
-          url: 'https://github.com/codesphere-u/auralis-local',
+          url: 'https://github.com/codesphere-u/ARGUS-AI',
           kind: 'source'
         },
         {
-          label: 'BM25 RAG & Grounding Engine',
-          path: 'src/',
-          url: 'https://github.com/codesphere-u/auralis-local/tree/main/src',
+          label: 'Adversarial Committee & Veto Engine',
+          path: 'argus/',
+          url: 'https://github.com/codesphere-u/ARGUS-AI',
           kind: 'source'
         },
         {
-          label: '36 Automated Security & Retrieval Tests',
+          label: '61 Automated Leakage & Governance Tests',
           path: 'tests/',
-          url: 'https://github.com/codesphere-u/auralis-local/tree/main/tests',
+          url: 'https://github.com/codesphere-u/ARGUS-AI/tree/main/tests',
           kind: 'test'
         }
       ]
@@ -372,6 +651,7 @@ export const PORTFOLIO_DATA = {
       slug: 'flowledger',
       name: 'FlowLedger v1.0',
       version: 'v1.0.0',
+      isPrimaryFlagship: true,
       tagline: 'Integer Minor-Unit Double-Entry Payment & Mobile Money Reconciliation Engine',
       summary:
         'Deterministic double-entry financial ledger and 3-way mobile money reconciliation engine supporting UGX, KES, and USD. Enforces BigInt minor-unit arithmetic (zero IEEE-754 floats), idempotent webhook ingestion, state-machine payment lifecycles, and SHA-256 hash-chained journal entries.',
@@ -489,113 +769,11 @@ export const PORTFOLIO_DATA = {
     },
 
     {
-      id: 'argus-ai',
-      slug: 'ARGUS-AI',
-      name: 'ARGUS AI v2.1',
-      version: 'v2.1.0',
-      tagline: "7-Agent Adversarial Investment Committee with Devil's Advocate Veto & Leakage-Free Backtester",
-      summary:
-        "Multi-agent quantitative research & risk governance platform where 5 specialist analysts debate a mandatory Devil's Advocate agent equipped with hard veto authority, guarded by a strict point-in-time (as-of timestamp) data gateway and walk-forward backtester with MCP server integration.",
-      domains: ['AI & Agents', 'Fintech & Ledgers'],
-      primaryDomain: 'AI & Agents',
-      repoUrl: 'https://github.com/codesphere-u/ARGUS-AI',
-      languages: ['Python', 'TypeScript', 'MCP'],
-      automatedTests: 61,
-      headlineMetric: {
-        label: 'Adversarial Risk Governance',
-        value: '3 Trap Trades Vetoed · 61 Tests',
-        detail: "Devil's Advocate hard veto + point-in-time lookahead leakage guard verified in walk-forward simulation"
-      },
-      secondaryMetrics: [
-        { label: 'Automated Tests', value: '61 passing' },
-        { label: 'Committee Architecture', value: '7 Adversarial Agents' },
-        { label: 'Walk-Forward Guard', value: '3 Catastrophic Traps Vetoed' },
-        { label: 'Protocol Support', value: 'Model Context Protocol (MCP)' }
-      ],
-      architectureBlueprint: {
-        diagram: `[Point-in-Time Market & Fundamental Feed (timestamp <= as_of)]
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│ 1. Temporal Leakage Guard (Rejects Future Timestamps)     │
-├───────────────────────────────────────────────────────────┤
-│ 2. 5 Specialist Agents (Macro, Quant, Fundamental, etc.)  │
-├───────────────────────────────────────────────────────────┤
-│ 3. Devil's Advocate Agent (Tail-Risk, Crowding, Veto Gate)│
-├───────────────────────────────────────────────────────────┤
-│ 4. Risk-Adjusted Sizing & Walk-Forward Backtest Engine    │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-    [Auditable Committee Memo + MCP Tool Surface]`,
-        layers: [
-          {
-            name: 'Point-in-Time Temporal Data Gateway',
-            responsibility:
-              'Enforces strict `record.available_at <= simulation_clock` checks on every fundamental, price, and sentiment record—throwing `LookaheadLeakageError` if future information leaks into a historical decision.'
-          },
-          {
-            name: "7-Agent Adversarial Committee & Devil's Advocate Veto",
-            responsibility:
-              "Runs 5 domain analysts, 1 Devil's Advocate tasked exclusively with falsifying the bull/bear thesis (accounting anomalies, liquidity traps, drawdowns), and 1 Portfolio Chair."
-          },
-          {
-            name: 'Walk-Forward Simulation & MCP Server',
-            responsibility:
-              'Evaluates Sharpe, Sortino, Max Drawdown, and Calmar ratios net of slippage/fees, and exposes committee inspection tools over Model Context Protocol (MCP).'
-          }
-        ],
-        invariants: [
-          'Any data record with `available_at > as_of` is deterministically rejected before reaching any agent prompt or factor calculation.',
-          "A single critical structural red flag from the Devil's Advocate triggers a hard veto regardless of bullish consensus among the 5 specialist agents.",
-          'All backtests include realistic transaction cost and slippage penalties—never zero-cost paper fills.'
-        ]
-      },
-      adrs: [
-        {
-          id: 'ADR-01',
-          title: "Mandatory Devil's Advocate Agent with Hard Veto Power",
-          context:
-            'Multi-agent LLM ensembles suffer from sycophantic consensus, amplifying momentum narratives while ignoring balance-sheet fragility or liquidity cliffs.',
-          decision:
-            "Dedicate Agent #6 as an adversarial Devil's Advocate scored on identifying thesis-invalidating risks, with hard veto power when leverage, drawdown, or accounting risk exceeds policy bounds.",
-          tradeOffs:
-            'Reduces raw trade frequency during frothy bull runs, but prevented 3 catastrophic trap trades in walk-forward simulation and materially reduced maximum drawdown.',
-          verification:
-            'Verified across 61 automated tests covering lookahead leakage prevention, veto enforcement, and walk-forward metrics.'
-        }
-      ],
-      cliQuickstart: [
-        'git clone https://github.com/codesphere-u/ARGUS-AI.git',
-        'cd ARGUS-AI && pytest',
-        'python3 -m argus.cli backtest'
-      ],
-      sourceLinks: [
-        {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/ARGUS-AI',
-          kind: 'source'
-        },
-        {
-          label: 'Adversarial Committee & Veto Engine',
-          path: 'argus/',
-          url: 'https://github.com/codesphere-u/ARGUS-AI',
-          kind: 'source'
-        },
-        {
-          label: '61 Automated Leakage & Governance Tests',
-          path: 'tests/',
-          url: 'https://github.com/codesphere-u/ARGUS-AI/tree/main/tests',
-          kind: 'test'
-        }
-      ]
-    },
-
-    {
       id: 'stackpulse',
       slug: 'stackpulse',
       name: 'StackPulse v1.0',
       version: 'v1.0.0',
+      isPrimaryFlagship: true,
       tagline: 'OpenTelemetry DAG Critical-Path Analyzer, N+1 Query Detector & Multi-Window SLO Platform',
       summary:
         'High-throughput observability & SRE diagnostics engine that reconstructs distributed OpenTelemetry span trees into execution DAGs, computes true blocking critical-path latency (excluding async fan-out overlap), detects N+1 query storms, and evaluates Google SRE multi-window multi-burn-rate SLO alerts.',
@@ -699,6 +877,7 @@ export const PORTFOLIO_DATA = {
       slug: 'agrisignal',
       name: 'AgriSignal v1.0',
       version: 'v1.0.0',
+      isPrimaryFlagship: false,
       tagline:
         'Offline-First Smallholder Agricultural Decision Support with Uncertainty Bounds & Multilingual 160-char SMS Advisories',
       summary:
@@ -706,15 +885,15 @@ export const PORTFOLIO_DATA = {
       domains: ['AgriTech & HealthTech', 'AI & Agents'],
       primaryDomain: 'AgriTech & HealthTech',
       repoUrl: 'https://github.com/codesphere-u/agrisignal',
-      languages: ['TypeScript', 'Node.js'],
-      automatedTests: 34,
+      languages: ['Python', 'TypeScript', 'Node.js'],
+      automatedTests: 60,
       headlineMetric: {
         label: 'Multilingual GSM-7 SMS Bound',
-        value: '≤160 Chars (`en`, `lg`, `sw`)',
-        detail: 'Offline-first water-balance & pest risk engine with explicit uncertainty intervals and safety guardrails'
+        value: '≤160 Chars (`en`, `lg`, `sw`) · 60 Tests',
+        detail: '60 passing pytest tests verifying offline-first water-balance, pest risk, uncertainty intervals & SMS bounds'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '34 passing' },
+        { label: 'Automated Tests', value: '60 passing (pytest)' },
         { label: 'SMS Budget Guarantee', value: '≤ 160 GSM-7 chars' },
         { label: 'Locales Supported', value: 'English, Luganda, Kiswahili' },
         { label: 'Connectivity Required', value: '0 (100% Offline-First)' }
@@ -768,13 +947,13 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires concise domain vocabulary and abbreviation tables per language, but guarantees 100% single-segment delivery across every rural telecom gateway.',
           verification:
-            'Verified across all crops, risk levels, and all 3 languages (`en`, `lg`, `sw`) in the automated test suite.'
+            'Verified across 60 passing pytest tests covering all crops, risk levels, and all 3 languages (`en`, `lg`, `sw`).'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/agrisignal.git',
-        'cd agrisignal && npm test',
-        'node src/cli.mjs advise --crop maize --locale lg'
+        'cd agrisignal && pytest',
+        'python3 -m agrisignal.cli advise --crop maize --locale lg'
       ],
       sourceLinks: [
         {
@@ -790,54 +969,247 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: 'Automated Agronomic & SMS Bounds Tests',
+          label: '60 Automated Agronomic & SMS Bounds Tests',
           path: 'tests/',
           url: 'https://github.com/codesphere-u/agrisignal/tree/main/tests',
           kind: 'test'
         }
+      ]
+    },
+
+    {
+      id: 'clinical-virtual-health-platform',
+      slug: 'Clinical-Virtual-Health-Platform',
+      name: 'Clinical Virtual Health Platform',
+      version: 'v1.0.0',
+      isPrimaryFlagship: false,
+      tagline:
+        'FHIR-Aligned Telemedicine, NEWS2 Early-Warning Triage & Tamper-Evident Clinical Audit Platform',
+      summary:
+        'Virtual care and remote patient monitoring platform engineered for clinics and telehealth providers. Combines deterministic NEWS2 vital-sign acuity triage, medication interaction safety checks, low-bandwidth consultation workflows, and HIPAA-aligned cryptographic audit trails.',
+      domains: ['AgriTech & HealthTech', 'Cybersecurity'],
+      primaryDomain: 'AgriTech & HealthTech',
+      repoUrl: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform',
+      languages: ['TypeScript', 'Python', 'FHIR R4', 'React'],
+      automatedTests: 28,
+      headlineMetric: {
+        label: 'Clinical Triage & Audit Safety',
+        value: '100% Deterministic NEWS2 · 28 Tests',
+        detail: 'Zero-hallucination vital-sign acuity scoring with role-based PHI access controls and audit logging'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '28 passing' },
+        { label: 'Acuity Scoring', value: 'Deterministic NEWS2 Protocol' },
+        { label: 'Interoperability', value: 'HL7 FHIR R4 Resource Model' },
+        { label: 'PHI Governance', value: 'RBAC + Immutable Audit Log' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Patient Vitals / Encounter Intake / Telehealth Session]
+        │
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ 1. FHIR R4 Observation & Patient Schema Validator         │
+├───────────────────────────────────────────────────────────┤
+│ 2. Deterministic NEWS2 Acuity & Red-Flag Triage Engine    │
+├───────────────────────────────────────────────────────────┤
+│ 3. Contraindication & Dosage Boundary Safety Checker      │
+├───────────────────────────────────────────────────────────┤
+│ 4. RBAC Policy Gate & Tamper-Evident PHI Access Ledger    │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+    [Prioritized Clinical Queue + Auditable Encounter Record]`,
+        layers: [
+          {
+            name: 'Deterministic NEWS2 Clinical Triage Engine',
+            responsibility:
+              'Computes National Early Warning Score 2 (respiration rate, SpO2, systolic BP, pulse, consciousness, temperature) to escalate critical patients immediately.'
+          },
+          {
+            name: 'HL7 FHIR R4 Resource & Medication Safety Layer',
+            responsibility:
+              'Structures patient encounters, observations, and prescriptions in FHIR R4 format while checking allergy and drug-interaction rules.'
+          },
+          {
+            name: 'RBAC & PHI Access Audit Trail',
+            responsibility:
+              'Enforces strict clinician/patient role boundaries and logs every Protected Health Information (PHI) read/write event.'
+          }
+        ],
+        invariants: [
+          'Clinical acuity escalation never relies on unverified probabilistic text generation—vital thresholds follow strict medical protocol tables.',
+          'Every access to patient records requires an authenticated role context and emits an immutable audit event.',
+          'Gracefully degrades to asynchronous store-and-forward triage when video bandwidth drops in rural clinics.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-01',
+          title: 'Protocol-Driven NEWS2 Acuity Scoring Over Generative Triage',
+          context:
+            'Using unconstrained LLMs to triage patient vital signs introduces hallucination risks and non-reproducible urgency classifications.',
+          decision:
+            'Implement clinical triage using deterministic, table-driven NEWS2 scoring and explicit red-flag physiological bounds before any clinician summary assistive step.',
+          tradeOffs:
+            'Requires structured vital-sign inputs, but guarantees 100% clinical reproducibility, explainability, and sub-millisecond triage latency.',
+          verification:
+            'Verified across 28 automated clinical triage, schema validation, and RBAC security tests.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/Clinical-Virtual-Health-Platform.git',
+        'cd Clinical-Virtual-Health-Platform && npm test'
+      ],
+      sourceLinks: [
+        {
+          label: 'Repository Root',
+          path: '/',
+          url: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform',
+          kind: 'source'
+        }
+      ]
+    }
+  ],
+
+  broaderProjects: [
+    {
+      id: 'funa-gigs-platform',
+      name: 'Funa Gigs',
+      category: 'Two-Sided Service Marketplace (Mobile & Real-Time Cloud)',
+      organization: 'Jaminsa Ventures Limited (Distinct from Codesphere Innovations)',
+      status: 'Active Flagship Product Venture',
+      summary:
+        'A comprehensive technology marketplace under Jaminsa Ventures Limited connecting service seekers with skilled service providers across Uganda through real-time discovery, Instant Hire workflows, and digital payments.',
+      highlights: [
+        'Founded and led end-to-end product architecture and engineering under Jaminsa Ventures Limited.',
+        'Engineered cross-platform Flutter mobile apps backed by Elixir/Phoenix, PostgreSQL, Supabase, and Google Cloud.',
+        'Implemented real-time job matching, Instant Hire dispatch, live location discovery, payment integrations, KYC identity verification, in-app messaging, trust & safety, and admin operations tooling.'
+      ],
+      technologies: [
+        'Flutter',
+        'Elixir',
+        'Phoenix',
+        'PostgreSQL',
+        'Supabase',
+        'Google Cloud',
+        'Mobile Money & Payments',
+        'Live Location'
+      ]
+    },
+    {
+      id: 'bizmanage-pro',
+      name: 'BizManage Pro',
+      category: 'Enterprise & Multi-Branch Business Management Platform',
+      organization: 'Commercial Platform',
+      status: 'Production Business System',
+      summary:
+        'Full-stack business operations platform designed for multi-branch enterprises to manage inventory lifecycles, customer and supplier workflows, financial reporting, and role-based staff operations.',
+      highlights: [
+        'Multi-branch inventory tracking, stock transfer auditing, and automated low-stock alerting.',
+        'End-to-end customer, supplier, invoicing, and procurement workflows.',
+        'Granular Role-Based Access Control (RBAC) across branch managers, cashiers, auditors, and executives.'
+      ],
+      technologies: [
+        'React',
+        'Python',
+        'Relational Database (PostgreSQL / SQL)',
+        'REST APIs',
+        'RBAC Security'
+      ]
+    },
+    {
+      id: 'pesaflow',
+      name: 'PesaFlow',
+      category: 'Fintech & Payment Infrastructure Project',
+      organization: 'Fintech Engineering',
+      status: 'Payment Infrastructure System',
+      summary:
+        'Payment processing and financial workflow infrastructure built to streamline digital collections, disbursement routing, authenticated API integrations, and transaction status tracking.',
+      highlights: [
+        'Engineered secure authentication, merchant API key management, and transaction lifecycle orchestration.',
+        'Built responsive React operator dashboards paired with Python Flask payment gateway services.',
+        'Designed resilient webhook handling and transaction audit trails for East African digital payment flows.'
+      ],
+      technologies: ['Python', 'Flask', 'React', 'Payment APIs', 'JWT / HMAC Auth', 'PostgreSQL']
+    },
+    {
+      id: 'ai-energy-efficiency-tool',
+      name: 'AI Energy Efficiency Tool',
+      category: 'AI Analytics & Sustainability Engineering',
+      organization: 'Applied AI System',
+      status: 'Completed Engineering System',
+      summary:
+        'Data-driven energy analytics platform that ingests consumption telemetry and generates AI-supported efficiency recommendations to reduce operational power waste and cost.',
+      highlights: [
+        'Analyzes load profiles, peak demand anomalies, and equipment utilization patterns in Python.',
+        'Produces actionable, quantified energy-saving recommendations and efficiency scorecards.'
+      ],
+      technologies: ['Python', 'Data Analytics', 'AI Recommendation Engine', 'Time-Series Processing']
+    },
+    {
+      id: 'trip-planner-eld',
+      name: 'Trip Planner & Electronic Logging Application',
+      category: 'Geospatial Logistics & Fleet Compliance',
+      organization: 'Logistics Engineering',
+      status: 'Completed Full-Stack System',
+      summary:
+        'Full-stack route planning and Electronic Logging Device (ELD) compliance application calculating multi-stop geospatial routes, rest-break schedules, and regulatory driving-hour logs.',
+      highlights: [
+        'Integrated Mapbox geospatial routing and interactive map visualization in React.',
+        'Engineered Django REST backend computing Hours-of-Service (HOS) driving windows, mandatory rest stops, and daily log sheets.'
+      ],
+      technologies: ['Django REST Framework', 'Python', 'React', 'Mapbox GL', 'Geospatial Routing']
+    },
+    {
+      id: 'sector-business-systems',
+      name: 'Sector-Specific Business & Operational Systems',
+      category: 'Retail, Hospitality, Healthcare & Utility Software',
+      organization: '4codex Technologies / Codesphere Commercial Delivery',
+      status: 'Deployed Sector Solutions',
+      summary:
+        'Suite of practical, domain-tailored operational software systems engineered for Ugandan businesses across hospitality, healthcare retail, supermarkets, hardware distribution, and document intelligence.',
+      highlights: [
+        '2K Restaurant Management System — POS billing, kitchen order routing, table management, and daily sales reconciliation.',
+        'BKK Pharmacy Management System — Batch/expiry tracking, prescription dispensing logs, and stock control.',
+        'City Star Supermarket Management & OM SAI Hardware Software — High-SKU barcode checkout, wholesale/retail pricing tiers, and supplier ledgers.',
+        'Library Management & Resume Analysis Tools — Automated cataloging, circulation tracking, and NLP-assisted candidate resume parsing.'
+      ],
+      technologies: [
+        'Python',
+        'JavaScript / TypeScript',
+        'React',
+        'SQL Databases',
+        'POS & Inventory Engines',
+        'Document Parsing'
       ]
     }
   ],
 
   benchmarks: [
     {
-      projectId: 'agentshield',
-      projectName: 'AgentShield',
-      repoSlug: 'agentshield',
-      domain: 'Cybersecurity',
-      automatedTests: 42,
-      primaryLatencyLabel: '0.19 ms / tool call',
-      primaryLatencyMs: 0.19,
-      throughputOrAccuracyLabel: '100% Recall · 0% FPR (25 scenarios)',
-      throughputOrAccuracyValue: '100% / 0% FPR',
-      determinismGuarantee: 'SHA-256 hash-chained ledger + HMAC single-use tokens',
-      verificationCommand: 'npm test'
-    },
-    {
-      projectId: 'cyber-dragon',
-      projectName: 'Cyber Dragon v1.0',
-      repoSlug: 'cyber-dragon',
-      domain: 'Cybersecurity',
-      automatedTests: 21,
-      primaryLatencyLabel: '0.28 ms mean latency',
-      primaryLatencyMs: 0.28,
-      throughputOrAccuracyLabel: '8/8 Threat Corpus · 0 Outbound Calls',
-      throughputOrAccuracyValue: '8/8 (SSRF-Free)',
-      determinismGuarantee: 'Zero network egress lexical & USSD AST scoring',
-      verificationCommand: 'npm test && pytest'
-    },
-    {
-      projectId: 'auralis-local',
-      projectName: 'Auralis Local v0.2',
-      repoSlug: 'auralis-local',
+      projectId: 'argus-ai',
+      projectName: 'ARGUS AI v2.1',
+      repoSlug: 'ARGUS-AI',
       domain: 'AI & Agents',
-      automatedTests: 36,
-      primaryLatencyLabel: '0.245 ms P50 BM25',
-      primaryLatencyMs: 0.245,
-      throughputOrAccuracyLabel: '3,110 docs/sec indexing throughput',
-      throughputOrAccuracyValue: '3,110 docs/sec',
-      determinismGuarantee: 'Cite-or-abstain grounding + 127.0.0.1 loopback jail',
-      verificationCommand: 'npm test'
+      automatedTests: 61,
+      primaryLatencyLabel: '0.42 ms / committee step',
+      primaryLatencyMs: 0.42,
+      throughputOrAccuracyLabel: '3 Catastrophic Trap Trades Vetoed',
+      throughputOrAccuracyValue: '3 Traps Vetoed',
+      determinismGuarantee: "Point-in-time leakage guard + Devil's Advocate hard veto",
+      verificationCommand: 'pytest'
+    },
+    {
+      projectId: 'agrisignal',
+      projectName: 'AgriSignal v1.0',
+      repoSlug: 'agrisignal',
+      domain: 'AgriTech & HealthTech',
+      automatedTests: 60,
+      primaryLatencyLabel: '0.09 ms / advisory',
+      primaryLatencyMs: 0.09,
+      throughputOrAccuracyLabel: '100% ≤160-char GSM-7 (`en`, `lg`, `sw`)',
+      throughputOrAccuracyValue: '≤160 chars (3 locales)',
+      determinismGuarantee: 'Offline-first FAO-56 water budget + WHO safety filter',
+      verificationCommand: 'pytest'
     },
     {
       projectId: 'flowledger',
@@ -853,19 +1225,6 @@ export const PORTFOLIO_DATA = {
       verificationCommand: 'npm test'
     },
     {
-      projectId: 'argus-ai',
-      projectName: 'ARGUS AI v2.1',
-      repoSlug: 'ARGUS-AI',
-      domain: 'AI & Agents',
-      automatedTests: 61,
-      primaryLatencyLabel: '0.42 ms / committee step',
-      primaryLatencyMs: 0.42,
-      throughputOrAccuracyLabel: '3 Catastrophic Trap Trades Vetoed',
-      throughputOrAccuracyValue: '3 Traps Vetoed',
-      determinismGuarantee: "Point-in-time leakage guard + Devil's Advocate hard veto",
-      verificationCommand: 'pytest'
-    },
-    {
       projectId: 'stackpulse',
       projectName: 'StackPulse v1.0',
       repoSlug: 'stackpulse',
@@ -879,17 +1238,56 @@ export const PORTFOLIO_DATA = {
       verificationCommand: 'npm test'
     },
     {
-      projectId: 'agrisignal',
-      projectName: 'AgriSignal v1.0',
-      repoSlug: 'agrisignal',
-      domain: 'AgriTech & HealthTech',
-      automatedTests: 34,
-      primaryLatencyLabel: '0.09 ms / advisory',
-      primaryLatencyMs: 0.09,
-      throughputOrAccuracyLabel: '100% ≤160-char GSM-7 (`en`, `lg`, `sw`)',
-      throughputOrAccuracyValue: '≤160 chars (3 locales)',
-      determinismGuarantee: 'Offline-first FAO-56 water budget + WHO safety filter',
+      projectId: 'agentshield',
+      projectName: 'AgentShield',
+      repoSlug: 'agentshield',
+      domain: 'Cybersecurity',
+      automatedTests: 42,
+      primaryLatencyLabel: '0.19 ms / tool call',
+      primaryLatencyMs: 0.19,
+      throughputOrAccuracyLabel: '100% Recall · 0% FPR (25 scenarios)',
+      throughputOrAccuracyValue: '100% / 0% FPR',
+      determinismGuarantee: 'SHA-256 hash-chained ledger + HMAC single-use tokens',
       verificationCommand: 'npm test'
+    },
+    {
+      projectId: 'auralis-local',
+      projectName: 'Auralis Local v0.2',
+      repoSlug: 'auralis-local',
+      domain: 'AI & Agents',
+      automatedTests: 36,
+      primaryLatencyLabel: '0.245 ms P50 BM25',
+      primaryLatencyMs: 0.245,
+      throughputOrAccuracyLabel: '3,110 docs/sec indexing throughput',
+      throughputOrAccuracyValue: '3,110 docs/sec',
+      determinismGuarantee: 'Cite-or-abstain grounding + 127.0.0.1 loopback jail',
+      verificationCommand: 'npm test'
+    },
+    {
+      projectId: 'clinical-virtual-health-platform',
+      projectName: 'Clinical Virtual Health Platform',
+      repoSlug: 'Clinical-Virtual-Health-Platform',
+      domain: 'AgriTech & HealthTech',
+      automatedTests: 28,
+      primaryLatencyLabel: '0.11 ms / NEWS2 triage',
+      primaryLatencyMs: 0.11,
+      throughputOrAccuracyLabel: '100% Protocol-Compliant NEWS2 Acuity',
+      throughputOrAccuracyValue: 'FHIR R4 + NEWS2',
+      determinismGuarantee: 'Deterministic vital-sign triage + RBAC PHI audit log',
+      verificationCommand: 'npm test'
+    },
+    {
+      projectId: 'cyber-dragon',
+      projectName: 'Cyber Dragon v1.0',
+      repoSlug: 'cyber-dragon',
+      domain: 'Cybersecurity',
+      automatedTests: 21,
+      primaryLatencyLabel: '0.28 ms mean latency',
+      primaryLatencyMs: 0.28,
+      throughputOrAccuracyLabel: '8/8 Threat Corpus · 0 Outbound Calls',
+      throughputOrAccuracyValue: '8/8 (SSRF-Free)',
+      determinismGuarantee: 'Zero network egress lexical & USSD AST scoring',
+      verificationCommand: 'npm test && pytest'
     }
   ]
 };
