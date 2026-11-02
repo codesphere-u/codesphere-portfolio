@@ -12,6 +12,7 @@
 }
 :focus-visible{outline:3px solid #b8a5ff;outline-offset:4px}
 html{scroll-padding-top:110px}
+[hidden]{display:none!important}
 body{background:#11131a}
 [data-theme="light"] body{background:#f3f1ea}
 .site-header{
