@@ -1,0 +1,33 @@
+{
+  "name": "codesphere-portfolio",
+  "version": "1.0.0",
+  "description": "Interactive Engineering Portfolio & Architecture Case-Study Application for codesphere-u — AI Systems, Cybersecurity, Fintech Ledgers, Cloud Observability, and Offline-First Decision Support.",
+  "type": "module",
+  "main": "src/core/explorer.mjs",
+  "types": "src/data/portfolio-data.d.ts",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node server.mjs",
+    "preview": "node server.mjs",
+    "test": "node scripts/build.mjs && node --test tests/portfolio.test.mjs"
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineering",
+    "ai-engineering",
+    "cybersecurity",
+    "fintech",
+    "distributed-systems",
+    "typescript"
+  ],
+  "author": "Codesphere-u (Kampala, Uganda)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codesphere-u/codesphere-portfolio.git"
+  },
+  "homepage": "https://github.com/codesphere-u/codesphere-portfolio",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

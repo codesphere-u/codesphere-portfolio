@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codesphere-u | Software Engineer | AI Systems Builder | Cybersecurity | Full-Stack &amp; Cloud Engineering | Building Technology for Real-World Problems</title>
+  <meta name="description" content="Designing deterministic, adversarial-resilient software systems—from capability-gated AI firewalls and integer-exact mobile money ledgers to sub-millisecond local RAG workspaces and offline-first agricultural decision support." />
+  <meta name="author" content="codesphere-u (Kampala, Uganda)" />
+
+  <!-- OpenGraph / Social Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Codesphere-u — Interactive Engineering Portfolio &amp; Architecture Case Studies" />
+  <meta property="og:description" content="Software Engineer | AI Systems Builder | Cybersecurity | Full-Stack &amp; Cloud Engineering | Building Technology for Real-World Problems — 292+ automated tests across 7 flagship systems." />
+  <meta property="og:url" content="https://github.com/codesphere-u/codesphere-portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Codesphere-u — Staff Engineering Portfolio" />
+  <meta name="twitter:description" content="Designing deterministic, adversarial-resilient software systems—from capability-gated AI firewalls and integer-exact mobile money ledgers to sub-millisecond local RAG workspaces and offline-first agricultural decision support." />
+
+  <link rel="stylesheet" href="./src/ui/styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="#" class="brand-link" aria-label="Codesphere-u Engineering Portfolio Home">
+        <span class="brand-mark">CS</span>
+        <span>codesphere-u</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Portfolio Navigation">
+        <a href="#flagship-explorer" class="nav-link">Flagship Systems (7)</a>
+        <a href="#benchmarks-matrix" class="nav-link">Verified Benchmarks (292+ Tests)</a>
+        <a href="#architecture-principles" class="nav-link">ADR Principles</a>
+        <a href="https://github.com/codesphere-u" class="btn" target="_blank" rel="noopener noreferrer">
+          GitHub @codesphere-u ↗
+        </a>
+        <button type="button" id="theme-toggle" class="btn" aria-label="Toggle color theme">
+          ☀ Light Mode
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <!-- Hero & Positioning -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Kampala, Uganda · Global Remote / International Engineering</span>
+        </div>
+
+        <h1 id="hero-heading" class="hero-title">
+          Software Engineer | AI Systems Builder | Cybersecurity | Full-Stack &amp; Cloud Engineering | Building Technology for Real-World Problems
+        </h1>
+
+        <p class="hero-mission">
+          Designing deterministic, adversarial-resilient software systems—from capability-gated AI firewalls and integer-exact mobile money ledgers to sub-millisecond local RAG workspaces and offline-first agricultural decision support.
+        </p>
+
+        <div class="hero-meta-row">
+          <a href="#flagship-explorer" class="btn btn-primary">Explore 7 Flagship Systems</a>
+          <a href="https://github.com/codesphere-u" class="btn" target="_blank" rel="noopener noreferrer">
+            GitHub Profile (github.com/codesphere-u) ↗
+          </a>
+          <span class="meta-pill">📍 Kampala, Uganda · Global Remote</span>
+          <span class="meta-pill">✓ Zero Unverified Metrics</span>
+        </div>
+
+        <div class="telemetry-grid" aria-label="Verified Portfolio Aggregates">
+          <div class="telemetry-card">
+            <div class="telemetry-value">7</div>
+            <div class="telemetry-label">Production-Grade Flagship Systems</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-value">292+</div>
+            <div class="telemetry-label">Automated Tests Passing in CI</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-value">0.05–0.28 ms</div>
+            <div class="telemetry-label">Core Engine P50 / Mean Latencies</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-value">10 ADRs</div>
+            <div class="telemetry-label">Documented Architectural Trade-Offs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Flagship Systems Explorer -->
+    <section id="flagship-explorer" class="section" aria-labelledby="explorer-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="explorer-heading" class="section-title">Interactive Flagship Systems Explorer</h2>
+            <p class="section-subtitle" id="projects-visible-count">
+              Showing 7 of 7 verified flagship systems — click any system to inspect its Architecture Blueprint &amp; ADRs.
+            </p>
+          </div>
+        </div>
+
+        <div class="explorer-controls" role="region" aria-label="Filter and search flagship systems">
+          <div class="domain-tabs" role="toolbar" aria-label="Filter by engineering domain">
+            
+        <button type="button" class="domain-tab" data-domain="All" aria-pressed="true">
+          <span>All</span>
+          <span class="domain-count">(7)</span>
+        </button>
+        <button type="button" class="domain-tab" data-domain="AI &amp; Agents" aria-pressed="false">
+          <span>AI &amp; Agents</span>
+          <span class="domain-count">(4)</span>
+        </button>
+        <button type="button" class="domain-tab" data-domain="Cybersecurity" aria-pressed="false">
+          <span>Cybersecurity</span>
+          <span class="domain-count">(4)</span>
+        </button>
+        <button type="button" class="domain-tab" data-domain="Fintech &amp; Ledgers" aria-pressed="false">
+          <span>Fintech &amp; Ledgers</span>
+          <span class="domain-count">(3)</span>
+        </button>
+        <button type="button" class="domain-tab" data-domain="Cloud &amp; SRE" aria-pressed="false">
+          <span>Cloud &amp; SRE</span>
+          <span class="domain-count">(1)</span>
+        </button>
+        <button type="button" class="domain-tab" data-domain="AgriTech &amp; HealthTech" aria-pressed="false">
+          <span>AgriTech &amp; HealthTech</span>
+          <span class="domain-count">(1)</span>
+        </button>
+          </div>
+
+          <div class="search-box">
+            <input
+              type="search"
+              id="project-search"
+              class="search-input"
+              placeholder="Search systems, ADRs, languages (press /)..."
+              aria-label="Search flagship systems"
+            />
+          </div>
+        </div>
+
+        <div id="projects-grid" class="projects-grid">
+          
+    <article class="project-card" data-project-id="agentshield" data-domains="Cybersecurity,AI &amp; Agents">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">Cybersecurity</span><span class="badge">AI &amp; Agents</span></div>
+          <span class="badge badge-version">v1.0.0</span>
+        </div>
+        <h3 class="project-title">AgentShield</h3>
+        <p class="project-tagline">OWASP 2026 AI Agent Security &amp; Capability Firewall</p>
+        <p class="project-summary">Deterministic capability firewall and runtime policy engine intercepting tool calls before execution. Mitigates indirect prompt injection, SSRF/cloud metadata exfiltration, credential leakage, and privilege escalation with a tamper-evident SHA-256 hash-chained audit ledger.</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">Red-Team Recall / FPR</div>
+          <div class="metric-box-value">100% Recall · 0% FPR</div>
+          <div class="metric-box-detail">25-scenario adversarial corpus (17 malicious attacks blocked, 8 benign workflows allowed)</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">42 passing</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Red-Team Corpus</span>
+        <span class="mini-metric-val">25 scenarios</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Audit Integrity</span>
+        <span class="mini-metric-val">SHA-256 Hash Chain</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Approval Gate</span>
+        <span class="mini-metric-val">HMAC-SHA256 Single-Use</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">TypeScript</span><span class="badge badge-version">Node.js</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="agentshield">
+            Architecture &amp; ADRs (2)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/agentshield" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="project-card" data-project-id="cyber-dragon" data-domains="Cybersecurity,Fintech &amp; Ledgers">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">Cybersecurity</span><span class="badge">Fintech &amp; Ledgers</span></div>
+          <span class="badge badge-version">v1.0.0</span>
+        </div>
+        <h3 class="project-title">Cyber Dragon v1.0</h3>
+        <p class="project-tagline">SSRF-Free Community Cyber Defense &amp; Mobile Money/USSD Fraud Engine</p>
+        <p class="project-summary">Dual-runtime (TypeScript Web + Python FastAPI) threat analyzer built for East African &amp; global community defense. Detects phishing URLs, homograph/typosquatting domains, fake mobile money reversal SMS, and predatory USSD strings (*165#, *185#, *334#) without ever making outbound network requests.</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">Mean Threat Analysis Latency</div>
+          <div class="metric-box-value">0.28 ms · 8/8 Corpus</div>
+          <div class="metric-box-detail">100% offline/SSRF-free lexical &amp; USSD heuristic scoring across 8 real-world East African &amp; global threat scenarios</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">21 passing (TS + Python)</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Mean Latency</span>
+        <span class="mini-metric-val">0.28 ms / payload</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Outbound Network Calls</span>
+        <span class="mini-metric-val">0 (Strictly SSRF-Free)</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Live Deployment</span>
+        <span class="mini-metric-val">cyber-dragon-ivory.vercel.app</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">TypeScript</span><span class="badge badge-version">Python</span><span class="badge badge-version">FastAPI</span><span class="badge badge-version">React</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="cyber-dragon">
+            Architecture &amp; ADRs (1)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/cyber-dragon" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          <a class="btn" href="https://cyber-dragon-ivory.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="project-card" data-project-id="auralis-local" data-domains="AI &amp; Agents,Cybersecurity">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">AI &amp; Agents</span><span class="badge">Cybersecurity</span></div>
+          <span class="badge badge-version">v0.2.0</span>
+        </div>
+        <h3 class="project-title">Auralis Local v0.2</h3>
+        <p class="project-tagline">Privacy-First Apple Silicon AI Workspace with Hybrid BM25 RAG &amp; Local Voice</p>
+        <p class="project-summary">Local-first AI workspace engineered for Apple Silicon (`mlx-lm` / Ollama) with deterministic Okapi BM25 + semantic hybrid RAG, cite-or-abstain grounding verification, local Whisper STT / Kokoro TTS voice pipeline, and loopback-only capability sandboxing.</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">BM25 RAG Retrieval Latency</div>
+          <div class="metric-box-value">0.245 ms P50 · 3,110 docs/s</div>
+          <div class="metric-box-detail">Sub-millisecond hybrid retrieval with cite-or-abstain grounding enforcement and zero cloud telemetry</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">36 passing</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Retrieval P50 Latency</span>
+        <span class="mini-metric-val">0.245 ms</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Indexing Throughput</span>
+        <span class="mini-metric-val">3,110 docs/sec</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Network Binding</span>
+        <span class="mini-metric-val">127.0.0.1 Loopback Only</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">Python</span><span class="badge badge-version">TypeScript</span><span class="badge badge-version">SQLite</span><span class="badge badge-version">Apple MLX</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="auralis-local">
+            Architecture &amp; ADRs (2)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/auralis-local" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="project-card" data-project-id="flowledger" data-domains="Fintech &amp; Ledgers,Cybersecurity">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">Fintech &amp; Ledgers</span><span class="badge">Cybersecurity</span></div>
+          <span class="badge badge-version">v1.0.0</span>
+        </div>
+        <h3 class="project-title">FlowLedger v1.0</h3>
+        <p class="project-tagline">Integer Minor-Unit Double-Entry Payment &amp; Mobile Money Reconciliation Engine</p>
+        <p class="project-summary">Deterministic double-entry financial ledger and 3-way mobile money reconciliation engine supporting UGX, KES, and USD. Enforces BigInt minor-unit arithmetic (zero IEEE-754 floats), idempotent webhook ingestion, state-machine payment lifecycles, and SHA-256 hash-chained journal entries.</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">Ledger Imbalance &amp; Audit Chain</div>
+          <div class="metric-box-value">0 Imbalance · 97 Chained Entries</div>
+          <div class="metric-box-detail">51 automated tests verifying BigInt double-entry invariants across UGX/KES and 50-tx 3-way reconciliation</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">51 passing</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Hash-Chained Entries</span>
+        <span class="mini-metric-val">97 verified (0 imbalance)</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">3-Way Reconciliation</span>
+        <span class="mini-metric-val">50 synthetic txs (100% classified)</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Arithmetic Model</span>
+        <span class="mini-metric-val">BigInt Minor Units (No Floats)</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">TypeScript</span><span class="badge badge-version">Node.js</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="flowledger">
+            Architecture &amp; ADRs (2)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/flowledger" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="project-card" data-project-id="argus-ai" data-domains="AI &amp; Agents,Fintech &amp; Ledgers">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">AI &amp; Agents</span><span class="badge">Fintech &amp; Ledgers</span></div>
+          <span class="badge badge-version">v2.1.0</span>
+        </div>
+        <h3 class="project-title">ARGUS AI v2.1</h3>
+        <p class="project-tagline">7-Agent Adversarial Investment Committee with Devil&#39;s Advocate Veto &amp; Leakage-Free Backtester</p>
+        <p class="project-summary">Multi-agent quantitative research &amp; risk governance platform where 5 specialist analysts debate a mandatory Devil&#39;s Advocate agent equipped with hard veto authority, guarded by a strict point-in-time (as-of timestamp) data gateway and walk-forward backtester with MCP server integration.</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">Adversarial Risk Governance</div>
+          <div class="metric-box-value">3 Trap Trades Vetoed · 61 Tests</div>
+          <div class="metric-box-detail">Devil&#39;s Advocate hard veto + point-in-time lookahead leakage guard verified in walk-forward simulation</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">61 passing</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Committee Architecture</span>
+        <span class="mini-metric-val">7 Adversarial Agents</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Walk-Forward Guard</span>
+        <span class="mini-metric-val">3 Catastrophic Traps Vetoed</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Protocol Support</span>
+        <span class="mini-metric-val">Model Context Protocol (MCP)</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">Python</span><span class="badge badge-version">TypeScript</span><span class="badge badge-version">MCP</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="argus-ai">
+            Architecture &amp; ADRs (1)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/ARGUS-AI" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="project-card" data-project-id="stackpulse" data-domains="Cloud &amp; SRE">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">Cloud &amp; SRE</span></div>
+          <span class="badge badge-version">v1.0.0</span>
+        </div>
+        <h3 class="project-title">StackPulse v1.0</h3>
+        <p class="project-tagline">OpenTelemetry DAG Critical-Path Analyzer, N+1 Query Detector &amp; Multi-Window SLO Platform</p>
+        <p class="project-summary">High-throughput observability &amp; SRE diagnostics engine that reconstructs distributed OpenTelemetry span trees into execution DAGs, computes true blocking critical-path latency (excluding async fan-out overlap), detects N+1 query storms, and evaluates Google SRE multi-window multi-burn-rate SLO alerts.</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">DAG Assembly Throughput</div>
+          <div class="metric-box-value">19,525 traces/s · 51.2 µs/trace</div>
+          <div class="metric-box-detail">47 automated tests verifying critical-path extraction, N+1 detection, and multi-window SLO burn alerts</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">47 passing</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">DAG Throughput</span>
+        <span class="mini-metric-val">19,525 traces/sec</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Critical-Path Latency</span>
+        <span class="mini-metric-val">51.2 µs / trace</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">SLO Engine</span>
+        <span class="mini-metric-val">Multi-Window Burn Rate (14.4x / 6x)</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">TypeScript</span><span class="badge badge-version">Node.js</span><span class="badge badge-version">OpenTelemetry</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="stackpulse">
+            Architecture &amp; ADRs (1)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/stackpulse" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="project-card" data-project-id="agrisignal" data-domains="AgriTech &amp; HealthTech,AI &amp; Agents">
+      <div>
+        <div class="card-top-row">
+          <div class="domain-badges"><span class="badge">AgriTech &amp; HealthTech</span><span class="badge">AI &amp; Agents</span></div>
+          <span class="badge badge-version">v1.0.0</span>
+        </div>
+        <h3 class="project-title">AgriSignal v1.0</h3>
+        <p class="project-tagline">Offline-First Smallholder Agricultural Decision Support with Uncertainty Bounds &amp; Multilingual 160-char SMS Advisories</p>
+        <p class="project-summary">Deterministic agronomic advisory engine for East African smallholder farmers (maize, beans, coffee, cassava, matooke). Computes water-balance evapotranspiration budgets, planting-window confidence intervals, pest/disease risk (Fall Armyworm, Cassava Mosaic, Coffee Leaf Rust), and GSM-7 160-character SMS advisories in English (`en`), Luganda (`lg`), and Kiswahili (`sw`).</p>
+
+        <div class="headline-metric-box">
+          <div class="metric-box-label">Multilingual GSM-7 SMS Bound</div>
+          <div class="metric-box-value">≤160 Chars (`en`, `lg`, `sw`)</div>
+          <div class="metric-box-detail">Offline-first water-balance &amp; pest risk engine with explicit uncertainty intervals and safety guardrails</div>
+        </div>
+
+        <div class="secondary-metrics-grid">
+          
+      <div class="mini-metric">
+        <span class="mini-metric-label">Automated Tests</span>
+        <span class="mini-metric-val">34 passing</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">SMS Budget Guarantee</span>
+        <span class="mini-metric-val">≤ 160 GSM-7 chars</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Locales Supported</span>
+        <span class="mini-metric-val">English, Luganda, Kiswahili</span>
+      </div>
+      <div class="mini-metric">
+        <span class="mini-metric-label">Connectivity Required</span>
+        <span class="mini-metric-val">0 (100% Offline-First)</span>
+      </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="domain-badges" style="margin-bottom: 12px;">
+          <span class="badge badge-version">TypeScript</span><span class="badge badge-version">Node.js</span>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="agrisignal">
+            Architecture &amp; ADRs (1)
+          </button>
+          <a class="btn" href="https://github.com/codesphere-u/agrisignal" target="_blank" rel="noopener noreferrer">
+            GitHub Repo ↗
+          </a>
+          
+        </div>
+      </div>
+    </article>
+  
+        </div>
+      </div>
+    </section>
+
+    <!-- Verified Engineering Benchmarks Matrix -->
+    <section id="benchmarks-matrix" class="section" aria-labelledby="benchmarks-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="benchmarks-heading" class="section-title">Verified Engineering Benchmarks Matrix</h2>
+            <p class="section-subtitle">
+              Real measured latencies, throughput, determinism guarantees, and automated test counts across all repositories (292 automated tests passing).
+            </p>
+          </div>
+
+          <div class="benchmark-controls" role="toolbar" aria-label="Sort benchmarks table">
+            <button type="button" class="btn js-sort-benchmarks" data-sort="tests-desc" aria-pressed="true">
+              Sort by Test Count
+            </button>
+            <button type="button" class="btn js-sort-benchmarks" data-sort="latency-asc" aria-pressed="false">
+              Sort by Fastest Latency
+            </button>
+            <button type="button" class="btn js-sort-benchmarks" data-sort="name-asc" aria-pressed="false">
+              Sort Alphabetically
+            </button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col">System &amp; Repository</th>
+                <th scope="col">Primary Domain</th>
+                <th scope="col">Automated Tests</th>
+                <th scope="col">Measured Latency</th>
+                <th scope="col">Throughput / Accuracy</th>
+                <th scope="col">Key Determinism &amp; Safety Invariant</th>
+                <th scope="col">Deep-Dive</th>
+              </tr>
+            </thead>
+            <tbody id="benchmark-tbody">
+              
+      <tr>
+        <td>
+          <strong>ARGUS AI v2.1</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/ARGUS-AI" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/ARGUS-AI ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">AI &amp; Agents</span></td>
+        <td class="mono-cell">
+          <strong>61</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 100%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.42 ms / committee step
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 13%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">3 Catastrophic Trap Trades Vetoed</td>
+        <td>Point-in-time leakage guard + Devil&#39;s Advocate hard veto</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="argus-ai" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+      <tr>
+        <td>
+          <strong>FlowLedger v1.0</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/flowledger" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/flowledger ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">Fintech &amp; Ledgers</span></td>
+        <td class="mono-cell">
+          <strong>51</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 84%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.12 ms / journal entry
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 75%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">97 Chained Entries · 0 Imbalance (UGX/KES)</td>
+        <td>BigInt minor units (IEEE-754 floats banned)</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="flowledger" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+      <tr>
+        <td>
+          <strong>StackPulse v1.0</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/stackpulse" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/stackpulse ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">Cloud &amp; SRE</span></td>
+        <td class="mono-cell">
+          <strong>47</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 77%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.0512 ms (51.2 µs/trace)
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 89%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">19,525 traces/sec DAG assembly</td>
+        <td>Interval-union critical path + multi-window burn rate</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="stackpulse" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+      <tr>
+        <td>
+          <strong>AgentShield</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/agentshield" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/agentshield ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">Cybersecurity</span></td>
+        <td class="mono-cell">
+          <strong>42</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 69%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.19 ms / tool call
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 61%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">100% Recall · 0% FPR (25 scenarios)</td>
+        <td>SHA-256 hash-chained ledger + HMAC single-use tokens</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="agentshield" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+      <tr>
+        <td>
+          <strong>Auralis Local v0.2</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/auralis-local" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/auralis-local ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">AI &amp; Agents</span></td>
+        <td class="mono-cell">
+          <strong>36</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 59%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.245 ms P50 BM25
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 49%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">3,110 docs/sec indexing throughput</td>
+        <td>Cite-or-abstain grounding + 127.0.0.1 loopback jail</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="auralis-local" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+      <tr>
+        <td>
+          <strong>AgriSignal v1.0</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/agrisignal" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/agrisignal ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">AgriTech &amp; HealthTech</span></td>
+        <td class="mono-cell">
+          <strong>34</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 56%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.09 ms / advisory
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 81%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">100% ≤160-char GSM-7 (`en`, `lg`, `sw`)</td>
+        <td>Offline-first FAO-56 water budget + WHO safety filter</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="agrisignal" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+      <tr>
+        <td>
+          <strong>Cyber Dragon v1.0</strong>
+          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
+            <a href="https://github.com/codesphere-u/cyber-dragon" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
+              codesphere-u/cyber-dragon ↗
+            </a>
+          </div>
+        </td>
+        <td><span class="badge">Cybersecurity</span></td>
+        <td class="mono-cell">
+          <strong>21</strong> passing
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 34%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">
+          0.28 ms mean latency
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style="width: 42%"></div>
+          </div>
+        </td>
+        <td class="mono-cell">8/8 Threat Corpus · 0 Outbound Calls</td>
+        <td>Zero network egress lexical &amp; USSD AST scoring</td>
+        <td>
+          <button type="button" class="btn js-open-drawer" data-project-id="cyber-dragon" style="padding: 5px 10px; font-size: 0.78rem;">
+            Inspect ADR
+          </button>
+        </td>
+      </tr>
+    
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architectural Trade-Off Highlights -->
+    <section id="architecture-principles" class="section" aria-labelledby="principles-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="principles-heading" class="section-title">Signature Architectural Decisions &amp; Engineering Rigor</h2>
+            <p class="section-subtitle">
+              Why every repository prioritizes deterministic invariants, threat modeling, and reproducible benchmarks over fragile black-box wrappers.
+            </p>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <article class="telemetry-card">
+            <h3 style="margin-top: 0; font-size: 1.05rem;">Why Cyber Dragon Refuses to Fetch URLs</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              URL scanners that perform outbound HTTP fetches become SSRF proxies and trigger attacker tracking beacons. Cyber Dragon scores phishing domains, IDN homographs, and predatory USSD strings (<code>*165#</code>, <code>*185#</code>, <code>*334#</code>) 100% lexically in <strong>0.28 ms</strong> with zero network egress.
+            </p>
+          </article>
+
+          <article class="telemetry-card">
+            <h3 style="margin-top: 0; font-size: 1.05rem;">Why FlowLedger Bans IEEE-754 Floats</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Floating-point arithmetic silently drops cents and shillings during fee splits. FlowLedger enforces <code>bigint</code> minor-unit double-entry postings across UGX, KES, and USD with SHA-256 hash-chained journal entries (97 entries verified with 0 imbalance).
+            </p>
+          </article>
+
+          <article class="telemetry-card">
+            <h3 style="margin-top: 0; font-size: 1.05rem;">Why Auralis Binds Only to 127.0.0.1 with Single-Use Tokens</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Local AI workspaces that bind to <code>0.0.0.0</code> expose developer filesystems to LAN and DNS-rebinding attacks. Auralis enforces strict loopback binding, symlink-safe <code>realpath</code> jails, and single-use HMAC approval tokens while indexing at 3,110 docs/sec.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Architecture & ADR Deep-Dive Drawer -->
+  <aside
+    id="architecture-drawer"
+    class="drawer-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="drawer-title"
+    hidden
+  >
+    <div id="architecture-drawer-panel" class="drawer-panel">
+      
+    <div class="drawer-header">
+      <div>
+        <div class="domain-badges" style="margin-bottom: 8px;">
+          <span class="badge">Cybersecurity</span>
+          <span class="badge badge-version">v1.0.0</span>
+          <span class="badge">42 Automated Tests</span>
+        </div>
+        <h2 id="drawer-title" style="margin: 0 0 6px; font-size: 1.5rem;">AgentShield</h2>
+        <p style="margin: 0; color: var(--accent-secondary); font-weight: 600; font-size: 0.92rem;">
+          OWASP 2026 AI Agent Security &amp; Capability Firewall
+        </p>
+      </div>
+      <button type="button" class="btn" id="js-close-drawer" aria-label="Close Architecture Drawer">
+        ✕ Close (Esc)
+      </button>
+    </div>
+
+    <div class="drawer-section">
+      <h3 class="drawer-section-title">1. System Architecture Blueprint</h3>
+      <pre class="ascii-diagram">[Untrusted Context / Prompt]
+        │
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ 1. Context Taint Scanner (Indirect Injection &amp; Confusion) │
+├───────────────────────────────────────────────────────────┤
+│ 2. Tool Argument Validator (Path, Shell, SQL, SSRF Guard) │
+├───────────────────────────────────────────────────────────┤
+│ 3. Capability Gate &amp; HMAC-SHA256 Single-Use Approval Token│
+├───────────────────────────────────────────────────────────┤
+│ 4. Secret Redactor (AWS, JWT, PEM, Bearer, Mobile Money)  │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+        [Tamper-Evident SHA-256 Chained Audit Ledger]</pre>
+      <ul class="layer-list">
+      <li class="layer-item">
+        <div class="layer-name">Context Taint &amp; Prompt Injection Scanner</div>
+        <div class="layer-desc">Detects role-override instructions, base64/hex obfuscated payloads, and untrusted RAG/webhook taint attempting to invoke high-privilege tools.</div>
+      </li>
+      <li class="layer-item">
+        <div class="layer-name">Deterministic Argument &amp; Egress Inspector</div>
+        <div class="layer-desc">Blocks RFC1918/link-local/IMDSv2 (169.254.169.254) SSRF targets, path traversal (../), command chaining, and destructive SQL/filesystem payloads.</div>
+      </li>
+      <li class="layer-item">
+        <div class="layer-name">HMAC-SHA256 Capability &amp; Human-in-the-Loop Gate</div>
+        <div class="layer-desc">Requires cryptographically bound single-use tokens tied to canonical {toolName, argsHash, sessionId} before executing destructive operations.</div>
+      </li>
+      <li class="layer-item">
+        <div class="layer-name">Hash-Chained Audit Ledger</div>
+        <div class="layer-desc">Links every decision entry via prevHash -&gt; entryHash (SHA-256) so post-compromise log tampering is mathematically detectable.</div>
+      </li></ul>
+    </div>
+
+    <div class="drawer-section">
+      <h3 class="drawer-section-title">2. Deterministic Invariants &amp; Safety Boundaries</h3>
+      <ul class="invariant-list">
+      <li class="layer-item">
+        <div class="layer-desc">✓ Zero LLM-in-the-loop latency or non-determinism on security boundaries—all policy checks execute deterministically in sub-millisecond time.</div>
+      </li>
+      <li class="layer-item">
+        <div class="layer-desc">✓ Approval tokens bind to canonicalized JSON argument hashes and cannot be replayed across tools or sessions.</div>
+      </li>
+      <li class="layer-item">
+        <div class="layer-desc">✓ Every output stream passes through multi-pattern secret scrubbing before returning to the model or caller.</div>
+      </li></ul>
+    </div>
+
+    <div class="drawer-section">
+      <h3 class="drawer-section-title">3. Key Engineering Trade-Offs (Architecture Decision Records)</h3>
+      
+      <div class="adr-card">
+        <h4 class="adr-title">ADR-01: Deterministic Capability Inspection Over LLM-Judge Guardrails</h4>
+        <p class="adr-field"><strong>CONTEXT:</strong> Probabilistic &quot;LLM-as-a-judge&quot; guardrails are themselves vulnerable to adversarial jailbreaks and add 300–1,500 ms of latency per tool call.</p>
+        <p class="adr-field"><strong>DECISION:</strong> Enforce strict capability policies, AST/regex structural validators, RFC1918/IMDSv2 IP range parsing, and taint propagation rules purely in deterministic TypeScript.</p>
+        <p class="adr-field"><strong>TRADE-OFFS:</strong> Requires explicit policy definitions per tool capability class, but guarantees 0% non-determinism, sub-millisecond overhead, and 100% reproducibility in CI.</p>
+        <p class="adr-field"><strong>VERIFICATION:</strong> Verified across 42 unit/integration tests and a 25-scenario OWASP Agentic Top 10 red-team benchmark with 100% recall and 0% false positive rate.</p>
+      </div>
+      <div class="adr-card">
+        <h4 class="adr-title">ADR-02: Cryptographic Single-Use Approval Tokens Bound to Canonical Argument Hash</h4>
+        <p class="adr-field"><strong>CONTEXT:</strong> Boolean confirmation flags in agent loops can be spoofed by prompt injection or replayed with mutated tool arguments.</p>
+        <p class="adr-field"><strong>DECISION:</strong> Issue HMAC-SHA256 tokens bound to (toolName, canonicalArgsSha256, sessionId, expiresAt) and mark nonces consumed immediately upon verification.</p>
+        <p class="adr-field"><strong>TRADE-OFFS:</strong> Requires the host orchestrator to manage an approval secret and token lifecycle, preventing all parameter-tampering and replay attacks.</p>
+        <p class="adr-field"><strong>VERIFICATION:</strong> Tested against token replay, cross-tool substitution, argument mutation, and expiration tampering in tests/agentshield.test.ts.</p>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 class="drawer-section-title" style="margin: 0;">4. Reproducible CLI Quickstart</h3>
+        <button type="button" class="btn" id="js-copy-cli" data-cli="git clone https://github.com/codesphere-u/agentshield.git
+cd agentshield &amp;&amp; npm test
+node src/cli.mjs benchmark" style="padding: 4px 10px; font-size: 0.76rem;">
+          Copy Commands
+        </button>
+      </div>
+      <pre class="cli-box"><code>git clone https://github.com/codesphere-u/agentshield.git
+cd agentshield &amp;&amp; npm test
+node src/cli.mjs benchmark</code></pre>
+    </div>
+
+    <div class="drawer-section">
+      <h3 class="drawer-section-title">5. Direct Source &amp; Test Links</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        
+      <a class="btn" href="https://github.com/codesphere-u/agentshield" target="_blank" rel="noopener noreferrer">
+        Repository Root (/) ↗
+      </a>
+      <a class="btn" href="https://github.com/codesphere-u/agentshield/blob/main/src/firewall.mjs" target="_blank" rel="noopener noreferrer">
+        Firewall Engine &amp; Policy Inspector (src/firewall.mjs) ↗
+      </a>
+      <a class="btn" href="https://github.com/codesphere-u/agentshield/blob/main/tests/agentshield.test.mjs" target="_blank" rel="noopener noreferrer">
+        25-Scenario OWASP Red-Team Corpus &amp; Tests (tests/agentshield.test.mjs) ↗
+      </a>
+      </div>
+    </div>
+  
+    </div>
+  </aside>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <strong>codesphere-u</strong> · Kampala, Uganda · Global Remote / International Engineering
+      </div>
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <a href="https://github.com/codesphere-u" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+        <a href="https://github.com/codesphere-u/codesphere-portfolio" class="nav-link" target="_blank" rel="noopener noreferrer">Source Code</a>
+        <a href="https://cyber-dragon-ivory.vercel.app" class="nav-link" target="_blank" rel="noopener noreferrer">Cyber Dragon Live Demo</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/ui/app.mjs"></script>
+</body>
+</html>
