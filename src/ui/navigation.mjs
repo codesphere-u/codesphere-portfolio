@@ -48,7 +48,7 @@ export function initNavigation(doc = globalThis.document, win = globalThis.windo
       return;
     }
     if (event.key === 'Tab') {
-      const targets = [...menuFocusable(), toggle].filter(Boolean);
+      const targets = [toggle, ...menuFocusable()].filter(Boolean);
       if (!targets.length) return;
       const first = targets[0], last = targets[targets.length - 1];
       if (event.shiftKey && doc.activeElement === first) { event.preventDefault(); last.focus(); }
