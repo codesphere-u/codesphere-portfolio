@@ -361,7 +361,10 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     assert.match(html, /role="main"/);
     assert.match(html, /role="dialog"/);
     assert.match(html, /Space\+Grotesk/);
-    assert.match(html, /JetBrains\+Mono/);
+    assert.match(html, /Instrument\+Serif/);
+    assert.match(html, /editorial\.css/);
+    assert.match(html, /class="editorial-featured"/);
+    assert.match(html, /class="art-stage"/);
 
     const css = fs.readFileSync(
       path.join(ROOT_DIR, 'src', 'ui', 'styles.css'),
