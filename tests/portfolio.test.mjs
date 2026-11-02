@@ -39,7 +39,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     );
   });
 
-  it('includes Experience 01 Cinematic Opening identity, headline, specialties, and SVG scene', () => {
+  it('includes cinematic opening identity, headline, specialties, and architecture scene', () => {
     const { profile } = PORTFOLIO_DATA;
     assert.equal(profile.name, 'Akandwanaho Ivan Alvin');
     assert.equal(profile.displayNameUpper, 'AKANDWANAHO IVAN ALVIN');
@@ -75,7 +75,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     const { html } = generatePortfolioHtml();
     assert.match(html, /AKANDWANAHO IVAN ALVIN/);
     assert.match(html, /Engineering what comes next\./);
-    assert.match(html, /Explore My Journey/);
+    assert.match(html, /Explore selected work/);
   });
 
   it('enforces education & repository accuracy: ISBAT University present, zero Makerere/NEWS2/whitehathackerpr', () => {
@@ -350,7 +350,7 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     }
   });
 
-  it('builds self-contained index.html and dist/index.html with v2.0 visual design system tokens', () => {
+  it('builds index.html and dist/index.html with accessible editorial design tokens', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
     assert.equal(summary.totalProjects, 8);
@@ -361,7 +361,10 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     assert.match(html, /role="main"/);
     assert.match(html, /role="dialog"/);
     assert.match(html, /Space\+Grotesk/);
-    assert.match(html, /JetBrains\+Mono/);
+    assert.match(html, /Instrument\+Serif/);
+    assert.match(html, /editorial\.css/);
+    assert.match(html, /class="editorial-featured"/);
+    assert.match(html, /class="art-stage"/);
 
     const css = fs.readFileSync(
       path.join(ROOT_DIR, 'src', 'ui', 'styles.css'),

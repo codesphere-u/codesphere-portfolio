@@ -98,6 +98,15 @@ export function generatePortfolioHtml() {
     .join('');
 
   const cardsHtml = projects.map(renderProjectCardHtml).join('\n');
+  const featuredWorkHtml = projects.slice(0, 3).map((project, index) => `
+    <a class="featured-work" href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Explore ${escapeHtml(project.name)} on GitHub">
+      <span class="featured-index"><span>SELECTED / 0${index + 1}</span><span>${escapeHtml(project.primaryDomain)}</span></span>
+      <span class="featured-arrow" aria-hidden="true">↗</span>
+      <span class="featured-bottom">
+        <h3 class="featured-name">${escapeHtml(project.name)}</h3>
+        <span class="featured-tag">${escapeHtml(project.tagline)}</span>
+      </span>
+    </a>`).join('\n');
   const initialDrawerHtml = renderDrawerContentHtml(projects[0]);
 
   // Experience 04: Interactive 8-Node Engineering Knowledge Map
@@ -149,7 +158,7 @@ export function generatePortfolioHtml() {
     )
     .join('');
 
-  // Experience 06: Personal Engineering Philosophy
+  // Experience 06: How I approach the work.
   const philosophyCardsHtml = philosophy.map(renderPhilosophyCardHtml).join('\n');
 
   // Supporting Executive Sections
@@ -182,9 +191,10 @@ export function generatePortfolioHtml() {
   <!-- Editorial & Technical Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./src/ui/styles.css" />
+  <link rel="stylesheet" href="./src/ui/editorial.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -192,28 +202,19 @@ export function generatePortfolioHtml() {
   <header class="site-header" role="banner">
     <div class="container header-inner">
       <a href="#hero" class="brand-link" aria-label="Akandwanaho Ivan Alvin Engineering Portfolio Home">
-        <span class="brand-mark">AIA</span>
+        <span class="brand-mark">IA.</span>
         <span class="brand-text-wrap">
           <span class="brand-name">${escapeHtml(profile.name)}</span>
-          <span class="brand-sub">THE BUILDER’S JOURNEY</span>
+          <span class="brand-sub">ENGINEER / FOUNDER</span>
         </span>
       </a>
 
       <nav class="nav-links" aria-label="Primary Portfolio Navigation">
-        <a href="#journey" class="nav-link">01. Journey</a>
-        <a href="#projects" class="nav-link">02. Project Universe (${summary.totalProjects})</a>
-        <a href="#mindmap" class="nav-link">03. Engineering Mind</a>
-        <a href="#terminal" class="nav-link">04. Terminal</a>
-        <a href="#philosophy" class="nav-link">05. Philosophy</a>
-        <a href="#experience" class="nav-link">Leadership</a>
-        <a href="#benchmarks-matrix" class="nav-link">Benchmarks</a>
-        <a href="${escapeHtml(profile.companyWebsiteUrl)}" class="btn btn-gold" target="_blank" rel="noopener noreferrer">
-          codesphereug.com ↗
-        </a>
-        <button type="button" id="theme-toggle" class="btn" aria-label="Switch to light theme">
-          <span aria-hidden="true">◐</span>
-          <span class="theme-label">Light Mode</span>
-        </button>
+        <a href="#projects" class="nav-link">Work</a>
+        <a href="#journey" class="nav-link">Journey</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button type="button" id="theme-toggle" class="btn" aria-label="Switch to light theme"><span aria-hidden="true">◐</span><span class="theme-label">Light Mode</span></button>
       </nav>
     </div>
   </header>
@@ -226,13 +227,13 @@ export function generatePortfolioHtml() {
           <div class="hero-editorial-col">
             <div class="hero-eyebrow">
               <span class="status-dot" aria-hidden="true"></span>
-              <span>EXPERIENCE 01 // INTERACTIVE TECHNOLOGY DOCUMENTARY · ${escapeHtml(profile.location)}</span>
+              <span>INDEPENDENT ENGINEER / FOUNDER · KAMPALA, UGANDA</span>
             </div>
 
             <p class="hero-kicker-name">${escapeHtml(profile.displayNameUpper)}</p>
 
             <h1 id="hero-heading" class="hero-editorial-headline">
-              ${escapeHtml(profile.heroEditorialHeadline)}
+              <span class="hero-line">Engineering</span><span class="hero-line">what comes</span><span class="hero-line"><em>next.</em></span>
             </h1>
 
             <div class="hero-specialties-ribbon" aria-label="Core engineering specialties">
@@ -240,7 +241,7 @@ export function generatePortfolioHtml() {
             </div>
 
             <p class="hero-subtitle-role">
-              ${escapeHtml(profile.subtitle)} · Founder &amp; Project Lead, Funa Gigs (Jaminsa Ventures Limited)
+              ${escapeHtml(profile.subtitle)}
             </p>
 
             <p class="hero-tagline">
@@ -248,26 +249,12 @@ export function generatePortfolioHtml() {
             </p>
 
             <p class="hero-mission">
-              ${escapeHtml(profile.missionStatement)}
+              I build software that protects people, connects opportunity, and makes complex systems useful. From local AI to cybersecurity and financial infrastructure.
             </p>
 
             <div class="hero-cta-row">
-              <a href="#journey" class="btn btn-primary btn-cta-hero">
-                <span>Explore My Journey</span>
-                <span aria-hidden="true">↓</span>
-              </a>
-              <a href="#projects" class="btn btn-secondary">
-                Inspect Flagship Systems (${summary.totalProjects})
-              </a>
-              <a href="${escapeHtml(profile.companyWebsiteUrl)}" class="btn btn-gold" target="_blank" rel="noopener noreferrer">
-                Codesphere Innovations ↗
-              </a>
-              <a href="${escapeHtml(profile.githubUrl)}" class="btn" target="_blank" rel="noopener noreferrer">
-                GitHub @codesphere-u ↗
-              </a>
-              <a href="${escapeHtml(profile.liveDemoUrl)}" class="btn" target="_blank" rel="noopener noreferrer">
-                Cyber Dragon Live ↗
-              </a>
+              <a href="#projects" class="btn btn-primary btn-cta-hero"><span>Explore selected work</span><span aria-hidden="true">↗</span></a>
+              <a href="#journey" class="btn btn-secondary"><span>Discover my story</span><span aria-hidden="true">↓</span></a>
             </div>
           </div>
 
@@ -279,7 +266,18 @@ export function generatePortfolioHtml() {
                 <span class="scene-dot dot-gold"></span>
                 <span class="scene-top-label">SYS_TOPOLOGY // KAMPALA → GLOBAL</span>
               </div>
-              ${renderHeroArchitectureSceneSvg()}
+              <div class="art-stage" role="img" aria-label="An abstract luminous green sculpture with a floating engineering project preview">
+                <div class="art-ring"></div><div class="art-ring two"></div>
+                <div class="art-disc"><span class="disc-letter">A</span></div>
+                <div class="art-note">THE WORK / 2026</div>
+                <div class="art-rail">
+                  <div class="art-rail-top"><span class="art-led"></span> SYSTEM STATUS <span style="margin-left:auto">● ACTIVE DEVELOPMENT</span></div>
+                  <div class="art-rail-name">A system is only as good as what it enables.</div>
+                  <p class="art-rail-desc">AI agents. Cyber defense. Real-time marketplaces. Payments. All designed for the real world.</p>
+                  <div class="art-rail-bottom"><span>AKANDWANAHO IVAN ALVIN</span><span>UG → WORLD ↗</span></div>
+                </div>
+                <div class="art-caption">01 / DESIGN · 02 / BUILD · 03 / SHIP</div>
+              </div>
               <div class="hero-scene-caption">
                 <span>6 Interactive Chapters</span>
                 <span>·</span>
@@ -291,6 +289,11 @@ export function generatePortfolioHtml() {
           </div>
         </div>
 
+        <div class="editorial-manifesto" aria-label="Engineering philosophy">
+          <span class="manifesto-index">01 — THE PRACTICE</span>
+          <span class="manifesto-text">Building is how I learn. Creating useful systems is how I measure progress.</span>
+          <span class="manifesto-scroll">SCROLL TO EXPLORE ↓</span>
+        </div>
         <div class="telemetry-grid" aria-label="Verified Portfolio Aggregates">
           <div class="telemetry-card">
             <div class="telemetry-value">${summary.primaryFlagshipsCount} Flagships</div>
@@ -318,7 +321,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">EXPERIENCE 02 // CAREER STORYTELLING SYSTEM</span>
-            <h2 id="journey-heading" class="section-title">The Builder’s Journey: Six Chapters of Evolution</h2>
+            <h2 id="journey-heading" class="section-title">One system at a time. One chapter at a time.</h2>
             <p class="section-subtitle">
               From engineering foundations at ISBAT University and founding 4codex Technologies to leading engineering at Waanverse Labs (until March 2025), founding Codesphere Innovations (U) Limited, leading Funa Gigs under Jaminsa Ventures Limited, and architecting open-source AI and cybersecurity systems.
             </p>
@@ -350,13 +353,16 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">EXPERIENCE 03 // INTERACTIVE PROJECT UNIVERSE</span>
-            <h2 id="explorer-heading" class="section-title">Interactive Flagship Systems Explorer</h2>
+            <h2 id="explorer-heading" class="section-title">Selected work.<br/>Built to matter.</h2>
             <p class="section-subtitle" id="projects-results-count">
-              Showing ${projects.length} of ${projects.length} verified repositories — each card features a custom architectural motif and opens an in-depth Case Study Drawer with ADRs, diagrams, and reproducible CLI benchmarks.
+              Real projects. Hard problems. The engineering decisions behind the interfaces. Explore the work or open a case study for the details.
             </p>
           </div>
         </div>
 
+        <div class="editorial-featured" aria-label="Selected flagship projects">
+          ${featuredWorkHtml}
+        </div>
         <div class="explorer-controls" role="region" aria-label="Filter and search flagship systems">
           <div class="domain-tabs" role="toolbar" aria-label="Filter by engineering domain">
             ${domainTabsHtml}
@@ -385,7 +391,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">EXPERIENCE 04 // EXPLORE MY ENGINEERING MIND</span>
-            <h2 id="mindmap-heading" class="section-title">Interactive Engineering Knowledge Map</h2>
+            <h2 id="mindmap-heading" class="section-title">How I think in systems.</h2>
             <p class="section-subtitle">
               Select any node in the constellation — AI Systems, Backend Architecture, Cybersecurity, Databases, Flutter, Cloud Infrastructure, Distributed Systems, or DevOps — to inspect the exact repositories and commercial systems that prove that capability.
             </p>
@@ -423,7 +429,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">EXPERIENCE 05 // SANDBOXED COMMAND INTERFACE</span>
-            <h2 id="terminal-heading" class="section-title">Interactive Engineering Terminal</h2>
+            <h2 id="terminal-heading" class="section-title">A different way to explore.</h2>
             <p class="section-subtitle">
               Inspect my biography, career chapters, open-source repositories, technical specialties, and contact channels using keyboard commands or one-click command chips.
             </p>
@@ -493,7 +499,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">BIOGRAPHY &amp; ACADEMIC FOUNDATION</span>
-            <h2 id="about-heading" class="section-title">About Akandwanaho Ivan Alvin &amp; Education</h2>
+            <h2 id="about-heading" class="section-title">The person behind the code.</h2>
             <p class="section-subtitle">
               Engineering leadership, technology entrepreneurship, and systems architecture from Kampala, Uganda to the global stage.
             </p>
@@ -533,7 +539,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">EXECUTIVE &amp; FOUNDER ROLES</span>
-            <h2 id="experience-heading" class="section-title">Leadership &amp; Professional Career History</h2>
+            <h2 id="experience-heading" class="section-title">From writing code to leading teams.</h2>
             <p class="section-subtitle">
               Current leadership across Codesphere Innovations (U) Limited and Funa Gigs (Jaminsa Ventures Limited), alongside prior executive engineering roles.
             </p>
@@ -552,7 +558,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">COMMERCIAL &amp; SECTOR SYSTEMS</span>
-            <h2 id="archive-heading" class="section-title">Product &amp; Commercial Engineering Archive</h2>
+            <h2 id="archive-heading" class="section-title">Beyond the open source.</h2>
             <p class="section-subtitle">
               Commercial platforms, marketplace products, payment infrastructure, and sector-specific operational systems engineered across Uganda and beyond (distinct from public open-source repositories).
             </p>
@@ -571,7 +577,7 @@ export function generatePortfolioHtml() {
         <div class="section-header">
           <div>
             <span class="section-eyebrow">REPRODUCIBLE TELEMETRY</span>
-            <h2 id="benchmarks-heading" class="section-title">Verified Engineering Benchmarks Matrix</h2>
+            <h2 id="benchmarks-heading" class="section-title">Under the hood.</h2>
             <p class="section-subtitle">
               Real measured latencies, throughput, determinism guarantees, and automated test counts across all open-source repositories (${summary.totalAutomatedTests} verified tests/suites).
             </p>
@@ -616,7 +622,7 @@ export function generatePortfolioHtml() {
         <div class="contact-banner-card">
           <div>
             <span class="section-eyebrow">COLLABORATION &amp; TECHNICAL LEADERSHIP</span>
-            <h2 id="contact-heading" class="section-title">Let’s Build What Comes Next</h2>
+            <h2 id="contact-heading" class="section-title">Have something ambitious in mind?</h2>
             <p class="section-subtitle">
               ${escapeHtml(profile.availability)}
             </p>
