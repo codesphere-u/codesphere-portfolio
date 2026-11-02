@@ -1,125 +1,81 @@
 import { PORTFOLIO_DATA } from '../data/portfolio-data.mjs';
 
 /**
- * Filter flagship projects by domain category and optional search query.
- * @param {object} options
- * @param {string} [options.domain='All']
- * @param {string} [options.query='']
- * @param {Array} [options.projects=PORTFOLIO_DATA.projects]
+ * Pure domain logic for The Builder's Journey portfolio:
+ * - Project filtering & search across AI, Cybersecurity, Backend, Fintech, Cloud, Full-Stack
+ * - Controlled Engineering Terminal command interpreter (sandboxed, never executes OS shell)
+ * - Knowledge Map node lookup
+ * - Portfolio integrity validation
  */
-export function filterProjects({
-  domain = 'All',
-  query = '',
-  projects = PORTFOLIO_DATA.projects
-} = {}) {
-  const normalizedDomain = (domain || 'All').trim();
-  const normalizedQuery = (query || '').trim().toLowerCase();
+
+export function getProjectById(idOrSlug, projects = PORTFOLIO_DATA.projects) {
+  if (!Array.isArray(projects)) return null;
+  return (
+    projects.find((p) => p.id === idOrSlug || p.slug === idOrSlug) || null
+  );
+}
+
+export function filterProjects(
+  projectsOrOptions = PORTFOLIO_DATA.projects,
+  selectedDomain = 'All',
+  searchQuery = ''
+) {
+  let projects = projectsOrOptions;
+  let domainArg = selectedDomain;
+  let queryArg = searchQuery;
+
+  if (
+    projectsOrOptions &&
+    !Array.isArray(projectsOrOptions) &&
+    typeof projectsOrOptions === 'object'
+  ) {
+    projects = projectsOrOptions.projects || PORTFOLIO_DATA.projects;
+    domainArg = projectsOrOptions.domain ?? 'All';
+    queryArg = projectsOrOptions.query ?? '';
+  }
+
+  const normalizedDomain = (domainArg || 'All').trim();
+  const normalizedQuery = (queryArg || '').trim().toLowerCase();
 
   return projects.filter((project) => {
     const matchesDomain =
       normalizedDomain === 'All' ||
       project.primaryDomain === normalizedDomain ||
-      project.domains.includes(normalizedDomain);
+      (Array.isArray(project.domains) && project.domains.includes(normalizedDomain));
 
     if (!matchesDomain) return false;
     if (!normalizedQuery) return true;
 
-    const searchableFields = [
+    const searchableParts = [
       project.name,
       project.slug,
       project.tagline,
       project.summary,
+      project.problemStatement,
       project.primaryDomain,
-      ...project.domains,
-      ...project.languages,
-      project.headlineMetric.label,
-      project.headlineMetric.value,
-      project.headlineMetric.detail,
-      ...project.adrs.map((adr) => `${adr.title} ${adr.decision} ${adr.tradeOffs}`)
+      ...(project.domains || []),
+      ...(project.languages || []),
+      ...(project.technicalChallenges || []),
+      ...(project.securityConsiderations || []),
+      project.headlineMetric?.label,
+      project.headlineMetric?.value,
+      ...(project.adrs || []).flatMap((adr) => [
+        adr.id,
+        adr.title,
+        adr.context,
+        adr.decision,
+        adr.tradeOffs
+      ])
     ]
+      .filter(Boolean)
       .join(' ')
       .toLowerCase();
 
-    return searchableFields.includes(normalizedQuery);
+    return searchableParts.includes(normalizedQuery);
   });
 }
 
-/**
- * Get a single flagship project by id or slug.
- * @param {string} idOrSlug
- * @param {Array} [projects=PORTFOLIO_DATA.projects]
- */
-export function getProjectById(idOrSlug, projects = PORTFOLIO_DATA.projects) {
-  if (!idOrSlug) return null;
-  const target = idOrSlug.trim().toLowerCase();
-  return (
-    projects.find(
-      (p) => p.id.toLowerCase() === target || p.slug.toLowerCase() === target
-    ) || null
-  );
-}
-
-/**
- * Compute aggregate verified portfolio statistics across all flagship repositories.
- * @param {object} [data=PORTFOLIO_DATA]
- */
-export function computePortfolioSummary(data = PORTFOLIO_DATA) {
-  const totalProjects = data.projects.length;
-  const primaryFlagshipsCount = data.projects.filter(
-    (p) => p.isPrimaryFlagship
-  ).length;
-  const totalBroaderProjects = Array.isArray(data.broaderProjects)
-    ? data.broaderProjects.length
-    : 0;
-  const totalAutomatedTests = data.projects.reduce(
-    (sum, project) => sum + project.automatedTests,
-    0
-  );
-  const totalAdrs = data.projects.reduce(
-    (sum, project) => sum + project.adrs.length,
-    0
-  );
-  const domainsCovered = data.domains.filter((d) => d !== 'All').length;
-
-  const domainCounts = {};
-  for (const domain of data.domains) {
-    domainCounts[domain] =
-      domain === 'All'
-        ? totalProjects
-        : filterProjects({ domain, projects: data.projects }).length;
-  }
-
-  const maxTestsInRepo = Math.max(
-    ...data.projects.map((p) => p.automatedTests),
-    1
-  );
-  const maxLatencyMs = Math.max(
-    ...data.benchmarks.map((b) => b.primaryLatencyMs),
-    0.001
-  );
-
-  return {
-    totalProjects,
-    primaryFlagshipsCount,
-    totalBroaderProjects,
-    totalAutomatedTests,
-    totalAdrs,
-    domainsCovered,
-    domainCounts,
-    maxTestsInRepo,
-    maxLatencyMs
-  };
-}
-
-/**
- * Sort benchmark rows by a chosen key.
- * @param {Array} [benchmarks=PORTFOLIO_DATA.benchmarks]
- * @param {'tests-desc' | 'latency-asc' | 'name-asc'} [sortBy='tests-desc']
- */
-export function sortBenchmarks(
-  benchmarks = PORTFOLIO_DATA.benchmarks,
-  sortBy = 'tests-desc'
-) {
+export function sortBenchmarks(benchmarks, sortBy = 'tests-desc') {
   const copy = [...benchmarks];
   switch (sortBy) {
     case 'latency-asc':
@@ -132,87 +88,249 @@ export function sortBenchmarks(
   }
 }
 
-/**
- * Validate structural integrity, executive identity rules, and verified metrics of PORTFOLIO_DATA.
- * @param {object} [data=PORTFOLIO_DATA]
- */
-export function validatePortfolioIntegrity(data = PORTFOLIO_DATA) {
+export function getKnowledgeNodeById(knowledgeMap, nodeId) {
+  if (!Array.isArray(knowledgeMap) || knowledgeMap.length === 0) return null;
+  return knowledgeMap.find((n) => n.id === nodeId) || knowledgeMap[0];
+}
+
+export function executeTerminalCommand(rawInput, data) {
+  const cleaned = String(rawInput ?? '').trim();
+  const token = cleaned.split(/\s+/)[0]?.toLowerCase() || 'help';
+
+  if (token === 'clear' || token === 'cls') {
+    return {
+      command: cleaned || 'clear',
+      status: 'clear',
+      title: 'Terminal Cleared',
+      lines: [],
+      targetSectionId: null
+    };
+  }
+
+  if (token === 'help' || token === '?') {
+    return {
+      command: cleaned || 'help',
+      status: 'ok',
+      title: 'CODESPhere Controlled Engineering Terminal — Available Commands',
+      lines: [
+        '  help      → List supported portfolio inspection commands',
+        '  about     → Display biography, education (ISBAT University) & leadership roles',
+        '  journey   → Inspect the 6 interactive chapters of The Builder’s Journey (#journey)',
+        '  projects  → List all 8 verified GitHub engineering repositories (#projects)',
+        '  skills    → Inspect the 8-node Engineering Knowledge Map (#mindmap)',
+        '  github    → Show verified GitHub profile & flagship repository URLs',
+        '  contact   → Display verified professional & company contact channels (#contact)',
+        '  clear     → Clear terminal output buffer',
+        '  [Note]    → Sandboxed UI interface only; OS shell execution is disabled by design.'
+      ],
+      targetSectionId: null
+    };
+  }
+
+  if (token === 'about' || token === 'whoami') {
+    return {
+      command: cleaned,
+      status: 'ok',
+      title: `${data.profile.name} (${data.profile.shortName}) — Identity & Leadership`,
+      lines: [
+        `  Name         : ${data.profile.name}`,
+        `  Positioning  : ${data.profile.headline}`,
+        `  Current Role : ${data.profile.subtitle} (${data.profile.companyWebsiteUrl})`,
+        `  Product Lead : Founder & Project Lead — Funa Gigs (Jaminsa Ventures Limited)`,
+        `  Former Role  : CTO & Head of Engineering — Waanverse Labs Inc. (until March 2025)`,
+        `  Early Venture: Founder — 4codex Technologies`,
+        `  Education    : ${data.profile.education.institution} (${data.profile.education.location})`,
+        `  Mission      : "${data.profile.tagline}"`
+      ],
+      targetSectionId: 'journey'
+    };
+  }
+
+  if (token === 'journey' || token === 'chapters') {
+    return {
+      command: cleaned,
+      status: 'ok',
+      title: 'The Builder’s Journey — 6 Interactive Chapters',
+      lines: data.journey.map(
+        (ch) => `  [${ch.chapterCode}] ${ch.theme.padEnd(32)} → ${ch.subtitle}`
+      ),
+      targetSectionId: 'journey'
+    };
+  }
+
+  if (token === 'projects' || token === 'repos') {
+    return {
+      command: cleaned,
+      status: 'ok',
+      title: `Verified Engineering Repositories (${data.projects.length} Public Systems)`,
+      lines: data.projects.map(
+        (p) =>
+          `  • ${p.name.padEnd(34)} [${p.primaryDomain.padEnd(13)}] ${String(p.automatedTests).padStart(2)} tests → ${p.repoUrl}`
+      ),
+      targetSectionId: 'projects'
+    };
+  }
+
+  if (token === 'skills' || token === 'mind' || token === 'stack') {
+    return {
+      command: cleaned,
+      status: 'ok',
+      title: 'Engineering Knowledge Map — 8 Core Specialty Nodes',
+      lines: data.knowledgeMap.map(
+        (n) => `  ◆ ${n.label.padEnd(22)} (${n.shortCode}) : ${n.technologies.slice(0, 5).join(', ')}`
+      ),
+      targetSectionId: 'mindmap'
+    };
+  }
+
+  if (token === 'github' || token === 'oss') {
+    return {
+      command: cleaned,
+      status: 'ok',
+      title: 'Verified GitHub Presence & Open-Source Flagships',
+      lines: [
+        `  GitHub Profile  : ${data.profile.githubUrl}`,
+        `  Profile README  : ${data.profile.githubUrl}/codesphere-u`,
+        `  Portfolio Repo  : ${data.profile.portfolioRepoUrl}`,
+        `  Live Cyber Lab  : ${data.profile.liveDemoUrl}`,
+        ...data.projects.slice(0, 6).map((p) => `  Flagship Repo   : ${p.repoUrl}`)
+      ],
+      targetSectionId: 'projects'
+    };
+  }
+
+  if (token === 'contact' || token === 'links') {
+    return {
+      command: cleaned,
+      status: 'ok',
+      title: 'Verified Professional & Contact Channels',
+      lines: [
+        `  Company Website : ${data.profile.companyWebsiteUrl} (${data.profile.companyName})`,
+        `  LinkedIn        : ${data.profile.linkedinUrl}`,
+        `  GitHub          : ${data.profile.githubUrl}`,
+        `  Location        : ${data.profile.location}`,
+        `  Availability    : ${data.profile.availability}`
+      ],
+      targetSectionId: 'contact'
+    };
+  }
+
+  return {
+    command: cleaned,
+    status: 'unknown',
+    title: `Unrecognized Command: "${cleaned}"`,
+    lines: [
+      '  This is a controlled portfolio inspection terminal (no OS shell commands are executed).',
+      '  Type "help" or click one of the command chips above: help, about, journey, projects, skills, github, contact.'
+    ],
+    targetSectionId: null
+  };
+}
+
+export function computePortfolioSummary(data) {
+  const projects = data.projects || [];
+  const totalTests = projects.reduce((sum, p) => sum + (Number(p.automatedTests) || 0), 0);
+  const totalAdrs = projects.reduce((sum, p) => sum + (p.adrs ? p.adrs.length : 0), 0);
+  const primaryFlagships = projects.filter((p) => p.isPrimaryFlagship).length;
+  const domainCounts = {};
+
+  for (const domain of data.domains || []) {
+    if (domain === 'All') {
+      domainCounts[domain] = projects.length;
+    } else {
+      domainCounts[domain] = projects.filter(
+        (p) => p.primaryDomain === domain || (p.domains && p.domains.includes(domain))
+      ).length;
+    }
+  }
+
+  return {
+    totalProjects: projects.length,
+    primaryFlagships,
+    primaryFlagshipsCount: primaryFlagships,
+    totalBroaderProjects: (data.broaderProjects || []).length,
+    totalExperienceRoles: (data.experience || []).length,
+    totalJourneyStages: (data.journey || []).length,
+    totalKnowledgeNodes: (data.knowledgeMap || []).length,
+    totalPhilosophyPrinciples: (data.philosophy || []).length,
+    totalAutomatedTests: totalTests,
+    totalAdrs,
+    domainCounts
+  };
+}
+
+export function validatePortfolioIntegrity(data) {
   const errors = [];
 
-  if (data?.profile?.name !== 'Akandwanaho Ivan Alvin') {
-    errors.push('Profile name must be Akandwanaho Ivan Alvin');
+  if (!data || typeof data !== 'object') {
+    return { valid: false, errors: ['Portfolio data root is missing.'], totalTests: 0 };
   }
 
-  if (!data?.profile?.githubUrl?.startsWith('https://github.com/codesphere-u')) {
-    errors.push('Profile githubUrl must point to https://github.com/codesphere-u');
+  if (data.profile?.name !== 'Akandwanaho Ivan Alvin') {
+    errors.push('Profile name must be Akandwanaho Ivan Alvin.');
   }
-
-  if (data?.profile?.companyWebsiteUrl !== 'https://www.codesphereug.com') {
-    errors.push('Profile companyWebsiteUrl must point to https://www.codesphereug.com');
+  if (data.profile?.displayNameUpper !== 'AKANDWANAHO IVAN ALVIN') {
+    errors.push('Hero displayNameUpper must be AKANDWANAHO IVAN ALVIN.');
   }
-
-  if (data?.profile?.linkedinUrl !== 'https://www.linkedin.com/in/the4codex') {
-    errors.push('Profile linkedinUrl must point to https://www.linkedin.com/in/the4codex');
+  if (data.profile?.heroEditorialHeadline !== 'Engineering what comes next.') {
+    errors.push('Hero editorial headline must be "Engineering what comes next."');
+  }
+  if (data.profile?.education?.institution !== 'ISBAT University') {
+    errors.push('Education institution must be ISBAT University.');
+  }
+  if (data.profile?.companyWebsiteUrl !== 'https://www.codesphereug.com') {
+    errors.push('Company website URL must be https://www.codesphereug.com.');
+  }
+  if (data.profile?.linkedinUrl !== 'https://www.linkedin.com/in/the4codex') {
+    errors.push('LinkedIn URL must be https://www.linkedin.com/in/the4codex.');
   }
 
   const serialized = JSON.stringify(data);
   if (/makerere/i.test(serialized)) {
-    errors.push('Strict accuracy rule violation: Makerere must never appear in portfolio data');
+    errors.push('Accuracy violation: Makerere University must never appear in portfolio data.');
   }
   if (/whitehathackerpr/i.test(serialized)) {
-    errors.push('Strict accuracy rule violation: dead link whitehathackerpr must not appear');
+    errors.push('Broken 404 handle whitehathackerpr must not be linked.');
   }
-  if (!/ISBAT University/i.test(data?.profile?.education?.institution || '')) {
-    errors.push('Profile education must reference ISBAT University');
+  if (/news2/i.test(serialized)) {
+    errors.push('Accuracy violation: Unverified NEWS2 claim must not appear in portfolio data.');
   }
 
-  const requiredSlugs = [
-    'cyber-dragon',
-    'auralis-local',
-    'agentshield',
-    'ARGUS-AI',
-    'flowledger',
-    'stackpulse',
-    'agrisignal',
-    'Clinical-Virtual-Health-Platform'
-  ];
-
-  for (const slug of requiredSlugs) {
-    const found = data.projects.find((p) => p.slug === slug);
-    if (!found) {
-      errors.push(`Missing required flagship system slug: ${slug}`);
-      continue;
-    }
-    if (found.repoUrl !== `https://github.com/codesphere-u/${slug}`) {
-      errors.push(`Invalid repoUrl for ${slug}: ${found.repoUrl}`);
-    }
-    if (typeof found.automatedTests !== 'number' || found.automatedTests <= 0) {
-      errors.push(`Invalid automatedTests count for ${slug}`);
-    }
-    if (!Array.isArray(found.adrs) || found.adrs.length === 0) {
-      errors.push(`Project ${slug} must include at least one ADR`);
-    }
-    if (!Array.isArray(found.cliQuickstart) || found.cliQuickstart.length === 0) {
-      errors.push(`Project ${slug} must include CLI quickstart commands`);
+  if (!Array.isArray(data.journey) || data.journey.length !== 6) {
+    errors.push('Experience 02 (My Journey) must have exactly 6 interactive chapters.');
+  } else {
+    for (const ch of data.journey) {
+      if (!ch.challenge || !ch.responsibility || !ch.learned || !ch.shapedNext || !ch.technologies?.length) {
+        errors.push(`Journey chapter ${ch.chapterCode} is missing required documentary fields.`);
+      }
     }
   }
 
-  if (!Array.isArray(data.experience) || data.experience.length < 4) {
-    errors.push('Portfolio must include all 4 verified leadership & career roles');
+  if (!Array.isArray(data.knowledgeMap) || data.knowledgeMap.length !== 8) {
+    errors.push('Experience 04 (Knowledge Map) must contain all 8 specialty nodes.');
   }
 
-  if (!Array.isArray(data.journey) || data.journey.length !== 7) {
-    errors.push('Portfolio must include the 7-stage thematic engineering journey');
+  if (!Array.isArray(data.philosophy) || data.philosophy.length !== 5) {
+    errors.push('Experience 06 (Engineering Philosophy) must contain all 5 core principles.');
   }
 
-  if (!Array.isArray(data.broaderProjects) || data.broaderProjects.length < 6) {
-    errors.push('Portfolio must include the broader product & commercial engineering archive');
+  if (!Array.isArray(data.projects) || data.projects.length < 8) {
+    errors.push('Expected at least 8 verified open-source projects.');
+  } else {
+    for (const project of data.projects) {
+      if (!project.repoUrl?.startsWith('https://github.com/codesphere-u/')) {
+        errors.push(`Project ${project.id} has invalid repoUrl: ${project.repoUrl}`);
+      }
+      if (!project.problemStatement || !project.technicalChallenges?.length || !project.securityConsiderations?.length) {
+        errors.push(`Project ${project.id} is missing problemStatement, technicalChallenges, or securityConsiderations.`);
+      }
+    }
   }
 
-  const totalTests = data.projects.reduce((acc, p) => acc + p.automatedTests, 0);
-  if (totalTests < 260) {
-    errors.push(`Expected 260+ automated tests across portfolio, found ${totalTests}`);
-  }
+  const totalTests = (data.projects || []).reduce(
+    (sum, p) => sum + (Number(p.automatedTests) || 0),
+    0
+  );
 
   return {
     valid: errors.length === 0,

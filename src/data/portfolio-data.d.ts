@@ -1,10 +1,11 @@
 export type DomainCategory =
   | 'All'
-  | 'AI & Agents'
+  | 'AI'
   | 'Cybersecurity'
-  | 'Fintech & Ledgers'
-  | 'Cloud & SRE'
-  | 'AgriTech & HealthTech';
+  | 'Backend'
+  | 'Fintech'
+  | 'Cloud'
+  | 'Full-Stack';
 
 export interface ArchitectureDecisionRecord {
   id: string;
@@ -28,8 +29,13 @@ export interface FlagshipProject {
   name: string;
   version: string;
   isPrimaryFlagship?: boolean;
+  visualMotif: 'shield' | 'waveform' | 'committee' | 'firewall' | 'ledger' | 'trace' | 'agro' | 'clinical';
+  accentColor: string;
   tagline: string;
   summary: string;
+  problemStatement: string;
+  technicalChallenges: string[];
+  securityConsiderations: string[];
   domains: Exclude<DomainCategory, 'All'>[];
   primaryDomain: Exclude<DomainCategory, 'All'>;
   repoUrl: string;
@@ -72,11 +78,43 @@ export interface ExperienceItem {
   technologies: string[];
 }
 
-export interface JourneyStage {
+export interface JourneyChapter {
   stageNumber: number;
+  chapterCode: string;
   theme: string;
   title: string;
+  subtitle: string;
   description: string;
+  challenge: string;
+  responsibility: string;
+  technologies: string[];
+  learned: string;
+  shapedNext: string;
+}
+
+export interface KnowledgeNode {
+  id: string;
+  label: string;
+  shortCode: string;
+  category: string;
+  x: number;
+  y: number;
+  accentColor: string;
+  summary: string;
+  capabilities: string[];
+  technologies: string[];
+  relatedProjectIds: string[];
+  relatedCommercialNames: string[];
+  connectedNodeIds: string[];
+}
+
+export interface PhilosophyPrinciple {
+  id: string;
+  number: string;
+  statement: string;
+  elaboration: string;
+  proofPoint: string;
+  relatedProjectSlug: string;
 }
 
 export interface BroaderProject {
@@ -108,7 +146,10 @@ export interface PortfolioData {
   profile: {
     handle: string;
     name: string;
+    displayNameUpper: string;
     shortName: string;
+    heroEditorialHeadline: string;
+    heroSpecialties: string[];
     headline: string;
     subtitle: string;
     tagline: string;
@@ -128,9 +169,27 @@ export interface PortfolioData {
       summary: string;
     };
   };
+  designSystem: {
+    colors: {
+      midnightNavy: string;
+      deepSurface: string;
+      electricCyan: string;
+      engineeringBlue: string;
+      achievementGold: string;
+      primaryText: string;
+      secondaryText: string;
+    };
+    fonts: {
+      heading: string;
+      body: string;
+      mono: string;
+    };
+  };
   domains: DomainCategory[];
   experience: ExperienceItem[];
-  journey: JourneyStage[];
+  journey: JourneyChapter[];
+  knowledgeMap: KnowledgeNode[];
+  philosophy: PhilosophyPrinciple[];
   projects: FlagshipProject[];
   broaderProjects: BroaderProject[];
   benchmarks: BenchmarkRow[];

@@ -38,7 +38,8 @@ export function createPortfolioServer() {
         JSON.stringify({
           status: 'ok',
           service: 'codesphere-portfolio',
-          version: '1.1.0',
+          version: '2.0.0',
+          concept: "THE BUILDER'S JOURNEY",
           owner: PORTFOLIO_DATA.profile.name,
           totalProjects: summary.totalProjects,
           totalBroaderProjects: summary.totalBroaderProjects,
