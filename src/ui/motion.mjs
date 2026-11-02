@@ -20,9 +20,11 @@ export function initMotionSystem() {
   topButton.textContent = '↑';
   topButton.setAttribute('aria-label', 'Back to the beginning of the portfolio');
   topButton.setAttribute('title', 'Back to top');
+  topButton.tabIndex = -1;
+  topButton.setAttribute('aria-hidden', 'true');
   document.body.append(topButton);
   topButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: reducedMotion ? 'instant' : 'smooth' });
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
   });
 
   let ticking = false;
@@ -34,7 +36,10 @@ export function initMotionSystem() {
       const available = Math.max(1, root.scrollHeight - window.innerHeight);
       const fraction = Math.max(0, Math.min(1, window.scrollY / available));
       progress.style.transform = `scaleX(${fraction})`;
-      topButton.classList.toggle('is-visible', window.scrollY > 560);
+      const buttonVisible = window.scrollY > 560;
+      topButton.classList.toggle('is-visible', buttonVisible);
+      topButton.tabIndex = buttonVisible ? 0 : -1;
+      topButton.setAttribute('aria-hidden', buttonVisible ? 'false' : 'true');
       ticking = false;
     });
   };
@@ -53,7 +58,7 @@ export function initMotionSystem() {
   }, { rootMargin: '0px 0px -32px 0px', threshold: 0.06 });
 
   function registerReveals(root = document) {
-    const selectors = '.section-header, .journey-stage, .experience-card, .about-narrative-card, .education-card, .telemetry-card, .broader-project-card';
+    const selectors = '.section-header, .journey-stage, .experience-card, .about-narrative-card, .education-card, .telemetry-card, .project-card';
     for (const node of root.querySelectorAll(selectors)) {
       if (node.classList.contains('will-reveal')) continue;
       node.classList.add('will-reveal');
