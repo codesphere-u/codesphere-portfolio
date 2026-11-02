@@ -233,7 +233,7 @@ export function generatePortfolioHtml() {
             <p class="hero-kicker-name">${escapeHtml(profile.displayNameUpper)}</p>
 
             <h1 id="hero-heading" class="hero-editorial-headline">
-              <span class="hero-line">Engineering</span><span class="hero-line">what comes <em>next.</em></span>
+              <span class="hero-line">Engineering</span><span class="hero-line">what comes</span><span class="hero-line"><em>next.</em></span>
             </h1>
 
             <div class="hero-specialties-ribbon" aria-label="Core engineering specialties">
