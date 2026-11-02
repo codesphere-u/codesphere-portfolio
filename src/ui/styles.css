@@ -940,3 +940,197 @@ body {
     padding: 20px 16px;
   }
 }
+
+
+/* ================================================================
+   KINETIC EDITORIAL DESIGN / V2
+   Progressive, restrained movement that communicates hierarchy.
+   ================================================================ */
+html { scroll-padding-top: 90px; }
+::selection { background: rgba(86, 171, 237, .3); color: var(--text-primary); }
+
+.reading-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 999;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+  background: linear-gradient(90deg, #59c8ff, #84a8ff 56%, #e8bb77);
+  box-shadow: 0 0 18px rgba(70,181,238,.44);
+  will-change: transform;
+}
+
+.hero-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-image: linear-gradient(125deg, rgba(19,43,79,.5), transparent 67%);
+}
+.hero-section > .container { position: relative; z-index: 2; }
+.hero-section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(70vw, 880px);
+  aspect-ratio: 1;
+  right: -19%;
+  top: -47%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45,126,224,.17), rgba(91,186,237,.075) 29%, transparent 65%);
+  pointer-events: none;
+  animation: atmospheric-float 24s ease-in-out infinite alternate;
+}
+.hero-section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: linear-gradient(rgba(131,184,224,.048) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(131,184,224,.048) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: linear-gradient(to right, transparent 10%, #000 75%);
+  mask-image: linear-gradient(to right, transparent 10%, #000 75%);
+  pointer-events: none;
+}
+.hero-name {
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  animation: editorial-entrance .75s ease-out both;
+}
+.hero-subtitle-role {
+  animation: editorial-entrance .85s .1s ease-out both;
+}
+.hero-title {
+  text-wrap: balance;
+  background: linear-gradient(110deg, var(--text-primary), var(--accent-primary) 63%, var(--accent-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: editorial-entrance .9s .17s ease-out both;
+}
+.hero-tagline, .hero-mission, .hero-meta-row {
+  animation: editorial-entrance .9s .26s ease-out both;
+}
+.status-dot {
+  box-shadow: 0 0 0 0 rgba(69, 194, 236, .34);
+  animation: status-halo 3.4s ease-out infinite;
+}
+
+.project-card,
+.experience-card,
+.journey-stage,
+.telemetry-card {
+  position: relative;
+  isolation: isolate;
+  transition: transform .32s cubic-bezier(.2,.75,.2,1), border-color .32s ease, box-shadow .32s ease;
+}
+.project-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(410px circle at var(--pointer-x, 78%) var(--pointer-y, 20%), rgba(75,174,238,.13), transparent 67%);
+  transition: opacity .25s ease;
+}
+.project-card:hover::before,
+.project-card:focus-within::before { opacity: 1; }
+
+.project-card:hover, .project-card:focus-within {
+  border-color: rgba(90,174,235,.46);
+  box-shadow: 0 24px 58px -24px rgba(10,54,103,.54), 0 0 0 1px rgba(102,179,255,.09);
+}
+.experience-card:hover, .journey-stage:hover {
+  border-color: rgba(110,182,237,.38);
+  box-shadow: 0 20px 42px -24px rgba(13,55,110,.52);
+}
+.telemetry-value { font-variant-numeric: tabular-nums; }
+.telemetry-card { overflow: hidden; }
+.telemetry-card::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  left: 20px;
+  top: 0;
+  background: linear-gradient(90deg, var(--accent-primary), transparent);
+  opacity: .64;
+}
+.journey-stage { overflow: hidden; }
+.journey-step-num { letter-spacing: -.05em; }
+
+.will-reveal {
+  opacity: 0;
+  transform: translateY(19px);
+}
+.will-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.2,1);
+}
+.journey-stage.will-reveal:nth-child(2n) { transition-delay: 80ms; }
+.journey-stage.will-reveal:nth-child(3n) { transition-delay: 130ms; }
+
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 160;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 14px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-card);
+  font-size: 23px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px) scale(.96);
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease, background .22s ease;
+}
+.back-to-top.is-visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.back-to-top:hover { background: var(--bg-elevated); }
+.back-to-top:focus-visible { opacity: 1; pointer-events: auto; }
+
+@keyframes editorial-entrance {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes atmospheric-float {
+  from { transform: translate(-2%, 1%) scale(.96); opacity: .7; }
+  to { transform: translate(3%, -3%) scale(1.06); opacity: 1; }
+}
+@keyframes status-halo {
+  0% { box-shadow: 0 0 0 0 rgba(69,194,236,.32); }
+  65%, 100% { box-shadow: 0 0 0 11px rgba(69,194,236,0); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover { transform: translateY(-5px); }
+  .experience-card:hover, .journey-stage:hover { transform: translateY(-3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-name, .hero-subtitle-role, .hero-title, .hero-tagline,
+  .hero-mission, .hero-meta-row, .status-dot, .hero-section::before {
+    animation: none !important;
+  }
+  .will-reveal, .will-reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .project-card:hover, .experience-card:hover, .journey-stage:hover { transform: none !important; }
+}
+@media (max-width: 720px) {
+  .hero-section::before { width: 112vw; right: -56%; top: -12%; }
+  .hero-section::after { background-size: 34px 34px; }
+  .back-to-top { right: 12px; bottom: 12px; }
+  .will-reveal, .will-reveal.is-visible { transition-delay: 0ms !important; }
+}

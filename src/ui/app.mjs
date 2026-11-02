@@ -1,3 +1,4 @@
+import { initMotionSystem } from './motion.mjs';
 import { PORTFOLIO_DATA } from '../data/portfolio-data.mjs';
 import {
   filterProjects,
@@ -495,5 +496,8 @@ export function initPortfolioBrowser() {
 }
 
 if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', initPortfolioBrowser);
+  window.addEventListener('DOMContentLoaded', () => {
+    initPortfolioBrowser();
+    initMotionSystem();
+  });
 }
