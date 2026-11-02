@@ -1,18 +1,11 @@
 import { PORTFOLIO_DATA } from '../data/portfolio-data.mjs';
 import {
   filterProjects,
-  getProjectById,
-  computePortfolioSummary,
-  sortBenchmarks
+  sortBenchmarks,
+  getKnowledgeNodeById,
+  executeTerminalCommand,
+  computePortfolioSummary
 } from '../core/explorer.mjs';
-
-const state = {
-  activeDomain: 'All',
-  searchQuery: '',
-  benchmarkSort: 'tests-desc',
-  activeDrawerProjectId: null,
-  theme: 'dark'
-};
 
 function escapeHtml(str) {
   return String(str ?? '')
@@ -23,477 +16,1055 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+export function renderHeroArchitectureSceneSvg() {
+  return `<svg class="hero-scene-svg" viewBox="0 0 540 460" role="img" aria-labelledby="heroSceneTitle heroSceneDesc">
+    <title id="heroSceneTitle">Interactive Systems Architecture Scene</title>
+    <desc id="heroSceneDesc">Connected engineering nodes representing AI Systems, Cybersecurity, Cloud Infrastructure, Fintech Ledgers, and Full-Stack Architecture with animated data signals.</desc>
+    <defs>
+      <radialGradient id="sceneOrb" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#387BFA" stop-opacity="0.34" />
+        <stop offset="60%" stop-color="#53C9EE" stop-opacity="0.10" />
+        <stop offset="100%" stop-color="#070B16" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="signalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#53C9EE" />
+        <stop offset="50%" stop-color="#387BFA" />
+        <stop offset="100%" stop-color="#F4B94C" />
+      </linearGradient>
+      <filter id="nodeGlow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      </filter>
+    </defs>
+
+    <circle cx="270" cy="230" r="205" fill="url(#sceneOrb)" />
+
+    <!-- Outer & Inner Orbital Rings -->
+    <g class="scene-orbit-outer">
+      <circle cx="270" cy="230" r="172" fill="none" stroke="#387BFA" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 11" />
+      <circle cx="270" cy="58" r="5" fill="#53C9EE" />
+      <circle cx="442" cy="230" r="4" fill="#F4B94C" />
+    </g>
+    <g class="scene-orbit-inner">
+      <circle cx="270" cy="230" r="134" fill="none" stroke="#53C9EE" stroke-opacity="0.32" stroke-width="1" stroke-dasharray="22 10 4 10" />
+      <circle cx="136" cy="230" r="4" fill="#53C9EE" />
+    </g>
+
+    <!-- Delicate Connected Signal Lines -->
+    <g stroke="#387BFA" stroke-opacity="0.38" stroke-width="1.2">
+      <line x1="270" y1="132" x2="365" y2="182" />
+      <line x1="365" y1="182" x2="365" y2="278" />
+      <line x1="365" y1="278" x2="270" y2="328" />
+      <line x1="270" y1="328" x2="175" y2="278" />
+      <line x1="175" y1="278" x2="175" y2="182" />
+      <line x1="175" y1="182" x2="270" y2="132" />
+      <line x1="270" y1="132" x2="270" y2="328" stroke-dasharray="4 6" />
+      <line x1="175" y1="182" x2="365" y2="278" stroke-dasharray="4 6" />
+      <line x1="365" y1="182" x2="175" y2="278" stroke-dasharray="4 6" />
+    </g>
+
+    <!-- Moving Data Signal Path -->
+    <polygon class="scene-signal-path" points="270,132 365,182 365,278 270,328 175,278 175,182" fill="#101B2E" fill-opacity="0.62" stroke="url(#signalGrad)" stroke-width="2" />
+
+    <!-- Core Architecture Hub -->
+    <circle cx="270" cy="230" r="64" fill="#070B16" stroke="#53C9EE" stroke-width="1.5" stroke-opacity="0.8" />
+    <text x="270" y="216" text-anchor="middle" class="scene-mono" font-size="11" font-weight="700" fill="#53C9EE" letter-spacing="2">DESIGN</text>
+    <text x="270" y="235" text-anchor="middle" class="scene-mono" font-size="13" font-weight="800" fill="#F7FAFF" letter-spacing="2.5">BUILD</text>
+    <text x="270" y="254" text-anchor="middle" class="scene-mono" font-size="11" font-weight="700" fill="#F4B94C" letter-spacing="2">SECURE</text>
+
+    <!-- Perimeter Architecture Nodes -->
+    <g class="scene-node-pulse">
+      <circle cx="270" cy="132" r="7" fill="#53C9EE" filter="url(#nodeGlow)" />
+      <circle cx="270" cy="132" r="3.5" fill="#F7FAFF" />
+    </g>
+    <circle cx="365" cy="182" r="5.5" fill="#F4B94C" />
+    <circle cx="365" cy="278" r="5.5" fill="#53C9EE" />
+    <circle cx="270" cy="328" r="5.5" fill="#387BFA" />
+    <circle cx="175" cy="278" r="5.5" fill="#F4B94C" />
+    <circle cx="175" cy="182" r="5.5" fill="#53C9EE" />
+
+    <!-- Floating Technical Annotation Badges -->
+    <g class="scene-mono" font-size="10.5" font-weight="600">
+      <rect x="195" y="76" width="150" height="28" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-opacity="0.5" />
+      <text x="270" y="94" text-anchor="middle" fill="#F7FAFF">01 / AI &amp; AGENTS</text>
+
+      <rect x="382" y="160" width="142" height="28" rx="6" fill="#101B2E" stroke="#F4B94C" stroke-opacity="0.55" />
+      <text x="453" y="178" text-anchor="middle" fill="#F4B94C">02 / CYBERSECURITY</text>
+
+      <rect x="382" y="268" width="142" height="28" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-opacity="0.5" />
+      <text x="453" y="286" text-anchor="middle" fill="#53C9EE">03 / CLOUD &amp; SRE</text>
+
+      <rect x="195" y="352" width="150" height="28" rx="6" fill="#101B2E" stroke="#387BFA" stroke-opacity="0.55" />
+      <text x="270" y="370" text-anchor="middle" fill="#98AFC8">04 / FINTECH LEDGERS</text>
+
+      <rect x="14" y="268" width="146" height="28" rx="6" fill="#101B2E" stroke="#F4B94C" stroke-opacity="0.5" />
+      <text x="87" y="286" text-anchor="middle" fill="#F4B94C">05 / REAL-TIME APPS</text>
+
+      <rect x="14" y="160" width="146" height="28" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-opacity="0.5" />
+      <text x="87" y="178" text-anchor="middle" fill="#F7FAFF">06 / OPEN SOURCE</text>
+    </g>
+  </svg>`;
+}
+
+export function renderJourneyStageHtml(chapter, isActive = false) {
+  const techBadges = (chapter.technologies || [])
+    .map((t) => `<span class="tech-pill">${escapeHtml(t)}</span>`)
+    .join('');
+
+  return `<article class="journey-chapter-card ${isActive ? 'is-active' : ''}" data-chapter-panel="${chapter.stageNumber}" id="journey-panel-${chapter.stageNumber}" role="tabpanel" aria-labelledby="journey-tab-${chapter.stageNumber}" ${isActive ? '' : 'hidden'}>
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER ${escapeHtml(chapter.chapterCode)}</span>
+        <span class="chapter-theme-tag">${escapeHtml(chapter.theme)}</span>
+      </div>
+      <h3 class="journey-chapter-title">${escapeHtml(chapter.title)}</h3>
+      <p class="journey-chapter-subtitle">${escapeHtml(chapter.subtitle)}</p>
+      <p class="journey-chapter-lead">${escapeHtml(chapter.description)}</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>${escapeHtml(chapter.challenge)}</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>${escapeHtml(chapter.responsibility)}</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>${escapeHtml(chapter.learned)}</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>${escapeHtml(chapter.shapedNext)}</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row">${techBadges}</div>
+    </div>
+  </article>`;
+}
+
+export function renderProjectVisualPreviewSvg(project) {
+  const color = project.accentColor || '#53C9EE';
+  switch (project.visualMotif) {
+    case 'shield':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <path d="M42 16 L68 26 L68 48 C68 62 42 70 42 70 C42 70 16 62 16 48 L16 26 Z" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <circle cx="42" cy="42" r="6" fill="${color}" />
+        <line x1="88" y1="28" x2="256" y2="28" stroke="${color}" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="6 4" />
+        <line x1="88" y1="44" x2="224" y2="44" stroke="#387BFA" stroke-opacity="0.5" stroke-width="2" />
+        <line x1="88" y1="60" x2="196" y2="60" stroke="#F4B94C" stroke-opacity="0.6" stroke-width="2" />
+        <text x="256" y="64" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="${color}">0 NETWORK FETCH</text>
+      </svg>`;
+    case 'waveform':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <path d="M18 42 Q 42 12, 66 42 T 114 42 T 162 42 T 210 42 T 258 42" fill="none" stroke="${color}" stroke-width="2" />
+        <path d="M18 42 Q 42 68, 66 42 T 114 42 T 162 42 T 210 42 T 258 42" fill="none" stroke="#53C9EE" stroke-opacity="0.45" stroke-width="1.4" />
+        <circle cx="114" cy="42" r="4" fill="#F4B94C" />
+        <text x="258" y="72" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#53C9EE">127.0.0.1 · BM25 RAG</text>
+      </svg>`;
+    case 'committee':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <circle cx="38" cy="26" r="7" fill="#101B2E" stroke="#53C9EE" stroke-width="1.5" />
+        <circle cx="38" cy="58" r="7" fill="#101B2E" stroke="#53C9EE" stroke-width="1.5" />
+        <circle cx="82" cy="42" r="7" fill="#101B2E" stroke="#387BFA" stroke-width="1.5" />
+        <line x1="45" y1="26" x2="130" y2="42" stroke="#53C9EE" stroke-opacity="0.45" />
+        <line x1="45" y1="58" x2="130" y2="42" stroke="#53C9EE" stroke-opacity="0.45" />
+        <line x1="89" y1="42" x2="130" y2="42" stroke="#387BFA" stroke-opacity="0.6" />
+        <polygon points="142,22 164,42 142,62 120,42" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <line x1="164" y1="42" x2="232" y2="42" stroke="${color}" stroke-width="2" stroke-dasharray="4 4" />
+        <rect x="232" y="28" width="32" height="28" rx="5" fill="#101B2E" stroke="#53C9EE" />
+        <text x="142" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="${color}">DEVIL'S ADVOCATE VETO</text>
+      </svg>`;
+    case 'firewall':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="22" y="18" width="54" height="48" rx="6" fill="#101B2E" stroke="#387BFA" />
+        <line x1="76" y1="42" x2="122" y2="42" stroke="#53C9EE" stroke-width="2" />
+        <rect x="122" y="14" width="36" height="56" rx="4" fill="#101B2E" stroke="${color}" stroke-width="2" />
+        <line x1="158" y1="42" x2="206" y2="42" stroke="#F4B94C" stroke-width="2" stroke-dasharray="5 4" />
+        <rect x="206" y="22" width="52" height="40" rx="6" fill="#101B2E" stroke="#F4B94C" />
+        <text x="140" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="${color}">ALLOW/DENY</text>
+      </svg>`;
+    case 'ledger':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="20" y="22" width="66" height="40" rx="6" fill="#101B2E" stroke="${color}" stroke-width="1.6" />
+        <rect x="107" y="22" width="66" height="40" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-width="1.6" />
+        <rect x="194" y="22" width="66" height="40" rx="6" fill="#101B2E" stroke="#387BFA" stroke-width="1.6" />
+        <line x1="86" y1="42" x2="107" y2="42" stroke="${color}" stroke-width="2" />
+        <line x1="173" y1="42" x2="194" y2="42" stroke="#53C9EE" stroke-width="2" />
+        <text x="53" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="${color}">DEBIT ==</text>
+        <text x="140" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#53C9EE">CREDIT</text>
+        <text x="227" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#F7FAFF">SHA-256</text>
+      </svg>`;
+    case 'trace':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="18" y="16" width="240" height="10" rx="3" fill="#387BFA" fill-opacity="0.85" />
+        <rect x="44" y="32" width="120" height="10" rx="3" fill="#53C9EE" fill-opacity="0.85" />
+        <rect x="92" y="48" width="152" height="10" rx="3" fill="#F4B94C" />
+        <text x="258" y="74" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#F4B94C">CRITICAL PATH · 51.2 µs</text>
+      </svg>`;
+    case 'agro':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <path d="M24 58 C 70 24, 130 24, 176 58" fill="none" stroke="${color}" stroke-width="2" />
+        <path d="M24 66 C 70 12, 130 12, 176 66" fill="none" stroke="#F4B94C" stroke-opacity="0.5" stroke-width="1.2" stroke-dasharray="4 4" />
+        <rect x="192" y="24" width="70" height="36" rx="6" fill="#101B2E" stroke="${color}" />
+        <text x="227" y="46" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#F7FAFF">&lt;=160 SMS</text>
+      </svg>`;
+    case 'clinical':
+    default:
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <polyline points="18,44 68,44 84,20 102,66 118,34 134,44 260,44" fill="none" stroke="${color}" stroke-width="2" />
+        <circle cx="102" cy="66" r="3.5" fill="#F4B94C" />
+        <text x="258" y="72" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#98AFC8">15 ADRs · TURBOREPO</text>
+      </svg>`;
+  }
+}
+
 export function renderProjectCardHtml(project) {
-  const domainBadges = project.domains
-    .map((d) => `<span class="badge">${escapeHtml(d)}</span>`)
+  const domainBadges = (project.domains || [])
+    .map((d) => `<span class="domain-pill">${escapeHtml(d)}</span>`)
     .join('');
 
-  const flagshipBadge = project.isPrimaryFlagship
-    ? `<span class="badge badge-gold">★ Primary Flagship</span>`
-    : `<span class="badge badge-version">${escapeHtml(project.version)}</span>`;
-
-  const langBadges = project.languages
-    .map((l) => `<span class="badge badge-version">${escapeHtml(l)}</span>`)
+  const langBadges = (project.languages || [])
+    .map((l) => `<span class="lang-chip">${escapeHtml(l)}</span>`)
     .join('');
 
-  const secondaryHtml = project.secondaryMetrics
+  const metricsHtml = (project.secondaryMetrics || [])
+    .slice(0, 4)
     .map(
       (m) => `
-      <div class="mini-metric">
-        <span class="mini-metric-label">${escapeHtml(m.label)}</span>
-        <span class="mini-metric-val">${escapeHtml(m.value)}</span>
+      <div class="metric-cell">
+        <span class="metric-cell-label">${escapeHtml(m.label)}</span>
+        <span class="metric-cell-value">${escapeHtml(m.value)}</span>
       </div>`
     )
     .join('');
 
-  const liveDemoButton = project.liveDemoUrl
-    ? `<a class="btn" href="${escapeHtml(project.liveDemoUrl)}" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>`
+  const demoLinkHtml = project.liveDemoUrl
+    ? `<a href="${escapeHtml(project.liveDemoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-card-link btn-live-demo">Live Workbench ↗</a>`
     : '';
 
+  const flagshipBadge = project.isPrimaryFlagship
+    ? `<span class="flagship-star-badge">★ PRIMARY FLAGSHIP</span>`
+    : `<span class="version-badge">${escapeHtml(project.version)}</span>`;
+
   return `
-    <article class="project-card" data-project-id="${escapeHtml(project.id)}" data-domains="${escapeHtml(project.domains.join(','))}">
-      <div>
-        <div class="card-top-row">
-          <div class="domain-badges">${domainBadges}</div>
+    <article class="project-card motif-${escapeHtml(project.visualMotif)}" data-project-id="${escapeHtml(project.id)}" data-primary-domain="${escapeHtml(project.primaryDomain)}" style="--card-accent: ${escapeHtml(project.accentColor)}">
+      <div class="project-card-visual">
+        ${renderProjectVisualPreviewSvg(project)}
+      </div>
+
+      <div class="project-card-top">
+        <div class="project-badge-row">
+          <span class="slug-badge">${escapeHtml(project.slug)}</span>
           ${flagshipBadge}
         </div>
-        <h3 class="project-title">${escapeHtml(project.name)}</h3>
-        <p class="project-tagline">${escapeHtml(project.tagline)}</p>
-        <p class="project-summary">${escapeHtml(project.summary)}</p>
-
-        <div class="headline-metric-box">
-          <div class="metric-box-label">${escapeHtml(project.headlineMetric.label)}</div>
-          <div class="metric-box-value">${escapeHtml(project.headlineMetric.value)}</div>
-          <div class="metric-box-detail">${escapeHtml(project.headlineMetric.detail)}</div>
-        </div>
-
-        <div class="secondary-metrics-grid">
-          ${secondaryHtml}
-        </div>
+        <div class="domain-pill-group">${domainBadges}</div>
       </div>
 
-      <div>
-        <div class="domain-badges" style="margin-bottom: 12px;">
-          ${langBadges}
+      <h3 class="project-title">${escapeHtml(project.name)}</h3>
+      <p class="project-tagline">${escapeHtml(project.tagline)}</p>
+      <p class="project-summary">${escapeHtml(project.summary)}</p>
+
+      <div class="headline-metric-box">
+        <div class="headline-metric-header">
+          <span class="headline-metric-label">${escapeHtml(project.headlineMetric.label)}</span>
+          <strong class="headline-metric-value">${escapeHtml(project.headlineMetric.value)}</strong>
         </div>
-        <div class="card-actions">
-          <button type="button" class="btn btn-primary js-open-drawer" data-project-id="${escapeHtml(project.id)}">
-            Architecture &amp; ADRs (${project.adrs.length})
-          </button>
-          <a class="btn" href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer">
+        <p class="headline-metric-detail">${escapeHtml(project.headlineMetric.detail)}</p>
+      </div>
+
+      <div class="secondary-metrics-grid">
+        ${metricsHtml}
+      </div>
+
+      <div class="lang-chip-row" aria-label="Technology stack">
+        ${langBadges}
+      </div>
+
+      <div class="project-card-actions">
+        <button type="button" class="btn-inspect-adr" data-open-drawer="${escapeHtml(project.id)}" aria-haspopup="dialog">
+          <span>Open Full Case Study &amp; Architecture</span>
+          <span aria-hidden="true">→</span>
+        </button>
+        <div class="project-external-links">
+          ${demoLinkHtml}
+          <a href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-card-link">
             GitHub Repo ↗
           </a>
-          ${liveDemoButton}
         </div>
       </div>
-    </article>
-  `;
-}
-
-export function renderExperienceCardHtml(item) {
-  const statusClass = item.isCurrent ? 'badge-gold' : 'badge-version';
-  const websiteLink = item.websiteUrl
-    ? `<a class="btn" href="${escapeHtml(item.websiteUrl)}" target="_blank" rel="noopener noreferrer" style="padding: 4px 10px; font-size: 0.78rem;">${escapeHtml(item.websiteUrl.replace(/^https?:\/\//, ''))} ↗</a>`
-    : '';
-
-  const ownershipBanner = item.ownershipNote
-    ? `<div class="ownership-callout" role="note">
-         <strong>Organizational Boundary:</strong> ${escapeHtml(item.ownershipNote)}
-       </div>`
-    : '';
-
-  const highlightsHtml = item.highlights
-    .map((h) => `<li>${escapeHtml(h)}</li>`)
-    .join('');
-
-  const techBadges = item.technologies
-    .map((t) => `<span class="badge badge-version">${escapeHtml(t)}</span>`)
-    .join('');
-
-  return `
-    <article class="experience-card" data-experience-id="${escapeHtml(item.id)}">
-      <div class="experience-header">
-        <div>
-          <div class="domain-badges" style="margin-bottom: 8px;">
-            <span class="badge ${statusClass}">${escapeHtml(item.status)}</span>
-            <span class="badge">${escapeHtml(item.location)}</span>
-          </div>
-          <h3 class="experience-role">${escapeHtml(item.role)}</h3>
-          <div class="experience-org">${escapeHtml(item.organization)}</div>
-        </div>
-        ${websiteLink}
-      </div>
-
-      ${ownershipBanner}
-
-      <p class="project-summary" style="margin-bottom: 12px;">${escapeHtml(item.summary)}</p>
-
-      <ul class="experience-highlights">
-        ${highlightsHtml}
-      </ul>
-
-      <div class="domain-badges" style="margin-top: 14px;">
-        ${techBadges}
-      </div>
-    </article>
-  `;
-}
-
-export function renderJourneyStageHtml(stage) {
-  return `
-    <div class="journey-stage" data-stage="${stage.stageNumber}">
-      <div class="journey-step-header">
-        <span class="journey-step-num">0${stage.stageNumber}</span>
-        <span class="badge badge-gold">${escapeHtml(stage.theme)}</span>
-      </div>
-      <h3 class="journey-title">${escapeHtml(stage.title)}</h3>
-      <p class="journey-desc">${escapeHtml(stage.description)}</p>
-    </div>
-  `;
-}
-
-export function renderBroaderProjectCardHtml(project) {
-  const highlightsHtml = project.highlights
-    .map((h) => `<li>${escapeHtml(h)}</li>`)
-    .join('');
-
-  const techBadges = project.technologies
-    .map((t) => `<span class="badge badge-version">${escapeHtml(t)}</span>`)
-    .join('');
-
-  return `
-    <article class="project-card broader-project-card" data-broader-id="${escapeHtml(project.id)}">
-      <div>
-        <div class="card-top-row">
-          <span class="badge badge-gold">${escapeHtml(project.status)}</span>
-          <span class="badge badge-version">${escapeHtml(project.category)}</span>
-        </div>
-        <h3 class="project-title">${escapeHtml(project.name)}</h3>
-        ${
-          project.organization
-            ? `<p class="project-tagline">${escapeHtml(project.organization)}</p>`
-            : ''
-        }
-        <p class="project-summary">${escapeHtml(project.summary)}</p>
-        <ul class="experience-highlights" style="margin-bottom: 16px;">
-          ${highlightsHtml}
-        </ul>
-      </div>
-      <div class="domain-badges">
-        ${techBadges}
-      </div>
-    </article>
-  `;
-}
-
-export function renderBenchmarkRowsHtml(benchmarks, summary) {
-  return benchmarks
-    .map((row) => {
-      const testPct = Math.min(
-        100,
-        Math.round((row.automatedTests / summary.maxTestsInRepo) * 100)
-      );
-      const speedScorePct = Math.max(
-        12,
-        Math.min(
-          100,
-          Math.round(
-            (1 - row.primaryLatencyMs / (summary.maxLatencyMs * 1.15)) * 100
-          )
-        )
-      );
-
-      return `
-      <tr>
-        <td>
-          <strong>${escapeHtml(row.projectName)}</strong>
-          <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">
-            <a href="https://github.com/codesphere-u/${escapeHtml(row.repoSlug)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent-primary); text-decoration: none;">
-              codesphere-u/${escapeHtml(row.repoSlug)} ↗
-            </a>
-          </div>
-        </td>
-        <td><span class="badge">${escapeHtml(row.domain)}</span></td>
-        <td class="mono-cell">
-          <strong>${row.automatedTests}</strong> passing
-          <div class="bar-track" aria-hidden="true">
-            <div class="bar-fill" style="width: ${testPct}%"></div>
-          </div>
-        </td>
-        <td class="mono-cell">
-          ${escapeHtml(row.primaryLatencyLabel)}
-          <div class="bar-track" aria-hidden="true">
-            <div class="bar-fill" style="width: ${speedScorePct}%"></div>
-          </div>
-        </td>
-        <td class="mono-cell">${escapeHtml(row.throughputOrAccuracyLabel)}</td>
-        <td>${escapeHtml(row.determinismGuarantee)}</td>
-        <td>
-          <button type="button" class="btn js-open-drawer" data-project-id="${escapeHtml(row.projectId)}" style="padding: 5px 10px; font-size: 0.78rem;">
-            Inspect ADR
-          </button>
-        </td>
-      </tr>
-    `;
-    })
-    .join('');
+    </article>`;
 }
 
 export function renderDrawerContentHtml(project) {
   if (!project) return '';
 
-  const layersHtml = project.architectureBlueprint.layers
+  const challengesHtml = (project.technicalChallenges || [])
+    .map((c) => `<li class="invariant-item">${escapeHtml(c)}</li>`)
+    .join('');
+
+  const securityHtml = (project.securityConsiderations || [])
+    .map((s) => `<li class="invariant-item">${escapeHtml(s)}</li>`)
+    .join('');
+
+  const layersHtml = (project.architectureBlueprint?.layers || [])
     .map(
       (layer) => `
-      <li class="layer-item">
-        <div class="layer-name">${escapeHtml(layer.name)}</div>
-        <div class="layer-desc">${escapeHtml(layer.responsibility)}</div>
-      </li>`
-    )
-    .join('');
-
-  const invariantsHtml = project.architectureBlueprint.invariants
-    .map(
-      (inv) => `
-      <li class="layer-item">
-        <div class="layer-desc">✓ ${escapeHtml(inv)}</div>
-      </li>`
-    )
-    .join('');
-
-  const adrsHtml = project.adrs
-    .map(
-      (adr) => `
-      <div class="adr-card">
-        <h4 class="adr-title">${escapeHtml(adr.id)}: ${escapeHtml(adr.title)}</h4>
-        <p class="adr-field"><strong>CONTEXT:</strong> ${escapeHtml(adr.context)}</p>
-        <p class="adr-field"><strong>DECISION:</strong> ${escapeHtml(adr.decision)}</p>
-        <p class="adr-field"><strong>TRADE-OFFS:</strong> ${escapeHtml(adr.tradeOffs)}</p>
-        <p class="adr-field"><strong>VERIFICATION:</strong> ${escapeHtml(adr.verification)}</p>
+      <div class="blueprint-layer">
+        <h5 class="blueprint-layer-name">${escapeHtml(layer.name)}</h5>
+        <p class="blueprint-layer-desc">${escapeHtml(layer.responsibility)}</p>
       </div>`
     )
     .join('');
 
-  const cliText = project.cliQuickstart.join('\n');
+  const invariantsHtml = (project.architectureBlueprint?.invariants || [])
+    .map((inv) => `<li class="invariant-item">${escapeHtml(inv)}</li>`)
+    .join('');
 
-  const sourceLinksHtml = project.sourceLinks
+  const adrsHtml = (project.adrs || [])
+    .map(
+      (adr) => `
+      <div class="adr-card">
+        <div class="adr-header">
+          <span class="adr-id">${escapeHtml(adr.id)}</span>
+          <h5 class="adr-title">${escapeHtml(adr.title)}</h5>
+        </div>
+        <div class="adr-body">
+          <div class="adr-field">
+            <strong>Context &amp; Problem:</strong>
+            <p>${escapeHtml(adr.context)}</p>
+          </div>
+          <div class="adr-field">
+            <strong>Architectural Decision:</strong>
+            <p>${escapeHtml(adr.decision)}</p>
+          </div>
+          <div class="adr-field">
+            <strong>Engineering Trade-Offs:</strong>
+            <p>${escapeHtml(adr.tradeOffs)}</p>
+          </div>
+          <div class="adr-field adr-verification">
+            <strong>Automated Verification:</strong>
+            <p>${escapeHtml(adr.verification)}</p>
+          </div>
+        </div>
+      </div>`
+    )
+    .join('');
+
+  const cliText = (project.cliQuickstart || []).join('\n');
+
+  const sourceLinksHtml = (project.sourceLinks || [])
     .map(
       (link) => `
-      <a class="btn" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">
-        ${escapeHtml(link.label)} (${escapeHtml(link.path)}) ↗
+      <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="source-file-link kind-${escapeHtml(link.kind)}">
+        <span class="source-link-label">${escapeHtml(link.label)}</span>
+        <code class="source-link-path">${escapeHtml(link.path)} ↗</code>
       </a>`
     )
     .join('');
 
+  const liveDemoButton = project.liveDemoUrl
+    ? `<a href="${escapeHtml(project.liveDemoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-primary">Launch Live Demo ↗</a>`
+    : '';
+
   return `
-    <div class="drawer-header">
-      <div>
-        <div class="domain-badges" style="margin-bottom: 8px;">
-          <span class="badge">${escapeHtml(project.primaryDomain)}</span>
-          <span class="badge badge-version">${escapeHtml(project.version)}</span>
-          <span class="badge">${project.automatedTests} Automated Tests</span>
+    <div class="drawer-inner-content" data-drawer-project="${escapeHtml(project.id)}">
+      <div class="drawer-top-meta">
+        <span class="slug-badge">${escapeHtml(project.slug)} · ${escapeHtml(project.version)}</span>
+        <span class="test-count-pill">✓ ${escapeHtml(project.automatedTests)} Verified Automated Tests / Suites</span>
+      </div>
+
+      <h3 id="drawer-title" class="drawer-project-title">${escapeHtml(project.name)}</h3>
+      <p class="drawer-project-tagline">${escapeHtml(project.tagline)}</p>
+
+      <section class="drawer-section">
+        <h4 class="drawer-section-heading">1. Problem Statement</h4>
+        <p class="drawer-prose">${escapeHtml(project.problemStatement)}</p>
+      </section>
+
+      <section class="drawer-section">
+        <h4 class="drawer-section-heading">2. System Architecture Blueprint</h4>
+        <pre class="ascii-diagram" tabindex="0" aria-label="System architecture diagram for ${escapeHtml(project.name)}"><code>${escapeHtml(project.architectureBlueprint?.diagram || '')}</code></pre>
+        <div class="blueprint-layers-grid">
+          ${layersHtml}
         </div>
-        <h2 id="drawer-title" style="margin: 0 0 6px; font-size: 1.5rem;">${escapeHtml(project.name)}</h2>
-        <p style="margin: 0; color: var(--accent-secondary); font-weight: 600; font-size: 0.92rem;">
-          ${escapeHtml(project.tagline)}
-        </p>
+      </section>
+
+      <section class="drawer-section">
+        <h4 class="drawer-section-heading">3. Difficult Technical Challenges Solved</h4>
+        <ul class="invariants-list">
+          ${challengesHtml}
+        </ul>
+      </section>
+
+      <section class="drawer-section">
+        <h4 class="drawer-section-heading">4. Security Considerations &amp; System Invariants</h4>
+        <ul class="invariants-list">
+          ${securityHtml}
+          ${invariantsHtml}
+        </ul>
+      </section>
+
+      <section class="drawer-section">
+        <h4 class="drawer-section-heading">5. Architectural Decision Records (ADRs)</h4>
+        <div class="adr-list">
+          ${adrsHtml}
+        </div>
+      </section>
+
+      <section class="drawer-section">
+        <div class="cli-section-header">
+          <h4 class="drawer-section-heading">6. Reproducible Verification &amp; CLI Quickstart</h4>
+          <button type="button" class="btn-copy-cli" data-copy-text="${escapeHtml(cliText)}">
+            Copy Commands
+          </button>
+        </div>
+        <pre class="cli-code-block" tabindex="0"><code>${escapeHtml(cliText)}</code></pre>
+      </section>
+
+      <section class="drawer-section">
+        <h4 class="drawer-section-heading">7. Direct Repository Source &amp; Test Inspection</h4>
+        <div class="source-links-grid">
+          ${sourceLinksHtml}
+        </div>
+      </section>
+
+      <div class="drawer-footer-actions">
+        <a href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          Inspect GitHub Repository ↗
+        </a>
+        ${liveDemoButton}
       </div>
-      <button type="button" class="btn" id="js-close-drawer" aria-label="Close Architecture Drawer">
-        ✕ Close (Esc)
-      </button>
-    </div>
-
-    <div class="drawer-section">
-      <h3 class="drawer-section-title">1. System Architecture Blueprint</h3>
-      <pre class="ascii-diagram">${escapeHtml(project.architectureBlueprint.diagram)}</pre>
-      <ul class="layer-list">${layersHtml}</ul>
-    </div>
-
-    <div class="drawer-section">
-      <h3 class="drawer-section-title">2. Deterministic Invariants &amp; Safety Boundaries</h3>
-      <ul class="invariant-list">${invariantsHtml}</ul>
-    </div>
-
-    <div class="drawer-section">
-      <h3 class="drawer-section-title">3. Key Engineering Trade-Offs (Architecture Decision Records)</h3>
-      ${adrsHtml}
-    </div>
-
-    <div class="drawer-section">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h3 class="drawer-section-title" style="margin: 0;">4. Reproducible CLI Quickstart</h3>
-        <button type="button" class="btn" id="js-copy-cli" data-cli="${escapeHtml(cliText)}" style="padding: 4px 10px; font-size: 0.76rem;">
-          Copy Commands
-        </button>
-      </div>
-      <pre class="cli-box"><code>${escapeHtml(cliText)}</code></pre>
-    </div>
-
-    <div class="drawer-section">
-      <h3 class="drawer-section-title">5. Direct Source &amp; Test Links</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-        ${sourceLinksHtml}
-      </div>
-    </div>
-  `;
+    </div>`;
 }
 
-export function initPortfolioBrowser() {
+export function renderKnowledgeMapSvg(knowledgeMap, activeNodeId = 'ai-systems') {
+  const nodeMap = new Map(knowledgeMap.map((n) => [n.id, n]));
+  const drawnPairs = new Set();
+  const edgesSvg = [];
+
+  for (const node of knowledgeMap) {
+    for (const targetId of node.connectedNodeIds || []) {
+      const target = nodeMap.get(targetId);
+      if (!target) continue;
+      const pairKey = [node.id, target.id].sort().join('--');
+      if (drawnPairs.has(pairKey)) continue;
+      drawnPairs.add(pairKey);
+
+      const isHighlighted = node.id === activeNodeId || target.id === activeNodeId;
+      edgesSvg.push(
+        `<line x1="${node.x}" y1="${node.y}" x2="${target.x}" y2="${target.y}" class="kmap-edge ${isHighlighted ? 'is-highlighted' : ''}" data-edge-from="${escapeHtml(node.id)}" data-edge-to="${escapeHtml(target.id)}" />`
+      );
+    }
+  }
+
+  const nodesSvg = knowledgeMap
+    .map((node) => {
+      const isSelected = node.id === activeNodeId;
+      return `
+      <g class="kmap-svg-node ${isSelected ? 'is-selected' : ''}" data-kmap-node="${escapeHtml(node.id)}" transform="translate(${node.x}, ${node.y})" tabindex="0" role="button" aria-label="Select specialty node ${escapeHtml(node.label)}" aria-pressed="${isSelected ? 'true' : 'false'}">
+        <circle r="34" class="kmap-node-halo" stroke="${escapeHtml(node.accentColor)}" />
+        <circle r="24" class="kmap-node-core" stroke="${escapeHtml(node.accentColor)}" />
+        <text y="-2" text-anchor="middle" class="kmap-node-code">${escapeHtml(node.shortCode)}</text>
+        <text y="12" text-anchor="middle" class="kmap-node-title">${escapeHtml(node.label)}</text>
+      </g>`;
+    })
+    .join('');
+
+  return `<svg class="kmap-constellation-svg" viewBox="0 0 1000 520" role="img" aria-label="Interactive Engineering Knowledge Map showing 8 connected technical specialties">
+    <g class="kmap-edges-layer">${edgesSvg.join('\n')}</g>
+    <g class="kmap-nodes-layer">${nodesSvg}</g>
+  </svg>`;
+}
+
+export function renderKnowledgeNodeDetailHtml(node, allProjects) {
+  if (!node) return '';
+  const relatedRepos = (node.relatedProjectIds || [])
+    .map((pid) => allProjects.find((p) => p.id === pid))
+    .filter(Boolean);
+
+  const repoCardsHtml = relatedRepos
+    .map(
+      (proj) => `
+      <div class="kmap-proof-card">
+        <div class="kmap-proof-top">
+          <strong>${escapeHtml(proj.name)}</strong>
+          <span class="slug-badge">${escapeHtml(proj.automatedTests)} tests</span>
+        </div>
+        <p>${escapeHtml(proj.tagline)}</p>
+        <div class="kmap-proof-actions">
+          <button type="button" class="btn-inline-case" data-open-drawer="${escapeHtml(proj.id)}">Inspect Case Study →</button>
+          <a href="${escapeHtml(proj.repoUrl)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+      </div>`
+    )
+    .join('');
+
+  const commercialBadges = (node.relatedCommercialNames || [])
+    .map((name) => `<span class="commercial-proof-pill">◈ ${escapeHtml(name)}</span>`)
+    .join('');
+
+  const capabilitiesHtml = (node.capabilities || [])
+    .map((cap) => `<li>${escapeHtml(cap)}</li>`)
+    .join('');
+
+  const techPillsHtml = (node.technologies || [])
+    .map((t) => `<span class="tech-pill">${escapeHtml(t)}</span>`)
+    .join('');
+
+  return `
+    <div class="kmap-detail-card" data-active-node="${escapeHtml(node.id)}">
+      <div class="kmap-detail-header">
+        <span class="chapter-code-badge">${escapeHtml(node.shortCode)}</span>
+        <span class="chapter-theme-tag">${escapeHtml(node.category)}</span>
+      </div>
+      <h3 class="kmap-detail-title">${escapeHtml(node.label)}</h3>
+      <p class="kmap-detail-summary">${escapeHtml(node.summary)}</p>
+
+      <div class="kmap-detail-section">
+        <span class="story-box-label">VERIFIED ARCHITECTURAL CAPABILITIES</span>
+        <ul class="kmap-cap-list">${capabilitiesHtml}</ul>
+      </div>
+
+      <div class="kmap-detail-section">
+        <span class="story-box-label">TECHNOLOGIES &amp; PROTOCOLS</span>
+        <div class="tech-pill-row">${techPillsHtml}</div>
+      </div>
+
+      <div class="kmap-detail-section">
+        <span class="story-box-label">PROVEN IN PUBLIC REPOSITORIES (${relatedRepos.length})</span>
+        <div class="kmap-proof-grid">${repoCardsHtml}</div>
+      </div>
+
+      ${
+        commercialBadges
+          ? `<div class="kmap-detail-section">
+              <span class="story-box-label">COMMERCIAL &amp; PRODUCT APPLICATION</span>
+              <div class="tech-pill-row">${commercialBadges}</div>
+            </div>`
+          : ''
+      }
+    </div>`;
+}
+
+export function renderPhilosophyCardHtml(principle) {
+  return `
+    <article class="philosophy-card" data-philosophy-id="${escapeHtml(principle.id)}">
+      <span class="philosophy-num">${escapeHtml(principle.number)}</span>
+      <blockquote class="philosophy-quote">“${escapeHtml(principle.statement)}”</blockquote>
+      <p class="philosophy-elaboration">${escapeHtml(principle.elaboration)}</p>
+      <div class="philosophy-proof">
+        <span>${escapeHtml(principle.proofPoint)}</span>
+      </div>
+    </article>`;
+}
+
+export function renderExperienceCardHtml(item) {
+  const statusClass = item.isCurrent ? 'status-current' : 'status-former';
+  const websiteLink = item.websiteUrl
+    ? `<a href="${escapeHtml(item.websiteUrl)}" target="_blank" rel="noopener noreferrer" class="exp-website-link">${escapeHtml(item.websiteUrl)} ↗</a>`
+    : '';
+  const ownershipBanner = item.ownershipNote
+    ? `<div class="exp-ownership-note" role="note">${escapeHtml(item.ownershipNote)}</div>`
+    : '';
+  const highlightsHtml = (item.highlights || [])
+    .map((h) => `<li>${escapeHtml(h)}</li>`)
+    .join('');
+  const techHtml = (item.technologies || [])
+    .map((t) => `<span class="lang-chip">${escapeHtml(t)}</span>`)
+    .join('');
+
+  return `
+    <article class="experience-card ${statusClass}" data-experience-id="${escapeHtml(item.id)}">
+      <div class="experience-card-header">
+        <div>
+          <span class="exp-status-badge ${statusClass}">${escapeHtml(item.status)}</span>
+          <h3 class="exp-role-title">${escapeHtml(item.role)}</h3>
+          <p class="exp-organization">${escapeHtml(item.organization)} · <span class="exp-location">${escapeHtml(item.location)}</span></p>
+        </div>
+        ${websiteLink}
+      </div>
+      ${ownershipBanner}
+      <p class="exp-summary">${escapeHtml(item.summary)}</p>
+      <ul class="exp-highlights-list">
+        ${highlightsHtml}
+      </ul>
+      <div class="lang-chip-row">
+        ${techHtml}
+      </div>
+    </article>`;
+}
+
+export function renderBroaderProjectCardHtml(item) {
+  const highlightsHtml = (item.highlights || [])
+    .map((h) => `<li>${escapeHtml(h)}</li>`)
+    .join('');
+  const techHtml = (item.technologies || [])
+    .map((t) => `<span class="lang-chip">${escapeHtml(t)}</span>`)
+    .join('');
+
+  return `
+    <article class="broader-project-card" data-broader-id="${escapeHtml(item.id)}">
+      <div class="broader-card-top">
+        <span class="broader-category-badge">${escapeHtml(item.category)}</span>
+        <span class="broader-status-pill">${escapeHtml(item.status)}</span>
+      </div>
+      <h3 class="broader-project-title">${escapeHtml(item.name)}</h3>
+      ${item.organization ? `<p class="broader-org-line">${escapeHtml(item.organization)}</p>` : ''}
+      <p class="broader-project-summary">${escapeHtml(item.summary)}</p>
+      <ul class="broader-highlights-list">
+        ${highlightsHtml}
+      </ul>
+      <div class="lang-chip-row">
+        ${techHtml}
+      </div>
+    </article>`;
+}
+
+export function renderBenchmarkRowsHtml(benchmarks, summary) {
+  const maxTests = Math.max(...benchmarks.map((b) => b.automatedTests), 1);
+
+  return benchmarks
+    .map((row) => {
+      const barWidthPct = Math.max(12, Math.round((row.automatedTests / maxTests) * 100));
+      return `
+        <tr class="benchmark-row" data-benchmark-project="${escapeHtml(row.projectId)}">
+          <td class="bm-cell-project">
+            <a href="https://github.com/${escapeHtml(row.repoSlug)}" target="_blank" rel="noopener noreferrer" class="bm-project-link">
+              <strong>${escapeHtml(row.projectName)}</strong>
+              <span class="bm-repo-slug">${escapeHtml(row.repoSlug)} ↗</span>
+            </a>
+          </td>
+          <td class="bm-cell-domain">
+            <span class="domain-pill">${escapeHtml(row.domain)}</span>
+          </td>
+          <td class="bm-cell-tests">
+            <div class="bm-test-bar-wrap">
+              <div class="bm-test-bar-Header">
+                <strong class="tabular-nums">${escapeHtml(row.automatedTests)}</strong>
+                <span>passing</span>
+              </div>
+              <div class="bm-bar-track" aria-hidden="true">
+                <div class="bm-bar-fill" style="width: ${barWidthPct}%"></div>
+              </div>
+            </div>
+          </td>
+          <td class="bm-cell-latency">
+            <strong class="tabular-nums">${escapeHtml(row.primaryLatencyMs)} ms</strong>
+            <span class="bm-sub-label">${escapeHtml(row.primaryLatencyLabel)}</span>
+          </td>
+          <td class="bm-cell-throughput">
+            <strong class="bm-throughput-val">${escapeHtml(row.throughputOrAccuracyValue)}</strong>
+            <span class="bm-sub-label">${escapeHtml(row.throughputOrAccuracyLabel)}</span>
+          </td>
+          <td class="bm-cell-determinism">
+            <span class="bm-guarantee-badge">${escapeHtml(row.determinismGuarantee)}</span>
+          </td>
+        </tr>`;
+    })
+    .join('');
+}
+
+export function initPortfolioApp() {
   if (typeof document === 'undefined') return;
 
   const summary = computePortfolioSummary(PORTFOLIO_DATA);
-  const gridEl = document.getElementById('projects-grid');
-  const countEl = document.getElementById('projects-visible-count');
-  const searchEl = document.getElementById('project-search');
-  const domainButtons = Array.from(document.querySelectorAll('.domain-tab'));
-  const benchmarkBodyEl = document.getElementById('benchmark-tbody');
-  const sortButtons = Array.from(document.querySelectorAll('.js-sort-benchmarks'));
-  const drawerBackdrop = document.getElementById('architecture-drawer');
-  const drawerPanel = document.getElementById('architecture-drawer-panel');
-  const themeBtn = document.getElementById('theme-toggle');
+  let activeDomain = 'All';
+  let searchQuery = '';
+  let activeSort = 'tests-desc';
+  let activeChapter = 1;
+  let activeKnowledgeNodeId = PORTFOLIO_DATA.knowledgeMap[0]?.id || 'ai-systems';
+  const commandHistory = [];
+  let historyIndex = -1;
 
-  // Initialize theme
-  const savedTheme =
-    typeof localStorage !== 'undefined' ? localStorage.getItem('cs_theme') : null;
-  if (savedTheme === 'light' || savedTheme === 'dark') {
-    state.theme = savedTheme;
-  }
-  document.documentElement.setAttribute('data-theme', state.theme);
-  if (themeBtn) {
-    themeBtn.textContent = state.theme === 'dark' ? '☀ Light Mode' : '☾ Dark Mode';
-  }
-
-  function updateProjectsView() {
-    const filtered = filterProjects({
-      domain: state.activeDomain,
-      query: state.searchQuery
-    });
-    if (gridEl) {
-      gridEl.innerHTML =
-        filtered.length > 0
-          ? filtered.map(renderProjectCardHtml).join('')
-          : `<div class="telemetry-card" style="grid-column: 1 / -1; text-align: center; padding: 36px;">
-               <p style="margin: 0 0 12px; color: var(--text-secondary);">No flagship systems match the current filter criteria.</p>
-               <button type="button" class="btn" id="js-reset-filters">Reset Filters</button>
-             </div>`;
-    }
-    if (countEl) {
-      countEl.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} verified open-source systems`;
-    }
-    domainButtons.forEach((btn) => {
-      const isSelected = btn.getAttribute('data-domain') === state.activeDomain;
-      btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
-    });
-  }
-
-  function updateBenchmarksView() {
-    if (!benchmarkBodyEl) return;
-    const sorted = sortBenchmarks(PORTFOLIO_DATA.benchmarks, state.benchmarkSort);
-    benchmarkBodyEl.innerHTML = renderBenchmarkRowsHtml(sorted, summary);
-    sortButtons.forEach((btn) => {
-      const active = btn.getAttribute('data-sort') === state.benchmarkSort;
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-  }
-
-  function openDrawer(projectId) {
-    const project = getProjectById(projectId);
-    if (!project || !drawerBackdrop || !drawerPanel) return;
-    state.activeDrawerProjectId = project.id;
-    drawerPanel.innerHTML = renderDrawerContentHtml(project);
-    drawerBackdrop.hidden = false;
-    document.body.style.overflow = 'hidden';
-    const closeBtn = document.getElementById('js-close-drawer');
-    if (closeBtn) closeBtn.focus();
-  }
-
-  function closeDrawer() {
-    if (!drawerBackdrop) return;
-    drawerBackdrop.hidden = true;
-    state.activeDrawerProjectId = null;
-    document.body.style.overflow = '';
-  }
-
-  // Event listeners
-  domainButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      state.activeDomain = btn.getAttribute('data-domain') || 'All';
-      updateProjectsView();
-    });
-  });
-
-  if (searchEl) {
-    searchEl.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value || '';
-      updateProjectsView();
-    });
-  }
-
-  sortButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      state.benchmarkSort = btn.getAttribute('data-sort') || 'tests-desc';
-      updateBenchmarksView();
-    });
-  });
-
-  if (themeBtn) {
-    themeBtn.addEventListener('click', () => {
-      state.theme = state.theme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', state.theme);
-      themeBtn.textContent =
-        state.theme === 'dark' ? '☀ Light Mode' : '☾ Dark Mode';
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('cs_theme', state.theme);
+  // 1. Theme Toggle
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const htmlEl = document.documentElement;
+      const current = htmlEl.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      themeToggleBtn.setAttribute(
+        'aria-label',
+        next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+      );
+      const labelSpan = themeToggleBtn.querySelector('.theme-label');
+      if (labelSpan) {
+        labelSpan.textContent = next === 'dark' ? 'Light Mode' : 'Dark Mode';
       }
     });
   }
 
-  document.addEventListener('click', (e) => {
-    const openBtn = e.target.closest('.js-open-drawer');
-    if (openBtn) {
-      openDrawer(openBtn.getAttribute('data-project-id'));
-      return;
-    }
+  // 2. Experience 02 — Interactive Career Journey Chapters
+  const chapterTabs = Array.from(document.querySelectorAll('[data-chapter-tab]'));
+  const chapterPanels = Array.from(document.querySelectorAll('[data-chapter-panel]'));
+  const progressBarFill = document.getElementById('journey-progress-fill');
+  const prevChapterBtn = document.getElementById('journey-prev-btn');
+  const nextChapterBtn = document.getElementById('journey-next-btn');
 
-    if (e.target.closest('#js-close-drawer') || e.target === drawerBackdrop) {
-      closeDrawer();
-      return;
-    }
+  function selectJourneyChapter(stageNum) {
+    const total = PORTFOLIO_DATA.journey.length;
+    activeChapter = Math.max(1, Math.min(total, Number(stageNum) || 1));
 
-    if (e.target.closest('#js-reset-filters')) {
-      state.activeDomain = 'All';
-      state.searchQuery = '';
-      if (searchEl) searchEl.value = '';
-      updateProjectsView();
-      return;
-    }
+    chapterTabs.forEach((tab) => {
+      const num = Number(tab.getAttribute('data-chapter-tab'));
+      const isSelected = num === activeChapter;
+      const isCompleted = num < activeChapter;
+      tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      tab.classList.toggle('is-active', isSelected);
+      tab.classList.toggle('is-completed', isCompleted);
+    });
 
-    const copyBtn = e.target.closest('#js-copy-cli');
-    if (copyBtn && navigator.clipboard) {
-      const cli = copyBtn.getAttribute('data-cli') || '';
-      navigator.clipboard.writeText(cli).then(() => {
-        copyBtn.textContent = '✓ Copied!';
-        setTimeout(() => {
-          copyBtn.textContent = 'Copy Commands';
-        }, 1800);
-      });
+    chapterPanels.forEach((panel) => {
+      const num = Number(panel.getAttribute('data-chapter-panel'));
+      const isSelected = num === activeChapter;
+      panel.hidden = !isSelected;
+      panel.classList.toggle('is-active', isSelected);
+    });
+
+    if (progressBarFill) {
+      const pct = Math.round((activeChapter / total) * 100);
+      progressBarFill.style.width = `${pct}%`;
     }
+    if (prevChapterBtn) prevChapterBtn.disabled = activeChapter <= 1;
+    if (nextChapterBtn) nextChapterBtn.disabled = activeChapter >= total;
+  }
+
+  chapterTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      selectJourneyChapter(Number(tab.getAttribute('data-chapter-tab')));
+    });
   });
+  if (prevChapterBtn) {
+    prevChapterBtn.addEventListener('click', () => selectJourneyChapter(activeChapter - 1));
+  }
+  if (nextChapterBtn) {
+    nextChapterBtn.addEventListener('click', () => selectJourneyChapter(activeChapter + 1));
+  }
+
+  // 3. Experience 03 — Project Filtering & Search
+  const projectsGrid = document.getElementById('projects-grid');
+  const resultsCounter = document.getElementById('projects-results-count');
+  const domainButtons = Array.from(document.querySelectorAll('[data-domain]'));
+  const searchInput = document.getElementById('project-search');
+
+  function updateProjectsView() {
+    if (!projectsGrid) return;
+    const filtered = filterProjects(PORTFOLIO_DATA.projects, activeDomain, searchQuery);
+    if (resultsCounter) {
+      resultsCounter.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} verified repositories`;
+    }
+    if (filtered.length === 0) {
+      projectsGrid.innerHTML = `
+        <div class="empty-filter-state" role="status">
+          <p>No engineering systems matched <strong>"${escapeHtml(searchQuery)}"</strong> in category <strong>${escapeHtml(activeDomain)}</strong>.</p>
+          <button type="button" id="reset-filters-btn" class="btn-secondary">Reset Filters</button>
+        </div>`;
+      const resetBtn = document.getElementById('reset-filters-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          activeDomain = 'All';
+          searchQuery = '';
+          if (searchInput) searchInput.value = '';
+          syncDomainButtons();
+          updateProjectsView();
+        });
+      }
+      return;
+    }
+    projectsGrid.innerHTML = filtered.map(renderProjectCardHtml).join('\n');
+    bindDrawerTriggers();
+  }
+
+  function syncDomainButtons() {
+    for (const btn of domainButtons) {
+      const dom = btn.getAttribute('data-domain');
+      const isSelected = dom === activeDomain;
+      btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      btn.classList.toggle('is-active', isSelected);
+    }
+  }
+
+  for (const btn of domainButtons) {
+    btn.addEventListener('click', () => {
+      activeDomain = btn.getAttribute('data-domain') || 'All';
+      syncDomainButtons();
+      updateProjectsView();
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value || '';
+      updateProjectsView();
+    });
+  }
+
+  // 4. Experience 04 — Interactive Knowledge Map
+  const kmapCanvasWrap = document.getElementById('kmap-canvas-wrap');
+  const kmapDetailWrap = document.getElementById('kmap-detail-wrap');
+  const kmapNodeButtons = Array.from(document.querySelectorAll('[data-kmap-pill]'));
+  const kmapViewToggleBtn = document.getElementById('kmap-view-toggle');
+  const kmapVisualContainer = document.getElementById('kmap-visual-container');
+  const kmapAccessibleList = document.getElementById('kmap-accessible-list');
+
+  function selectKnowledgeNode(nodeId) {
+    const node = getKnowledgeNodeById(PORTFOLIO_DATA.knowledgeMap, nodeId);
+    if (!node) return;
+    activeKnowledgeNodeId = node.id;
+
+    kmapNodeButtons.forEach((btn) => {
+      const isSel = btn.getAttribute('data-kmap-pill') === activeKnowledgeNodeId;
+      btn.setAttribute('aria-pressed', isSel ? 'true' : 'false');
+      btn.classList.toggle('is-active', isSel);
+    });
+
+    if (kmapCanvasWrap) {
+      kmapCanvasWrap.innerHTML = renderKnowledgeMapSvg(
+        PORTFOLIO_DATA.knowledgeMap,
+        activeKnowledgeNodeId
+      );
+      bindSvgKnowledgeNodes();
+    }
+    if (kmapDetailWrap) {
+      kmapDetailWrap.innerHTML = renderKnowledgeNodeDetailHtml(node, PORTFOLIO_DATA.projects);
+      bindDrawerTriggers();
+    }
+  }
+
+  function bindSvgKnowledgeNodes() {
+    const svgNodes = Array.from(document.querySelectorAll('[data-kmap-node]'));
+    svgNodes.forEach((g) => {
+      const id = g.getAttribute('data-kmap-node');
+      g.addEventListener('click', () => selectKnowledgeNode(id));
+      g.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectKnowledgeNode(id);
+        }
+      });
+    });
+  }
+
+  kmapNodeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      selectKnowledgeNode(btn.getAttribute('data-kmap-pill'));
+    });
+  });
+
+  if (kmapViewToggleBtn && kmapVisualContainer && kmapAccessibleList) {
+    kmapViewToggleBtn.addEventListener('click', () => {
+      const showingMatrix = !kmapAccessibleList.hidden;
+      kmapAccessibleList.hidden = showingMatrix;
+      kmapVisualContainer.hidden = !showingMatrix;
+      kmapViewToggleBtn.setAttribute('aria-pressed', showingMatrix ? 'false' : 'true');
+      kmapViewToggleBtn.textContent = showingMatrix
+        ? 'Switch to Non-Animated Matrix View'
+        : 'Switch to Interactive Constellation View';
+    });
+  }
+
+  bindSvgKnowledgeNodes();
+
+  // 5. Experience 05 — Controlled Engineering Terminal
+  const terminalForm = document.getElementById('terminal-form');
+  const terminalInput = document.getElementById('terminal-input');
+  const terminalOutput = document.getElementById('terminal-output');
+  const terminalQuickBtns = Array.from(document.querySelectorAll('[data-terminal-cmd]'));
+
+  function runTerminalCmd(cmdText, shouldScrollSection = false) {
+    if (!terminalOutput) return;
+    const res = executeTerminalCommand(cmdText, PORTFOLIO_DATA);
+    if (cmdText.trim()) {
+      commandHistory.push(cmdText.trim());
+      historyIndex = commandHistory.length;
+    }
+
+    if (res.status === 'clear') {
+      terminalOutput.innerHTML = `<div class="term-entry"><span class="term-muted">Buffer cleared. Type <code>help</code> to list available portfolio commands.</span></div>`;
+      return;
+    }
+
+    const linesHtml = res.lines.map((l) => `<div class="term-line">${escapeHtml(l)}</div>`).join('');
+    const jumpLink = res.targetSectionId
+      ? `<a href="#${escapeHtml(res.targetSectionId)}" class="term-jump-link">Jump to #${escapeHtml(res.targetSectionId)} ↓</a>`
+      : '';
+
+    const block = document.createElement('div');
+    block.className = `term-entry status-${res.status}`;
+    block.innerHTML = `
+      <div class="term-prompt-echo"><span class="term-user">alvin@codesphere-uganda:~$</span> <code>${escapeHtml(res.command)}</code></div>
+      <div class="term-res-title">${escapeHtml(res.title)}</div>
+      <div class="term-res-body">${linesHtml}</div>
+      ${jumpLink}
+    `;
+    terminalOutput.appendChild(block);
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+
+    if (shouldScrollSection && res.targetSectionId) {
+      const targetEl = document.getElementById(res.targetSectionId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
+  if (terminalForm && terminalInput) {
+    terminalForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = terminalInput.value || 'help';
+      terminalInput.value = '';
+      runTerminalCmd(val, false);
+    });
+
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp' && commandHistory.length > 0) {
+        e.preventDefault();
+        historyIndex = Math.max(0, historyIndex - 1);
+        terminalInput.value = commandHistory[historyIndex] || '';
+      } else if (e.key === 'ArrowDown' && commandHistory.length > 0) {
+        e.preventDefault();
+        historyIndex = Math.min(commandHistory.length, historyIndex + 1);
+        terminalInput.value = commandHistory[historyIndex] || '';
+      }
+    });
+  }
+
+  terminalQuickBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cmd = btn.getAttribute('data-terminal-cmd') || 'help';
+      runTerminalCmd(cmd, false);
+    });
+  });
+
+  // 6. Benchmark Sorting
+  const benchmarkBody = document.getElementById('benchmark-tbody');
+  const sortButtons = Array.from(document.querySelectorAll('[data-sort-benchmarks]'));
+
+  for (const btn of sortButtons) {
+    btn.addEventListener('click', () => {
+      activeSort = btn.getAttribute('data-sort-benchmarks') || 'tests-desc';
+      for (const b of sortButtons) {
+        const active = b.getAttribute('data-sort-benchmarks') === activeSort;
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        b.classList.toggle('is-active', active);
+      }
+      if (benchmarkBody) {
+        const sorted = sortBenchmarks(PORTFOLIO_DATA.benchmarks, activeSort);
+        benchmarkBody.innerHTML = renderBenchmarkRowsHtml(sorted, summary);
+      }
+    });
+  }
+
+  // 7. Case Study Drawer Modal
+  const drawerBackdrop = document.getElementById('adr-drawer-backdrop');
+  const drawerPanel = document.getElementById('adr-drawer');
+  const drawerBody = document.getElementById('adr-drawer-body');
+  const drawerCloseBtn = document.getElementById('adr-drawer-close');
+  let lastFocusedTrigger = null;
+
+  function openDrawer(projectId, triggerEl) {
+    const project = PORTFOLIO_DATA.projects.find((p) => p.id === projectId);
+    if (!project || !drawerPanel || !drawerBody) return;
+    lastFocusedTrigger = triggerEl || document.activeElement;
+    drawerBody.innerHTML = renderDrawerContentHtml(project);
+    drawerPanel.classList.add('is-open');
+    drawerPanel.setAttribute('aria-hidden', 'false');
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.add('is-open');
+      drawerBackdrop.setAttribute('aria-hidden', 'false');
+    }
+    document.body.style.overflow = 'hidden';
+    bindCopyButtons();
+    if (drawerCloseBtn) drawerCloseBtn.focus();
+  }
+
+  function closeDrawer() {
+    if (!drawerPanel) return;
+    drawerPanel.classList.remove('is-open');
+    drawerPanel.setAttribute('aria-hidden', 'true');
+    if (drawerBackdrop) {
+      drawerBackdrop.classList.remove('is-open');
+      drawerBackdrop.setAttribute('aria-hidden', 'true');
+    }
+    document.body.style.overflow = '';
+    if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
+      lastFocusedTrigger.focus();
+    }
+  }
+
+  function bindDrawerTriggers() {
+    const triggers = Array.from(document.querySelectorAll('[data-open-drawer]'));
+    for (const trigger of triggers) {
+      trigger.onclick = () => {
+        const pid = trigger.getAttribute('data-open-drawer');
+        openDrawer(pid, trigger);
+      };
+    }
+  }
+
+  function bindCopyButtons() {
+    const copyBtns = Array.from(document.querySelectorAll('[data-copy-text]'));
+    for (const btn of copyBtns) {
+      btn.onclick = async () => {
+        const text = btn.getAttribute('data-copy-text') || '';
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          }
+          const orig = btn.textContent;
+          btn.textContent = '✓ Copied to Clipboard';
+          setTimeout(() => {
+            btn.textContent = orig;
+          }, 1800);
+        } catch {
+          btn.textContent = 'Select & Copy Below';
+        }
+      };
+    }
+  }
+
+  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
+  if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && state.activeDrawerProjectId) {
+    if (e.key === 'Escape' && drawerPanel && drawerPanel.classList.contains('is-open')) {
+      e.preventDefault();
       closeDrawer();
-    } else if (
+    }
+    if (
       e.key === '/' &&
-      document.activeElement !== searchEl &&
-      !state.activeDrawerProjectId
+      document.activeElement !== searchInput &&
+      document.activeElement !== terminalInput &&
+      !drawerPanel?.classList.contains('is-open')
     ) {
       e.preventDefault();
-      if (searchEl) searchEl.focus();
+      if (searchInput) searchInput.focus();
     }
   });
+
+  bindDrawerTriggers();
+  bindCopyButtons();
 }
 
 if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', initPortfolioBrowser);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioApp);
+  } else {
+    initPortfolioApp();
+  }
 }

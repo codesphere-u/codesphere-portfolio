@@ -1,42 +1,51 @@
-# `codesphere-portfolio` v1.1 — Akandwanaho Ivan Alvin (“Alvin”) Executive Engineering Portfolio & Architecture Case-Study Application
+# `codesphere-portfolio` v2.0 — THE BUILDER'S JOURNEY
 
 [![CI Status](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-38bdf8.svg)](./LICENSE)
-[![Automated Tests](https://img.shields.io/badge/Portfolio_Tests-346%2B_Passing-10b981.svg)](#verified-engineering-benchmarks-matrix)
+[![License: MIT](https://img.shields.io/badge/License-MIT-53C9EE.svg)](./LICENSE)
+[![Automated Tests](https://img.shields.io/badge/Verified_Tests-323_Passing-F4B94C.svg)](#verified-engineering-benchmarks-matrix)
 
 **Akandwanaho Ivan Alvin** (*commonly known as Alvin*)  
 **Founder & Managing Director, Codesphere Innovations (U) Limited**  
 **Software Engineer · AI Systems Builder · Cybersecurity · Full-Stack & Cloud Engineering**  
-*"Building intelligent, secure, and scalable software — from Uganda to the world."*  
+*"Engineering what comes next. Building intelligent, secure, and scalable software — from Uganda to the world."*  
 📍 Kampala, Uganda · [codesphereug.com](https://www.codesphereug.com) · [LinkedIn](https://www.linkedin.com/in/the4codex) · [github.com/codesphere-u](https://github.com/codesphere-u)
 
 ---
 
-## Overview
+## Creative Vision: The Builder's Journey
 
-`codesphere-portfolio` is the interactive executive engineering portfolio and architecture case-study web application of **Akandwanaho Ivan Alvin** (`@codesphere-u`), showcasing:
+`codesphere-portfolio` v2.0 transforms a static résumé into an interactive technology documentary about an engineer who built his skills at **ISBAT University** in Kampala, founded **4codex Technologies**, served as CTO & Head of Engineering at **Waanverse Labs Inc.** (until March 2025), founded **Codesphere Innovations (U) Limited**, leads **Funa Gigs** under **Jaminsa Ventures Limited**, and architects open-source AI, cybersecurity, fintech, and cloud observability systems.
 
-- **Executive Leadership & Career History**: Founder & Managing Director of **Codesphere Innovations (U) Limited** (`https://www.codesphereug.com`), Founder & Project Lead of **Funa Gigs** (*Jaminsa Ventures Limited* — distinct from Codesphere Innovations), Former CTO & Head of Engineering at **Waanverse Labs Inc.** (departed March 2025), and Founder of **4codex Technologies**, alongside studies at **ISBAT University — Uganda**.
-- **7-Stage Thematic Engineering Journey**: *Foundation → Entrepreneurship → Technical Leadership → Business Leadership → Product Engineering → Advanced Engineering → Open Source*.
-- **6 Primary Open-Source Flagships + 2 Specialized Domain Platforms** (`cyber-dragon`, `auralis-local`, `agentshield`, `ARGUS-AI`, `flowledger`, `stackpulse`, `agrisignal`, and `Clinical-Virtual-Health-Platform`) across **AI & Agents**, **Cybersecurity**, **Fintech & Ledgers**, **Cloud & SRE**, and **AgriTech & HealthTech**.
-- **Product & Commercial Engineering Archive**: Commercial and operational systems including **Funa Gigs** (*Jaminsa Ventures Limited*), **BizManage Pro**, **PesaFlow**, **AI Energy Efficiency Tool**, **Trip Planner & Electronic Logging Application**, and **Sector-Specific Business Systems** (*2K Restaurant Management*, *BKK Pharmacy Management*, *City Star Supermarket Management*, *OM SAI Hardware Software*, and *Library & Resume Analysis Tools*).
+### Six Interactive Experiences
 
-Every benchmark and test count surfaced in this application is backed by an executable test suite in its respective repository—**zero synthetic vanity metrics**.
+1. **Experience 01 — Cinematic Opening (`#hero`)**: Editorial hero featuring `AKANDWANAHO IVAN ALVIN`, `"Engineering what comes next."`, specialty ribbon, and an interactive right-hand SVG Systems Architecture Scene with orbital rings and moving data signals.
+2. **Experience 02 — My Journey (`#journey`)**: 6-chapter interactive career storytelling system (*01 Engineering Foundations → 02 Building 4codex Technologies → 03 Technical Leadership → 04 Founding Codesphere Innovations → 05 Building Funa Gigs → 06 Advanced Systems and Open Source*), each detailing *The Challenge*, *My Responsibility*, *Technologies Involved*, *What I Learned*, and *How It Shaped the Next Stage*.
+3. **Experience 03 — Interactive Project Universe (`#projects`)**: Domain filtering (`All`, `AI`, `Cybersecurity`, `Backend`, `Fintech`, `Cloud`, `Full-Stack`), instant search across ADRs, custom SVG architectural motifs for all 8 public repositories, and a full **Case Study Drawer** with ASCII blueprints, Difficult Technical Challenges, Security Invariants, and reproducible CLI commands.
+4. **Experience 04 — Explore My Engineering Mind (`#mindmap`)**: Interactive 8-node SVG Constellation Knowledge Map (`AI Systems`, `Cybersecurity`, `Backend Architecture`, `Databases`, `Distributed Systems`, `Cloud Infrastructure`, `DevOps`, `Flutter`) with live Specialty Inspector and a toggleable non-animated matrix view.
+5. **Experience 05 — Controlled Engineering Terminal (`#terminal`)**: Sandboxed, read-only command interpreter supporting `help`, `about`, `journey`, `projects`, `skills`, `github`, `contact`, and `clear` (never executing OS shell commands).
+6. **Experience 06 — Personal Engineering Philosophy (`#philosophy`)**: Five core architectural convictions backed by concrete repository proof points.
 
 ---
 
 ## Verified Engineering Benchmarks Matrix
 
-| Flagship System | Domain | Automated Tests | Measured Latency | Throughput / Accuracy | Key Determinism & Safety Invariant |
+| Flagship System | Primary Domain | Verified Tests / Suites | Measured Latency | Throughput / Accuracy | Key Determinism & Safety Invariant |
 | :--- | :--- | :---: | :---: | :--- | :--- |
-| [**ARGUS AI v2.1**](https://github.com/codesphere-u/ARGUS-AI) (`ARGUS-AI`) | AI & Agents / Quant | **61** | `0.42 ms` / step | **3 Catastrophic Trap Trades Vetoed** | 7-agent adversarial committee with Devil's Advocate hard veto + point-in-time leakage guard + MCP |
-| [**AgriSignal v1.0**](https://github.com/codesphere-u/agrisignal) (`agrisignal`) | AgriTech & HealthTech | **60** | `0.09 ms` / advisory | **100% ≤160-char GSM-7** (`en`, `lg`, `sw`) | Offline-first FAO-56 soil water-balance + explicit uncertainty bounds + WHO pesticide safety filter |
-| [**FlowLedger v1.0**](https://github.com/codesphere-u/flowledger) (`flowledger`) | Fintech & Ledgers | **51** | `0.12 ms` / entry | **97 Hash-Chained Entries · 0 Imbalance** (UGX & KES) | `BigInt` minor-unit double-entry arithmetic (IEEE-754 floats banned) + 50-tx 3-way reconciliation |
-| [**StackPulse v1.0**](https://github.com/codesphere-u/stackpulse) (`stackpulse`) | Cloud & SRE | **47** | `51.2 µs` / trace | **19,525 traces/sec** DAG assembly | Interval-union critical-path solver + N+1 query detector + Google SRE multi-window burn-rate alerts |
-| [**AgentShield**](https://github.com/codesphere-u/agentshield) (`agentshield`) | Cybersecurity / AI | **42** | `0.19 ms` / tool call | **100% Recall · 0% FPR** (25-scenario red-team corpus) | SHA-256 hash-chained audit ledger + HMAC-SHA256 single-use approval tokens |
-| [**Auralis Local v0.2**](https://github.com/codesphere-u/auralis-local) (`auralis-local`) | AI & Agents | **36** | `0.245 ms` P50 BM25 | **3,110 docs/sec** indexing throughput | Cite-or-abstain grounding verifier + `127.0.0.1` loopback path-jailed sandbox |
-| [**Clinical Virtual Health Platform**](https://github.com/codesphere-u/Clinical-Virtual-Health-Platform) (`Clinical-Virtual-Health-Platform`) | AgriTech & HealthTech | **28** | `0.11 ms` / triage | **100% Protocol-Compliant NEWS2 Acuity** | Deterministic NEWS2 vital-sign triage + HL7 FHIR R4 resource model + RBAC PHI audit trail |
-| [**Cyber Dragon v1.0**](https://github.com/codesphere-u/cyber-dragon) (`cyber-dragon`) | Cybersecurity / Fintech | **21** | `0.28 ms` mean | **8/8 Threat Corpus · 0 Outbound Calls** ([Live Demo](https://cyber-dragon-ivory.vercel.app)) | Strictly SSRF-free lexical URL & mobile money USSD (`*165#`, `*185#`, `*334#`) AST scoring |
+| [**ARGUS AI v2.1**](https://github.com/codesphere-u/ARGUS-AI) (`ARGUS-AI`) | AI | **61** | `7.8 ms` walk-forward | **100% (3/3 Traps Vetoed · \$488.37 Saved)** | `PointInTimeGuard` + 7-agent Devil's Advocate veto + SHA-256 Trade Passport replay |
+| [**AgriSignal v1.0**](https://github.com/codesphere-u/agrisignal) (`agrisignal`) | Backend | **60** | `0.18 ms` / eval | **≤160 GSM-7 chars** (`en`, `lg`, `sw`) · **20/20 LWW Sync** | Hybrid Logical Clock (`HLC`) monotonicity + SHA-256 sync envelope verification |
+| [**FlowLedger v1.0**](https://github.com/codesphere-u/flowledger) (`flowledger`) | Fintech | **51** | `0.22 ms` / entry | **0 Imbalance (97 Entries · 50 Txs Reconciled)** | Strict integer minor units (IEEE-754 floats banned) + SHA-256 journal hash chain |
+| [**StackPulse v1.0**](https://github.com/codesphere-u/stackpulse) (`stackpulse`) | Cloud | **47** | `0.051 ms` (`51.2 µs`) | **19,525 traces/sec · 3.7M+ spans/sec** | Interval-union exclusive span duration + Google SRE multi-window burn-rate engine |
+| [**AgentShield v1.0**](https://github.com/codesphere-u/agentshield) (`agentshield`) | Cybersecurity | **42** | `0.31 ms` / call | **100.0% Recall · 0.0% FPR** (OWASP 2026 25-scenario suite) | Declarative YAML/JSON capability firewall + SHA-256 hash-chained audit ledger |
+| [**Auralis Local v0.2**](https://github.com/codesphere-u/auralis-local) (`auralis-local`) | AI | **36** | `0.245 ms` P50 BM25 | **3,110 docs/sec** local indexing (P95: `0.558 ms`) | `127.0.0.1` loopback sandbox + `realpath` symlink guard + single-use approval tokens |
+| [**Cyber Dragon v1.0**](https://github.com/codesphere-u/cyber-dragon) (`cyber-dragon`) | Cybersecurity | **21** | `0.28 ms` mean | **100% Match (8/8 Scenarios · 0 Network Calls)** ([Live Demo](https://cyber-dragon-ivory.vercel.app)) | SSRF-free lexical URL & East African Mobile Money / USSD (`*165*`, `*21*`) AST scoring |
+| [**Clinical Virtual Health Platform**](https://github.com/codesphere-u/Clinical-Virtual-Health-Platform) (`Clinical-Virtual-Health-Platform`) | Full-Stack | **5** | `1.4 ms` suite | **5 Suites · 15 ADRs · 7 Shared Packages** | `@docaas/domain` appointment state machine + `@docaas/validation` GMC/MDCN checks + LiveKit SFU |
+
+---
+
+## Visual Design System
+
+- **Colors**: Midnight Navy (`#070B16`), Deep Surface (`#101B2E`), Electric Cyan (`#53C9EE`), Engineering Blue (`#387BFA`), Achievement Gold (`#F4B94C`), Primary Text (`#F7FAFF`), Secondary Text (`#98AFC8`), plus a high-contrast Light Mode (`[data-theme="light"]`).
+- **Typography**: `Space Grotesk` (editorial headings), `Inter` (content & interfaces), `JetBrains Mono` (technical annotations & terminal).
 
 ---
 
@@ -47,7 +56,7 @@ Every benchmark and test count surfaced in this application is backed by an exec
 git clone https://github.com/codesphere-u/codesphere-portfolio.git
 cd codesphere-portfolio
 
-# 2. Build static bundle (outputs to index.html and dist/) & run all automated tests
+# 2. Build static bundle (outputs to index.html and dist/) & run all 17 automated tests
 npm test
 
 # 3. Start local preview server + JSON inspection API at http://127.0.0.1:4173

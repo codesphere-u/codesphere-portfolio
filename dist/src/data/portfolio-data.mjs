@@ -1,22 +1,32 @@
 /**
- * Verified Engineering Portfolio Data — Akandwanaho Ivan Alvin (codesphere-u)
- * Zero synthetic vanity numbers: every benchmark, test count, and architectural invariant
- * corresponds directly to executable test suites in https://github.com/codesphere-u
+ * Verified Engineering Portfolio & Architecture Case-Study Dataset — v2.0 ("The Builder's Journey")
+ * Owner: Akandwanaho Ivan Alvin (https://github.com/codesphere-u)
+ *
+ * Every repository URL, test count, latency measurement, career milestone, and architectural
+ * invariant in this file corresponds to verified source code and factual career history.
  */
 
 export const PORTFOLIO_DATA = {
   profile: {
     handle: 'codesphere-u',
     name: 'Akandwanaho Ivan Alvin',
+    displayNameUpper: 'AKANDWANAHO IVAN ALVIN',
     shortName: 'Alvin',
+    heroEditorialHeadline: 'Engineering what comes next.',
+    heroSpecialties: [
+      'Software Engineering',
+      'Artificial Intelligence',
+      'Cybersecurity',
+      'Cloud Systems',
+      'Technical Entrepreneurship'
+    ],
     headline:
       'Software Engineer · AI Systems Builder · Cybersecurity · Full-Stack & Cloud Engineering',
     subtitle: 'Founder & Managing Director, Codesphere Innovations (U) Limited',
-    tagline:
-      'Building intelligent, secure, and scalable software — from Uganda to the world.',
-    location: 'Kampala, Uganda · Global Remote / International Engineering',
+    tagline: 'Building intelligent, secure, and scalable software — from Uganda to the world.',
+    location: 'Kampala, Uganda · Global Engineering & Technical Leadership',
     availability:
-      'Founder & Managing Director at Codesphere Innovations (U) Limited · Open to High-Impact Systems, AI & Security Engineering Collaborations',
+      'Open to Senior / Staff Engineering, AI & Security Architecture, Technical Leadership & Open-Source Collaboration',
     companyName: 'Codesphere Innovations (U) Limited',
     companyWebsiteUrl: 'https://www.codesphereug.com',
     linkedinUrl: 'https://www.linkedin.com/in/the4codex',
@@ -24,27 +34,157 @@ export const PORTFOLIO_DATA = {
     liveDemoUrl: 'https://cyber-dragon-ivory.vercel.app',
     portfolioRepoUrl: 'https://github.com/codesphere-u/codesphere-portfolio',
     missionStatement:
-      'Designing deterministic, adversarial-resilient software systems and commercial platforms — from capability-gated AI firewalls, local-first RAG workspaces, and integer-exact mobile money ledgers to real-time two-sided service marketplaces and enterprise digital transformation.',
+      'Architecting auditable AI systems, defensive cybersecurity platforms, double-entry financial infrastructure, and resilient digital products that solve real operational problems across Africa and the world.',
     aboutParagraphs: [
-      'I am Akandwanaho Ivan Alvin (commonly known as Alvin), a Ugandan Software Engineer, AI Systems Builder, Cybersecurity practitioner, and technology entrepreneur based in Kampala, Uganda. My work sits at the intersection of production full-stack engineering, applied artificial intelligence, defensive security, and cloud-native systems architecture.',
-      'As Founder and Managing Director of Codesphere Innovations (U) Limited (codesphereug.com), I lead the architecture and delivery of custom software platforms, web and mobile applications, AI-powered workflows, cybersecurity engineering, and digital transformation initiatives for businesses and institutions. Alongside this, I serve as Founder and Project Lead of Funa Gigs under Jaminsa Ventures Limited — a distinct technology marketplace venture connecting service seekers with verified service providers through real-time matching, live geospatial discovery, Instant Hire workflows, and integrated digital payments.',
-      'Previously, I served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. (departed March 2025), where I directed technical strategy, system architecture, and engineering execution, and earlier founded 4codex Technologies as an independent software and cybersecurity consultancy. Across both commercial products and open-source systems on GitHub (@codesphere-u), I focus on software that solves real-world African and global challenges with verifiable engineering rigor.'
+      'I am Akandwanaho Ivan Alvin (commonly known as Alvin), a software engineer, cybersecurity practitioner, full-stack developer, and technology entrepreneur from Kampala, Uganda with a deep focus on artificial intelligence, defensive security, distributed systems, and building software that solves meaningful problems.',
+      'My journey in technology began with developing practical business management systems, web applications, mobile platforms, AI-assisted tools, and cloud-connected services. Over time, my work expanded beyond application development into system architecture, technical leadership, engineering operations, and technology entrepreneurship.',
+      'I founded 4codex Technologies, previously served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. (departing in March 2025), and currently serve as Founder and Managing Director of Codesphere Innovations (U) Limited. I also serve as Founder and Project Lead for Funa Gigs, a real-time digital services marketplace developed under Jaminsa Ventures Limited.',
+      'Across both commercial platforms and open-source flagships—such as Cyber Dragon, Auralis Local, ARGUS AI, AgentShield, FlowLedger, StackPulse, and AgriSignal—my goal is to combine serious engineering rigor, deterministic safety boundaries, and thoughtful user experience.'
     ],
     education: {
-      institution: 'ISBAT University — Uganda',
+      institution: 'ISBAT University',
       location: 'Kampala, Uganda',
       summary:
-        'Studied at ISBAT University — Uganda, complemented by continuous independent learning, applied systems engineering, cybersecurity research, and hands-on experimentation across AI agents, distributed backends, and cloud infrastructure.'
+        'Studied at ISBAT University (Uganda), complemented by continuous independent learning, applied systems engineering, security research, and hands-on experimentation across modern software stacks.'
+    }
+  },
+
+  designSystem: {
+    colors: {
+      midnightNavy: '#070B16',
+      deepSurface: '#101B2E',
+      electricCyan: '#53C9EE',
+      engineeringBlue: '#387BFA',
+      achievementGold: '#F4B94C',
+      primaryText: '#F7FAFF',
+      secondaryText: '#98AFC8'
+    },
+    fonts: {
+      heading: 'Space Grotesk',
+      body: 'Inter',
+      mono: 'JetBrains Mono'
     }
   },
 
   domains: [
     'All',
-    'AI & Agents',
+    'AI',
     'Cybersecurity',
-    'Fintech & Ledgers',
-    'Cloud & SRE',
-    'AgriTech & HealthTech'
+    'Backend',
+    'Fintech',
+    'Cloud',
+    'Full-Stack'
+  ],
+
+  journey: [
+    {
+      stageNumber: 1,
+      chapterCode: '01',
+      theme: 'Engineering Foundations',
+      title: '01 — Engineering Foundations',
+      subtitle: 'ISBAT University, independent software development, and practical business applications.',
+      description:
+        'Built a hands-on engineering foundation at ISBAT University in Kampala while independently designing and deploying operational software for local businesses across retail, pharmacy, restaurant, hardware, and logistics sectors.',
+      challenge:
+        'Small and medium enterprises needed reliable inventory, billing, and operational software that worked cleanly on modest hardware without expensive recurring cloud dependencies.',
+      responsibility:
+        'Independently gathered requirements from business operators, designed relational database schemas, built full-stack interfaces, and deployed working desktop and web applications.',
+      technologies: ['Python', 'JavaScript', 'SQL', 'PHP', 'C#', 'Java', 'HTML/CSS', 'MySQL', 'SQLite'],
+      learned:
+        'Real-world users care about reliability, data integrity, and clear workflows far more than hype. Writing software for daily business operations taught me disciplined schema design and end-to-end ownership.',
+      shapedNext:
+        'Revealed a broader demand for structured custom software and cybersecurity consulting, directly motivating the founding of 4codex Technologies.'
+    },
+    {
+      stageNumber: 2,
+      chapterCode: '02',
+      theme: 'Building 4codex Technologies',
+      title: '02 — Building 4codex Technologies',
+      subtitle: 'My early experience in entrepreneurship and delivering technology solutions.',
+      description:
+        'Founded 4codex Technologies as an early technology venture delivering custom web application engineering, cybersecurity assessments, workflow automation, and technical consultancy.',
+      challenge:
+        'Translating diverse client business problems into secure, maintainable software architectures while managing delivery timelines and technical expectations.',
+      responsibility:
+        'Served as founder and lead engineer—architecting web platforms, hardening authentication and API boundaries, automating repetitive business workflows, and advising clients on digital security.',
+      technologies: ['Python', 'Flask', 'Django', 'React', 'TypeScript', 'PostgreSQL', 'REST APIs', 'Application Security'],
+      learned:
+        'Security cannot be bolted on after launch, and sustainable software delivery requires repeatable engineering standards, modular codebases, and clear communication.',
+      shapedNext:
+        'Prepared me to step into executive technical leadership and coordinate multi-engineer product architectures at Waanverse Labs Inc.'
+    },
+    {
+      stageNumber: 3,
+      chapterCode: '03',
+      theme: 'Technical Leadership',
+      title: '03 — Technical Leadership',
+      subtitle: 'Former CTO and Head of Engineering at Waanverse Labs, ending March 2025.',
+      description:
+        'Served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. until March 2025, guiding technical strategy, system architecture, and engineering execution.',
+      challenge:
+        'Aligning long-term product vision with day-to-day engineering execution, establishing clean code review and CI workflows, and making architectural trade-offs that kept delivery velocity high without accumulating fragile technical debt.',
+      responsibility:
+        'Directed technical strategy, defined service boundaries and API contracts, mentored developers, structured sprint planning and release workflows, and oversaw architecture quality across products.',
+      technologies: ['System Architecture', 'TypeScript', 'Python', 'Node.js', 'React', 'Next.js', 'Cloud Infrastructure', 'CI/CD'],
+      learned:
+        'Strong technical leadership multiplies engineering output through clarity—clear interfaces, documented architectural decisions, and automated quality gates.',
+      shapedNext:
+        'Equipped me with the executive and architectural experience to establish and lead Codesphere Innovations (U) Limited as a full-scale technology company.'
+    },
+    {
+      stageNumber: 4,
+      chapterCode: '04',
+      theme: 'Founding Codesphere Innovations',
+      title: '04 — Founding Codesphere Innovations',
+      subtitle: 'Founder and Managing Director of Codesphere Innovations (U) Limited.',
+      description:
+        'Founded and currently lead Codesphere Innovations (U) Limited (codesphereug.com) in Uganda, combining executive company management with hands-on software architecture across AI-enabled systems, cybersecurity, cloud platforms, and digital transformation.',
+      challenge:
+        'Building a credible Ugandan technology company capable of delivering high-assurance custom software, applied AI solutions, and secure cloud infrastructure for organizations navigating digital transformation.',
+      responsibility:
+        'Define company technology direction, lead product architecture and security standards, oversee engineering execution, and drive business development while remaining deeply hands-on in core system design.',
+      technologies: ['TypeScript', 'Next.js', 'Python', 'FastAPI', 'Flutter', 'PostgreSQL', 'Docker', 'Cloud Architecture', 'Applied AI'],
+      learned:
+        'Balancing company leadership with deep technical craft allows an organization to stay grounded in what actually works rather than over-promising.',
+      shapedNext:
+        'Created the operational foundation to tackle complex, high-concurrency consumer and marketplace platforms alongside open-source research.'
+    },
+    {
+      stageNumber: 5,
+      chapterCode: '05',
+      theme: 'Building Funa Gigs',
+      title: '05 — Building Funa Gigs',
+      subtitle: 'Founder and Project Lead of a real-time service marketplace under Jaminsa Ventures Limited.',
+      description:
+        'Serve as Founder and Project Lead for Funa Gigs (owned by Jaminsa Ventures Limited, independent of Codesphere Innovations), architecting a multi-surface digital services marketplace connecting customers with verified service providers.',
+      challenge:
+        'Coordinating real-time job matching, Instant Hire state transitions, live geospatial discovery, mobile money payment flows, identity verification (KYC), and trust-and-safety controls across mobile and web surfaces.',
+      responsibility:
+        'Lead end-to-end product engineering across the Flutter mobile applications, Elixir/Phoenix and Supabase/PostgreSQL backend services, real-time messaging, payment integrations, and role-based administrative tooling.',
+      technologies: ['Flutter', 'Dart', 'Elixir', 'Phoenix', 'PostgreSQL', 'Supabase', 'Next.js', 'Google Cloud', 'Payment APIs'],
+      learned:
+        'Marketplaces live or die on state-machine determinism—when location updates, messaging, identity checks, and payments interact concurrently, idempotency and strict state transitions are mandatory.',
+      shapedNext:
+        'Directly inspired my open-source systems work in double-entry payment reconciliation (FlowLedger), defensive fraud detection (Cyber Dragon), and auditable AI governance.'
+    },
+    {
+      stageNumber: 6,
+      chapterCode: '06',
+      theme: 'Advanced Systems and Open Source',
+      title: '06 — Advanced Systems and Open Source',
+      subtitle: 'Cyber Dragon, Auralis Local, ARGUS AI, AgentShield, and my broader engineering work.',
+      description:
+        'Designed, tested, and published a suite of open-source flagship systems demonstrating institutional-grade engineering across defensive cybersecurity, privacy-first local AI, multi-agent governance, fintech ledgers, and cloud observability.',
+      challenge:
+        'Proving deep software engineering capability with working, installable open-source systems that enforce strict mathematical, security, and privacy invariants rather than superficial AI wrappers.',
+      responsibility:
+        'Architected and implemented Cyber Dragon v1.0, Auralis Local v0.2, ARGUS AI v2.1, AgentShield v1.0, FlowLedger v1.0, StackPulse v1.0, and AgriSignal v1.0—complete with CLI tools, FastAPI/React interfaces, ADRs, and 320+ automated tests.',
+      technologies: ['Python', 'TypeScript', 'React 19', 'Next.js 15', 'FastAPI', 'Ollama / MLX', 'OpenTelemetry', 'OWASP 2026', 'GitHub Actions'],
+      learned:
+        'Open-source software earns trust when every claim is backed by reproducible benchmarks, explicit threat models, honest limitation disclosures, and deterministic test suites.',
+      shapedNext:
+        'Positions my work for global engineering collaboration, international technical leadership, and the next generation of trustworthy AI and security infrastructure.'
+    }
   ],
 
   experience: [
@@ -52,150 +192,68 @@ export const PORTFOLIO_DATA = {
       id: 'codesphere-innovations',
       role: 'Founder & Managing Director',
       organization: 'CODESPHERE INNOVATIONS (U) LIMITED',
-      status: 'Current',
+      status: 'Current Role',
       isCurrent: true,
       location: 'Kampala, Uganda',
       websiteUrl: 'https://www.codesphereug.com',
       summary:
-        'Leading a Ugandan technology company focused on custom software engineering, web and mobile application development, AI-powered applications, business digital transformation, cybersecurity, cloud solutions, product architecture, and intelligent automation.',
+        'Ugandan technology company focused on custom software engineering, web and mobile application development, AI-enabled systems, cybersecurity, cloud solutions, and business digital transformation.',
       highlights: [
-        'Directs company strategy, executive client partnerships, and end-to-end product architecture across web, mobile, AI, and cloud platforms.',
-        'Spearheads engineering governance, secure SDLC practices, and open-source R&D across AI agent security, financial ledgers, and distributed observability.',
-        'Delivers operational and enterprise digital transformation solutions tailored to East African and international business workflows.'
+        'Define company technology strategy, architectural standards, and product engineering roadmaps while remaining hands-on in system implementation.',
+        'Architect full-stack web, mobile, and cloud-native platforms with strong security boundaries, automated CI/CD, and maintainable module design.',
+        'Lead AI integration, workflow automation, and digital infrastructure consulting for organizational transformation.'
       ],
-      technologies: [
-        'TypeScript',
-        'Python',
-        'React / Next.js',
-        'Node.js',
-        'FastAPI',
-        'PostgreSQL',
-        'Cloud & DevOps',
-        'AI Systems & Security'
-      ]
+      technologies: ['TypeScript', 'Python', 'Next.js', 'React', 'FastAPI', 'Flutter', 'PostgreSQL', 'Docker', 'Cloud Infrastructure']
     },
     {
       id: 'funa-gigs-jaminsa',
-      role: 'Founder & Project Lead',
-      organization: 'Funa Gigs (Jaminsa Ventures Limited)',
-      status: 'Current',
+      role: 'Founder & Project Lead — Funa Gigs',
+      organization: 'Jaminsa Ventures Limited',
+      status: 'Current Role',
       isCurrent: true,
       location: 'Kampala, Uganda',
       ownershipNote:
-        'Funa Gigs belongs to Jaminsa Ventures Limited and is an independent product venture distinct from Codesphere Innovations (U) Limited.',
+        'Organizational Distinction: Funa Gigs is a product of Jaminsa Ventures Limited and is separate from Codesphere Innovations (U) Limited.',
       summary:
-        'Architecting and leading Funa Gigs, a two-sided technology marketplace under Jaminsa Ventures Limited that connects service seekers with verified service providers across Uganda.',
+        'Lead product architecture and full-stack engineering for Funa Gigs, a digital services marketplace connecting service seekers with skilled providers through real-time matching and location-aware workflows.',
       highlights: [
-        'Engineered cross-platform Flutter mobile applications alongside high-concurrency Elixir/Phoenix and Supabase/PostgreSQL backend services.',
-        'Built real-time job matching, Instant Hire workflows, and live location discovery for on-demand service fulfillment.',
-        'Integrated mobile money & digital payment workflows, identity verification (KYC), in-app real-time messaging, trust & safety controls, and operational admin tooling.'
+        'Architect and build cross-platform Flutter mobile applications alongside web, administrative, and backend service layers.',
+        'Implement real-time job matching, Instant Hire workflows, live location discovery, and in-app messaging.',
+        'Design payment provider integrations, identity verification (KYC), role-based access controls, and trust-and-safety mechanisms.'
       ],
-      technologies: [
-        'Flutter',
-        'Dart',
-        'Elixir',
-        'Phoenix',
-        'PostgreSQL',
-        'Supabase',
-        'Google Cloud',
-        'Real-Time Geolocation & Payments'
-      ]
+      technologies: ['Flutter', 'Dart', 'Elixir', 'Phoenix', 'PostgreSQL', 'Supabase', 'Next.js', 'Google Cloud', 'Payment APIs']
     },
     {
       id: 'waanverse-labs',
-      role: 'Former CTO & Head of Engineering',
+      role: 'Chief Technology Officer (CTO) & Head of Engineering',
       organization: 'Waanverse Labs Inc.',
-      status: 'Former — Departed March 2025',
+      status: 'Former Role — Departed March 2025',
       isCurrent: false,
-      location: 'Uganda / Remote',
+      location: 'Uganda',
       summary:
-        'Led technical strategy, software architecture, project planning, development workflows, and core engineering decision-making until departing the role in March 2025.',
+        'Led technical strategy, software architecture, engineering workflows, and cross-functional product development prior to departing in March 2025.',
       highlights: [
-        'Defined platform architecture, technical roadmaps, and engineering standards across product teams.',
-        'Guided code review culture, release orchestration, and cross-functional collaboration between product design and backend/frontend engineering.',
-        'Concluded tenure in March 2025 to focus full-time on Codesphere Innovations (U) Limited and flagship product ventures.'
+        'Established system architecture blueprints, API design standards, and development workflows across engineering projects.',
+        'Directed technical planning, code quality reviews, and architectural decision-making in collaboration with product stakeholders.',
+        'Guided engineering execution from technical specification through implementation and deployment.'
       ],
-      technologies: [
-        'System Architecture',
-        'Technical Strategy',
-        'Full-Stack Engineering',
-        'Cloud Infrastructure',
-        'Engineering Leadership'
-      ]
+      technologies: ['Software Architecture', 'Engineering Management', 'TypeScript', 'Python', 'React', 'Node.js', 'Cloud Systems']
     },
     {
       id: '4codex-technologies',
-      role: 'Founder',
+      role: 'Founder & Lead Software Engineer',
       organization: '4codex Technologies',
-      status: 'Historical Venture',
+      status: 'Early Venture & Engineering Foundation',
       isCurrent: false,
       location: 'Kampala, Uganda',
       summary:
-        'Early technology venture through which Alvin delivered custom software development, web application engineering, cybersecurity assessments, workflow automation, and technical consultancy.',
+        'Early entrepreneurial venture focused on software development, web application engineering, cybersecurity, automation, and technical consultancy.',
       highlights: [
-        'Designed and deployed practical business management systems for retail, hospitality, pharmacy, and hardware operations.',
-        'Provided web engineering, defensive security hardening, and automation consulting that laid the technical foundation for subsequent ventures.'
+        'Translated business operational requirements into working web applications, management systems, and automated workflows.',
+        'Delivered application security hardening, defensive assessments, and technical consultancy for business clients.',
+        'Built the practical product and multi-stack engineering foundation that informed subsequent leadership roles.'
       ],
-      technologies: [
-        'Python',
-        'JavaScript',
-        'Web Engineering',
-        'Cybersecurity',
-        'Relational Databases',
-        'Business Automation'
-      ]
-    }
-  ],
-
-  journey: [
-    {
-      stageNumber: 1,
-      theme: 'Foundation',
-      title: 'Practical Business Applications & ISBAT University Studies',
-      description:
-        'Built a strong foundation in software construction by studying at ISBAT University — Uganda while combining academic inquiry with continuous self-driven experimentation and building operational software for local businesses.'
-    },
-    {
-      stageNumber: 2,
-      theme: 'Entrepreneurship',
-      title: 'Establishing 4codex Technologies',
-      description:
-        'Founded 4codex Technologies as an early venture delivering custom software development, web applications, cybersecurity services, automation scripts, and hands-on technical consultancy.'
-    },
-    {
-      stageNumber: 3,
-      theme: 'Technical Leadership',
-      title: 'CTO & Head of Engineering at Waanverse Labs Inc.',
-      description:
-        'Stepped into executive technical leadership as CTO and Head of Engineering at Waanverse Labs Inc. (departed March 2025), directing software architecture, engineering workflows, and technical strategy.'
-    },
-    {
-      stageNumber: 4,
-      theme: 'Business Leadership',
-      title: 'Founder & Managing Director at Codesphere Innovations (U) Limited',
-      description:
-        'Established Codesphere Innovations (U) Limited (codesphereug.com) in Uganda to deliver enterprise-grade custom software, AI-powered applications, cybersecurity, cloud engineering, and business digital transformation.'
-    },
-    {
-      stageNumber: 5,
-      theme: 'Product Engineering',
-      title: 'Leading Funa Gigs under Jaminsa Ventures Limited',
-      description:
-        'Founded and leads product engineering for Funa Gigs (a Jaminsa Ventures Limited marketplace product distinct from Codesphere Innovations), combining Flutter, Elixir/Phoenix, PostgreSQL, Supabase, live location discovery, and Instant Hire workflows.'
-    },
-    {
-      stageNumber: 6,
-      theme: 'Advanced Engineering',
-      title: 'AI Agents, Local LLMs, Cybersecurity, Ledgers & Observability',
-      description:
-        'Engineered specialized systems spanning OWASP AI capability firewalls (AgentShield), Apple Silicon hybrid RAG workspaces (Auralis Local), SSRF-free USSD/phishing defense (Cyber Dragon), adversarial quant committees (ARGUS AI), BigInt double-entry ledgers (FlowLedger), and OpenTelemetry DAG analyzers (StackPulse).'
-    },
-    {
-      stageNumber: 7,
-      theme: 'Open Source',
-      title: 'Verifiable Public Engineering from Uganda to the World',
-      description:
-        'Publishes reproducible, benchmark-backed open-source engineering platforms under @codesphere-u on GitHub—demonstrating that world-class, high-assurance systems engineering thrives in Kampala, Uganda.'
+      technologies: ['Python', 'JavaScript', 'React', 'Flask', 'Django', 'SQL', 'Cybersecurity', 'Automation']
     }
   ],
 
@@ -203,104 +261,121 @@ export const PORTFOLIO_DATA = {
     {
       id: 'cyber-dragon',
       slug: 'cyber-dragon',
-      name: 'Cyber Dragon v1.0',
+      name: 'Cyber Dragon',
       version: 'v1.0.0',
       isPrimaryFlagship: true,
-      tagline: 'SSRF-Free Community Cyber Defense & Mobile Money/USSD Fraud Engine',
+      visualMotif: 'shield',
+      accentColor: '#53C9EE',
+      tagline:
+        'SSRF-Free Community Cyber Defense & East African Mobile Money / USSD Fraud Intelligence Platform',
       summary:
-        'Dual-runtime (TypeScript Web + Python FastAPI) threat analyzer built for East African & global community defense. Detects phishing URLs, homograph/typosquatting domains, fake mobile money reversal SMS, and predatory USSD strings (*165#, *185#, *334#) without ever making outbound network requests.',
-      domains: ['Cybersecurity', 'Fintech & Ledgers'],
+        'Explainable, privacy-preserving defensive cybersecurity platform that detects phishing URLs, IDN homograph attacks, brand-impersonation domains, and Mobile Money / USSD social engineering without making external network requests.',
+      problemStatement:
+        'Phishing and digital fraud in mobile-first markets frequently combine spoofed SMS deposit alerts, USSD call/OTP forwarding traps (*21*, *165*), and combo-squatted lookalike domains. Traditional URL scanners fetch submitted links from backend servers—exposing scanners to Server-Side Request Forgery (SSRF) and alerting attackers via tracking beacons.',
+      technicalChallenges: [
+        'Achieving 100% SSRF immunity by deconstructing URLs, Punycode (xn--) labels, and query redirect chains purely lexically without DNS or HTTP resolution.',
+        'Minimizing false positives on official African and global bank/telecom domains while catching Levenshtein edit-distance=1 typosquatting and homoglyph substitutions across 18+ protected brands.',
+        'Scrubbing sensitive PII (phone numbers, 4–8 digit PINs/OTPs, emails, USSD strings, and secret tokens) before generating shareable incident reports.'
+      ],
+      securityConsiderations: [
+        'Zero external network fetches: untrusted URLs are never visited or resolved.',
+        'On-device browser analysis mode enabled by default so sensitive text never leaves the user tab unless explicitly submitted.',
+        'Non-echoing ScanResult contract verified by unit tests so raw credentials never appear in API responses.'
+      ],
+      domains: ['Cybersecurity', 'Full-Stack', 'Backend'],
       primaryDomain: 'Cybersecurity',
       repoUrl: 'https://github.com/codesphere-u/cyber-dragon',
       liveDemoUrl: 'https://cyber-dragon-ivory.vercel.app',
-      languages: ['TypeScript', 'Python', 'FastAPI', 'React'],
+      languages: ['TypeScript', 'Python', 'Next.js 15', 'FastAPI'],
       automatedTests: 21,
       headlineMetric: {
-        label: 'Mean Threat Analysis Latency',
+        label: 'Heuristic Latency & Accuracy',
         value: '0.28 ms · 8/8 Corpus',
-        detail: '100% offline/SSRF-free lexical & USSD heuristic scoring across 8 real-world East African & global threat scenarios'
+        detail: '100% expected risk-level match across 8 curated fraud & benign control scenarios with zero external network calls'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '21 passing (TS + Python)' },
+        { label: 'Automated Tests', value: '21 passing (12 Node + 9 Pytest)' },
         { label: 'Mean Latency', value: '0.28 ms / payload' },
         { label: 'Outbound Network Calls', value: '0 (Strictly SSRF-Free)' },
         { label: 'Live Deployment', value: 'cyber-dragon-ivory.vercel.app' }
       ],
       architectureBlueprint: {
-        diagram: `[Suspicious URL / SMS / USSD String (*165*...#)]
+        diagram: `[Untrusted Input: SMS / WhatsApp / URL / USSD / QR Code]
         │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│ 1. Zero-Egress Lexical URL Parser (No DNS / No HTTP Fetch)│
-├───────────────────────────────────────────────────────────┤
-│ 2. Brand Impersonation & IDN Punycode Homograph Detector  │
-├───────────────────────────────────────────────────────────┤
-│ 3. Mobile Money Social Engineering & Reversal Scam Scorer │
-├───────────────────────────────────────────────────────────┤
-│ 4. USSD PIN-Trap & Call-Forwarding (*21*) AST Inspector   │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-    [Explainable Risk Breakdown + Actionable Playbook]`,
+        ├─► On-Device Browser Engine (apps/web/lib/analyze.ts)
+        ├─► Developer CLI (apps/web/bin/cyber-dragon.mjs)
+        └─► Stateless FastAPI Service (services/threat-api/app/main.py)
+                    │
+        ┌───────────┴───────────────────────────────────────────┐
+        │ 5-Dimension Deterministic Heuristic Engine (0 Fetch)  │
+        │  1. Credential & OTP Harvesting (CRED-01..03)         │
+        │  2. Mobile Money & USSD Fraud (*21*, *165*, Reversal) │
+        │  3. Domain Deception (IDN xn--, Levenshtein Brands)   │
+        │  4. Coercive Urgency & Regulator Impersonation        │
+        │  5. Advance-Fee (419) & High-Yield Multiplier Scams   │
+        └───────────┬───────────────────────────────────────────┘
+                    ▼
+   [Explainable Risk Breakdown + PII-Redacted Incident Report]`,
         layers: [
           {
-            name: 'Zero-Egress Lexical URL & Hostname Inspector',
+            name: '5-Dimension Lexical & Structural Threat Analyzer',
             responsibility:
-              'Parses URLs strictly as strings/URL objects—flagging raw IP hosts, credential-in-URL (@) tricks, excessive subdomain nesting, high Shannon entropy, and Punycode (`xn--`) homographs.'
+              'Evaluates messages and URLs across credential harvesting, Mobile Money/USSD abuse, domain deception, coercive urgency, and advance-fee fraud in both TypeScript and Python.'
           },
           {
-            name: 'Mobile Money & USSD Fraud Heuristic Engine',
+            name: 'Levenshtein & Homoglyph Brand-Impersonation Detector',
             responsibility:
-              'Detects MTN MoMo (*165#), Airtel Money (*185#), and M-Pesa (*334#) social engineering patterns, fake cash-in reversal alerts, SIM-swap urgency cues, and *21*/*67* call-forwarding hijacks.'
+              'Compares hostnames against 18+ protected brands (MTN, Airtel, M-Pesa, Stanbic, Centenary, Equity, Flutterwave, Paystack, Chipper, URA, NSSF, WhatsApp, Telegram, Google, Microsoft, Apple, PayPal, Binance).'
           },
           {
-            name: 'Dual-Runtime Parity Layer (TypeScript UI + FastAPI Backend)',
+            name: 'PII Scrubber & Incident Report Exporter',
             responsibility:
-              'Provides identical deterministic risk scoring in the browser-side interactive analyzer and the Python FastAPI REST service.'
+              'Masks phone numbers, 4–8 digit numeric codes, emails, USSD strings, and secret tokens before generating Markdown or JSON incident briefs.'
           }
         ],
         invariants: [
-          'Zero outbound HTTP/DNS requests when analyzing user-submitted URLs—eliminating SSRF, internal port scanning, and attacker beacon callbacks.',
-          'Every risk verdict includes human-readable evidence signals and concrete remediation steps tailored for non-technical users.',
-          'Sub-millisecond execution (0.28 ms mean latency) enables real-time client-side scanning on low-end mobile devices.'
+          'Zero outbound HTTP/DNS requests are ever performed on user-submitted URLs (eliminating SSRF by construction).',
+          'ScanResult payloads never echo raw user secrets or URL query tokens.',
+          'Low indicator scores are always accompanied by an explicit advisory disclaimer rather than a false safety guarantee.'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'Refusal to Fetch User-Submitted URLs (SSRF-Free by Construction)',
+          id: 'ADR-001',
+          title: 'SSRF-Free Static Heuristic Architecture Over Live URL Fetching',
           context:
-            'Many URL scanners fetch the target page to inspect DOM content, inadvertently turning the scanner into an SSRF proxy and tipping off attackers via unique tracking URLs.',
+            'Fetching user-submitted URLs from a backend server exposes internal infrastructure to SSRF and triggers attacker tracking beacons on personalized phishing links.',
           decision:
-            'Perform 100% lexical, structural, Shannon-entropy, Levenshtein brand-distance, and USSD/SMS pattern analysis without making any DNS or HTTP requests.',
+            'Perform 100% static lexical and structural URI inspection using standard parsers, brand allowlists, edit-distance checks, and Punycode inspection without network I/O.',
           tradeOffs:
-            'Cannot inspect post-redirect DOM payloads behind neutral shorteners without user expansion, but completely eliminates SSRF vulnerabilities, attacker canary triggers, and network latency.',
+            'Cannot inspect destination DOM content behind shortened URLs (bit.ly), which are therefore flagged as obfuscated links requiring independent verification.',
           verification:
-            'Verified across 21 automated tests (TypeScript + FastAPI) and an 8/8 real-world threat corpus benchmark completing in 0.28 ms mean latency.'
+            'Verified across 12 Node.js unit tests, 8 benchmark scenarios, and 9 FastAPI endpoint tests.'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/cyber-dragon.git',
-        'cd cyber-dragon && npm test',
-        'pytest backend/tests'
+        'cd cyber-dragon/apps/web && npm install && npm test && npm run benchmark',
+        'node --experimental-strip-types bin/cyber-dragon.mjs scan "URGENT: Dial *21*0772112233# now"'
       ],
       sourceLinks: [
         {
-          label: 'Live Web Application',
+          label: 'TypeScript Threat Engine',
+          path: 'apps/web/lib/analyze.ts',
+          url: 'https://github.com/codesphere-u/cyber-dragon/blob/main/apps/web/lib/analyze.ts',
+          kind: 'source'
+        },
+        {
+          label: 'FastAPI Threat Service',
+          path: 'services/threat-api/app/main.py',
+          url: 'https://github.com/codesphere-u/cyber-dragon/blob/main/services/threat-api/app/main.py',
+          kind: 'source'
+        },
+        {
+          label: 'Live Web Workbench',
           path: 'https://cyber-dragon-ivory.vercel.app',
           url: 'https://cyber-dragon-ivory.vercel.app',
           kind: 'demo'
-        },
-        {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/cyber-dragon',
-          kind: 'source'
-        },
-        {
-          label: 'Threat Analyzer & USSD Fraud Engine',
-          path: 'src/',
-          url: 'https://github.com/codesphere-u/cyber-dragon/tree/main/src',
-          kind: 'source'
         }
       ]
     },
@@ -308,115 +383,238 @@ export const PORTFOLIO_DATA = {
     {
       id: 'auralis-local',
       slug: 'auralis-local',
-      name: 'Auralis Local v0.2',
+      name: 'Auralis Local',
       version: 'v0.2.0',
       isPrimaryFlagship: true,
-      tagline: 'Privacy-First Apple Silicon AI Workspace with Hybrid BM25 RAG & Local Voice',
+      visualMotif: 'waveform',
+      accentColor: '#387BFA',
+      tagline:
+        'Privacy-First Local AI Workspace, Hybrid BM25 RAG & Local Voice Room for Apple Silicon',
       summary:
-        'Local-first AI workspace engineered for Apple Silicon (`mlx-lm` / Ollama) with deterministic Okapi BM25 + semantic hybrid RAG, cite-or-abstain grounding verification, local Whisper STT / Kokoro TTS voice pipeline, and loopback-only capability sandboxing.',
-      domains: ['AI & Agents', 'Cybersecurity'],
-      primaryDomain: 'AI & Agents',
+        'Local-first AI assistant engineered for 16 GB Apple Silicon Macs. Combines streaming Ollama inference, local MLX/Whisper voice conversations, a line-aware Hybrid BM25 + Phrase RAG knowledge base with inline citations, and approval-gated workspace tools.',
+      problemStatement:
+        'Developers want capable coding, document retrieval, and voice assistants without streaming private source code or notes to external cloud APIs—or giving an LLM unrestricted shell and filesystem write access.',
+      technicalChallenges: [
+        'Keeping unified memory pressure predictable on a 16 GB Apple Silicon Mac through bounded context profiles (Fast vs. Balanced), short model residency, and single-flight generation.',
+        'Implementing deterministic, zero-cloud document chunking and Hybrid BM25 + Exact-Phrase retrieval that cites exact line ranges (#Lstart-Lend) in sub-millisecond latency.',
+        'Enforcing strict path-traversal, symlink, and dotfile/secret blocking in the workspace inspector while gating state mutations behind expiring human approval tokens.'
+      ],
+      securityConsiderations: [
+        'Loopback-only binding (127.0.0.1) with Origin validation and session-bound CSRF tokens.',
+        'Single-use, 5-minute expiring human approval proposals required before saving notes or indexing workspace files.',
+        'Workspace sandbox blocks "..", symlinks outside root, .env, .git, .ssh, and private key files; audit log redacts sensitive content.'
+      ],
+      domains: ['AI', 'Full-Stack', 'Cybersecurity'],
+      primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/auralis-local',
-      languages: ['Python', 'TypeScript', 'SQLite', 'Apple MLX'],
+      languages: ['TypeScript', 'React 19', 'Node.js', 'Python (MLX/Whisper)'],
       automatedTests: 36,
       headlineMetric: {
-        label: 'BM25 RAG Retrieval Latency',
+        label: 'Hybrid BM25 RAG Latency',
         value: '0.245 ms P50 · 3,110 docs/s',
-        detail: 'Sub-millisecond hybrid retrieval with cite-or-abstain grounding enforcement and zero cloud telemetry'
+        detail: 'Line-aware local document chunking and hybrid retrieval with deterministic source citations'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '36 passing' },
+        { label: 'Automated Tests', value: '36 passing (Linux & macOS CI)' },
         { label: 'Retrieval P50 Latency', value: '0.245 ms' },
         { label: 'Indexing Throughput', value: '3,110 docs/sec' },
         { label: 'Network Binding', value: '127.0.0.1 Loopback Only' }
       ],
       architectureBlueprint: {
-        diagram: `[Local Documents / Code / Voice Audio]
-        │
+        diagram: `[React 19 UI + Voice Room + Knowledge Drawer]
+        │  (Loopback 127.0.0.1 + Session / CSRF Guard)
         ▼
 ┌───────────────────────────────────────────────────────────┐
-│ 1. Heading-Aware Chunker & Okapi BM25 Inverted Index      │
-├───────────────────────────────────────────────────────────┤
-│ 2. Hybrid RRF Retriever (0.245 ms P50) + Citation Guard   │
-├───────────────────────────────────────────────────────────┤
-│ 3. Local Inference Router (Apple MLX / Ollama Loopback)   │
-├───────────────────────────────────────────────────────────┤
-│ 4. Path-Jailed Tool Sandbox + Single-Use Approval Tokens  │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-       [Grounded Answer with [doc#chunk] Citations]`,
+│ Node.js Local API Server (server/app.ts)                  │
+│  ├─► Hybrid BM25 + Phrase RAG Engine (server/knowledge.ts)│
+│  ├─► Sandboxed Workspace Inspector (server/workspace.ts)  │
+│  └─► Single-Use Approval Proposals (server/proposals.ts)  │
+└───────┬───────────────────────────────────┬───────────────┘
+        ▼                                   ▼
+[Ollama Local Runtime (11434)]   [MLX / whisper.cpp Voice (8080)]`,
         layers: [
           {
-            name: 'Deterministic Okapi BM25 + Reciprocal Rank Fusion (RRF) Engine',
+            name: 'Hybrid BM25 + Exact-Phrase Knowledge Base',
             responsibility:
-              'Indexes local Markdown, code, and PDFs at 3,110 docs/sec and retrieves top-k grounded chunks in 0.245 ms P50 without external vector DB daemons.'
+              'Chunks local Markdown, text, JSON, and source files with line-number provenance (#Lstart-Lend) and streams grounded citations into chat responses.'
           },
           {
-            name: 'Cite-or-Abstain Grounding Verifier',
+            name: 'Guarded Workspace File Inspector & Proposal Gate',
             responsibility:
-              'Validates that every synthesized claim references a retrieved `[source_id]` span above the minimum relevance threshold, abstaining when evidence is insufficient.'
+              'Validates paths via lstatSync/realpathSync to block symlinks and sensitive files, requiring explicit user approval before indexing.'
           },
           {
-            name: 'Loopback-Bound Daemon & Symlink-Safe Path Jail',
+            name: 'Local Voice Room & Apple Silicon Dictation',
             responsibility:
-              'Binds strictly to `127.0.0.1`, resolves `realpath` to block symlink escapes (`../`), and requires single-use approval tokens for any file write.'
+              'Integrates sentence-by-sentence speech synthesis with local MLX/Whisper transcription and tap-to-interrupt controls.'
           }
         ],
         invariants: [
-          'Zero external API calls or telemetry—all indexing, retrieval, speech-to-text, and LLM inference stay on the local machine.',
-          'Daemon refuses to bind to `0.0.0.0` unless explicitly overridden, preventing LAN exposure of local workspace tools.',
-          'File tools verify canonical `realpath` containment inside the workspace root before reading or mutating any byte.'
+          'Services bind exclusively to 127.0.0.1 and reject cross-origin browser requests.',
+          'No model-proposed note or workspace index action executes without a valid, unconsumed user approval token.',
+          'If Ollama is offline, the UI reports honest connection status rather than fabricating responses.'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'In-Process Okapi BM25 + RRF Over Heavyweight External Vector Databases',
+          id: 'ADR-001',
+          title: 'Loopback-Only Binding and Explicit Human Approval Proposals',
           context:
-            'Running Dockerized vector databases (Milvus/Qdrant) for a local desktop workspace consumes 1–2 GB of RAM away from unified Apple Silicon memory needed for LLM weights.',
+            'Local AI assistants running on a developer workstation can become local privilege escalation vectors if exposed to the LAN or allowed to write files autonomously.',
           decision:
-            'Implement an in-process Okapi BM25 inverted index (`k1=1.5, b=0.75`) fused with lightweight cosine embeddings via Reciprocal Rank Fusion (RRF) backed by SQLite.',
+            'Bind only to 127.0.0.1, enforce session/CSRF headers on state-changing routes, and require explicit single-use user approval tokens for tool writes.',
           tradeOffs:
-            'Not designed for 100M-document distributed clusters, but delivers 0.245 ms P50 query latency and 3,110 docs/sec indexing with near-zero RAM overhead for personal/team repositories.',
+            'Requires an extra user click to approve a note or document index, but eliminates silent prompt-injected writes.',
           verification:
-            'Verified via reproducible benchmark script and 36 automated tests covering retrieval precision, citation verification, and sandbox security.'
-        },
-        {
-          id: 'ADR-02',
-          title: 'Strict Loopback Binding and Single-Use Write Approval Tokens',
-          context:
-            'Local AI daemons often bind to `0.0.0.0` without authentication, allowing malicious websites (via DNS rebinding/CORS) or LAN peers to execute arbitrary file writes.',
-          decision:
-            'Enforce `127.0.0.1` loopback binding, strict Origin checking, realpath symlink resolution, and single-use cryptographic approval tokens for state-changing operations.',
-          tradeOffs:
-            'Interactive write operations require an explicit user confirmation handshake, preventing silent background file corruption or exfiltration.',
-          verification:
-            'Tested against path traversal (`../../etc/passwd`), symlink escape, and unapproved write attempts in the test suite.'
+            'Verified across 36 automated tests in tests/security.test.ts, tests/knowledge.test.ts, and tests/api.test.ts.'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/auralis-local.git',
-        'cd auralis-local && npm test',
-        'node src/cli.mjs benchmark'
+        'cd auralis-local && npm install && npm test',
+        'npm run benchmark'
       ],
       sourceLinks: [
         {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/auralis-local',
+          label: 'Hybrid BM25 RAG Engine',
+          path: 'server/knowledge.ts',
+          url: 'https://github.com/codesphere-u/auralis-local/blob/main/server/knowledge.ts',
           kind: 'source'
         },
         {
-          label: 'BM25 RAG & Grounding Engine',
-          path: 'src/',
-          url: 'https://github.com/codesphere-u/auralis-local/tree/main/src',
+          label: 'Sandboxed Workspace Inspector',
+          path: 'server/workspace.ts',
+          url: 'https://github.com/codesphere-u/auralis-local/blob/main/server/workspace.ts',
           kind: 'source'
         },
         {
-          label: '36 Automated Security & Retrieval Tests',
-          path: 'tests/',
-          url: 'https://github.com/codesphere-u/auralis-local/tree/main/tests',
+          label: 'Knowledge & Security Tests',
+          path: 'tests/knowledge.test.ts',
+          url: 'https://github.com/codesphere-u/auralis-local/blob/main/tests/knowledge.test.ts',
           kind: 'test'
+        }
+      ]
+    },
+
+    {
+      id: 'argus-ai',
+      slug: 'ARGUS-AI',
+      name: 'ARGUS AI',
+      version: 'v2.1.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'committee',
+      accentColor: '#F4B94C',
+      tagline:
+        'Auditable 7-Agent Adversarial Decision System, Devil’s Advocate Veto & Leakage-Free Backtester',
+      summary:
+        'Multi-agent quantitative research architecture that replaces single-model confirmation bias with a 7-agent Investment Committee, unilateral Devil’s Advocate veto power, deterministic ATR risk sizing, cryptographic Trade Passports, and a leakage-free walk-forward backtester.',
+      problemStatement:
+        'Single-agent algorithmic trading bots suffer from confirmation bias, lookahead leakage in backtests, and blind execution during volatility traps or flash crashes.',
+      technicalChallenges: [
+        'Enforcing strict point-in-time historical slicing (PointInTimeGuard) so agents never observe future bars (timestamp > decision_timestamp) during walk-forward simulation.',
+        'Modeling realistic execution friction (bid-ask half-spread, broker commission bps, and ATR-proportional volatility slippage) while tracking the counterfactual PnL of trades vetoed by the Devil’s Advocate agent.',
+        'Generating tamper-evident SHA-256 Trade Passports that can be deterministically replayed to verify committee consensus and risk-engine bounds.'
+      ],
+      securityConsiderations: [
+        'Paper trading and deterministic simulation enabled by default; live execution requires explicit environment authorization.',
+        'Hard circuit breaker (kill_switch.py) halts execution when daily drawdown or consecutive loss thresholds are breached.',
+        'SHA-256 digest verification detects any post-hoc tampering with recorded Trade Passports.'
+      ],
+      domains: ['AI', 'Fintech', 'Backend'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/ARGUS-AI',
+      languages: ['Python 3.12', 'Pydantic', 'Pandas / NumPy', 'MCP Server'],
+      automatedTests: 61,
+      headlineMetric: {
+        label: 'Adversarial Veto Precision',
+        value: '3 Trap Trades Vetoed · 61 Tests',
+        detail: 'Walk-forward simulation where Devil’s Advocate vetoed 3 flash-crash/blow-off traps ($488.37 counterfactual loss avoided)'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '61 passing (pytest)' },
+        { label: 'Committee Architecture', value: '7 Specialized Agents' },
+        { label: 'Leakage Protection', value: 'PointInTimeGuard Verified' },
+        { label: 'Protocol Integration', value: 'Model Context Protocol (MCP)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Historical Bar Stream / Alpaca Paper Feed]
+        │  (PointInTimeGuard: timestamp <= decision_timestamp)
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ Thesis Agents: Quant (EMA/RSI/ATR) · News · Macro · Opts  │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+┌───────────────────────────────────────────────────────────┐
+│ Devil's Advocate Agent (Adversarial Stress-Test & Veto)   │
+│  • Risk >= 75% ──► UNILATERAL VETO (Trade Discarded)      │
+│  • Risk >= 45% ──► 50% Position Downsize                  │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+┌───────────────────────────────────────────────────────────┐
+│ Deterministic Risk Commander (1.5x ATR Stop, 2:1 Target)  │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+   [SHA-256 Trade Passport + Counterfactual Backtest Audit]`,
+        layers: [
+          {
+            name: '7-Agent Investment Committee & Devil’s Advocate',
+            responsibility:
+              'Combines Quant, News, Macro, and Options thesis generation with an adversarial Devil’s Advocate agent empowered to downsize or veto proposals.'
+          },
+          {
+            name: 'Leakage-Free Walk-Forward Backtester (argus_ai/backtest.py)',
+            responsibility:
+              'Enforces PointInTimeGuard, deducts spread/commission/ATR-slippage costs, and compares full committee governance against an unfiltered baseline.'
+          },
+          {
+            name: 'Cryptographic Trade Passports & MCP Server',
+            responsibility:
+              'Serializes every committee deliberation into a SHA-256 signed JSON passport with deterministic CLI replay and MCP tool exposure.'
+          }
+        ],
+        invariants: [
+          'Any bar with timestamp > decision_timestamp immediately raises LookaheadLeakageError.',
+          'A Devil’s Advocate disqualification score >= 75% unconditionally vetoes execution regardless of bullish thesis scores.',
+          'Simulation and paper-trading are the default operating modes; no fabricated live trading returns are claimed.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Unilateral Devil’s Advocate Veto & Non-Bypassable ATR Risk Gate',
+          context:
+            'Weighted averaging across bullish agents allows strong momentum signals to override severe liquidity or macro trap warnings.',
+          decision:
+            'Grant the Devil’s Advocate agent unilateral veto authority at >=75% disqualification risk and enforce deterministic 1.5x ATR stops in the Risk Commander.',
+          tradeOffs:
+            'Reduces total trade frequency in choppy markets, but substantially cuts maximum drawdown and avoids bull-trap reversals.',
+          verification:
+            'Verified across 61 pytest tests including tests/test_backtest_engine.py and tests/test_argus_committee.py.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/ARGUS-AI.git',
+        'cd ARGUS-AI && pytest -v',
+        'python -m argus_ai.cli backtest'
+      ],
+      sourceLinks: [
+        {
+          label: 'Leakage-Free Backtester',
+          path: 'argus_ai/backtest.py',
+          url: 'https://github.com/codesphere-u/ARGUS-AI/blob/main/argus_ai/backtest.py',
+          kind: 'source'
+        },
+        {
+          label: 'Committee Orchestrator',
+          path: 'argus_ai/committee.py',
+          url: 'https://github.com/codesphere-u/ARGUS-AI/blob/main/argus_ai/committee.py',
+          kind: 'source'
+        },
+        {
+          label: 'Backtest Verification Report',
+          path: 'docs/BACKTEST_VERIFICATION_REPORT.md',
+          url: 'https://github.com/codesphere-u/ARGUS-AI/blob/main/docs/BACKTEST_VERIFICATION_REPORT.md',
+          kind: 'docs'
         }
       ]
     },
@@ -427,220 +625,118 @@ export const PORTFOLIO_DATA = {
       name: 'AgentShield',
       version: 'v1.0.0',
       isPrimaryFlagship: true,
-      tagline: 'OWASP 2026 AI Agent Security & Capability Firewall',
+      visualMotif: 'firewall',
+      accentColor: '#53C9EE',
+      tagline:
+        'Deterministic AI Agent Security, Capability Firewall & Red-Teaming Framework (OWASP 2026)',
       summary:
-        'Deterministic capability firewall and runtime policy engine intercepting tool calls before execution. Mitigates indirect prompt injection, SSRF/cloud metadata exfiltration, credential leakage, and privilege escalation with a tamper-evident SHA-256 hash-chained audit ledger.',
-      domains: ['Cybersecurity', 'AI & Agents'],
+        'Open-source defensive framework for testing, governing, and monitoring autonomous AI agents. Implements multi-layer prompt-injection detection, declarative tool permission policies, secret egress redaction, and a SHA-256 hash-chained audit ledger.',
+      problemStatement:
+        'Autonomous AI agents connected to shell, filesystem, database, and HTTP tools are vulnerable to direct prompt injection, indirect RAG context poisoning, SSRF against cloud metadata services, and accidental credential exfiltration.',
+      technicalChallenges: [
+        'Detecting obfuscated prompt injections across direct user input and untrusted retrieved documents (HTML comments, ChatML delimiters, Base64/Hex encoding, and zero-width Unicode steganography) with zero false positives on benign control prompts.',
+        'Enforcing deep argument-level inspection on tool calls (blocking shell chaining, symlink/path traversal, RFC1918 & 169.254.169.254 SSRF, and destructive SQL) automatically downgrading privileges when untrusted context is present.',
+        'Maintaining a tamper-evident SHA-256 hash-chained execution audit log that detects any modified or deleted security event.'
+      ],
+      securityConsiderations: [
+        'Evaluates only local agents, synthetic benchmarks, or explicitly authorized systems.',
+        'Untrusted context contamination automatically escalates high-risk tool calls from ALLOW to REQUIRE_APPROVAL or DENY.',
+        'Egress scanner redacts OpenAI/GitHub/AWS/GCP keys, JWTs, PEM private keys, database URIs, and Luhn-validated payment cards.'
+      ],
+      domains: ['Cybersecurity', 'AI', 'Backend'],
       primaryDomain: 'Cybersecurity',
       repoUrl: 'https://github.com/codesphere-u/agentshield',
-      languages: ['TypeScript', 'Node.js'],
+      languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'CLI / SDK'],
       automatedTests: 42,
       headlineMetric: {
-        label: 'Red-Team Recall / FPR',
+        label: 'OWASP 2026 Benchmark Suite',
         value: '100% Recall · 0% FPR',
-        detail: '25-scenario adversarial corpus (17 malicious attacks blocked, 8 benign workflows allowed)'
+        detail: '25/25 exact verdict accuracy across 21 synthetic attack scenarios and 4 benign controls'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '42 passing' },
-        { label: 'Red-Team Corpus', value: '25 scenarios' },
-        { label: 'Audit Integrity', value: 'SHA-256 Hash Chain' },
-        { label: 'Approval Gate', value: 'HMAC-SHA256 Single-Use' }
+        { label: 'Automated Tests', value: '42 passing (pytest + Ruff)' },
+        { label: 'Red-Team Corpus', value: '25 OWASP 2026 scenarios' },
+        { label: 'Attack Recall / FPR', value: '100.0% Recall / 0.0% FPR' },
+        { label: 'Audit Trail', value: 'SHA-256 Hash-Chained Ledger' }
       ],
       architectureBlueprint: {
-        diagram: `[Untrusted Context / Prompt]
+        diagram: `[User Prompt + Retrieved RAG Context]
         │
         ▼
 ┌───────────────────────────────────────────────────────────┐
-│ 1. Context Taint Scanner (Indirect Injection & Confusion) │
-├───────────────────────────────────────────────────────────┤
-│ 2. Tool Argument Validator (Path, Shell, SQL, SSRF Guard) │
-├───────────────────────────────────────────────────────────┤
-│ 3. Capability Gate & HMAC-SHA256 Single-Use Approval Token│
-├───────────────────────────────────────────────────────────┤
-│ 4. Secret Redactor (AWS, JWT, PEM, Bearer, Mobile Money)  │
+│ 1. PromptInjectionDetector (Direct, Indirect, Base64/ZWSP)│
 └───────────────────────────┬───────────────────────────────┘
                             ▼
-        [Tamper-Evident SHA-256 Chained Audit Ledger]`,
+┌───────────────────────────────────────────────────────────┐
+│ 2. AgentShieldPolicy Capability Firewall                  │
+│    • Shell Inspector (blocks ; && | $() rm -rf curl|sh)   │
+│    • Filesystem Sandbox (blocks .., .env, .ssh, *.pem)    │
+│    • Network SSRF Guard (blocks 169.254.169.254, RFC1918) │
+│    • SQL Guard (blocks DROP, TRUNCATE, stacked queries)   │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+┌───────────────────────────────────────────────────────────┐
+│ 3. DataLeakageDetector Egress Firewall + SHA-256 Ledger   │
+└───────────────────────────────────────────────────────────┘`,
         layers: [
           {
-            name: 'Context Taint & Prompt Injection Scanner',
+            name: 'Multi-Layer Prompt Injection & Context-Poisoning Detector',
             responsibility:
-              'Detects role-override instructions, base64/hex obfuscated payloads, and untrusted RAG/webhook taint attempting to invoke high-privilege tools.'
+              'Scans user inputs and retrieved tool outputs for instruction overrides, jailbreak framing, delimiter spoofing, encoded payloads, and zero-width characters.'
           },
           {
-            name: 'Deterministic Argument & Egress Inspector',
+            name: 'Declarative Capability Policy Engine (agentshield/policy/engine.py)',
             responsibility:
-              'Blocks RFC1918/link-local/IMDSv2 (169.254.169.254) SSRF targets, path traversal (../), command chaining, and destructive SQL/filesystem payloads.'
+              'Enforces allow, deny, and require_approval rules with built-in inspectors for shell, filesystem, network SSRF, and SQL tool arguments.'
           },
           {
-            name: 'HMAC-SHA256 Capability & Human-in-the-Loop Gate',
+            name: 'Egress Secret Redactor & Hash-Chained Audit Ledger',
             responsibility:
-              'Requires cryptographically bound single-use tokens tied to canonical {toolName, argsHash, sessionId} before executing destructive operations.'
-          },
-          {
-            name: 'Hash-Chained Audit Ledger',
-            responsibility:
-              'Links every decision entry via prevHash -> entryHash (SHA-256) so post-compromise log tampering is mathematically detectable.'
+              'Scans outgoing responses for credentials/PII and appends every decision to a verifiable SHA-256 hash chain.'
           }
         ],
         invariants: [
-          'Zero LLM-in-the-loop latency or non-determinism on security boundaries—all policy checks execute deterministically in sub-millisecond time.',
-          'Approval tokens bind to canonicalized JSON argument hashes and cannot be replayed across tools or sessions.',
-          'Every output stream passes through multi-pattern secret scrubbing before returning to the model or caller.'
+          'Every tool call is evaluated against explicit capability rules before execution; unpermitted tools are denied by default.',
+          'Any mutation or deletion of an entry in AuditLedger causes verify_integrity() to fail with the exact broken sequence index.',
+          'All 25 benchmark scenarios execute deterministically offline using safe synthetic payloads.'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'Deterministic Capability Inspection Over LLM-Judge Guardrails',
+          id: 'ADR-001',
+          title: 'Deterministic Capability Firewall Outside the LLM Context Window',
           context:
-            'Probabilistic "LLM-as-a-judge" guardrails are themselves vulnerable to adversarial jailbreaks and add 300–1,500 ms of latency per tool call.',
+            'Relying on system-prompt instructions alone ("never run destructive commands") fails when an agent ingests adversarial instructions from external documents.',
           decision:
-            'Enforce strict capability policies, AST/regex structural validators, RFC1918/IMDSv2 IP range parsing, and taint propagation rules purely in deterministic TypeScript.',
+            'Enforce tool allow/deny policies, SSRF checks, path sandboxing, and egress redaction in a deterministic Python policy engine outside the LLM.',
           tradeOffs:
-            'Requires explicit policy definitions per tool capability class, but guarantees 0% non-determinism, sub-millisecond overhead, and 100% reproducibility in CI.',
+            'Requires declaring tool schemas and sandbox roots upfront, but guarantees deterministic enforcement even under complete prompt compromise.',
           verification:
-            'Verified across 42 unit/integration tests and a 25-scenario OWASP Agentic Top 10 red-team benchmark with 100% recall and 0% false positive rate.'
-        },
-        {
-          id: 'ADR-02',
-          title: 'Cryptographic Single-Use Approval Tokens Bound to Canonical Argument Hash',
-          context:
-            'Boolean confirmation flags in agent loops can be spoofed by prompt injection or replayed with mutated tool arguments.',
-          decision:
-            'Issue HMAC-SHA256 tokens bound to (toolName, canonicalArgsSha256, sessionId, expiresAt) and mark nonces consumed immediately upon verification.',
-          tradeOffs:
-            'Requires the host orchestrator to manage an approval secret and token lifecycle, preventing all parameter-tampering and replay attacks.',
-          verification:
-            'Tested against token replay, cross-tool substitution, argument mutation, and expiration tampering in tests/agentshield.test.ts.'
+            'Verified across 42 pytest tests and the 25-scenario OWASP 2026 evaluation suite.'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/agentshield.git',
-        'cd agentshield && npm test',
-        'node src/cli.mjs benchmark'
+        'cd agentshield && pytest -v',
+        'python -m agentshield.cli evaluate'
       ],
       sourceLinks: [
         {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/agentshield',
+          label: 'Capability Policy Firewall',
+          path: 'agentshield/policy/engine.py',
+          url: 'https://github.com/codesphere-u/agentshield/blob/main/agentshield/policy/engine.py',
           kind: 'source'
         },
         {
-          label: 'Firewall Engine & Policy Inspector',
-          path: 'src/firewall.mjs',
-          url: 'https://github.com/codesphere-u/agentshield/blob/main/src/firewall.mjs',
+          label: 'Prompt Injection Detector',
+          path: 'agentshield/detectors/prompt_injection.py',
+          url: 'https://github.com/codesphere-u/agentshield/blob/main/agentshield/detectors/prompt_injection.py',
           kind: 'source'
         },
         {
-          label: '25-Scenario OWASP Red-Team Corpus & Tests',
-          path: 'tests/agentshield.test.mjs',
-          url: 'https://github.com/codesphere-u/agentshield/blob/main/tests/agentshield.test.mjs',
-          kind: 'test'
-        }
-      ]
-    },
-
-    {
-      id: 'argus-ai',
-      slug: 'ARGUS-AI',
-      name: 'ARGUS AI v2.1',
-      version: 'v2.1.0',
-      isPrimaryFlagship: true,
-      tagline: "7-Agent Adversarial Investment Committee with Devil's Advocate Veto & Leakage-Free Backtester",
-      summary:
-        "Multi-agent quantitative research & risk governance platform where 5 specialist analysts debate a mandatory Devil's Advocate agent equipped with hard veto authority, guarded by a strict point-in-time (as-of timestamp) data gateway and walk-forward backtester with MCP server integration.",
-      domains: ['AI & Agents', 'Fintech & Ledgers'],
-      primaryDomain: 'AI & Agents',
-      repoUrl: 'https://github.com/codesphere-u/ARGUS-AI',
-      languages: ['Python', 'TypeScript', 'MCP'],
-      automatedTests: 61,
-      headlineMetric: {
-        label: 'Adversarial Risk Governance',
-        value: '3 Trap Trades Vetoed · 61 Tests',
-        detail: "Devil's Advocate hard veto + point-in-time lookahead leakage guard verified in walk-forward simulation"
-      },
-      secondaryMetrics: [
-        { label: 'Automated Tests', value: '61 passing' },
-        { label: 'Committee Architecture', value: '7 Adversarial Agents' },
-        { label: 'Walk-Forward Guard', value: '3 Catastrophic Traps Vetoed' },
-        { label: 'Protocol Support', value: 'Model Context Protocol (MCP)' }
-      ],
-      architectureBlueprint: {
-        diagram: `[Point-in-Time Market & Fundamental Feed (timestamp <= as_of)]
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│ 1. Temporal Leakage Guard (Rejects Future Timestamps)     │
-├───────────────────────────────────────────────────────────┤
-│ 2. 5 Specialist Agents (Macro, Quant, Fundamental, etc.)  │
-├───────────────────────────────────────────────────────────┤
-│ 3. Devil's Advocate Agent (Tail-Risk, Crowding, Veto Gate)│
-├───────────────────────────────────────────────────────────┤
-│ 4. Risk-Adjusted Sizing & Walk-Forward Backtest Engine    │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-    [Auditable Committee Memo + MCP Tool Surface]`,
-        layers: [
-          {
-            name: 'Point-in-Time Temporal Data Gateway',
-            responsibility:
-              'Enforces strict `record.available_at <= simulation_clock` checks on every fundamental, price, and sentiment record—throwing `LookaheadLeakageError` if future information leaks into a historical decision.'
-          },
-          {
-            name: "7-Agent Adversarial Committee & Devil's Advocate Veto",
-            responsibility:
-              "Runs 5 domain analysts, 1 Devil's Advocate tasked exclusively with falsifying the bull/bear thesis (accounting anomalies, liquidity traps, drawdowns), and 1 Portfolio Chair."
-          },
-          {
-            name: 'Walk-Forward Simulation & MCP Server',
-            responsibility:
-              'Evaluates Sharpe, Sortino, Max Drawdown, and Calmar ratios net of slippage/fees, and exposes committee inspection tools over Model Context Protocol (MCP).'
-          }
-        ],
-        invariants: [
-          'Any data record with `available_at > as_of` is deterministically rejected before reaching any agent prompt or factor calculation.',
-          "A single critical structural red flag from the Devil's Advocate triggers a hard veto regardless of bullish consensus among the 5 specialist agents.",
-          'All backtests include realistic transaction cost and slippage penalties—never zero-cost paper fills.'
-        ]
-      },
-      adrs: [
-        {
-          id: 'ADR-01',
-          title: "Mandatory Devil's Advocate Agent with Hard Veto Power",
-          context:
-            'Multi-agent LLM ensembles suffer from sycophantic consensus, amplifying momentum narratives while ignoring balance-sheet fragility or liquidity cliffs.',
-          decision:
-            "Dedicate Agent #6 as an adversarial Devil's Advocate scored on identifying thesis-invalidating risks, with hard veto power when leverage, drawdown, or accounting risk exceeds policy bounds.",
-          tradeOffs:
-            'Reduces raw trade frequency during frothy bull runs, but prevented 3 catastrophic trap trades in walk-forward simulation and materially reduced maximum drawdown.',
-          verification:
-            'Verified across 61 automated tests covering lookahead leakage prevention, veto enforcement, and walk-forward metrics.'
-        }
-      ],
-      cliQuickstart: [
-        'git clone https://github.com/codesphere-u/ARGUS-AI.git',
-        'cd ARGUS-AI && pytest',
-        'python3 -m argus.cli backtest'
-      ],
-      sourceLinks: [
-        {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/ARGUS-AI',
-          kind: 'source'
-        },
-        {
-          label: 'Adversarial Committee & Veto Engine',
-          path: 'argus/',
-          url: 'https://github.com/codesphere-u/ARGUS-AI',
-          kind: 'source'
-        },
-        {
-          label: '61 Automated Leakage & Governance Tests',
-          path: 'tests/',
-          url: 'https://github.com/codesphere-u/ARGUS-AI/tree/main/tests',
+          label: '42 Security & API Tests',
+          path: 'tests/test_agentshield.py',
+          url: 'https://github.com/codesphere-u/agentshield/blob/main/tests/test_agentshield.py',
           kind: 'test'
         }
       ]
@@ -649,120 +745,118 @@ export const PORTFOLIO_DATA = {
     {
       id: 'flowledger',
       slug: 'flowledger',
-      name: 'FlowLedger v1.0',
+      name: 'FlowLedger',
       version: 'v1.0.0',
       isPrimaryFlagship: true,
-      tagline: 'Integer Minor-Unit Double-Entry Payment & Mobile Money Reconciliation Engine',
+      visualMotif: 'ledger',
+      accentColor: '#F4B94C',
+      tagline:
+        'African Payment Orchestration, Idempotent State Machine & Double-Entry Reconciliation Engine',
       summary:
-        'Deterministic double-entry financial ledger and 3-way mobile money reconciliation engine supporting UGX, KES, and USD. Enforces BigInt minor-unit arithmetic (zero IEEE-754 floats), idempotent webhook ingestion, state-machine payment lifecycles, and SHA-256 hash-chained journal entries.',
-      domains: ['Fintech & Ledgers', 'Cybersecurity'],
-      primaryDomain: 'Fintech & Ledgers',
+        'Financial infrastructure engine demonstrating institutional double-entry ledger accounting, idempotent payment processing, HMAC webhook verification, simulated MTN MoMo & Airtel Money adapters, and automated 3-way reconciliation.',
+      problemStatement:
+        'Mobile money and payment integrations face duplicate webhook deliveries, out-of-order settlement callbacks arriving before authorization responses, network timeouts, and provider fee discrepancies that corrupt naive single-column balance tables.',
+      technicalChallenges: [
+        'Eliminating floating-point representation errors by enforcing strict integer minor-unit arithmetic across UGX, KES, NGN, and USD accounts and verifying zero-sum balanced postings on every journal commit.',
+        'Handling out-of-order and duplicate mobile-money webhooks idempotently using SHA-256 request payload fingerprinting and deterministic state-machine transitions.',
+        'Reconciling internal payment intents, double-entry ledger postings, and external provider settlement statements (3-way reconciliation) to automatically classify fee discrepancies and missing settlements.'
+      ],
+      securityConsiderations: [
+        'Constant-time HMAC-SHA256 webhook signature verification (hmac.compare_digest) with timestamp replay-window enforcement and nonce caching.',
+        'SHA-256 hash-chained journal entries (entry_hash = sha256(prev_hash + canonical_payload)) prevent silent ledger mutation.',
+        '100% synthetic sandbox data—no live merchant credentials or proprietary customer records are used.'
+      ],
+      domains: ['Fintech', 'Backend', 'Full-Stack'],
+      primaryDomain: 'Fintech',
       repoUrl: 'https://github.com/codesphere-u/flowledger',
-      languages: ['TypeScript', 'Node.js'],
+      languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'Double-Entry Engine'],
       automatedTests: 51,
       headlineMetric: {
-        label: 'Ledger Imbalance & Audit Chain',
+        label: 'Ledger Invariant Integrity',
         value: '0 Imbalance · 97 Chained Entries',
-        detail: '51 automated tests verifying BigInt double-entry invariants across UGX/KES and 50-tx 3-way reconciliation'
+        detail: '100% balanced debits == credits across 50 synthetic East African mobile money transactions with injected failures'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '51 passing' },
+        { label: 'Automated Tests', value: '51 passing (pytest)' },
         { label: 'Hash-Chained Entries', value: '97 verified (0 imbalance)' },
-        { label: '3-Way Reconciliation', value: '50 synthetic txs (100% classified)' },
-        { label: 'Arithmetic Model', value: 'BigInt Minor Units (No Floats)' }
+        { label: '3-Way Reconciliation', value: '50 synthetic txs classified' },
+        { label: 'Arithmetic Model', value: 'Strict Integer Minor Units' }
       ],
       architectureBlueprint: {
-        diagram: `[Mobile Money Webhook / Payment Intent (UGX / KES / USD)]
+        diagram: `[Payment Initiation / MTN MoMo & Airtel Sandbox Webhooks]
         │
         ▼
 ┌───────────────────────────────────────────────────────────┐
-│ 1. Idempotency Guard (Key + Payload Hash Conflict Check)  │
+│ 1. HMAC-SHA256 Webhook Verifier & Replay Window Guard     │
 ├───────────────────────────────────────────────────────────┤
-│ 2. Payment State Machine (CREATED -> AUTHORIZED -> SETTLED│
+│ 2. SHA-256 Idempotency Store (409 on Payload Mutation)    │
 ├───────────────────────────────────────────────────────────┤
-│ 3. BigInt Double-Entry Journal (Σ Debits === Σ Credits)   │
+│ 3. Deterministic Payment State Machine                    │
+│    INITIATED ──► PENDING ──► AUTHORIZED ──► SETTLED       │
 ├───────────────────────────────────────────────────────────┤
-│ 4. 3-Way Reconciliation Engine (Internal vs Provider vs Bank)│
+│ 4. Immutable Double-Entry Ledger (Sum Debits == Credits)  │
 └───────────────────────────┬───────────────────────────────┘
                             ▼
-     [SHA-256 Hash-Chained Audit Log & Settlement Report]`,
+   [3-Way Reconciliation Engine + Adjustment Proposals]`,
         layers: [
           {
-            name: 'BigInt Minor-Unit Double-Entry Core',
+            name: 'Immutable Double-Entry Ledger Engine (flowledger/ledger/engine.py)',
             responsibility:
-              'Rejects floating-point numbers at the boundary; validates currency homogeneity and enforces Σ debits === Σ credits across every atomic journal posting.'
+              'Enforces integer minor-unit amounts, balanced debit/credit postings, account normal-balance rules, and SHA-256 hash chaining.'
           },
           {
-            name: 'Idempotent Webhook & Payment State Machine',
+            name: 'Idempotent Payment State Machine & Webhook Guard',
             responsibility:
-              'Deduplicates at-least-once telecom callbacks (MTN MoMo / Airtel / M-Pesa) and enforces legal state transitions (`AUTHORIZED -> CAPTURED -> SETTLED -> REFUNDED`).'
+              'Validates state transitions, buffers or resolves out-of-order settlement callbacks, and blocks replayed or tampered webhooks.'
           },
           {
-            name: '3-Way Reconciliation Classifier',
+            name: 'Automated 3-Way Reconciliation Pipeline',
             responsibility:
-              'Cross-matches Internal Ledger, Mobile Money Provider CSV/API statements, and Settlement Bank records—automatically isolating exact matches, fee variances, amount mismatches, and phantom/missing settlements.'
+              'Cross-checks payment orders, ledger journal entries, and provider statements into MATCHED, FEE_DISCREPANCY, MISSING_IN_LEDGER, and STALE_UNSETTLED.'
           }
         ],
         invariants: [
-          'IEEE-754 floating-point values (`0.1 + 0.2 !== 0.3`) are banned across the codebase; all amounts are represented as `bigint` minor units.',
-          'Every journal entry is cryptographically chained (`SHA-256(prevHash + canonicalEntry)`) so historical ledger edits break chain verification.',
-          'Reusing an idempotency key with a mutated payload throws an explicit `IdempotencyConflictError` rather than silently corrupting balances.'
+          'Every JournalEntry must satisfy Sum(Debits) == Sum(Credits) in integer minor units; floats and booleans are rejected.',
+          'Duplicate idempotency keys with identical payloads replay the cached response without creating duplicate ledger postings.',
+          'Every ledger posting is linked to an immutable SHA-256 hash chain verified by verify_invariants().'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'Strict BigInt Minor-Unit Arithmetic and Ban on IEEE-754 Floating Point',
+          id: 'ADR-001',
+          title: 'Strict Integer Minor-Unit Accounting & Hash-Chained Journal Entries',
           context:
-            'Standard JavaScript `number` uses double-precision floats that silently accumulate rounding errors during fee splits, FX conversions, and high-volume UGX/KES aggregations.',
+            'IEEE-754 floating-point numbers introduce rounding drift during fee splits, and mutable balance columns hide audit history during payment disputes.',
           decision:
-            'Represent all monetary quantities exclusively as `bigint` minor units paired with an explicit ISO-4217 currency code (`UGX`, `KES`, `USD`) and reject any non-integer input.',
+            'Represent all monetary amounts as strict integer minor units and derive all account balances from append-only, SHA-256 hash-chained double-entry postings.',
           tradeOffs:
-            'Requires explicit serialization helpers when converting to JSON (`string` representation of minor units), but guarantees exact zero-imbalance accounting forever.',
+            'Requires explicit currency minor-unit scaling at display boundaries, but guarantees zero rounding drift and complete auditability.',
           verification:
-            'Verified across 51 tests and a 50-transaction simulation producing 97 hash-chained journal entries with 0 minor-unit imbalance.'
-        },
-        {
-          id: 'ADR-02',
-          title: '3-Way Reconciliation Across Internal Ledger, Telecom Provider, and Settlement Bank',
-          context:
-            'In East African mobile money flows, a transaction marked "SUCCESS" via webhook may still suffer settlement delays, fee discrepancies, or silent drop-offs before bank settlement.',
-          decision:
-            'Implement deterministic 3-way matching across all three books of record, classifying every transaction into `MATCHED`, `AMOUNT_MISMATCH`, `MISSING_IN_PROVIDER`, `MISSING_IN_BANK`, or `UNRECORDED_INTERNAL`.',
-          tradeOffs:
-            'Requires ingesting both telecom statements and bank settlement files, but surfaces every discrepancy automatically before end-of-day close.',
-          verification:
-            'Verified in tests/reconciliation.test.mjs with injected drift, missing webhooks, and fee variance scenarios.'
+            'Verified across 51 automated tests in tests/test_ledger_invariants.py and tests/test_reconciliation_and_api.py.'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/flowledger.git',
-        'cd flowledger && npm test',
-        'node src/cli.mjs simulate'
+        'cd flowledger && pytest -v',
+        'python -m flowledger.cli demo'
       ],
       sourceLinks: [
         {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/flowledger',
+          label: 'Double-Entry Ledger Engine',
+          path: 'flowledger/ledger/engine.py',
+          url: 'https://github.com/codesphere-u/flowledger/blob/main/flowledger/ledger/engine.py',
           kind: 'source'
         },
         {
-          label: 'BigInt Double-Entry Ledger & Hash Chain',
-          path: 'src/ledger.mjs',
-          url: 'https://github.com/codesphere-u/flowledger/blob/main/src/ledger.mjs',
+          label: '3-Way Reconciliation Engine',
+          path: 'flowledger/reconciliation/engine.py',
+          url: 'https://github.com/codesphere-u/flowledger/blob/main/flowledger/reconciliation/engine.py',
           kind: 'source'
         },
         {
-          label: '3-Way Mobile Money Reconciliation Engine',
-          path: 'src/reconciliation.mjs',
-          url: 'https://github.com/codesphere-u/flowledger/blob/main/src/reconciliation.mjs',
-          kind: 'source'
-        },
-        {
-          label: '51 Automated Ledger & Reconciliation Tests',
-          path: 'tests/',
-          url: 'https://github.com/codesphere-u/flowledger/tree/main/tests',
+          label: 'Ledger Invariant Tests',
+          path: 'tests/test_ledger_invariants.py',
+          url: 'https://github.com/codesphere-u/flowledger/blob/main/tests/test_ledger_invariants.py',
           kind: 'test'
         }
       ]
@@ -771,102 +865,120 @@ export const PORTFOLIO_DATA = {
     {
       id: 'stackpulse',
       slug: 'stackpulse',
-      name: 'StackPulse v1.0',
+      name: 'StackPulse',
       version: 'v1.0.0',
       isPrimaryFlagship: true,
-      tagline: 'OpenTelemetry DAG Critical-Path Analyzer, N+1 Query Detector & Multi-Window SLO Platform',
+      visualMotif: 'trace',
+      accentColor: '#387BFA',
+      tagline:
+        'Cloud Observability, OpenTelemetry Trace DAG Critical-Path Analyzer & Multi-Window SLO Lab',
       summary:
-        'High-throughput observability & SRE diagnostics engine that reconstructs distributed OpenTelemetry span trees into execution DAGs, computes true blocking critical-path latency (excluding async fan-out overlap), detects N+1 query storms, and evaluates Google SRE multi-window multi-burn-rate SLO alerts.',
-      domains: ['Cloud & SRE'],
-      primaryDomain: 'Cloud & SRE',
+        'Self-hostable cloud reliability and incident investigation platform. Reconstructs W3C distributed trace DAGs, computes true critical-path bottlenecks, automatically detects ORM N+1 query regressions, tracks Google SRE multi-window SLO burn rates, and generates blameless postmortems.',
+      problemStatement:
+        'During microservice latency spikes or retry storms, engineers waste critical minutes staring at flat span lists without knowing which downstream service owns the true critical path or whether error budgets are burning at a page-worthy rate.',
+      technicalChallenges: [
+        'Reconstructing parent-child span DAG trees and computing interval-union child coverage so parallel child spans are not double-counted when attributing self-exclusive latency.',
+        'Automatically detecting N+1 ORM query regressions (repeated sequential database child spans under a single parent) and cascading HTTP 503 retry amplification.',
+        'Implementing Google SRE Workbook multi-window, multi-burn-rate alerting (1h/6h fast burn at 14.4x vs. 24h/72h slow burn at 6x) with time-to-exhaustion projections.'
+      ],
+      securityConsiderations: [
+        'Bounded in-memory ring-buffer store prevents unbounded memory exhaustion under high span ingestion load.',
+        'Self-hostable Docker Compose architecture keeps telemetry data inside organizational boundaries.',
+        'Input validation on W3C trace/span identifiers and attribute payloads.'
+      ],
+      domains: ['Cloud', 'Backend', 'Full-Stack'],
+      primaryDomain: 'Cloud',
       repoUrl: 'https://github.com/codesphere-u/stackpulse',
-      languages: ['TypeScript', 'Node.js', 'OpenTelemetry'],
+      languages: ['Python 3.12', 'FastAPI', 'OpenTelemetry', 'Docker Compose'],
       automatedTests: 47,
       headlineMetric: {
-        label: 'DAG Assembly Throughput',
+        label: 'Trace DAG Critical-Path Speed',
         value: '19,525 traces/s · 51.2 µs/trace',
-        detail: '47 automated tests verifying critical-path extraction, N+1 detection, and multi-window SLO burn alerts'
+        detail: 'Reconstructs W3C span trees, identifies critical-path bottlenecks, and flags N+1 query patterns'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '47 passing' },
-        { label: 'DAG Throughput', value: '19,525 traces/sec' },
+        { label: 'Automated Tests', value: '47 passing (pytest + Ruff)' },
+        { label: 'DAG Assembly Speed', value: '19,525 traces/sec' },
         { label: 'Critical-Path Latency', value: '51.2 µs / trace' },
-        { label: 'SLO Engine', value: 'Multi-Window Burn Rate (14.4x / 6x)' }
+        { label: 'SLO Alerting Model', value: 'Multi-Window Burn Rate (14.4x / 6x)' }
       ],
       architectureBlueprint: {
-        diagram: `[OpenTelemetry Span Stream (traceId, spanId, parentSpanId)]
+        diagram: `[W3C TraceContext Spans + Correlated Logs + Metrics]
         │
         ▼
 ┌───────────────────────────────────────────────────────────┐
-│ 1. Span DAG Assembler & Orphan/Clock-Skew Normalizer      │
+│ 1. TelemetryStore Ingestion Ring Buffer                   │
 ├───────────────────────────────────────────────────────────┤
-│ 2. Exclusive Self-Time & True Critical-Path Solver        │
+│ 2. TraceAnalyzer DAG Builder (Interval-Union Self Time)   │
+│    • Critical-Path Bottleneck Walk                        │
+│    • N+1 Sequential DB Query Detector                     │
+│    • Cascading Retry-Storm Detector                       │
 ├───────────────────────────────────────────────────────────┤
-│ 3. Fingerprint N+1 Query Storm & Retry Cascade Detector   │
+│ 3. Topology Graph (P50/P95/P99 + Z-Score Spike Detector)  │
 ├───────────────────────────────────────────────────────────┤
-│ 4. Google SRE Multi-Window Error Budget Burn Evaluator    │
+│ 4. Google SRE Multi-Window SLO Burn-Rate Engine           │
 └───────────────────────────┬───────────────────────────────┘
                             ▼
-    [Bottleneck Attribution + Pager/Ticket Alert Verdict]`,
+   [Incident Correlator + Automated Markdown SRE Postmortem]`,
         layers: [
           {
-            name: 'OpenTelemetry DAG & Critical-Path Solver (51.2 µs/trace)',
+            name: 'W3C Trace DAG & Critical-Path Analyzer (stackpulse/tracing/analyzer.py)',
             responsibility:
-              'Reconstructs parent-child span hierarchies at 19,525 traces/sec and walks interval timelines to isolate the exact sequence of blocking spans driving end-to-end tail latency.'
+              'Assembles flat spans into a directed tree, computes interval-union exclusive time, walks the critical path, and flags N+1 query patterns.'
           },
           {
-            name: 'Structural SQL/RPC Anti-Pattern Detector',
+            name: 'Service Topology & Multi-Window SLO Engine (stackpulse/slo/engine.py)',
             responsibility:
-              'Normalizes parameterized SQL queries (`SELECT * FROM orders WHERE id = ?`) to flag sequential N+1 loops, unindexed full scans, and synchronous retry storms.'
+              'Tracks caller-to-callee latency percentiles and evaluates 1h/6h and 24h/72h error-budget burn rates.'
           },
           {
-            name: 'Multi-Window Multi-Burn-Rate SLO Engine',
+            name: 'Chaos Workload Simulator & Incident Correlator',
             responsibility:
-              'Implements Google SRE Workbook dual-window burn-rate rules (e.g., 1h/5m @ 14.4x burn -> PAGE; 6h/30m @ 6x burn -> TICKET) to eliminate flappy false-positive pages.'
+              'Generates deterministic baseline, DB pool saturation, N+1 regression, and 503 retry-storm workloads and exports SRE postmortems.'
           }
         ],
         invariants: [
-          'Parallel asynchronous child spans are merged using interval union math so total self-time never exceeds 100% of parent wall-clock duration.',
-          'Orphaned spans (missing parentSpanId) and minor NTP clock skews are gracefully normalized without crashing trace assembly.',
-          'SLO page alerts only fire when BOTH short and long windows exceed the error budget burn threshold, preventing alert fatigue from brief spikes.'
+          'Self-exclusive span duration uses interval-union merging so concurrent child spans never cause negative or over-subtracted parent self-time.',
+          'PAGE_CRITICAL alerts fire only when both short (1h) and long (6h) windows exceed the 14.4x burn-rate threshold, preventing flapping.',
+          'All chaos scenarios are deterministic and reproducible via CLI seed.'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'Interval-Aware Critical-Path Extraction Over Naive Span Duration Sorting',
+          id: 'ADR-001',
+          title: 'Interval-Union Exclusive Duration & Multi-Window Burn-Rate Alerting',
           context:
-            'Sorting spans by total duration misidentifies parent wrapper spans or non-blocking background tasks as the root cause of request latency.',
+            'Naive subtraction of child span durations fails when a parent service issues concurrent RPC calls, and single-window error-rate alerts either page too late or reset too slowly.',
           decision:
-            'Compute exclusive self-time by subtracting the merged interval union of active child spans and trace the longest contiguous blocking path from root entry to exit.',
+            'Merge overlapping child intervals before computing exclusive self-duration, and pair 1h/6h fast-burn windows with 24h/72h slow-burn windows.',
           tradeOffs:
-            'Requires O(N log N) interval sorting per span node, yet executes in just 51.2 µs per 8-span trace (19,525 traces/sec) in pure TypeScript.',
+            'Requires sorting child span intervals per parent node (O(k log k)), which executes in ~51 µs per trace.',
           verification:
-            'Verified across 47 automated tests covering parallel fan-out, sequential N+1 waterfalls, orphan spans, and multi-window SLO burn rates.'
+            'Verified across 47 pytest tests in tests/test_stackpulse.py and benchmarked across 500 traces (3,625 spans).'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/stackpulse.git',
-        'cd stackpulse && npm test',
-        'node src/cli.mjs benchmark'
+        'cd stackpulse && pytest -v',
+        'python -m stackpulse.cli simulate --scenario all'
       ],
       sourceLinks: [
         {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/stackpulse',
+          label: 'Trace DAG & N+1 Analyzer',
+          path: 'stackpulse/tracing/analyzer.py',
+          url: 'https://github.com/codesphere-u/stackpulse/blob/main/stackpulse/tracing/analyzer.py',
           kind: 'source'
         },
         {
-          label: 'DAG Critical-Path & N+1 Analyzer',
-          path: 'src/',
-          url: 'https://github.com/codesphere-u/stackpulse/tree/main/src',
+          label: 'Multi-Window SLO Engine',
+          path: 'stackpulse/slo/engine.py',
+          url: 'https://github.com/codesphere-u/stackpulse/blob/main/stackpulse/slo/engine.py',
           kind: 'source'
         },
         {
-          label: '47 Automated Trace & SLO Tests',
-          path: 'tests/',
-          url: 'https://github.com/codesphere-u/stackpulse/tree/main/tests',
+          label: '47 Observability Tests',
+          path: 'tests/test_stackpulse.py',
+          url: 'https://github.com/codesphere-u/stackpulse/blob/main/tests/test_stackpulse.py',
           kind: 'test'
         }
       ]
@@ -875,103 +987,117 @@ export const PORTFOLIO_DATA = {
     {
       id: 'agrisignal',
       slug: 'agrisignal',
-      name: 'AgriSignal v1.0',
+      name: 'AgriSignal',
       version: 'v1.0.0',
       isPrimaryFlagship: false,
+      visualMotif: 'agro',
+      accentColor: '#53C9EE',
       tagline:
-        'Offline-First Smallholder Agricultural Decision Support with Uncertainty Bounds & Multilingual 160-char SMS Advisories',
+        'Offline-First Smallholder Agricultural Decision Support, Uncertainty Bounds & Multilingual SMS Engine',
       summary:
-        'Deterministic agronomic advisory engine for East African smallholder farmers (maize, beans, coffee, cassava, matooke). Computes water-balance evapotranspiration budgets, planting-window confidence intervals, pest/disease risk (Fall Armyworm, Cassava Mosaic, Coffee Leaf Rust), and GSM-7 160-character SMS advisories in English (`en`), Luganda (`lg`), and Kiswahili (`sw`).',
-      domains: ['AgriTech & HealthTech', 'AI & Agents'],
-      primaryDomain: 'AgriTech & HealthTech',
+        'Offline-aware agricultural advisory platform engineered for smallholder farming environments in East Africa. Combines explainable agro-ecological rule evaluation with explicit uncertainty bounds, Fall Armyworm & Coffee Wilt IPM risk matrices, Hybrid Logical Clock LWW offline sync, and <=160-character SMS advisories in English, Luganda, and Swahili.',
+      problemStatement:
+        'Smallholder farmers and rural extension officers operate in environments with intermittent 2G/3G connectivity, missing soil sensors, and multilingual communication needs—where black-box yield predictions without uncertainty bounds can lead to costly planting mistakes.',
+      technicalChallenges: [
+        'Quantifying epistemic uncertainty when field records are missing soil pH, soil moisture, or temperature anomaly sensors—widening confidence intervals and emitting explicit missing-sensor warnings rather than guessing.',
+        'Resolving offline field-observation conflicts deterministically across intermittently connected rural tablets using Hybrid Logical Clocks (HLC) and Last-Write-Wins Element-Set (LWW-Element-Set) outboxes with SHA-256 payload integrity.',
+        'Compressing actionable crop advisories and confidence bounds into strict <=160-character GSM-7 single-segment SMS messages across English (en), Luganda (lg), and Swahili (sw).'
+      ],
+      securityConsiderations: [
+        'SHA-256 content hash verification on every synced field observation envelope blocks corrupted or tampered payloads.',
+        'Explicit epistemic disclaimers prevent unvalidated diagnostic or yield guarantees.',
+        'Idempotency keys prevent duplicate observation ingestion during flaky 2G retry loops.'
+      ],
+      domains: ['AI', 'Backend', 'Full-Stack'],
+      primaryDomain: 'Backend',
       repoUrl: 'https://github.com/codesphere-u/agrisignal',
-      languages: ['Python', 'TypeScript', 'Node.js'],
+      languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'HLC / LWW Sync'],
       automatedTests: 60,
       headlineMetric: {
-        label: 'Multilingual GSM-7 SMS Bound',
-        value: '≤160 Chars (`en`, `lg`, `sw`) · 60 Tests',
-        detail: '60 passing pytest tests verifying offline-first water-balance, pest risk, uncertainty intervals & SMS bounds'
+        label: 'Multilingual SMS & Sync Guarantee',
+        value: '≤160 Chars (en, lg, sw) · 60 Tests',
+        detail: '100% deterministic LWW conflict resolution across 20 offline records and 3 rural devices'
       },
       secondaryMetrics: [
         { label: 'Automated Tests', value: '60 passing (pytest)' },
-        { label: 'SMS Budget Guarantee', value: '≤ 160 GSM-7 chars' },
-        { label: 'Locales Supported', value: 'English, Luganda, Kiswahili' },
-        { label: 'Connectivity Required', value: '0 (100% Offline-First)' }
+        { label: 'Crops & Agro-Zones', value: '6 Crops × 4 East African Zones' },
+        { label: 'SMS Budget Guarantee', value: '≤ 160 GSM-7 chars (en, lg, sw)' },
+        { label: 'Offline Sync Protocol', value: 'HLC + LWW-Element-Set + SHA-256' }
       ],
       architectureBlueprint: {
-        diagram: `[Soil Moisture / 7-Day Rain Forecast / Crop Stage / Locale]
+        diagram: `[Rural Field Tablet / Extension Input (Intermittent 2G/3G)]
+        │
+        ├─► OfflineOutbox (HLC Timestamp + SHA-256 Integrity Hash)
+        │         │
+        │         ▼ (Reconnects after network partition)
+        │   CentralSyncHub (LWW-Element-Set Conflict Resolution)
         │
         ▼
 ┌───────────────────────────────────────────────────────────┐
-│ 1. FAO-56 Inspired Soil Water-Balance & ETc Calculator    │
-├───────────────────────────────────────────────────────────┤
-│ 2. Pest & Disease Risk Matrix + Uncertainty Quantifier    │
-├───────────────────────────────────────────────────────────┤
-│ 3. Chemical Safety Guardrail (WHO Class Ia/Ib Ban)        │
-├───────────────────────────────────────────────────────────┤
-│ 4. Multilingual GSM-7 160-Char SMS Formatter (en/lg/sw)   │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-    [Actionable Advisory + Confidence Bounds + Single SMS]`,
+│ Explainable Agro-Climatic Engine (6 Crops × 4 Zones)      │
+│  • Rule Trace + Explicit UncertaintyBounds (CI & Sensors) │
+│  • Pest & Disease IPM Matrix (FAW, CWD, CMD, BXW)         │
+│  • Multilingual Formatter (en, lg, sw <= 160 GSM-7 chars) │
+└───────────────────────────────────────────────────────────┘`,
         layers: [
           {
-            name: 'Deterministic Soil Water-Balance & Crop Stage Engine',
+            name: 'Explainable Crop Advisory & Uncertainty Engine (agrisignal/advisory/engine.py)',
             responsibility:
-              'Computes effective rainfall vs crop evapotranspiration (`ET0 * Kc`) across germination, vegetative, flowering, and maturity stages for East African staple crops.'
+              'Evaluates rainfall, soil moisture, pH, and growth stage across maize, robusta coffee, beans, cassava, matooke banana, and groundnuts with explicit confidence intervals.'
           },
           {
-            name: 'Uncertainty-Aware Recommendation & Safety Filter',
+            name: 'Pest & Disease IPM Early-Warning Matrix (agrisignal/advisory/pest_risk.py)',
             responsibility:
-              'Outputs explicit `[lower, upper]` confidence bounds, shifts to conservative guidance when sensor/weather inputs are stale or missing, and blocks hazardous uncalibrated pesticide dosages.'
+              'Assesses environmental preconditions for Fall Armyworm, Coffee Berry Borer/Wilt, Cassava Mosaic, Bean Anthracnose, and Banana Bacterial Wilt.'
           },
           {
-            name: 'GSM-7 Single-Segment SMS Compactor (`en`, `lg`, `sw`)',
+            name: 'HLC Offline Sync & Multilingual SMS Formatter',
             responsibility:
-              'Formats crop advisories into strict ≤160-character GSM-7 messages in English, Luganda, and Kiswahili so rural farmers on basic 2G feature phones receive complete guidance in a single SMS.'
+              'Synchronizes partitioned field records deterministically and formats <=160-char advisories in English, Luganda, and Swahili.'
           }
         ],
         invariants: [
-          'Every generated SMS advisory is strictly verified to be ≤160 characters and GSM-7 compatible—preventing multi-part SMS truncation or carrier billing spikes.',
-          'When weather or soil telemetry is missing or high-variance, confidence scores degrade deterministically and high-cost fertilizer/chemical actions are withheld.',
-          'Zero cloud dependency—runs offline on rural extension officer devices or USSD/SMS gateways.'
+          'Every advisory includes an explicit UncertaintyBounds object; missing optional sensors deterministically widen the confidence interval.',
+          'Every formatted SMS advisory is strictly <= 160 characters across all languages and crop stages.',
+          'Tampered observation payloads failing SHA-256 digest verification are rejected by CentralSyncHub.'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'Strict ≤160-Character GSM-7 Multilingual SMS Constraint (`en`, `lg`, `sw`)',
+          id: 'ADR-001',
+          title: 'HLC LWW-Element-Set Outbox & Explicit Uncertainty Reporting',
           context:
-            'Smallholder farmers across Uganda, Kenya, and Tanzania rely on 2G feature phones where multi-segment Unicode SMS messages often arrive out of order, get truncated, or triple carrier transmission costs.',
+            'Rural field tablets frequently lose connectivity for days, and smallholder plots rarely have complete laboratory soil telemetry.',
           decision:
-            'Design a deterministic multilingual template compactor in English (`en`), Luganda (`lg`), and Kiswahili (`sw`) using pure 7-bit GSM characters with automated length assertions (`<= 160`).',
+            'Queue field records locally with Hybrid Logical Clocks and SHA-256 hashes for commutative LWW sync, and compute explicit data-completeness and confidence bounds on every recommendation.',
           tradeOffs:
-            'Requires concise domain vocabulary and abbreviation tables per language, but guarantees 100% single-segment delivery across every rural telecom gateway.',
+            'Requires deterministic tie-breaking on HLC node IDs, but operates with zero data loss across multi-day offline partitions.',
           verification:
-            'Verified across 60 passing pytest tests covering all crops, risk levels, and all 3 languages (`en`, `lg`, `sw`).'
+            'Verified across 60 parametrized pytest tests in tests/test_agrisignal.py.'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/agrisignal.git',
-        'cd agrisignal && pytest',
-        'python3 -m agrisignal.cli advise --crop maize --locale lg'
+        'cd agrisignal && pytest -v',
+        'python -m agrisignal.cli advise --crop maize --zone lake_victoria_crescent --rain-14d 85 --lang lg'
       ],
       sourceLinks: [
         {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/agrisignal',
+          label: 'Crop Advisory & Uncertainty Engine',
+          path: 'agrisignal/advisory/engine.py',
+          url: 'https://github.com/codesphere-u/agrisignal/blob/main/agrisignal/advisory/engine.py',
           kind: 'source'
         },
         {
-          label: 'Agronomic Engine & Multilingual SMS Compactor',
-          path: 'src/',
-          url: 'https://github.com/codesphere-u/agrisignal/tree/main/src',
+          label: 'HLC Offline Sync Engine',
+          path: 'agrisignal/sync/engine.py',
+          url: 'https://github.com/codesphere-u/agrisignal/blob/main/agrisignal/sync/engine.py',
           kind: 'source'
         },
         {
-          label: '60 Automated Agronomic & SMS Bounds Tests',
-          path: 'tests/',
-          url: 'https://github.com/codesphere-u/agrisignal/tree/main/tests',
+          label: '60 Parametrized Tests',
+          path: 'tests/test_agrisignal.py',
+          url: 'https://github.com/codesphere-u/agrisignal/blob/main/tests/test_agrisignal.py',
           kind: 'test'
         }
       ]
@@ -983,204 +1109,429 @@ export const PORTFOLIO_DATA = {
       name: 'Clinical Virtual Health Platform',
       version: 'v1.0.0',
       isPrimaryFlagship: false,
+      visualMotif: 'clinical',
+      accentColor: '#387BFA',
       tagline:
-        'FHIR-Aligned Telemedicine, NEWS2 Early-Warning Triage & Tamper-Evident Clinical Audit Platform',
+        'Polyglot Telemedicine Monorepo — Next.js Clinical Portals, Fastify API, LiveKit Video & Flutter Packages',
       summary:
-        'Virtual care and remote patient monitoring platform engineered for clinics and telehealth providers. Combines deterministic NEWS2 vital-sign acuity triage, medication interaction safety checks, low-bandwidth consultation workflows, and HIPAA-aligned cryptographic audit trails.',
-      domains: ['AgriTech & HealthTech', 'Cybersecurity'],
-      primaryDomain: 'AgriTech & HealthTech',
+        'Enterprise-grade virtual care and clinical workflow monorepo combining 4 role-specific Next.js web portals (Patient, Clinician, Admin, Analytics), a Fastify OpenAPI backend, shared domain/validation/auth/video TypeScript packages, PostgreSQL + Redis infrastructure, and modular Flutter mobile packages.',
+      problemStatement:
+        'Virtual care platforms require strict coordination between appointment state machines, clinician license & prescription safety validation, multi-role authentication (JWT + TOTP MFA + KYC), and low-latency WebRTC video consultations across web and mobile clients.',
+      technicalChallenges: [
+        'Enforcing deterministic appointment lifecycle transitions (AVAILABLE -> BOOKED -> PATIENT_CHECKED_IN -> IN_CONSULTATION -> COMPLETED) inside a shared @docaas/domain package consumed by both backend and frontend apps.',
+        'Validating clinician GMC/MDCN registration identifiers, dosage boundaries, and contraindication rules in @docaas/validation before prescriptions can be signed.',
+        'Abstracting WebRTC SFU room orchestration in @docaas/video with LiveKit token generation, webhook handling, and 15 documented Architectural Decision Records (ADR-001 to ADR-015).'
+      ],
+      securityConsiderations: [
+        'Stateless JWT access tokens paired with rotating refresh tokens, TOTP multi-factor authentication, and role-based access control (@docaas/auth).',
+        'Data classification tiers and jurisdiction residency tagging in @docaas/domain.',
+        'Confidentiality hygiene enforced via .gitignore and CI pipeline checks.'
+      ],
+      domains: ['Full-Stack', 'Backend', 'Cybersecurity'],
+      primaryDomain: 'Full-Stack',
       repoUrl: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform',
-      languages: ['TypeScript', 'Python', 'FHIR R4', 'React'],
-      automatedTests: 28,
+      languages: ['TypeScript', 'Turborepo', 'Next.js', 'Fastify', 'Flutter / Dart'],
+      automatedTests: 5,
       headlineMetric: {
-        label: 'Clinical Triage & Audit Safety',
-        value: '100% Deterministic NEWS2 · 28 Tests',
-        detail: 'Zero-hallucination vital-sign acuity scoring with role-based PHI access controls and audit logging'
+        label: 'Polyglot Monorepo Architecture',
+        value: '15 ADRs · 7 Shared Packages · 5 Test Suites',
+        detail: 'Turborepo monorepo spanning 4 Next.js portals, Fastify API, Flutter packages, and 5 verification suites'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '28 passing' },
-        { label: 'Acuity Scoring', value: 'Deterministic NEWS2 Protocol' },
-        { label: 'Interoperability', value: 'HL7 FHIR R4 Resource Model' },
-        { label: 'PHI Governance', value: 'RBAC + Immutable Audit Log' }
+        { label: 'Verification Suites', value: '5 test suites (Domain, Auth, Validation, API, Video)' },
+        { label: 'Architecture Records', value: '15 ADRs (ADR-001 to ADR-015)' },
+        { label: 'Web & API Surfaces', value: '4 Next.js Apps + Fastify API' },
+        { label: 'Mobile Architecture', value: '5 Modular Flutter Packages' }
       ],
       architectureBlueprint: {
-        diagram: `[Patient Vitals / Encounter Intake / Telehealth Session]
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│ 1. FHIR R4 Observation & Patient Schema Validator         │
-├───────────────────────────────────────────────────────────┤
-│ 2. Deterministic NEWS2 Acuity & Red-Flag Triage Engine    │
-├───────────────────────────────────────────────────────────┤
-│ 3. Contraindication & Dosage Boundary Safety Checker      │
-├───────────────────────────────────────────────────────────┤
-│ 4. RBAC Policy Gate & Tamper-Evident PHI Access Ledger    │
-└───────────────────────────┬───────────────────────────────┘
-                            ▼
-    [Prioritized Clinical Queue + Auditable Encounter Record]`,
+        diagram: `[Next.js Portals: Patient · Clinician · Admin · Analytics]   [Flutter Mobile Apps]
+        │                                                              │
+        └──────────────────────────────┬───────────────────────────────┘
+                                       ▼
+┌──────────────────────────────────────────────────────────────────────────┐
+│ Fastify REST / OpenAPI Clinical Core Server (services/api)               │
+├──────────────────────────────────────────────────────────────────────────┤
+│ Shared Domain & Security Packages (packages/*)                           │
+│  • @docaas/domain     (Appointment State Machine, Roles, Jurisdictions)  │
+│  • @docaas/validation (GMC/MDCN License, Dosage & Contraindications)     │
+│  • @docaas/auth       (JWT, Rotating Refresh, TOTP MFA, KYC, RBAC)       │
+│  • @docaas/video      (Provider-Agnostic Video Gateway & LiveKit SFU)    │
+│  • @docaas/database   (PostgreSQL 16 Schema & Audit Indexes)             │
+└──────────────────────────────────────────────────────────────────────────┘`,
         layers: [
           {
-            name: 'Deterministic NEWS2 Clinical Triage Engine',
+            name: 'Domain State Machine & Clinical Validation (@docaas/domain & @docaas/validation)',
             responsibility:
-              'Computes National Early Warning Score 2 (respiration rate, SpO2, systolic BP, pulse, consciousness, temperature) to escalate critical patients immediately.'
+              'Enforces legal appointment state transitions, data classification tiers, clinician registration formats, and prescription safety rules.'
           },
           {
-            name: 'HL7 FHIR R4 Resource & Medication Safety Layer',
+            name: 'Authentication, MFA & Video SFU Gateway (@docaas/auth & @docaas/video)',
             responsibility:
-              'Structures patient encounters, observations, and prescriptions in FHIR R4 format while checking allergy and drug-interaction rules.'
+              'Manages JWT/refresh rotation, TOTP MFA, RBAC permissions, and LiveKit WebRTC consultation room lifecycle.'
           },
           {
-            name: 'RBAC & PHI Access Audit Trail',
+            name: 'Multi-Portal Next.js Web & Modular Flutter Architecture',
             responsibility:
-              'Enforces strict clinician/patient role boundaries and logs every Protected Health Information (PHI) read/write event.'
+              'Separates Patient, Clinician, Admin, and Analytics web portals while sharing core Dart packages across Flutter mobile targets.'
           }
         ],
         invariants: [
-          'Clinical acuity escalation never relies on unverified probabilistic text generation—vital thresholds follow strict medical protocol tables.',
-          'Every access to patient records requires an authenticated role context and emits an immutable audit event.',
-          'Gracefully degrades to asynchronous store-and-forward triage when video bandwidth drops in rural clinics.'
+          'Illegal appointment state transitions (e.g., AVAILABLE directly to COMPLETED) are rejected by canTransitionAppointment().',
+          'All clinical database migrations and audit index schemas are verified in GitHub Actions CI alongside PostgreSQL 16 and Redis 7 service containers.',
+          'Presented strictly as an engineering architecture monorepo without claiming clinical certification or regulatory approval.'
         ]
       },
       adrs: [
         {
-          id: 'ADR-01',
-          title: 'Protocol-Driven NEWS2 Acuity Scoring Over Generative Triage',
+          id: 'ADR-001',
+          title: 'Polyglot Turborepo Monorepo with Shared Domain & Validation Packages',
           context:
-            'Using unconstrained LLMs to triage patient vital signs introduces hallucination risks and non-reproducible urgency classifications.',
+            'Duplicating appointment state transitions and clinical validation logic across separate repositories leads to drift between web portals and API services.',
           decision:
-            'Implement clinical triage using deterministic, table-driven NEWS2 scoring and explicit red-flag physiological bounds before any clinician summary assistive step.',
+            'Consolidate shared domain entities, clinical validators, auth guards, and video drivers into typed workspace packages (@docaas/*) with 15 documented ADRs.',
           tradeOffs:
-            'Requires structured vital-sign inputs, but guarantees 100% clinical reproducibility, explainability, and sub-millisecond triage latency.',
+            'Requires workspace-aware build orchestration (Turborepo + pnpm), but guarantees single-source-of-truth domain rules.',
           verification:
-            'Verified across 28 automated clinical triage, schema validation, and RBAC security tests.'
+            'Verified across 5 test suites (domain, auth, validation, phase3-integration, phase5-video) and GitHub Actions CI.'
         }
       ],
       cliQuickstart: [
         'git clone https://github.com/codesphere-u/Clinical-Virtual-Health-Platform.git',
-        'cd Clinical-Virtual-Health-Platform && npm test'
+        'cd Clinical-Virtual-Health-Platform && pnpm install',
+        'pnpm test'
       ],
       sourceLinks: [
         {
-          label: 'Repository Root',
-          path: '/',
-          url: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform',
+          label: 'Domain State Machine Tests',
+          path: 'packages/domain/src/__tests__/domain.unit.test.ts',
+          url: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/blob/main/packages/domain/src/__tests__/domain.unit.test.ts',
+          kind: 'test'
+        },
+        {
+          label: '15 Architecture Decision Records',
+          path: 'docs/architecture/adr',
+          url: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/tree/main/docs/architecture/adr',
+          kind: 'docs'
+        },
+        {
+          label: 'Fastify Clinical API Service',
+          path: 'services/api/src',
+          url: 'https://github.com/codesphere-u/Clinical-Virtual-Health-Platform/tree/main/services/api/src',
           kind: 'source'
         }
       ]
     }
   ],
 
+  knowledgeMap: [
+    {
+      id: 'ai-systems',
+      label: 'AI Systems',
+      shortCode: '01 / AI',
+      category: 'Autonomous Agents & Local Inference',
+      x: 220,
+      y: 120,
+      accentColor: '#53C9EE',
+      summary:
+        'Architecting multi-agent deliberation systems with adversarial veto controls, privacy-first local LLM workspaces on Apple Silicon, and deterministic hybrid retrieval (BM25 + phrase RAG).',
+      capabilities: [
+        'Multi-agent committee orchestration & adversarial Devil’s Advocate veto (ARGUS AI)',
+        'Local LLM streaming inference via Ollama, Apple Silicon MLX, and Whisper voice rooms (Auralis Local)',
+        'Line-aware Hybrid BM25 + Exact-Phrase RAG with inline citations (Auralis Local)',
+        'Model Context Protocol (MCP) server implementation & structured Pydantic outputs'
+      ],
+      technologies: ['Python', 'TypeScript', 'Ollama', 'MLX', 'Whisper', 'MCP', 'BM25 RAG', 'TensorFlow'],
+      relatedProjectIds: ['auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
+      relatedCommercialNames: ['AI Energy Efficiency Tool'],
+      connectedNodeIds: ['cybersecurity', 'backend-architecture', 'distributed-systems']
+    },
+    {
+      id: 'cybersecurity',
+      label: 'Cybersecurity',
+      shortCode: '02 / SEC',
+      category: 'Defensive Tools & AI Governance',
+      x: 500,
+      y: 85,
+      accentColor: '#F4B94C',
+      summary:
+        'Designing SSRF-free threat analysis engines, OWASP 2026 AI agent capability firewalls, prompt-injection detectors, and privacy-preserving incident reporting tools.',
+      capabilities: [
+        'SSRF-free static URL/domain deconstruction, IDN Punycode & brand-impersonation detection (Cyber Dragon)',
+        'East African Mobile Money reversal & USSD (*21*, *165*) fraud detection (Cyber Dragon)',
+        'OWASP 2026 agentic capability firewall, shell/path/SSRF/SQLi guards & secret egress redaction (AgentShield)',
+        'Loopback sandboxing, CSRF/Origin validation, TOTP MFA, and SHA-256 hash-chained audit logs'
+      ],
+      technologies: ['OWASP 2026', 'Static Heuristics', 'HMAC-SHA256', 'SHA-256 Audit Chains', 'RBAC / MFA', 'PII Redaction'],
+      relatedProjectIds: ['cyber-dragon', 'agentshield', 'auralis-local', 'flowledger'],
+      relatedCommercialNames: ['4codex Security Assessments', 'Funa Gigs Trust & Safety'],
+      connectedNodeIds: ['ai-systems', 'backend-architecture', 'cloud-infrastructure']
+    },
+    {
+      id: 'backend-architecture',
+      label: 'Backend Architecture',
+      shortCode: '03 / API',
+      category: 'High-Integrity Services & State Machines',
+      x: 780,
+      y: 125,
+      accentColor: '#387BFA',
+      summary:
+        'Building strongly typed REST/OpenAPI services, deterministic payment and appointment state machines, idempotent webhook processors, and modular monoliths.',
+      capabilities: [
+        'FastAPI, Node.js, Fastify, Flask, Django REST, and Elixir/Phoenix service architecture',
+        'Idempotent request fingerprinting & constant-time HMAC webhook verification (FlowLedger)',
+        'Deterministic domain state machines for payments, appointments, and marketplace matching',
+        'Server-Sent Events (SSE) & NDJSON streaming with clean cancellation boundaries'
+      ],
+      technologies: ['Python', 'FastAPI', 'TypeScript', 'Node.js', 'Elixir / Phoenix', 'Django', 'Flask', 'Fastify'],
+      relatedProjectIds: ['flowledger', 'cyber-dragon', 'stackpulse', 'clinical-virtual-health-platform'],
+      relatedCommercialNames: ['Funa Gigs (Jaminsa Ventures)', 'PesaFlow', 'Trip Planner & ELD'],
+      connectedNodeIds: ['databases', 'distributed-systems', 'cybersecurity', 'ai-systems']
+    },
+    {
+      id: 'databases',
+      label: 'Databases',
+      shortCode: '04 / DATA',
+      category: 'Ledger Modeling & Persistence',
+      x: 860,
+      y: 280,
+      accentColor: '#F4B94C',
+      summary:
+        'Modeling relational schemas, append-only double-entry accounting ledgers, audit indexes, and conflict-free offline synchronization stores.',
+      capabilities: [
+        'Append-only double-entry accounting with integer minor-unit invariants (FlowLedger)',
+        'PostgreSQL 16 schema design, Prisma migrations, and composite audit indexing (Clinical Platform)',
+        'Supabase real-time subscriptions, row-level security, and geospatial queries (Funa Gigs)',
+        'Local owner-only JSON knowledge stores and SQLite/MySQL operational schemas'
+      ],
+      technologies: ['PostgreSQL', 'Supabase', 'Prisma', 'SQLite', 'MySQL', 'Redis', 'Double-Entry Modeling'],
+      relatedProjectIds: ['flowledger', 'clinical-virtual-health-platform', 'agrisignal', 'auralis-local'],
+      relatedCommercialNames: ['Funa Gigs', 'BizManage Pro', 'Sector Business Systems'],
+      connectedNodeIds: ['backend-architecture', 'distributed-systems', 'flutter']
+    },
+    {
+      id: 'distributed-systems',
+      label: 'Distributed Systems',
+      shortCode: '05 / DIST',
+      category: 'Consensus, Sync & Observability',
+      x: 680,
+      y: 420,
+      accentColor: '#53C9EE',
+      summary:
+        'Engineering systems that remain consistent under network partitions, out-of-order callbacks, retry storms, and multi-device offline synchronization.',
+      capabilities: [
+        'W3C TraceContext DAG assembly, interval-union critical-path analysis & N+1 detection (StackPulse)',
+        'Hybrid Logical Clocks (HLC) & LWW-Element-Set offline outbox synchronization (AgriSignal)',
+        '3-way financial reconciliation across internal intents, ledger entries, and provider statements (FlowLedger)',
+        'Walk-forward multi-agent consensus and disagreement entropy measurement (ARGUS AI)'
+      ],
+      technologies: ['OpenTelemetry', 'Hybrid Logical Clocks', 'LWW-Element-Set', 'Idempotency Keys', '3-Way Reconciliation'],
+      relatedProjectIds: ['stackpulse', 'flowledger', 'agrisignal', 'argus-ai'],
+      relatedCommercialNames: ['Funa Gigs Real-Time Matching'],
+      connectedNodeIds: ['cloud-infrastructure', 'backend-architecture', 'databases', 'ai-systems']
+    },
+    {
+      id: 'cloud-infrastructure',
+      label: 'Cloud Infrastructure',
+      shortCode: '06 / CLOUD',
+      category: 'SRE, Telemetry & Self-Hostable Systems',
+      x: 430,
+      y: 430,
+      accentColor: '#387BFA',
+      summary:
+        'Designing cloud-native and self-hostable deployments with multi-window SLO error-budget alerting, synthetic chaos testing, and container orchestration.',
+      capabilities: [
+        'Google SRE Workbook multi-window, multi-burn-rate SLO alerting (14.4x fast / 6x slow burn) (StackPulse)',
+        'Automated incident timeline correlation and blameless SRE postmortem generation (StackPulse)',
+        'LiveKit WebRTC SFU video gateway orchestration and cloud storage pipelines (Clinical Platform)',
+        'Google Cloud, AWS, and Vercel production hosting with strict environment isolation'
+      ],
+      technologies: ['Google Cloud', 'AWS', 'Vercel', 'Docker Compose', 'OpenTelemetry', 'SLO / Error Budgets', 'Linux'],
+      relatedProjectIds: ['stackpulse', 'cyber-dragon', 'clinical-virtual-health-platform'],
+      relatedCommercialNames: ['Codesphere Cloud Solutions', 'Funa Gigs Infrastructure'],
+      connectedNodeIds: ['devops', 'distributed-systems', 'cybersecurity']
+    },
+    {
+      id: 'devops',
+      label: 'DevOps',
+      shortCode: '07 / OPS',
+      category: 'CI/CD, Verification & Reproducible Builds',
+      x: 190,
+      y: 380,
+      accentColor: '#F4B94C',
+      summary:
+        'Automating multi-version matrix testing, static typechecking, linting, deterministic benchmark gates, and reproducible builds across every repository.',
+      capabilities: [
+        'GitHub Actions matrix workflows across Python 3.10–3.12 and Node.js 20–22',
+        'Automated benchmark gates in CI (OWASP 25-scenario gate, Cyber Dragon 8-scenario gate)',
+        'Multi-stage Alpine Dockerfiles with non-root execution and healthchecks',
+        'Zero-dependency static bundle generation and automated integrity validation'
+      ],
+      technologies: ['GitHub Actions', 'Docker', 'Pytest', 'Ruff', 'Node Test Runner', 'Turborepo', 'TypeScript Compiler'],
+      relatedProjectIds: ['agentshield', 'stackpulse', 'cyber-dragon', 'auralis-local'],
+      relatedCommercialNames: ['Waanverse Labs CI Workflows', 'Codesphere Delivery Pipelines'],
+      connectedNodeIds: ['cloud-infrastructure', 'flutter', 'backend-architecture']
+    },
+    {
+      id: 'flutter',
+      label: 'Flutter',
+      shortCode: '08 / MOB',
+      category: 'Cross-Platform Mobile & Real-Time UX',
+      x: 130,
+      y: 250,
+      accentColor: '#53C9EE',
+      summary:
+        'Building modular cross-platform mobile applications with real-time geolocation, Instant Hire workflows, mobile money checkout, and offline resilience.',
+      capabilities: [
+        'Modular Flutter monorepo packages (core, clinical, appointments, networking, design_system)',
+        'Real-time job matching, live location tracking, and Instant Hire mobile flows (Funa Gigs)',
+        'Mobile authentication, push notifications, and low-bandwidth field interfaces',
+        'Android native interoperability (Kotlin/Java) and responsive cross-platform design systems'
+      ],
+      technologies: ['Flutter', 'Dart', 'Kotlin', 'Android', 'Geolocation / Mapbox', 'Supabase Realtime', 'Mobile Money'],
+      relatedProjectIds: ['clinical-virtual-health-platform', 'agrisignal', 'cyber-dragon'],
+      relatedCommercialNames: ['Funa Gigs Mobile (Jaminsa Ventures)'],
+      connectedNodeIds: ['backend-architecture', 'databases', 'devops']
+    }
+  ],
+
+  philosophy: [
+    {
+      id: 'real-problems',
+      number: '01',
+      statement: 'Build for real problems.',
+      elaboration:
+        'Technology has the highest leverage when it addresses concrete operational friction—whether protecting mobile-money users from USSD call-forwarding scams, helping smallholder farmers navigate rainfall uncertainty offline, or connecting service providers with work.',
+      proofPoint: 'Demonstrated in Cyber Dragon v1.0, AgriSignal v1.0, and Funa Gigs.',
+      relatedProjectSlug: 'cyber-dragon'
+    },
+    {
+      id: 'security-architecture',
+      number: '02',
+      statement: 'Security is part of the architecture.',
+      elaboration:
+        'Security cannot be a cosmetic checklist added after launch. It belongs in the structural boundaries: SSRF-free static parsers, loopback-only local AI servers, capability firewalls outside the LLM context window, and constant-time HMAC verification.',
+      proofPoint: 'Demonstrated in AgentShield v1.0, Auralis Local v0.2, and Cyber Dragon v1.0.',
+      relatedProjectSlug: 'agentshield'
+    },
+    {
+      id: 'understandable-systems',
+      number: '03',
+      statement: 'Make complex systems understandable.',
+      elaboration:
+        'Whether an AI investment committee is debating a trade, a fraud engine is scoring a suspicious SMS, or an SRE console is tracing a latency spike, the system must explain its reasoning with inspectable evidence and clear trade-offs.',
+      proofPoint: 'Demonstrated in ARGUS AI Trade Passports, Cyber Dragon 5-dimension breakdowns, and StackPulse DAGs.',
+      relatedProjectSlug: 'ARGUS-AI'
+    },
+    {
+      id: 'measure-what-matters',
+      number: '04',
+      statement: 'Measure what matters.',
+      elaboration:
+        'Engineering claims should be backed by reproducible benchmarks and deterministic invariants—P50/P95 retrieval latencies, zero-sum ledger trial balances, point-in-time leakage guards, and multi-window error-budget burn rates.',
+      proofPoint: 'Demonstrated across 320+ automated tests and CLI benchmark runners.',
+      relatedProjectSlug: 'flowledger'
+    },
+    {
+      id: 'create-opportunity',
+      number: '05',
+      statement: 'Build technology that creates opportunity.',
+      elaboration:
+        'From founding Codesphere Innovations (U) Limited and leading Funa Gigs in Kampala to publishing open-source engineering tools globally, my mission is to build ambitious, trustworthy software that expands access and capability.',
+      proofPoint: 'Demonstrated across Codesphere Innovations, Funa Gigs, and open-source flagships.',
+      relatedProjectSlug: 'auralis-local'
+    }
+  ],
+
   broaderProjects: [
     {
       id: 'funa-gigs-platform',
-      name: 'Funa Gigs',
-      category: 'Two-Sided Service Marketplace (Mobile & Real-Time Cloud)',
-      organization: 'Jaminsa Ventures Limited (Distinct from Codesphere Innovations)',
-      status: 'Active Flagship Product Venture',
+      name: 'Funa Gigs — Real-Time Digital Services Marketplace',
+      category: 'Commercial Marketplace Platform (Active Product)',
+      organization: 'Jaminsa Ventures Limited (Founder & Project Lead)',
+      status: 'Active Commercial Platform (Private Monorepo)',
       summary:
-        'A comprehensive technology marketplace under Jaminsa Ventures Limited connecting service seekers with skilled service providers across Uganda through real-time discovery, Instant Hire workflows, and digital payments.',
+        'Technology marketplace designed to connect people seeking services with skilled individuals capable of completing tasks and professional services across Uganda. (Owned by Jaminsa Ventures Limited, distinct from Codesphere Innovations.)',
       highlights: [
-        'Founded and led end-to-end product architecture and engineering under Jaminsa Ventures Limited.',
-        'Engineered cross-platform Flutter mobile apps backed by Elixir/Phoenix, PostgreSQL, Supabase, and Google Cloud.',
-        'Implemented real-time job matching, Instant Hire dispatch, live location discovery, payment integrations, KYC identity verification, in-app messaging, trust & safety, and admin operations tooling.'
+        'Cross-platform Flutter mobile engineering paired with web, administrative, and backend service layers.',
+        'Real-time job matching, Instant Hire workflows, location-based service discovery, and live location capabilities.',
+        'Payment provider integrations, identity verification (KYC), account/role management, in-app messaging, and trust & safety controls.'
       ],
-      technologies: [
-        'Flutter',
-        'Elixir',
-        'Phoenix',
-        'PostgreSQL',
-        'Supabase',
-        'Google Cloud',
-        'Mobile Money & Payments',
-        'Live Location'
-      ]
+      technologies: ['Flutter', 'Dart', 'Elixir', 'Phoenix', 'PostgreSQL', 'Supabase', 'Next.js', 'Google Cloud', 'Payment APIs']
     },
     {
       id: 'bizmanage-pro',
-      name: 'BizManage Pro',
-      category: 'Enterprise & Multi-Branch Business Management Platform',
-      organization: 'Commercial Platform',
-      status: 'Production Business System',
+      name: 'BizManage Pro — Multi-Branch Business Management Platform',
+      category: 'Enterprise & Operations Software',
+      organization: 'Engineering Project History',
+      status: 'Commercial / Historical Engineering System',
       summary:
-        'Full-stack business operations platform designed for multi-branch enterprises to manage inventory lifecycles, customer and supplier workflows, financial reporting, and role-based staff operations.',
+        'Multi-branch business operations and administration platform built to manage inventory, sales, customer/supplier workflows, and branch-level reporting.',
       highlights: [
-        'Multi-branch inventory tracking, stock transfer auditing, and automated low-stock alerting.',
-        'End-to-end customer, supplier, invoicing, and procurement workflows.',
-        'Granular Role-Based Access Control (RBAC) across branch managers, cashiers, auditors, and executives.'
+        'Multi-branch operational dashboards, inventory tracking, and stock movement controls.',
+        'Customer and supplier ledger workflows, sales management, and financial reporting.',
+        'Granular staff role and permission management backed by Python backend services and relational databases.'
       ],
-      technologies: [
-        'React',
-        'Python',
-        'Relational Database (PostgreSQL / SQL)',
-        'REST APIs',
-        'RBAC Security'
-      ]
+      technologies: ['React', 'Python', 'Relational Databases', 'SQL', 'RBAC', 'REST APIs']
     },
     {
       id: 'pesaflow',
-      name: 'PesaFlow',
-      category: 'Fintech & Payment Infrastructure Project',
-      organization: 'Fintech Engineering',
-      status: 'Payment Infrastructure System',
+      name: 'PesaFlow — Payment Infrastructure & Checkout Application',
+      category: 'Fintech & Payment Workflows',
+      organization: 'Engineering Project History',
+      status: 'Fintech Engineering Project',
       summary:
-        'Payment processing and financial workflow infrastructure built to streamline digital collections, disbursement routing, authenticated API integrations, and transaction status tracking.',
+        'Fintech-oriented application focusing on payment provider integration, authenticated backend transaction APIs, and responsive web checkout interfaces.',
       highlights: [
-        'Engineered secure authentication, merchant API key management, and transaction lifecycle orchestration.',
-        'Built responsive React operator dashboards paired with Python Flask payment gateway services.',
-        'Designed resilient webhook handling and transaction audit trails for East African digital payment flows.'
+        'RESTful payment initiation and callback handling workflows built with Flask and Python.',
+        'Authenticated user and merchant views built with React and relational database persistence.',
+        'Contributed foundational payment-state experience that informed the open-source FlowLedger reconciliation engine.'
       ],
-      technologies: ['Python', 'Flask', 'React', 'Payment APIs', 'JWT / HMAC Auth', 'PostgreSQL']
+      technologies: ['Python', 'Flask', 'React', 'SQL', 'Authentication', 'Payment APIs']
     },
     {
       id: 'ai-energy-efficiency-tool',
-      name: 'AI Energy Efficiency Tool',
-      category: 'AI Analytics & Sustainability Engineering',
-      organization: 'Applied AI System',
-      status: 'Completed Engineering System',
+      name: 'AI Energy Efficiency & Resource Analytics Tool',
+      category: 'Applied AI & Sustainability Software',
+      organization: 'Engineering Project History',
+      status: 'Applied AI Engineering Project',
       summary:
-        'Data-driven energy analytics platform that ingests consumption telemetry and generates AI-supported efficiency recommendations to reduce operational power waste and cost.',
+        'Data-driven energy analysis application designed to evaluate consumption patterns and generate intelligent energy-efficiency recommendations using regionally relevant data.',
       highlights: [
-        'Analyzes load profiles, peak demand anomalies, and equipment utilization patterns in Python.',
-        'Produces actionable, quantified energy-saving recommendations and efficiency scorecards.'
+        'Python-based analytics pipeline processing consumption metrics into actionable efficiency recommendations.',
+        'Interactive analytics dashboard for visualizing usage trends and projected resource savings.',
+        'Demonstrates applied AI and data modeling for environmental and operational efficiency challenges.'
       ],
-      technologies: ['Python', 'Data Analytics', 'AI Recommendation Engine', 'Time-Series Processing']
+      technologies: ['Python', 'Machine Learning', 'Data Analytics', 'Dashboard UI', 'REST APIs']
     },
     {
       id: 'trip-planner-eld',
-      name: 'Trip Planner & Electronic Logging Application',
-      category: 'Geospatial Logistics & Fleet Compliance',
-      organization: 'Logistics Engineering',
-      status: 'Completed Full-Stack System',
+      name: 'Trip Planner & Electronic Logging (ELD) Application',
+      category: 'Geospatial & Logistics Engineering',
+      organization: 'Engineering Project History',
+      status: 'Full-Stack Geospatial Project',
       summary:
-        'Full-stack route planning and Electronic Logging Device (ELD) compliance application calculating multi-stop geospatial routes, rest-break schedules, and regulatory driving-hour logs.',
+        'Route-planning and electronic logging application combining geospatial mapping with driving-hour compliance rules and trip scheduling workflows.',
       highlights: [
-        'Integrated Mapbox geospatial routing and interactive map visualization in React.',
-        'Engineered Django REST backend computing Hours-of-Service (HOS) driving windows, mandatory rest stops, and daily log sheets.'
+        'Django REST Framework backend computing route segments, rest-stop windows, and driving-hour log rules.',
+        'Interactive React + Mapbox geospatial interface rendering routes, waypoints, and compliance status.',
+        'Demonstrates clean integration between third-party mapping APIs and deterministic domain rules.'
       ],
-      technologies: ['Django REST Framework', 'Python', 'React', 'Mapbox GL', 'Geospatial Routing']
+      technologies: ['Python', 'Django REST', 'React', 'Mapbox', 'Geolocation', 'JavaScript']
     },
     {
       id: 'sector-business-systems',
       name: 'Sector-Specific Business & Operational Systems',
-      category: 'Retail, Hospitality, Healthcare & Utility Software',
-      organization: '4codex Technologies / Codesphere Commercial Delivery',
-      status: 'Deployed Sector Solutions',
+      category: 'Applied Business Software Foundation',
+      organization: 'Early Engineering Portfolio',
+      status: 'Operational Software Systems',
       summary:
-        'Suite of practical, domain-tailored operational software systems engineered for Ugandan businesses across hospitality, healthcare retail, supermarkets, hardware distribution, and document intelligence.',
+        'Collection of specialized operational systems built for retail, healthcare retail, hospitality, hardware, and document analysis workflows.',
       highlights: [
-        '2K Restaurant Management System — POS billing, kitchen order routing, table management, and daily sales reconciliation.',
-        'BKK Pharmacy Management System — Batch/expiry tracking, prescription dispensing logs, and stock control.',
-        'City Star Supermarket Management & OM SAI Hardware Software — High-SKU barcode checkout, wholesale/retail pricing tiers, and supplier ledgers.',
-        'Library Management & Resume Analysis Tools — Automated cataloging, circulation tracking, and NLP-assisted candidate resume parsing.'
+        'Retail & Hospitality: 2K Restaurant Management, City Star Supermarket Management, and OM SAI Hardware Software.',
+        'Pharmacy & Education: BKK Pharmacy Management and Library Management systems.',
+        'Developer & Career Tools: Resume Analysis and local services discovery applications.'
       ],
-      technologies: [
-        'Python',
-        'JavaScript / TypeScript',
-        'React',
-        'SQL Databases',
-        'POS & Inventory Engines',
-        'Document Parsing'
-      ]
+      technologies: ['Python', 'JavaScript', 'Java', 'C#', 'PHP', 'SQL', 'HTML/CSS']
     }
   ],
 
@@ -1188,106 +1539,106 @@ export const PORTFOLIO_DATA = {
     {
       projectId: 'argus-ai',
       projectName: 'ARGUS AI v2.1',
-      repoSlug: 'ARGUS-AI',
-      domain: 'AI & Agents',
+      repoSlug: 'codesphere-u/ARGUS-AI',
+      domain: 'AI',
       automatedTests: 61,
-      primaryLatencyLabel: '0.42 ms / committee step',
-      primaryLatencyMs: 0.42,
-      throughputOrAccuracyLabel: '3 Catastrophic Trap Trades Vetoed',
-      throughputOrAccuracyValue: '3 Traps Vetoed',
-      determinismGuarantee: "Point-in-time leakage guard + Devil's Advocate hard veto",
-      verificationCommand: 'pytest'
+      primaryLatencyLabel: 'Walk-Forward Backtest (61 Tests)',
+      primaryLatencyMs: 7.8,
+      throughputOrAccuracyLabel: 'Adversarial Veto Precision',
+      throughputOrAccuracyValue: '100% (3/3 Traps Vetoed · $488.37 Saved)',
+      determinismGuarantee: 'PointInTimeGuard + SHA-256 Trade Passport Replay',
+      verificationCommand: 'cd ARGUS-AI && pytest -v && python -m argus_ai.cli backtest'
     },
     {
       projectId: 'agrisignal',
       projectName: 'AgriSignal v1.0',
-      repoSlug: 'agrisignal',
-      domain: 'AgriTech & HealthTech',
+      repoSlug: 'codesphere-u/agrisignal',
+      domain: 'Backend',
       automatedTests: 60,
-      primaryLatencyLabel: '0.09 ms / advisory',
-      primaryLatencyMs: 0.09,
-      throughputOrAccuracyLabel: '100% ≤160-char GSM-7 (`en`, `lg`, `sw`)',
-      throughputOrAccuracyValue: '≤160 chars (3 locales)',
-      determinismGuarantee: 'Offline-first FAO-56 water budget + WHO safety filter',
-      verificationCommand: 'pytest'
+      primaryLatencyLabel: 'Rule & Uncertainty Eval',
+      primaryLatencyMs: 0.18,
+      throughputOrAccuracyLabel: 'SMS & Offline Sync Guarantee',
+      throughputOrAccuracyValue: '≤160 GSM-7 chars (en, lg, sw) · 20/20 LWW Sync',
+      determinismGuarantee: 'HLC Monotonicity + SHA-256 Envelope Verification',
+      verificationCommand: 'cd agrisignal && pytest -v'
     },
     {
       projectId: 'flowledger',
       projectName: 'FlowLedger v1.0',
-      repoSlug: 'flowledger',
-      domain: 'Fintech & Ledgers',
+      repoSlug: 'codesphere-u/flowledger',
+      domain: 'Fintech',
       automatedTests: 51,
-      primaryLatencyLabel: '0.12 ms / journal entry',
-      primaryLatencyMs: 0.12,
-      throughputOrAccuracyLabel: '97 Chained Entries · 0 Imbalance (UGX/KES)',
-      throughputOrAccuracyValue: '0 Imbalance (97 entries)',
-      determinismGuarantee: 'BigInt minor units (IEEE-754 floats banned)',
-      verificationCommand: 'npm test'
+      primaryLatencyLabel: 'Double-Entry Commit & Hash',
+      primaryLatencyMs: 0.22,
+      throughputOrAccuracyLabel: 'Trial Balance & Reconciliation',
+      throughputOrAccuracyValue: '0 Imbalance (97 Entries · 50 Txs Reconciled)',
+      determinismGuarantee: 'Integer Minor Units + SHA-256 Journal Hash Chain',
+      verificationCommand: 'cd flowledger && pytest -v && python -m flowledger.cli verify-invariants'
     },
     {
       projectId: 'stackpulse',
       projectName: 'StackPulse v1.0',
-      repoSlug: 'stackpulse',
-      domain: 'Cloud & SRE',
+      repoSlug: 'codesphere-u/stackpulse',
+      domain: 'Cloud',
       automatedTests: 47,
-      primaryLatencyLabel: '0.0512 ms (51.2 µs/trace)',
-      primaryLatencyMs: 0.0512,
-      throughputOrAccuracyLabel: '19,525 traces/sec DAG assembly',
-      throughputOrAccuracyValue: '19,525 traces/sec',
-      determinismGuarantee: 'Interval-union critical path + multi-window burn rate',
-      verificationCommand: 'npm test'
+      primaryLatencyLabel: 'Critical-Path DAG Assembly',
+      primaryLatencyMs: 0.051,
+      throughputOrAccuracyLabel: 'DAG & Span Throughput',
+      throughputOrAccuracyValue: '19,525 traces/sec · 3.7M+ spans/sec',
+      determinismGuarantee: 'Interval-Union Exclusive Duration + Multi-Window Burn Rate',
+      verificationCommand: 'cd stackpulse && pytest -v && python -m stackpulse.cli benchmark'
     },
     {
       projectId: 'agentshield',
-      projectName: 'AgentShield',
-      repoSlug: 'agentshield',
+      projectName: 'AgentShield v1.0',
+      repoSlug: 'codesphere-u/agentshield',
       domain: 'Cybersecurity',
       automatedTests: 42,
-      primaryLatencyLabel: '0.19 ms / tool call',
-      primaryLatencyMs: 0.19,
-      throughputOrAccuracyLabel: '100% Recall · 0% FPR (25 scenarios)',
-      throughputOrAccuracyValue: '100% / 0% FPR',
-      determinismGuarantee: 'SHA-256 hash-chained ledger + HMAC single-use tokens',
-      verificationCommand: 'npm test'
+      primaryLatencyLabel: 'Policy & Injection Evaluation',
+      primaryLatencyMs: 0.31,
+      throughputOrAccuracyLabel: 'OWASP 2026 25-Scenario Suite',
+      throughputOrAccuracyValue: '100.0% Recall · 0.0% False Positive Rate',
+      determinismGuarantee: 'Declarative Policy Firewall + SHA-256 Audit Ledger',
+      verificationCommand: 'cd agentshield && pytest -v && python -m agentshield.cli evaluate'
     },
     {
       projectId: 'auralis-local',
       projectName: 'Auralis Local v0.2',
-      repoSlug: 'auralis-local',
-      domain: 'AI & Agents',
+      repoSlug: 'codesphere-u/auralis-local',
+      domain: 'AI',
       automatedTests: 36,
-      primaryLatencyLabel: '0.245 ms P50 BM25',
+      primaryLatencyLabel: 'Hybrid BM25 Retrieval (P50)',
       primaryLatencyMs: 0.245,
-      throughputOrAccuracyLabel: '3,110 docs/sec indexing throughput',
-      throughputOrAccuracyValue: '3,110 docs/sec',
-      determinismGuarantee: 'Cite-or-abstain grounding + 127.0.0.1 loopback jail',
-      verificationCommand: 'npm test'
-    },
-    {
-      projectId: 'clinical-virtual-health-platform',
-      projectName: 'Clinical Virtual Health Platform',
-      repoSlug: 'Clinical-Virtual-Health-Platform',
-      domain: 'AgriTech & HealthTech',
-      automatedTests: 28,
-      primaryLatencyLabel: '0.11 ms / NEWS2 triage',
-      primaryLatencyMs: 0.11,
-      throughputOrAccuracyLabel: '100% Protocol-Compliant NEWS2 Acuity',
-      throughputOrAccuracyValue: 'FHIR R4 + NEWS2',
-      determinismGuarantee: 'Deterministic vital-sign triage + RBAC PHI audit log',
-      verificationCommand: 'npm test'
+      throughputOrAccuracyLabel: 'Local Indexing Throughput',
+      throughputOrAccuracyValue: '3,110 docs/sec (P95 Retrieval: 0.558 ms)',
+      determinismGuarantee: '127.0.0.1 Loopback Sandbox + Single-Use Approval Tokens',
+      verificationCommand: 'cd auralis-local && npm test && npm run benchmark'
     },
     {
       projectId: 'cyber-dragon',
       projectName: 'Cyber Dragon v1.0',
-      repoSlug: 'cyber-dragon',
+      repoSlug: 'codesphere-u/cyber-dragon',
       domain: 'Cybersecurity',
       automatedTests: 21,
-      primaryLatencyLabel: '0.28 ms mean latency',
+      primaryLatencyLabel: '5-Dimension Static Scan',
       primaryLatencyMs: 0.28,
-      throughputOrAccuracyLabel: '8/8 Threat Corpus · 0 Outbound Calls',
-      throughputOrAccuracyValue: '8/8 (SSRF-Free)',
-      determinismGuarantee: 'Zero network egress lexical & USSD AST scoring',
-      verificationCommand: 'npm test && pytest'
+      throughputOrAccuracyLabel: 'Curated Fraud Benchmark',
+      throughputOrAccuracyValue: '100% Match (8/8 Scenarios · 0 Network Calls)',
+      determinismGuarantee: 'SSRF-Free Lexical URI Inspection + PII Redaction',
+      verificationCommand: 'cd cyber-dragon/apps/web && npm test && npm run benchmark'
+    },
+    {
+      projectId: 'clinical-virtual-health-platform',
+      projectName: 'Clinical Virtual Health Platform',
+      repoSlug: 'codesphere-u/Clinical-Virtual-Health-Platform',
+      domain: 'Full-Stack',
+      automatedTests: 5,
+      primaryLatencyLabel: 'Domain & Validation Suite',
+      primaryLatencyMs: 1.4,
+      throughputOrAccuracyLabel: 'Monorepo Verification Scope',
+      throughputOrAccuracyValue: '5 Suites · 15 ADRs · 7 Shared Packages',
+      determinismGuarantee: 'Appointment State Machine + GMC/MDCN Clinical Validation',
+      verificationCommand: 'cd Clinical-Virtual-Health-Platform && pnpm test'
     }
   ]
 };

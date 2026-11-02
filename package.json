@@ -1,7 +1,7 @@
 {
   "name": "codesphere-portfolio",
-  "version": "1.1.0",
-  "description": "Executive Engineering Portfolio & Architecture Case-Study Application for Akandwanaho Ivan Alvin (codesphere-u) — AI Systems, Cybersecurity, Fintech Ledgers, Cloud Observability, and Commercial Platforms.",
+  "version": "2.0.0",
+  "description": "The Builder's Journey — Interactive Engineering Documentary & Architecture Case-Study Portfolio for Akandwanaho Ivan Alvin (codesphere-u).",
   "type": "module",
   "main": "src/core/explorer.mjs",
   "types": "src/data/portfolio-data.d.ts",
