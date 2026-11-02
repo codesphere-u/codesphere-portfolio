@@ -22,6 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./src/ui/styles.css" /><link rel="stylesheet" href="./src/ui/editorial.css" />
+<link rel="stylesheet" href="./src/ui/polish.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -36,9 +37,29 @@
         </span>
       </a>
 
-      <nav class="nav-links" aria-label="Primary Portfolio Navigation"><a href="#projects" class="nav-link">Work</a><a href="#journey" class="nav-link">Journey</a><a href="#about" class="nav-link">About</a><a href="#contact" class="nav-link">Contact</a><button type="button" id="theme-toggle" class="btn" aria-label="Switch to light theme"><span aria-hidden="true">◐</span><span class="theme-label">Light Mode</span></button></nav>
+      <nav class="nav-links" aria-label="Primary Portfolio Navigation" id="desktop-nav">
+  <a href="#projects" class="nav-link" data-section-link="projects">Work</a>
+  <a href="#journey" class="nav-link" data-section-link="journey">Story</a>
+  <a href="#experience" class="nav-link" data-section-link="experience">Experience</a>
+  <a href="#about" class="nav-link" data-section-link="about">About</a>
+</nav>
+<div class="header-actions">
+  <a href="#contact" class="header-contact" data-section-link="contact">Let's connect <span aria-hidden="true">↗</span></a>
+  <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu"><span></span><span></span></button>
+</div>
     </div>
   </header>
+<div class="page-progress" aria-hidden="true"><span id="page-progress-bar"></span></div>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile Navigation" hidden>
+  <div class="mobile-menu-head"><span>EXPLORE THE PORTFOLIO</span><span>MENU / 2026</span></div>
+  <a href="#projects" data-mobile-link data-section-link="projects"><span class="menu-index">01</span> Selected work <span aria-hidden="true">↗</span></a>
+  <a href="#journey" data-mobile-link data-section-link="journey"><span class="menu-index">02</span> My journey <span aria-hidden="true">↗</span></a>
+  <a href="#experience" data-mobile-link data-section-link="experience"><span class="menu-index">03</span> Experience <span aria-hidden="true">↗</span></a>
+  <a href="#about" data-mobile-link data-section-link="about"><span class="menu-index">04</span> About me <span aria-hidden="true">↗</span></a>
+  <a href="#mindmap" data-mobile-link data-section-link="mindmap"><span class="menu-index">05</span> Engineering mind <span aria-hidden="true">↗</span></a>
+  <a href="#contact" data-mobile-link data-section-link="contact"><span class="menu-index">06</span> Let's connect <span aria-hidden="true">↗</span></a>
+  <div class="mobile-menu-footer">AKANDWANAHO IVAN ALVIN · KAMPALA, UGANDA</div>
+</nav>
 
   <main id="main-content" role="main">
     <!-- EXPERIENCE 01 — CINEMATIC OPENING -->
@@ -120,337 +141,19 @@
       </div>
     </section>
 
-    <!-- EXPERIENCE 02 — MY JOURNEY (INTERACTIVE CAREER DOCUMENTARY) -->
-    <section id="journey" class="section" aria-labelledby="journey-heading">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <span class="section-eyebrow">EXPERIENCE 02 // CAREER STORYTELLING SYSTEM</span>
-            <h2 id="journey-heading" class="section-title">One system at a time. One chapter at a time.</h2>
-            <p class="section-subtitle">
-              From engineering foundations at ISBAT University and founding 4codex Technologies to leading engineering at Waanverse Labs (until March 2025), founding Codesphere Innovations (U) Limited, leading Funa Gigs under Jaminsa Ventures Limited, and architecting open-source AI and cybersecurity systems.
-            </p>
-          </div>
-
-          <div class="journey-nav-controls" aria-label="Chapter progression controls">
-            <button type="button" id="journey-prev-btn" class="btn" disabled>← Previous Chapter</button>
-            <button type="button" id="journey-next-btn" class="btn btn-primary">Next Chapter →</button>
-          </div>
-        </div>
-
-        <div class="journey-progress-track" aria-hidden="true">
-          <div id="journey-progress-fill" class="journey-progress-fill" style="width: 17%"></div>
-        </div>
-
-        <div class="journey-tabs-bar" role="tablist" aria-label="Career journey chapters">
-          
-        <button
-          type="button"
-          class="journey-tab-btn is-active"
-          id="journey-tab-1"
-          data-chapter-tab="1"
-          role="tab"
-          aria-selected="true"
-          aria-controls="journey-panel-1"
-        >
-          <span class="journey-tab-num">01</span>
-          <span class="journey-tab-label">Engineering Foundations</span>
-        </button>
-
-        <button
-          type="button"
-          class="journey-tab-btn "
-          id="journey-tab-2"
-          data-chapter-tab="2"
-          role="tab"
-          aria-selected="false"
-          aria-controls="journey-panel-2"
-        >
-          <span class="journey-tab-num">02</span>
-          <span class="journey-tab-label">Building 4codex Technologies</span>
-        </button>
-
-        <button
-          type="button"
-          class="journey-tab-btn "
-          id="journey-tab-3"
-          data-chapter-tab="3"
-          role="tab"
-          aria-selected="false"
-          aria-controls="journey-panel-3"
-        >
-          <span class="journey-tab-num">03</span>
-          <span class="journey-tab-label">Technical Leadership</span>
-        </button>
-
-        <button
-          type="button"
-          class="journey-tab-btn "
-          id="journey-tab-4"
-          data-chapter-tab="4"
-          role="tab"
-          aria-selected="false"
-          aria-controls="journey-panel-4"
-        >
-          <span class="journey-tab-num">04</span>
-          <span class="journey-tab-label">Founding Codesphere Innovations</span>
-        </button>
-
-        <button
-          type="button"
-          class="journey-tab-btn "
-          id="journey-tab-5"
-          data-chapter-tab="5"
-          role="tab"
-          aria-selected="false"
-          aria-controls="journey-panel-5"
-        >
-          <span class="journey-tab-num">05</span>
-          <span class="journey-tab-label">Building Funa Gigs</span>
-        </button>
-
-        <button
-          type="button"
-          class="journey-tab-btn "
-          id="journey-tab-6"
-          data-chapter-tab="6"
-          role="tab"
-          aria-selected="false"
-          aria-controls="journey-panel-6"
-        >
-          <span class="journey-tab-num">06</span>
-          <span class="journey-tab-label">Advanced Systems and Open Source</span>
-        </button>
-        </div>
-
-        <div class="journey-panels-stage">
-          <article class="journey-chapter-card is-active" data-chapter-panel="1" id="journey-panel-1" role="tabpanel" aria-labelledby="journey-tab-1" >
-    <div class="journey-chapter-header">
-      <div class="journey-chapter-eyebrow">
-        <span class="chapter-code-badge">CHAPTER 01</span>
-        <span class="chapter-theme-tag">Engineering Foundations</span>
-      </div>
-      <h3 class="journey-chapter-title">01 — Engineering Foundations</h3>
-      <p class="journey-chapter-subtitle">ISBAT University, independent software development, and practical business applications.</p>
-      <p class="journey-chapter-lead">Built a hands-on engineering foundation at ISBAT University in Kampala while independently designing and deploying operational software for local businesses across retail, pharmacy, restaurant, hardware, and logistics sectors.</p>
-    </div>
-
-    <div class="journey-story-grid">
-      <div class="journey-story-box">
-        <span class="story-box-label">01 / THE CHALLENGE</span>
-        <p>Small and medium enterprises needed reliable inventory, billing, and operational software that worked cleanly on modest hardware without expensive recurring cloud dependencies.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
-        <p>Independently gathered requirements from business operators, designed relational database schemas, built full-stack interfaces, and deployed working desktop and web applications.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">03 / WHAT I LEARNED</span>
-        <p>Real-world users care about reliability, data integrity, and clear workflows far more than hype. Writing software for daily business operations taught me disciplined schema design and end-to-end ownership.</p>
-      </div>
-      <div class="journey-story-box highlight-gold">
-        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
-        <p>Revealed a broader demand for structured custom software and cybersecurity consulting, directly motivating the founding of 4codex Technologies.</p>
-      </div>
-    </div>
-
-    <div class="journey-tech-footer">
-      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
-      <div class="tech-pill-row"><span class="tech-pill">Python</span><span class="tech-pill">JavaScript</span><span class="tech-pill">SQL</span><span class="tech-pill">PHP</span><span class="tech-pill">C#</span><span class="tech-pill">Java</span><span class="tech-pill">HTML/CSS</span><span class="tech-pill">MySQL</span><span class="tech-pill">SQLite</span></div>
-    </div>
-  </article>
-<article class="journey-chapter-card " data-chapter-panel="2" id="journey-panel-2" role="tabpanel" aria-labelledby="journey-tab-2" hidden>
-    <div class="journey-chapter-header">
-      <div class="journey-chapter-eyebrow">
-        <span class="chapter-code-badge">CHAPTER 02</span>
-        <span class="chapter-theme-tag">Building 4codex Technologies</span>
-      </div>
-      <h3 class="journey-chapter-title">02 — Building 4codex Technologies</h3>
-      <p class="journey-chapter-subtitle">My early experience in entrepreneurship and delivering technology solutions.</p>
-      <p class="journey-chapter-lead">Founded 4codex Technologies as an early technology venture delivering custom web application engineering, cybersecurity assessments, workflow automation, and technical consultancy.</p>
-    </div>
-
-    <div class="journey-story-grid">
-      <div class="journey-story-box">
-        <span class="story-box-label">01 / THE CHALLENGE</span>
-        <p>Translating diverse client business problems into secure, maintainable software architectures while managing delivery timelines and technical expectations.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
-        <p>Served as founder and lead engineer—architecting web platforms, hardening authentication and API boundaries, automating repetitive business workflows, and advising clients on digital security.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">03 / WHAT I LEARNED</span>
-        <p>Security cannot be bolted on after launch, and sustainable software delivery requires repeatable engineering standards, modular codebases, and clear communication.</p>
-      </div>
-      <div class="journey-story-box highlight-gold">
-        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
-        <p>Prepared me to step into executive technical leadership and coordinate multi-engineer product architectures at Waanverse Labs Inc.</p>
-      </div>
-    </div>
-
-    <div class="journey-tech-footer">
-      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
-      <div class="tech-pill-row"><span class="tech-pill">Python</span><span class="tech-pill">Flask</span><span class="tech-pill">Django</span><span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">REST APIs</span><span class="tech-pill">Application Security</span></div>
-    </div>
-  </article>
-<article class="journey-chapter-card " data-chapter-panel="3" id="journey-panel-3" role="tabpanel" aria-labelledby="journey-tab-3" hidden>
-    <div class="journey-chapter-header">
-      <div class="journey-chapter-eyebrow">
-        <span class="chapter-code-badge">CHAPTER 03</span>
-        <span class="chapter-theme-tag">Technical Leadership</span>
-      </div>
-      <h3 class="journey-chapter-title">03 — Technical Leadership</h3>
-      <p class="journey-chapter-subtitle">Former CTO and Head of Engineering at Waanverse Labs, ending March 2025.</p>
-      <p class="journey-chapter-lead">Served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. until March 2025, guiding technical strategy, system architecture, and engineering execution.</p>
-    </div>
-
-    <div class="journey-story-grid">
-      <div class="journey-story-box">
-        <span class="story-box-label">01 / THE CHALLENGE</span>
-        <p>Aligning long-term product vision with day-to-day engineering execution, establishing clean code review and CI workflows, and making architectural trade-offs that kept delivery velocity high without accumulating fragile technical debt.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
-        <p>Directed technical strategy, defined service boundaries and API contracts, mentored developers, structured sprint planning and release workflows, and oversaw architecture quality across products.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">03 / WHAT I LEARNED</span>
-        <p>Strong technical leadership multiplies engineering output through clarity—clear interfaces, documented architectural decisions, and automated quality gates.</p>
-      </div>
-      <div class="journey-story-box highlight-gold">
-        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
-        <p>Equipped me with the executive and architectural experience to establish and lead Codesphere Innovations (U) Limited as a full-scale technology company.</p>
-      </div>
-    </div>
-
-    <div class="journey-tech-footer">
-      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
-      <div class="tech-pill-row"><span class="tech-pill">System Architecture</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Python</span><span class="tech-pill">Node.js</span><span class="tech-pill">React</span><span class="tech-pill">Next.js</span><span class="tech-pill">Cloud Infrastructure</span><span class="tech-pill">CI/CD</span></div>
-    </div>
-  </article>
-<article class="journey-chapter-card " data-chapter-panel="4" id="journey-panel-4" role="tabpanel" aria-labelledby="journey-tab-4" hidden>
-    <div class="journey-chapter-header">
-      <div class="journey-chapter-eyebrow">
-        <span class="chapter-code-badge">CHAPTER 04</span>
-        <span class="chapter-theme-tag">Founding Codesphere Innovations</span>
-      </div>
-      <h3 class="journey-chapter-title">04 — Founding Codesphere Innovations</h3>
-      <p class="journey-chapter-subtitle">Founder and Managing Director of Codesphere Innovations (U) Limited.</p>
-      <p class="journey-chapter-lead">Founded and currently lead Codesphere Innovations (U) Limited (codesphereug.com) in Uganda, combining executive company management with hands-on software architecture across AI-enabled systems, cybersecurity, cloud platforms, and digital transformation.</p>
-    </div>
-
-    <div class="journey-story-grid">
-      <div class="journey-story-box">
-        <span class="story-box-label">01 / THE CHALLENGE</span>
-        <p>Building a credible Ugandan technology company capable of delivering high-assurance custom software, applied AI solutions, and secure cloud infrastructure for organizations navigating digital transformation.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
-        <p>Define company technology direction, lead product architecture and security standards, oversee engineering execution, and drive business development while remaining deeply hands-on in core system design.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">03 / WHAT I LEARNED</span>
-        <p>Balancing company leadership with deep technical craft allows an organization to stay grounded in what actually works rather than over-promising.</p>
-      </div>
-      <div class="journey-story-box highlight-gold">
-        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
-        <p>Created the operational foundation to tackle complex, high-concurrency consumer and marketplace platforms alongside open-source research.</p>
-      </div>
-    </div>
-
-    <div class="journey-tech-footer">
-      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
-      <div class="tech-pill-row"><span class="tech-pill">TypeScript</span><span class="tech-pill">Next.js</span><span class="tech-pill">Python</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Flutter</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Docker</span><span class="tech-pill">Cloud Architecture</span><span class="tech-pill">Applied AI</span></div>
-    </div>
-  </article>
-<article class="journey-chapter-card " data-chapter-panel="5" id="journey-panel-5" role="tabpanel" aria-labelledby="journey-tab-5" hidden>
-    <div class="journey-chapter-header">
-      <div class="journey-chapter-eyebrow">
-        <span class="chapter-code-badge">CHAPTER 05</span>
-        <span class="chapter-theme-tag">Building Funa Gigs</span>
-      </div>
-      <h3 class="journey-chapter-title">05 — Building Funa Gigs</h3>
-      <p class="journey-chapter-subtitle">Founder and Project Lead of a real-time service marketplace under Jaminsa Ventures Limited.</p>
-      <p class="journey-chapter-lead">Serve as Founder and Project Lead for Funa Gigs (owned by Jaminsa Ventures Limited, independent of Codesphere Innovations), architecting a multi-surface digital services marketplace connecting customers with verified service providers.</p>
-    </div>
-
-    <div class="journey-story-grid">
-      <div class="journey-story-box">
-        <span class="story-box-label">01 / THE CHALLENGE</span>
-        <p>Coordinating real-time job matching, Instant Hire state transitions, live geospatial discovery, mobile money payment flows, identity verification (KYC), and trust-and-safety controls across mobile and web surfaces.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
-        <p>Lead end-to-end product engineering across the Flutter mobile applications, Elixir/Phoenix and Supabase/PostgreSQL backend services, real-time messaging, payment integrations, and role-based administrative tooling.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">03 / WHAT I LEARNED</span>
-        <p>Marketplaces live or die on state-machine determinism—when location updates, messaging, identity checks, and payments interact concurrently, idempotency and strict state transitions are mandatory.</p>
-      </div>
-      <div class="journey-story-box highlight-gold">
-        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
-        <p>Directly inspired my open-source systems work in double-entry payment reconciliation (FlowLedger), defensive fraud detection (Cyber Dragon), and auditable AI governance.</p>
-      </div>
-    </div>
-
-    <div class="journey-tech-footer">
-      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
-      <div class="tech-pill-row"><span class="tech-pill">Flutter</span><span class="tech-pill">Dart</span><span class="tech-pill">Elixir</span><span class="tech-pill">Phoenix</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Supabase</span><span class="tech-pill">Next.js</span><span class="tech-pill">Google Cloud</span><span class="tech-pill">Payment APIs</span></div>
-    </div>
-  </article>
-<article class="journey-chapter-card " data-chapter-panel="6" id="journey-panel-6" role="tabpanel" aria-labelledby="journey-tab-6" hidden>
-    <div class="journey-chapter-header">
-      <div class="journey-chapter-eyebrow">
-        <span class="chapter-code-badge">CHAPTER 06</span>
-        <span class="chapter-theme-tag">Advanced Systems and Open Source</span>
-      </div>
-      <h3 class="journey-chapter-title">06 — Advanced Systems and Open Source</h3>
-      <p class="journey-chapter-subtitle">Cyber Dragon, Auralis Local, ARGUS AI, AgentShield, and my broader engineering work.</p>
-      <p class="journey-chapter-lead">Designed, tested, and published a suite of open-source flagship systems demonstrating institutional-grade engineering across defensive cybersecurity, privacy-first local AI, multi-agent governance, fintech ledgers, and cloud observability.</p>
-    </div>
-
-    <div class="journey-story-grid">
-      <div class="journey-story-box">
-        <span class="story-box-label">01 / THE CHALLENGE</span>
-        <p>Proving deep software engineering capability with working, installable open-source systems that enforce strict mathematical, security, and privacy invariants rather than superficial AI wrappers.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
-        <p>Architected and implemented Cyber Dragon v1.0, Auralis Local v0.2, ARGUS AI v2.1, AgentShield v1.0, FlowLedger v1.0, StackPulse v1.0, and AgriSignal v1.0—complete with CLI tools, FastAPI/React interfaces, ADRs, and 320+ automated tests.</p>
-      </div>
-      <div class="journey-story-box">
-        <span class="story-box-label">03 / WHAT I LEARNED</span>
-        <p>Open-source software earns trust when every claim is backed by reproducible benchmarks, explicit threat models, honest limitation disclosures, and deterministic test suites.</p>
-      </div>
-      <div class="journey-story-box highlight-gold">
-        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
-        <p>Positions my work for global engineering collaboration, international technical leadership, and the next generation of trustworthy AI and security infrastructure.</p>
-      </div>
-    </div>
-
-    <div class="journey-tech-footer">
-      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
-      <div class="tech-pill-row"><span class="tech-pill">Python</span><span class="tech-pill">TypeScript</span><span class="tech-pill">React 19</span><span class="tech-pill">Next.js 15</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Ollama / MLX</span><span class="tech-pill">OpenTelemetry</span><span class="tech-pill">OWASP 2026</span><span class="tech-pill">GitHub Actions</span></div>
-    </div>
-  </article>
-        </div>
-      </div>
-    </section>
-
     <!-- EXPERIENCE 03 — INTERACTIVE PROJECT UNIVERSE -->
     <section id="projects" class="section" aria-labelledby="explorer-heading">
       <div id="flagship-explorer" class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">EXPERIENCE 03 // INTERACTIVE PROJECT UNIVERSE</span>
+            <span class="section-eyebrow">02 / SELECTED WORK</span>
             <h2 id="explorer-heading" class="section-title">Selected work.<br/>Built to matter.</h2>
-            <p class="section-subtitle" id="projects-results-count">
-              Real projects. Hard problems. The engineering decisions behind the interfaces. Explore the work or open a case study for the details.</p>
+            <p class="section-subtitle">A selection of things I've designed, engineered, and built. Each project opens into the decisions behind it.</p>
+<p class="project-results" id="projects-results-count" role="status" aria-live="polite">8 engineering projects</p>
           </div>
         </div>
 
-        <div class="editorial-featured" aria-label="Selected flagship projects"><a class="featured-work" href="https://github.com/codesphere-u/cyber-dragon" target="_blank" rel="noopener noreferrer" aria-label="Explore Cyber Dragon on GitHub"><span class="featured-index"><span>SELECTED / 01</span><span>CYBERSECURITY</span></span><span class="featured-arrow" aria-hidden="true">↗</span><span class="featured-bottom"><h3 class="featured-name">Cyber Dragon</h3><span class="featured-tag">Explainable protection against scams, phishing and digital fraud.</span></span></a>
+        <div class="featured-heading"><span>THE FEATURED THREE</span><span>SCROLL TO EXPLORE ↘</span></div><div class="editorial-featured" aria-label="Selected flagship projects" id="featured-work"><a class="featured-work" href="https://github.com/codesphere-u/cyber-dragon" target="_blank" rel="noopener noreferrer" aria-label="Explore Cyber Dragon on GitHub"><span class="featured-index"><span>SELECTED / 01</span><span>CYBERSECURITY</span></span><span class="featured-arrow" aria-hidden="true">↗</span><span class="featured-bottom"><h3 class="featured-name">Cyber Dragon</h3><span class="featured-tag">Explainable protection against scams, phishing and digital fraud.</span></span></a>
 <a class="featured-work" href="https://github.com/codesphere-u/auralis-local" target="_blank" rel="noopener noreferrer" aria-label="Explore Auralis Local on GitHub"><span class="featured-index"><span>SELECTED / 02</span><span>LOCAL AI</span></span><span class="featured-arrow" aria-hidden="true">↗</span><span class="featured-bottom"><h3 class="featured-name">Auralis Local</h3><span class="featured-tag">An expressive private AI assistant that runs on a Mac.</span></span></a>
 <a class="featured-work" href="https://github.com/codesphere-u/ARGUS-AI" target="_blank" rel="noopener noreferrer" aria-label="Explore ARGUS AI on GitHub"><span class="featured-index"><span>SELECTED / 03</span><span>MULTI-AGENT SYSTEMS</span></span><span class="featured-arrow" aria-hidden="true">↗</span><span class="featured-bottom"><h3 class="featured-name">ARGUS AI</h3><span class="featured-tag">Adversarial analysis, auditability and deterministic risk controls.</span></span></a></div><div class="explorer-controls" role="region" aria-label="Filter and search flagship systems">
           <div class="domain-tabs" role="toolbar" aria-label="Filter by engineering domain">
@@ -486,17 +189,18 @@
           </div>
 
           <div class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
             <input
               type="search"
               id="project-search"
               class="search-input"
-              placeholder="Search systems, ADRs, languages (press /)..."
+              placeholder="Search projects, tools, technologies..."
               aria-label="Search flagship systems"
             />
           </div>
         </div>
 
-        <div id="projects-grid" class="projects-grid">
+        <div class="project-list-heading"><span>PROJECT INDEX</span><span>SELECT A CARD FOR ITS CASE STUDY</span></div><div id="projects-grid" class="projects-grid">
           
     <article class="project-card motif-shield" data-project-id="cyber-dragon" data-primary-domain="Cybersecurity" style="--card-accent: #53C9EE">
       <div class="project-card-visual">
@@ -1066,12 +770,330 @@
       </div>
     </section>
 
+    <!-- EXPERIENCE 02 — MY JOURNEY (INTERACTIVE CAREER DOCUMENTARY) -->
+    <section id="journey" class="section" aria-labelledby="journey-heading">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="section-eyebrow">03 / MY JOURNEY</span>
+            <h2 id="journey-heading" class="section-title">One system at a time. One chapter at a time.</h2>
+            <p class="section-subtitle">
+              From engineering foundations at ISBAT University and founding 4codex Technologies to leading engineering at Waanverse Labs (until March 2025), founding Codesphere Innovations (U) Limited, leading Funa Gigs under Jaminsa Ventures Limited, and architecting open-source AI and cybersecurity systems.
+            </p>
+          </div>
+
+          <div class="journey-nav-controls" aria-label="Chapter progression controls">
+            <button type="button" id="journey-prev-btn" class="btn" disabled>← Previous Chapter</button>
+            <button type="button" id="journey-next-btn" class="btn btn-primary">Next Chapter →</button>
+          </div>
+        </div>
+
+        <div class="journey-progress-track" aria-hidden="true">
+          <div id="journey-progress-fill" class="journey-progress-fill" style="width: 17%"></div>
+        </div>
+
+        <div class="journey-tabs-bar" role="tablist" aria-label="Career journey chapters">
+          
+        <button
+          type="button"
+          class="journey-tab-btn is-active"
+          id="journey-tab-1"
+          data-chapter-tab="1"
+          role="tab"
+          aria-selected="true"
+          aria-controls="journey-panel-1"
+        >
+          <span class="journey-tab-num">01</span>
+          <span class="journey-tab-label">Engineering Foundations</span>
+        </button>
+
+        <button
+          type="button"
+          class="journey-tab-btn "
+          id="journey-tab-2"
+          data-chapter-tab="2"
+          role="tab"
+          aria-selected="false"
+          aria-controls="journey-panel-2"
+        >
+          <span class="journey-tab-num">02</span>
+          <span class="journey-tab-label">Building 4codex Technologies</span>
+        </button>
+
+        <button
+          type="button"
+          class="journey-tab-btn "
+          id="journey-tab-3"
+          data-chapter-tab="3"
+          role="tab"
+          aria-selected="false"
+          aria-controls="journey-panel-3"
+        >
+          <span class="journey-tab-num">03</span>
+          <span class="journey-tab-label">Technical Leadership</span>
+        </button>
+
+        <button
+          type="button"
+          class="journey-tab-btn "
+          id="journey-tab-4"
+          data-chapter-tab="4"
+          role="tab"
+          aria-selected="false"
+          aria-controls="journey-panel-4"
+        >
+          <span class="journey-tab-num">04</span>
+          <span class="journey-tab-label">Founding Codesphere Innovations</span>
+        </button>
+
+        <button
+          type="button"
+          class="journey-tab-btn "
+          id="journey-tab-5"
+          data-chapter-tab="5"
+          role="tab"
+          aria-selected="false"
+          aria-controls="journey-panel-5"
+        >
+          <span class="journey-tab-num">05</span>
+          <span class="journey-tab-label">Building Funa Gigs</span>
+        </button>
+
+        <button
+          type="button"
+          class="journey-tab-btn "
+          id="journey-tab-6"
+          data-chapter-tab="6"
+          role="tab"
+          aria-selected="false"
+          aria-controls="journey-panel-6"
+        >
+          <span class="journey-tab-num">06</span>
+          <span class="journey-tab-label">Advanced Systems and Open Source</span>
+        </button>
+        </div>
+
+        <div class="journey-panels-stage">
+          <article class="journey-chapter-card is-active" data-chapter-panel="1" id="journey-panel-1" role="tabpanel" aria-labelledby="journey-tab-1" >
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER 01</span>
+        <span class="chapter-theme-tag">Engineering Foundations</span>
+      </div>
+      <h3 class="journey-chapter-title">01 — Engineering Foundations</h3>
+      <p class="journey-chapter-subtitle">ISBAT University, independent software development, and practical business applications.</p>
+      <p class="journey-chapter-lead">Built a hands-on engineering foundation at ISBAT University in Kampala while independently designing and deploying operational software for local businesses across retail, pharmacy, restaurant, hardware, and logistics sectors.</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>Small and medium enterprises needed reliable inventory, billing, and operational software that worked cleanly on modest hardware without expensive recurring cloud dependencies.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>Independently gathered requirements from business operators, designed relational database schemas, built full-stack interfaces, and deployed working desktop and web applications.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>Real-world users care about reliability, data integrity, and clear workflows far more than hype. Writing software for daily business operations taught me disciplined schema design and end-to-end ownership.</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>Revealed a broader demand for structured custom software and cybersecurity consulting, directly motivating the founding of 4codex Technologies.</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row"><span class="tech-pill">Python</span><span class="tech-pill">JavaScript</span><span class="tech-pill">SQL</span><span class="tech-pill">PHP</span><span class="tech-pill">C#</span><span class="tech-pill">Java</span><span class="tech-pill">HTML/CSS</span><span class="tech-pill">MySQL</span><span class="tech-pill">SQLite</span></div>
+    </div>
+  </article>
+<article class="journey-chapter-card " data-chapter-panel="2" id="journey-panel-2" role="tabpanel" aria-labelledby="journey-tab-2" hidden>
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER 02</span>
+        <span class="chapter-theme-tag">Building 4codex Technologies</span>
+      </div>
+      <h3 class="journey-chapter-title">02 — Building 4codex Technologies</h3>
+      <p class="journey-chapter-subtitle">My early experience in entrepreneurship and delivering technology solutions.</p>
+      <p class="journey-chapter-lead">Founded 4codex Technologies as an early technology venture delivering custom web application engineering, cybersecurity assessments, workflow automation, and technical consultancy.</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>Translating diverse client business problems into secure, maintainable software architectures while managing delivery timelines and technical expectations.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>Served as founder and lead engineer—architecting web platforms, hardening authentication and API boundaries, automating repetitive business workflows, and advising clients on digital security.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>Security cannot be bolted on after launch, and sustainable software delivery requires repeatable engineering standards, modular codebases, and clear communication.</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>Prepared me to step into executive technical leadership and coordinate multi-engineer product architectures at Waanverse Labs Inc.</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row"><span class="tech-pill">Python</span><span class="tech-pill">Flask</span><span class="tech-pill">Django</span><span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">REST APIs</span><span class="tech-pill">Application Security</span></div>
+    </div>
+  </article>
+<article class="journey-chapter-card " data-chapter-panel="3" id="journey-panel-3" role="tabpanel" aria-labelledby="journey-tab-3" hidden>
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER 03</span>
+        <span class="chapter-theme-tag">Technical Leadership</span>
+      </div>
+      <h3 class="journey-chapter-title">03 — Technical Leadership</h3>
+      <p class="journey-chapter-subtitle">Former CTO and Head of Engineering at Waanverse Labs, ending March 2025.</p>
+      <p class="journey-chapter-lead">Served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. until March 2025, guiding technical strategy, system architecture, and engineering execution.</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>Aligning long-term product vision with day-to-day engineering execution, establishing clean code review and CI workflows, and making architectural trade-offs that kept delivery velocity high without accumulating fragile technical debt.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>Directed technical strategy, defined service boundaries and API contracts, mentored developers, structured sprint planning and release workflows, and oversaw architecture quality across products.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>Strong technical leadership multiplies engineering output through clarity—clear interfaces, documented architectural decisions, and automated quality gates.</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>Equipped me with the executive and architectural experience to establish and lead Codesphere Innovations (U) Limited as a full-scale technology company.</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row"><span class="tech-pill">System Architecture</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Python</span><span class="tech-pill">Node.js</span><span class="tech-pill">React</span><span class="tech-pill">Next.js</span><span class="tech-pill">Cloud Infrastructure</span><span class="tech-pill">CI/CD</span></div>
+    </div>
+  </article>
+<article class="journey-chapter-card " data-chapter-panel="4" id="journey-panel-4" role="tabpanel" aria-labelledby="journey-tab-4" hidden>
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER 04</span>
+        <span class="chapter-theme-tag">Founding Codesphere Innovations</span>
+      </div>
+      <h3 class="journey-chapter-title">04 — Founding Codesphere Innovations</h3>
+      <p class="journey-chapter-subtitle">Founder and Managing Director of Codesphere Innovations (U) Limited.</p>
+      <p class="journey-chapter-lead">Founded and currently lead Codesphere Innovations (U) Limited (codesphereug.com) in Uganda, combining executive company management with hands-on software architecture across AI-enabled systems, cybersecurity, cloud platforms, and digital transformation.</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>Building a credible Ugandan technology company capable of delivering high-assurance custom software, applied AI solutions, and secure cloud infrastructure for organizations navigating digital transformation.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>Define company technology direction, lead product architecture and security standards, oversee engineering execution, and drive business development while remaining deeply hands-on in core system design.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>Balancing company leadership with deep technical craft allows an organization to stay grounded in what actually works rather than over-promising.</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>Created the operational foundation to tackle complex, high-concurrency consumer and marketplace platforms alongside open-source research.</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row"><span class="tech-pill">TypeScript</span><span class="tech-pill">Next.js</span><span class="tech-pill">Python</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Flutter</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Docker</span><span class="tech-pill">Cloud Architecture</span><span class="tech-pill">Applied AI</span></div>
+    </div>
+  </article>
+<article class="journey-chapter-card " data-chapter-panel="5" id="journey-panel-5" role="tabpanel" aria-labelledby="journey-tab-5" hidden>
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER 05</span>
+        <span class="chapter-theme-tag">Building Funa Gigs</span>
+      </div>
+      <h3 class="journey-chapter-title">05 — Building Funa Gigs</h3>
+      <p class="journey-chapter-subtitle">Founder and Project Lead of a real-time service marketplace under Jaminsa Ventures Limited.</p>
+      <p class="journey-chapter-lead">Serve as Founder and Project Lead for Funa Gigs (owned by Jaminsa Ventures Limited, independent of Codesphere Innovations), architecting a multi-surface digital services marketplace connecting customers with verified service providers.</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>Coordinating real-time job matching, Instant Hire state transitions, live geospatial discovery, mobile money payment flows, identity verification (KYC), and trust-and-safety controls across mobile and web surfaces.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>Lead end-to-end product engineering across the Flutter mobile applications, Elixir/Phoenix and Supabase/PostgreSQL backend services, real-time messaging, payment integrations, and role-based administrative tooling.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>Marketplaces live or die on state-machine determinism—when location updates, messaging, identity checks, and payments interact concurrently, idempotency and strict state transitions are mandatory.</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>Directly inspired my open-source systems work in double-entry payment reconciliation (FlowLedger), defensive fraud detection (Cyber Dragon), and auditable AI governance.</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row"><span class="tech-pill">Flutter</span><span class="tech-pill">Dart</span><span class="tech-pill">Elixir</span><span class="tech-pill">Phoenix</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Supabase</span><span class="tech-pill">Next.js</span><span class="tech-pill">Google Cloud</span><span class="tech-pill">Payment APIs</span></div>
+    </div>
+  </article>
+<article class="journey-chapter-card " data-chapter-panel="6" id="journey-panel-6" role="tabpanel" aria-labelledby="journey-tab-6" hidden>
+    <div class="journey-chapter-header">
+      <div class="journey-chapter-eyebrow">
+        <span class="chapter-code-badge">CHAPTER 06</span>
+        <span class="chapter-theme-tag">Advanced Systems and Open Source</span>
+      </div>
+      <h3 class="journey-chapter-title">06 — Advanced Systems and Open Source</h3>
+      <p class="journey-chapter-subtitle">Cyber Dragon, Auralis Local, ARGUS AI, AgentShield, and my broader engineering work.</p>
+      <p class="journey-chapter-lead">Designed, tested, and published a suite of open-source flagship systems demonstrating institutional-grade engineering across defensive cybersecurity, privacy-first local AI, multi-agent governance, fintech ledgers, and cloud observability.</p>
+    </div>
+
+    <div class="journey-story-grid">
+      <div class="journey-story-box">
+        <span class="story-box-label">01 / THE CHALLENGE</span>
+        <p>Proving deep software engineering capability with working, installable open-source systems that enforce strict mathematical, security, and privacy invariants rather than superficial AI wrappers.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">02 / MY RESPONSIBILITY</span>
+        <p>Architected and implemented Cyber Dragon v1.0, Auralis Local v0.2, ARGUS AI v2.1, AgentShield v1.0, FlowLedger v1.0, StackPulse v1.0, and AgriSignal v1.0—complete with CLI tools, FastAPI/React interfaces, ADRs, and 320+ automated tests.</p>
+      </div>
+      <div class="journey-story-box">
+        <span class="story-box-label">03 / WHAT I LEARNED</span>
+        <p>Open-source software earns trust when every claim is backed by reproducible benchmarks, explicit threat models, honest limitation disclosures, and deterministic test suites.</p>
+      </div>
+      <div class="journey-story-box highlight-gold">
+        <span class="story-box-label">04 / HOW IT SHAPED THE NEXT STAGE</span>
+        <p>Positions my work for global engineering collaboration, international technical leadership, and the next generation of trustworthy AI and security infrastructure.</p>
+      </div>
+    </div>
+
+    <div class="journey-tech-footer">
+      <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
+      <div class="tech-pill-row"><span class="tech-pill">Python</span><span class="tech-pill">TypeScript</span><span class="tech-pill">React 19</span><span class="tech-pill">Next.js 15</span><span class="tech-pill">FastAPI</span><span class="tech-pill">Ollama / MLX</span><span class="tech-pill">OpenTelemetry</span><span class="tech-pill">OWASP 2026</span><span class="tech-pill">GitHub Actions</span></div>
+    </div>
+  </article>
+        </div>
+      </div>
+    </section>
+
     <!-- EXPERIENCE 04 — EXPLORE MY ENGINEERING MIND (KNOWLEDGE MAP) -->
     <section id="mindmap" class="section" aria-labelledby="mindmap-heading">
       <div class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">EXPERIENCE 04 // EXPLORE MY ENGINEERING MIND</span>
+            <span class="section-eyebrow">04 / EXPLORING IDEAS</span>
             <h2 id="mindmap-heading" class="section-title">How I think in systems.</h2>
             <p class="section-subtitle">
               Select any node in the constellation — AI Systems, Backend Architecture, Cybersecurity, Databases, Flutter, Cloud Infrastructure, Distributed Systems, or DevOps — to inspect the exact repositories and commercial systems that prove that capability.
@@ -1885,7 +1907,7 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">EXPERIENCE 05 // SANDBOXED COMMAND INTERFACE</span>
+            <span class="section-eyebrow">05 / EXPERIMENTAL SPACE</span>
             <h2 id="terminal-heading" class="section-title">A different way to explore.</h2>
             <p class="section-subtitle">
               Inspect my biography, career chapters, open-source repositories, technical specialties, and contact channels using keyboard commands or one-click command chips.
@@ -2605,7 +2627,8 @@
     </section>
   </main>
 
-  <!-- Interactive Case Study & ADR Deep-Dive Drawer -->
+  <a class="back-to-top" id="back-to-top" href="#hero" aria-label="Back to top">↑ <span>TOP</span></a>
+<!-- Interactive Case Study & ADR Deep-Dive Drawer -->
   <div id="adr-drawer-backdrop" class="drawer-backdrop" aria-hidden="true"></div>
   <aside
     id="adr-drawer"
@@ -2777,5 +2800,6 @@ node --experimental-strip-types bin/cyber-dragon.mjs scan &quot;URGENT: Dial *21
   </footer>
 
   <script type="module" src="./src/ui/app.mjs"></script>
+<script type="module" src="./src/ui/navigation.mjs"></script>
 </body>
 </html>
