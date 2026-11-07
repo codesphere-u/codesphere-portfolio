@@ -1194,6 +1194,244 @@ export const PORTFOLIO_DATA = {
     },
 
     {
+      id: 'swarmweaver',
+      slug: 'swarmweaver',
+      name: 'SwarmWeaver',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'swarm',
+      accentColor: '#53C9EE',
+      tagline:
+        'Deterministic Multi-Agent DAG Orchestrator, File-Scope Lease Conflict Guard & Crash-Safe Checkpoint Resume Engine',
+      summary:
+        'Multi-agent swarm orchestration engine and Model Context Protocol (MCP) server that compiles task dependencies into conflict-free parallel execution waves, prevents concurrent file clobbering via pessimistic/optimistic file-scope leases, enforces typed blackboard handoff contracts, and journals completed DAG nodes in a SHA-256 hash-chained log for sub-millisecond crash-safe resume.',
+      problemStatement:
+        'Parallel multi-agent coding and research swarms fail in production when two concurrent subagents edit overlapping files (silently clobbering changes), when a 15-step workflow crashes at step 12 and wastes all prior tokens, or when agents pass unvalidated prose across task boundaries.',
+      technicalChallenges: [
+        'Validating arbitrary multi-agent dependency graphs with exact cycle-path reconstruction while splitting tasks that share write/write or read/write file-glob overlaps into conflict-free parallel execution sub-waves.',
+        'Implementing a deadlock-free FileScopeLeaseManager supporting SHARED_READ and EXCLUSIVE_WRITE locks over exact paths, fnmatch globs, directory prefixes, and AST symbol scopes (path.py::symbol).',
+        'Journaling completed task outputs in a SHA-256 hash-chained checkpoint log so interrupted workflows replay completed nodes in 0.0072 ms/node with zero duplicate token spend.'
+      ],
+      securityConsiderations: [
+        'Cryptographic SHA-256 lease tokens prevent unauthorized lock releases across concurrent agent threads.',
+        'Tamper-evident SHA-256 checkpoint hash chain (verify_integrity()) blocks corrupted or modified state injection during workflow resume.',
+        'Strict TypedBlackboard input/output schema validation prevents unvalidated agent handoffs.'
+      ],
+      domains: ['AI', 'Backend', 'Cloud'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/swarmweaver',
+      languages: ['Python 3.12', 'DAG Scheduler', 'MCP JSON-RPC 2.0', 'Concurrency Control'],
+      automatedTests: 65,
+      headlineMetric: {
+        label: 'Collision Prevention & Resume Savings',
+        value: '0 Race Conditions · 70% Tokens Saved',
+        detail: '100% file-collision prevention across 50 parallel conflicting tasks and 0.0072 ms/node checkpoint replay'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '65 passing (pytest)' },
+        { label: '200-Task DAG Compile P50', value: '0.973 ms (5.93x speedup)' },
+        { label: 'File Collision Prevention', value: '100.0% (0 race conditions)' },
+        { label: 'Checkpoint Replay Speed', value: '0.0072 ms / node (70% tok saved)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Multi-Agent Task Graph (depends_on + read_globs + write_globs)]
+        │
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ 1. DAGCompiler & Cycle Detector (Topological Levels)      │
+│    • Greedy Graph Coloring splits RW/WW file overlaps     │
+├───────────────────────────────────────────────────────────┤
+│ 2. FileScopeLeaseManager (SHARED_READ / EXCLUSIVE_WRITE)  │
+│    • Canonical sorted lock order + SHA-256 lease tokens   │
+├───────────────────────────────────────────────────────────┤
+│ 3. TypedBlackboard (Schema-Validated Handoff Contracts)   │
+├───────────────────────────────────────────────────────────┤
+│ 4. SHA-256 CheckpointJournal (0.0072 ms Crash Resume)     │
+└───────────────────────────────────────────────────────────┘`,
+        layers: [
+          {
+            name: 'Conflict-Aware Topological Wave Compiler (swarmweaver/dag.py)',
+            responsibility:
+              'Detects dependency cycles, computes critical-path latency, and partitions each topological level into conflict-free parallel sub-waves.'
+          },
+          {
+            name: 'File-Scope Lease Manager & Typed Blackboard (swarmweaver/leases.py, blackboard.py)',
+            responsibility:
+              'Enforces SHARED_READ and EXCLUSIVE_WRITE locks on files/globs/AST symbols and validates inter-agent blackboard schemas.'
+          },
+          {
+            name: 'SHA-256 Hash-Chained Checkpoint Journal & MCP Server (swarmweaver/checkpoint.py)',
+            responsibility:
+              'Replays completed DAG nodes deterministically on crash recovery with zero wasted tokens and exposes 4 JSON-RPC 2.0 MCP tools.'
+          }
+        ],
+        invariants: [
+          'No two tasks assigned to the same execution sub-wave ever hold overlapping EXCLUSIVE_WRITE or READ/WRITE file-scope patterns.',
+          'Deadlocks are impossible during multi-file lease acquisition because scopes are acquired in canonical lexicographical order.',
+          'Any tampering in the checkpoint JSONL journal breaks the SHA-256 hash chain and halts workflow resume before execution.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Static Graph-Coloring Wave Splitting Paired with Runtime Lease Enforcement',
+          context:
+            'Relying solely on runtime locks causes parallel subagents to stall in lock contention, while relying solely on static scheduling misses dynamic tool accesses.',
+          decision:
+            'Combine static conflict-aware wave partitioning (greedy graph coloring over read/write globs) with runtime FileScopeLeaseManager enforcement and SHA-256 checkpoint journaling.',
+          tradeOffs:
+            'Requires tasks to declare read/write glob patterns upfront, but eliminates race conditions and achieves a 5.93x parallel speedup on 200-node graphs.',
+          verification:
+            'Verified across 65 pytest tests and a 4-part benchmark suite.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/swarmweaver.git',
+        'cd swarmweaver && pytest -v',
+        'python -m swarmweaver.cli demo && python -m swarmweaver.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'Conflict-Aware DAG Compiler',
+          path: 'swarmweaver/dag.py',
+          url: 'https://github.com/codesphere-u/swarmweaver/blob/main/swarmweaver/dag.py',
+          kind: 'source'
+        },
+        {
+          label: 'File-Scope Lease Manager',
+          path: 'swarmweaver/leases.py',
+          url: 'https://github.com/codesphere-u/swarmweaver/blob/main/swarmweaver/leases.py',
+          kind: 'source'
+        },
+        {
+          label: 'SHA-256 Checkpoint Journal',
+          path: 'swarmweaver/checkpoint.py',
+          url: 'https://github.com/codesphere-u/swarmweaver/blob/main/swarmweaver/checkpoint.py',
+          kind: 'source'
+        }
+      ]
+    },
+
+    {
+      id: 'truthgate',
+      slug: 'truthgate',
+      name: 'TruthGate',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'truth',
+      accentColor: '#F4B94C',
+      tagline:
+        'Deterministic Agent Hallucination Auditor, Citation-Span Entailment Verifier & Workspace Symbol Grounding Engine',
+      summary:
+        'Sub-millisecond verification gate and Model Context Protocol (MCP) server that audits AI agent responses against retrieved source documents and live codebases across 8 deterministic rules (TG001–TG008)—catching phantom citations, negation polarity flips, numeric/currency drift, and hallucinated AST symbols without a second LLM call.',
+      problemStatement:
+        'RAG and coding agents frequently cite valid source IDs while inverting negation polarity ("not permitted" -> "permitted"), shifting numeric or currency magnitudes by 10x, or referencing file paths, line ranges (#L90-L120), and function names that do not exist in the workspace.',
+      technicalChallenges: [
+        'Decomposing multi-paragraph markdown responses into atomic propositions with extracted citations, numeric/currency tokens, negation markers, and code references in sub-millisecond time.',
+        'Detecting semantic polarity inversions (TG003) across explicit negations and 30+ bidirectional technical antonym pairs (enabled/disabled, allowed/prohibited, encrypted/unencrypted, mutable/immutable) while resolving double negatives.',
+        'Statically grounding every referenced file path (TG006), line range (TG007), and Python/TS/Go/Rust AST symbol (TG008) against the workspace filesystem and compiling a surgical self-repair prompt when a check fails.'
+      ],
+      securityConsiderations: [
+        'Workspace symbol grounder enforces strict path-traversal containment inside the workspace root.',
+        'Deterministic verification runs 100% locally in 0.115 ms P50 without sending proprietary source documents to external LLM judges.',
+        'Zero false-positive guarantee verified on grounded RAG and coding responses.'
+      ],
+      domains: ['AI', 'Cybersecurity', 'Backend'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/truthgate',
+      languages: ['Python 3.12', 'AST Grounding', 'NLI Entailment', 'MCP JSON-RPC 2.0'],
+      automatedTests: 67,
+      headlineMetric: {
+        label: 'Hallucination Recall & Latency',
+        value: '100% Recall · 0% FPR · 0.115 ms',
+        detail: '40/40 exact accuracy across 30 adversarial hallucination scenarios (TG001–TG008) and 10 grounded controls'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '67 passing (pytest)' },
+        { label: '40-Scenario Benchmark', value: '100.0% Precision & Recall (0% FPR)' },
+        { label: 'Verification P50 Latency', value: '0.115 ms / response' },
+        { label: 'Deterministic Rules', value: '8 Rules (TG001–TG008) + MCP' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Agent Markdown Response + Cited Sources + Workspace Root]
+        │
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ 1. ClaimDecomposer (Atomic Claims, Citations, Numbers)    │
+├───────────────────────────────────────────────────────────┤
+│ 2. CitationEntailmentVerifier (TG001–TG005)               │
+│    • TG001 Phantom Citation  • TG003 Polarity/Antonym Flip│
+│    • TG002 Unverified Claim  • TG004 Numeric/Unit Drift   │
+├───────────────────────────────────────────────────────────┤
+│ 3. WorkspaceSymbolGrounder (TG006–TG008 AST & Line Check) │
+└───────────────────────────┬───────────────────────────────┘
+                            ▼
+   [Claim-by-Claim Verdicts + Surgical Self-Repair Prompt]`,
+        layers: [
+          {
+            name: 'Atomic Claim & Citation Decomposer (truthgate/decomposer.py)',
+            responsibility:
+              'Splits agent markdown into atomic propositions and extracts citations, numeric/currency tokens, negation polarity, and code references.'
+          },
+          {
+            name: 'Deterministic Citation-Span Entailment Verifier (truthgate/entailment.py)',
+            responsibility:
+              'Checks source existence (TG001), entity support (TG002), negation/antonym polarity conservation (TG003), and exact numeric conservation (TG004).'
+          },
+          {
+            name: 'Workspace AST Symbol Grounder & Repair Compiler (truthgate/grounding.py, corrector.py)',
+            responsibility:
+              'Verifies file paths (TG006), line bounds (TG007), and AST symbols (TG008), compiling a minimal self-correction prompt when violations occur.'
+          }
+        ],
+        invariants: [
+          'Any cited source ID missing from the context corpus deterministically triggers TG001 (PHANTOM_CITATION).',
+          'Any numeric or currency value in a cited claim that drifts from the source document triggers TG004 (NUMERIC_DRIFT).',
+          'Any file link or symbol reference failing filesystem/AST resolution triggers TG006–TG008 before the response reaches the user.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Deterministic Entailment & AST Symbol Grounding Over LLM-as-a-Judge',
+          context:
+            'Using a second LLM call to audit agent responses adds 2–5 seconds of latency, doubles API cost, and frequently misses subtle line-number or numeric-drift bugs.',
+          decision:
+            'Combine algebraic negation/antonym polarity checks, numeric token conservation, and live AST symbol table inspection into a sub-millisecond verification gate.',
+          tradeOffs:
+            'Focuses on structural, numeric, polarity, citation, and AST grounding errors rather than open-ended stylistic critique, executing 10,000x faster (0.115 ms P50).',
+          verification:
+            'Verified across 67 pytest tests and a 40-scenario benchmark (100% precision, 100% recall, 0% FPR).'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/truthgate.git',
+        'cd truthgate && pytest -v',
+        'python -m truthgate.cli demo && python -m truthgate.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'Citation Entailment Verifier',
+          path: 'truthgate/entailment.py',
+          url: 'https://github.com/codesphere-u/truthgate/blob/main/truthgate/entailment.py',
+          kind: 'source'
+        },
+        {
+          label: 'Workspace AST Symbol Grounder',
+          path: 'truthgate/grounding.py',
+          url: 'https://github.com/codesphere-u/truthgate/blob/main/truthgate/grounding.py',
+          kind: 'source'
+        },
+        {
+          label: '67 Pytest Verification Suite',
+          path: 'tests/test_corrector_and_pipeline.py',
+          url: 'https://github.com/codesphere-u/truthgate/blob/main/tests/test_corrector_and_pipeline.py',
+          kind: 'test'
+        }
+      ]
+    },
+
+    {
       id: 'flowledger',
       slug: 'flowledger',
       name: 'FlowLedger',
@@ -1692,7 +1930,7 @@ export const PORTFOLIO_DATA = {
         'Model Context Protocol (MCP) server implementation & structured Pydantic outputs'
       ],
       technologies: ['Python', 'TypeScript', 'Ollama', 'MLX', 'Whisper', 'MCP', 'BM25 RAG', 'TensorFlow'],
-      relatedProjectIds: ['cortex-mcp', 'agentflight', 'patchpilot', 'synapse-router', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
+      relatedProjectIds: ['cortex-mcp', 'agentflight', 'patchpilot', 'synapse-router', 'swarmweaver', 'truthgate', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
       relatedCommercialNames: ['AI Energy Efficiency Tool'],
       connectedNodeIds: ['cybersecurity', 'backend-architecture', 'distributed-systems']
     },
@@ -1713,7 +1951,7 @@ export const PORTFOLIO_DATA = {
         'Loopback sandboxing, CSRF/Origin validation, TOTP MFA, and SHA-256 hash-chained audit logs'
       ],
       technologies: ['OWASP 2026', 'Static Heuristics', 'HMAC-SHA256', 'SHA-256 Audit Chains', 'RBAC / MFA', 'PII Redaction'],
-      relatedProjectIds: ['cyber-dragon', 'agentshield', 'patchpilot', 'agentflight', 'auralis-local', 'flowledger'],
+      relatedProjectIds: ['cyber-dragon', 'agentshield', 'patchpilot', 'truthgate', 'agentflight', 'auralis-local', 'flowledger'],
       relatedCommercialNames: ['4codex Security Assessments', 'Funa Gigs Trust & Safety'],
       connectedNodeIds: ['ai-systems', 'backend-architecture', 'cloud-infrastructure']
     },
@@ -1776,7 +2014,7 @@ export const PORTFOLIO_DATA = {
         'Walk-forward multi-agent consensus and disagreement entropy measurement (ARGUS AI)'
       ],
       technologies: ['OpenTelemetry', 'Hybrid Logical Clocks', 'LWW-Element-Set', 'Idempotency Keys', '3-Way Reconciliation'],
-      relatedProjectIds: ['stackpulse', 'flowledger', 'agrisignal', 'argus-ai'],
+      relatedProjectIds: ['swarmweaver', 'stackpulse', 'flowledger', 'agrisignal', 'argus-ai'],
       relatedCommercialNames: ['Funa Gigs Real-Time Matching'],
       connectedNodeIds: ['cloud-infrastructure', 'backend-architecture', 'databases', 'ai-systems']
     },
@@ -2012,6 +2250,32 @@ export const PORTFOLIO_DATA = {
       throughputOrAccuracyValue: '100% Stale Suppression · 0.123 ms 2-Hop P50',
       determinismGuarantee: 'Bi-Temporal Supersession + SHA-256 Merkle Root',
       verificationCommand: 'cd cortex-mcp && pytest -v && python -m cortex_mcp.cli benchmark'
+    },
+    {
+      projectId: 'truthgate',
+      projectName: 'TruthGate v1.0',
+      repoSlug: 'codesphere-u/truthgate',
+      domain: 'AI',
+      automatedTests: 67,
+      primaryLatencyLabel: 'Citation & AST Grounding (P50)',
+      primaryLatencyMs: 0.115,
+      throughputOrAccuracyLabel: '40-Scenario Hallucination Suite',
+      throughputOrAccuracyValue: '100% Recall & Precision (0.0% FPR · TG001-08)',
+      determinismGuarantee: 'Algebraic Polarity + Numeric Conservation + AST Check',
+      verificationCommand: 'cd truthgate && pytest -v && python -m truthgate.cli benchmark'
+    },
+    {
+      projectId: 'swarmweaver',
+      projectName: 'SwarmWeaver v1.0',
+      repoSlug: 'codesphere-u/swarmweaver',
+      domain: 'AI',
+      automatedTests: 65,
+      primaryLatencyLabel: 'Checkpoint Node Replay (P50)',
+      primaryLatencyMs: 0.0072,
+      throughputOrAccuracyLabel: 'Collision Prevention & Resume Savings',
+      throughputOrAccuracyValue: '0 Race Conditions · 70% Tokens Saved (5.93x Speedup)',
+      determinismGuarantee: 'Graph-Colored Wave Split + SHA-256 Checkpoint Journal',
+      verificationCommand: 'cd swarmweaver && pytest -v && python -m swarmweaver.cli benchmark'
     },
     {
       projectId: 'argus-ai',

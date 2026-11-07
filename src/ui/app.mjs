@@ -247,6 +247,37 @@ export function renderProjectVisualPreviewSvg(project) {
         <rect x="136" y="55" width="122" height="18" rx="4" fill="#101B2E" stroke="#F4B94C" />
         <text x="197" y="67" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F4B94C">FRONTIER REASONING</text>
       </svg>`;
+    case 'swarm':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="18" y="14" width="54" height="22" rx="4" fill="#101B2E" stroke="#53C9EE" stroke-width="1.5" />
+        <text x="45" y="28" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#53C9EE">WAVE 1A</text>
+        <rect x="18" y="48" width="54" height="22" rx="4" fill="#101B2E" stroke="#387BFA" stroke-width="1.5" />
+        <text x="45" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#98AFC8">WAVE 1B</text>
+        <line x1="72" y1="25" x2="112" y2="42" stroke="#53C9EE" stroke-width="1.6" />
+        <line x1="72" y1="59" x2="112" y2="42" stroke="#387BFA" stroke-width="1.6" />
+        <rect x="112" y="26" width="66" height="32" rx="5" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <text x="145" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F7FAFF">RW LEASE</text>
+        <text x="145" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#F4B94C">0 RACE</text>
+        <line x1="178" y1="42" x2="206" y2="42" stroke="#F4B94C" stroke-width="1.8" stroke-dasharray="4 3" />
+        <rect x="206" y="24" width="56" height="36" rx="5" fill="#101B2E" stroke="#F4B94C" stroke-width="1.6" />
+        <text x="234" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F4B94C">RESUME</text>
+        <text x="234" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#53C9EE">-70% TOK</text>
+      </svg>`;
+    case 'truth':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="16" y="18" width="68" height="48" rx="6" fill="#101B2E" stroke="#387BFA" stroke-width="1.5" />
+        <text x="50" y="38" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F7FAFF">CLAIMS</text>
+        <text x="50" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#98AFC8">[doc#L12]</text>
+        <line x1="84" y1="42" x2="116" y2="42" stroke="${color}" stroke-width="2" />
+        <polygon points="144,14 174,42 144,70 114,42" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <text x="144" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="${color}">TG01-08</text>
+        <line x1="174" y1="42" x2="204" y2="42" stroke="#53C9EE" stroke-width="2" />
+        <rect x="204" y="20" width="60" height="44" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-width="1.6" />
+        <text x="234" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#53C9EE">100% NLI</text>
+        <text x="234" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#F4B94C">0.115 ms</text>
+      </svg>`;
     case 'ledger':
       return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
         <rect width="280" height="84" rx="8" fill="#070B16" />
