@@ -29,13 +29,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career & Strict Accuracy Rules", () => {
-  it('validates overall portfolio schema and 825 verified automated tests/suites across 15 repositories', () => {
+  it('validates overall portfolio schema and 856 verified automated tests/suites across 15 repositories', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.equal(
       check.totalTests,
-      825,
-      `Expected exactly 825 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
+      856,
+      `Expected exactly 856 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
     );
   });
 
@@ -200,11 +200,11 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(agentflight.visualMotif, 'cassette');
 
     const patchpilot = getProjectById('patchpilot');
-    assert.equal(patchpilot.automatedTests, 58);
+    assert.equal(patchpilot.automatedTests, 73);
     assert.equal(patchpilot.visualMotif, 'ast');
 
     const synapseRouter = getProjectById('synapse-router');
-    assert.equal(synapseRouter.automatedTests, 61);
+    assert.equal(synapseRouter.automatedTests, 77);
     assert.equal(synapseRouter.visualMotif, 'router');
 
     const swarmweaver = getProjectById('swarmweaver');
@@ -389,7 +389,7 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
     assert.equal(summary.totalProjects, 15);
-    assert.equal(summary.totalAutomatedTests, 825);
+    assert.equal(summary.totalAutomatedTests, 856);
 
     assert.match(html, /class="skip-link"/);
     assert.match(html, /role="banner"/);
@@ -460,7 +460,7 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.equal(body.version, '2.0.0');
       assert.equal(body.owner, 'Akandwanaho Ivan Alvin');
       assert.equal(body.totalProjects, 15);
-      assert.equal(body.totalAutomatedTests, 825);
+      assert.equal(body.totalAutomatedTests, 856);
     });
 
     it('serves /api/projects with domain and query filtering', async () => {

@@ -950,7 +950,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires structured (subject, predicate, object) extraction alongside free-text episodes, but guarantees 100% suppression of superseded facts while preserving point-in-time historical queries.',
           verification:
-            'Verified across 67 pytest tests and a 500-fact / 100-episode benchmark suite.'
+            'Verified across 84 pytest tests, bi-temporal semantic contradiction auditing, and TruthGate citation bundle export.'
         }
       ],
       cliQuickstart: [
@@ -972,7 +972,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '67 Pytest Verification Suite',
+          label: '84 Pytest Verification Suite',
           path: 'tests/test_cortex_mcp.py',
           url: 'https://github.com/codesphere-u/cortex-mcp/blob/main/tests/test_cortex_mcp.py',
           kind: 'test'
@@ -1061,7 +1061,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires re-recording golden cassettes when intentional prompt or tool-schema changes alter agent trajectories, but makes CI regression testing 10,000x faster and $0 cost.',
           verification:
-            'Verified across 73 pytest tests in tests/test_agentflight.py and GitHub Actions CI.'
+            'Verified across 90 pytest tests in tests/test_agentflight.py and tests/test_diff_and_otel.py with W3C OTel trace export.'
         }
       ],
       cliQuickstart: [
@@ -1083,7 +1083,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '73 Pytest Verification Suite',
+          label: '90 Pytest Verification Suite',
           path: 'tests/test_agentflight.py',
           url: 'https://github.com/codesphere-u/agentflight/blob/main/tests/test_agentflight.py',
           kind: 'test'
@@ -1095,7 +1095,7 @@ export const PORTFOLIO_DATA = {
       id: 'patchpilot',
       slug: 'patchpilot',
       name: 'PatchPilot',
-      version: 'v1.0.0',
+      version: 'v1.1.0',
       isPrimaryFlagship: true,
       visualMotif: 'ast',
       accentColor: '#53C9EE',
@@ -1119,14 +1119,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/patchpilot',
       languages: ['Python 3.12', 'AST Analysis', 'MCP JSON-RPC 2.0', 'Automated Repair'],
-      automatedTests: 58,
+      automatedTests: 73,
       headlineMetric: {
         label: 'Fault Localization & Anti-Cheat Gate',
-        value: '100% Top-1 · -96.6% Tokens · 58 Tests',
+        value: '100% Top-1 · -96.6% Tokens · 73 Tests',
         detail: '100% Top-1 fault localization across 25 scenarios and 100% recall (0% FPR) blocking 20 reward-hacking patches (RH001–RH008)'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '58 passing (pytest)' },
+        { label: 'Automated Tests', value: '73 passing (pytest)' },
         { label: 'Fault Localization', value: '100% Top-1 (0.373 ms P50)' },
         { label: 'Context Token Savings', value: '96.6% prompt reduction' },
         { label: 'Anti-Reward-Hacking', value: '100% Recall / 0% FPR (RH01-08)' }
@@ -1172,7 +1172,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires language-aware AST parsing prior to running tests, but adds only 0.098 ms P50 latency while eliminating reward-hacked green builds.',
           verification:
-            'Verified across 58 pytest tests and a 40-patch adversarial benchmark corpus.'
+            'Verified across 73 pytest tests, unified git diff parsing, and Nexus Aegis G5 bridge.'
         }
       ],
       cliQuickstart: [
@@ -1194,7 +1194,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '58 Pytest Verification Suite',
+          label: '73 Pytest Verification Suite',
           path: 'tests/test_guard.py',
           url: 'https://github.com/codesphere-u/patchpilot/blob/main/tests/test_guard.py',
           kind: 'test'
@@ -1206,7 +1206,7 @@ export const PORTFOLIO_DATA = {
       id: 'synapse-router',
       slug: 'synapse-router',
       name: 'Synapse Router',
-      version: 'v1.0.0',
+      version: 'v1.1.0',
       isPrimaryFlagship: true,
       visualMotif: 'router',
       accentColor: '#387BFA',
@@ -1230,14 +1230,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/synapse-router',
       languages: ['Python 3.12', 'Multi-Model Router', '64-Bit SimHash Cache', 'MCP JSON-RPC 2.0'],
-      automatedTests: 61,
+      automatedTests: 77,
       headlineMetric: {
         label: 'Cost Reduction & Failover Resilience',
-        value: '90.6% Cost Saved · 100% Failover · 61 Tests',
+        value: '90.6% Cost Saved · 100% Failover · 77 Tests',
         detail: '0.74 ms P50 routing across 500 multi-agent requests ($3.74 → $0.35 USD) with 100% cascade quality retention and 13/13 HTTP 429 recoveries'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '61 passing (pytest)' },
+        { label: 'Automated Tests', value: '77 passing (pytest)' },
         { label: 'USD Cost Reduction', value: '90.59% saved (500-req bench)' },
         { label: 'Routing Latency', value: '0.74 ms P50 / 1.10 ms P95' },
         { label: 'HTTP 429 Failover', value: '100% recovered (13/13 faults)' }
@@ -1284,7 +1284,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Incurs a small cascade retry overhead on the ~10–15% of steps that escalate, but reduces overall multi-agent workflow cost by 79–90% while preserving 100% quality retention.',
           verification:
-            'Verified across 61 pytest tests and a 500-request multi-agent benchmark suite.'
+            'Verified across 77 pytest tests, sliding-window rate governor, and Nexus Aegis G2 bridge.'
         }
       ],
       cliQuickstart: [
@@ -1306,7 +1306,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '61 Pytest Verification Suite',
+          label: '77 Pytest Verification Suite',
           path: 'tests/test_budget_and_router.py',
           url: 'https://github.com/codesphere-u/synapse-router/blob/main/tests/test_budget_and_router.py',
           kind: 'test'
@@ -2426,15 +2426,15 @@ export const PORTFOLIO_DATA = {
     },
     {
       projectId: 'synapse-router',
-      projectName: 'Synapse Router v1.0',
+      projectName: 'Synapse Router v1.1',
       repoSlug: 'codesphere-u/synapse-router',
       domain: 'AI',
-      automatedTests: 61,
+      automatedTests: 77,
       primaryLatencyLabel: 'Pareto Routing & SimHash Cache',
       primaryLatencyMs: 0.7426,
       throughputOrAccuracyLabel: 'USD Cost Reduction & Failover',
-      throughputOrAccuracyValue: '90.59% Cost Saved · 100% HTTP 429 Failover',
-      determinismGuarantee: 'Confidence-Gated Cascade + 3-State Circuit Breaker',
+      throughputOrAccuracyValue: '90.59% Cost Saved · 100% Failover · 77 Tests',
+      determinismGuarantee: 'Confidence-Gated Cascade + Rate Governor + Aegis G2',
       verificationCommand: 'cd synapse-router && pytest -v && python -m synapse_router.cli benchmark'
     },
     {
@@ -2452,15 +2452,15 @@ export const PORTFOLIO_DATA = {
     },
     {
       projectId: 'patchpilot',
-      projectName: 'PatchPilot v1.0',
+      projectName: 'PatchPilot v1.1',
       repoSlug: 'codesphere-u/patchpilot',
       domain: 'AI',
-      automatedTests: 58,
+      automatedTests: 73,
       primaryLatencyLabel: 'AST Anti-Cheat Guard (P50)',
       primaryLatencyMs: 0.098,
       throughputOrAccuracyLabel: 'Fault Localization & Guard Recall',
       throughputOrAccuracyValue: '100% Top-1 (-96.6% Tok) · 100% RH01-08 Recall',
-      determinismGuarantee: '8-Rule AST Diff Guard + SHA-256 Rollback Sandbox',
+      determinismGuarantee: '8-Rule AST Diff Guard + Unified Diff + Aegis G5',
       verificationCommand: 'cd patchpilot && pytest -v && python -m patchpilot.cli benchmark'
     },
     {
