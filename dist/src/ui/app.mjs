@@ -278,6 +278,23 @@ export function renderProjectVisualPreviewSvg(project) {
         <text x="234" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#53C9EE">100% NLI</text>
         <text x="234" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#F4B94C">0.115 ms</text>
       </svg>`;
+    case 'aegis':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <circle cx="38" cy="24" r="7" fill="#101B2E" stroke="#53C9EE" stroke-width="1.5" />
+        <circle cx="38" cy="42" r="7" fill="#101B2E" stroke="#387BFA" stroke-width="1.5" />
+        <circle cx="38" cy="60" r="7" fill="#101B2E" stroke="#F4B94C" stroke-width="1.5" />
+        <line x1="45" y1="24" x2="108" y2="42" stroke="#53C9EE" stroke-width="1.4" />
+        <line x1="45" y1="42" x2="108" y2="42" stroke="#387BFA" stroke-width="1.4" />
+        <line x1="45" y1="60" x2="108" y2="42" stroke="#F4B94C" stroke-width="1.4" />
+        <polygon points="140,12 174,28 174,56 140,72 106,56 106,28" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <text x="140" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F7FAFF">7-GATE</text>
+        <text x="140" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="${color}">RFC6962</text>
+        <line x1="174" y1="42" x2="204" y2="42" stroke="#53C9EE" stroke-width="2" />
+        <rect x="204" y="20" width="60" height="44" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-width="1.6" />
+        <text x="234" y="39" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#53C9EE">MERKLE</text>
+        <text x="234" y="51" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#F4B94C">0.27 ms</text>
+      </svg>`;
     case 'ledger':
       return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
         <rect width="280" height="84" rx="8" fill="#070B16" />

@@ -743,23 +743,144 @@ export const PORTFOLIO_DATA = {
     },
 
     {
+      id: 'nexus-aegis',
+      slug: 'nexus-aegis',
+      name: 'Nexus Aegis',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'aegis',
+      accentColor: '#F4B94C',
+      tagline:
+        'Proof-Carrying Autonomous Agent Kernel, 7-Gate Verification Pipeline & RFC 6962 Cryptographic PR Attestation Engine',
+      summary:
+        'First-of-its-kind Proof-Carrying Agent Execution (PCAE) kernel and Model Context Protocol (MCP) server that unifies all 7 verification layers of the Codesphere Agentic Stack into an RFC 6962 domain-separated binary SHA-256 Merkle tree—generating selective-disclosure cryptographic inclusion proofs and drop-in GitHub Pull Request Attestation Cards in 0.27 ms.',
+      problemStatement:
+        'When an autonomous AI agent opens a pull request or completes a production workflow, engineering teams have zero mathematical proof that the agent was not prompt-injected, did not exceed its budget, did not clobber peer files, did not reward-hack tests (assert True / deleting tests), and did not hallucinate citations or AST symbols.',
+      technicalChallenges: [
+        'Unifying 7 heterogeneous deterministic verification gates (G1_SECURITY, G2_BUDGET_ROUTING, G3_SWARM_LEASES, G4_TRAJECTORY_HEALTH, G5_ANTI_REWARD_HACK, G6_TRUTH_GROUNDING, G7_TEMPORAL_MEMORY) into a single sub-millisecond (0.27 ms P50) pipeline.',
+        'Constructing an RFC 6962 Certificate Transparency binary SHA-256 Merkle tree with 0x00 leaf and 0x01 internal-node domain separation to prevent second-preimage attacks across 9 canonical attestation leaves.',
+        'Enabling O(log N) Selective-Disclosure Merkle Inclusion Proofs so external CI pipelines or auditors can verify that a specific gate (e.g. G5_ANTI_REWARD_HACK) passed without exposing proprietary task prompts or internal memory logs.'
+      ],
+      securityConsiderations: [
+        'RFC 6962 domain separation (SHA-256(0x00 || leaf) vs SHA-256(0x01 || L || R)) mathematically prevents leaf/node second-preimage collisions.',
+        'Wall-clock-independent canonical JSON leaf hashing combined with HMAC-SHA256 bundle signatures blocks any post-hoc tampering (100% rejection across 245 mutated proof tests).',
+        'Selective-disclosure proof verification allows zero-knowledge-style gate auditing in untrusted CI environments.'
+      ],
+      domains: ['AI', 'Cybersecurity', 'Backend'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/nexus-aegis',
+      languages: ['Python 3.12', 'RFC 6962 Merkle Proofs', 'PCAE Kernel', 'MCP JSON-RPC 2.0'],
+      automatedTests: 77,
+      headlineMetric: {
+        label: '7-Gate Attestation & Merkle Proofs',
+        value: '100% Recall · 0.27 ms P50 · 77 Tests',
+        detail: '100% recall (0% FPR) across 35 multi-agent scenarios + 245/245 RFC 6962 selective-disclosure Merkle proofs verified'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '77 passing (pytest)' },
+        { label: '35-Scenario PCAE Suite', value: '100.0% Recall / 0.0% FPR' },
+        { label: 'Selective Merkle Proofs', value: '245 / 245 Verified (RFC 6962)' },
+        { label: 'Full 7-Gate P50 Latency', value: '0.27 ms (P95: 0.46 ms)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Autonomous Agent Run / Pull Request Candidate]
+        │
+        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ SevenGatePipeline (0.27 ms P50 Deterministic PCAE Kernel)       │
+│  G1 Security (AgentShield)     G5 Anti-Reward-Hack (PatchPilot) │
+│  G2 Budget (SynapseRouter)     G6 Truth Grounding (TruthGate)   │
+│  G3 File Leases (SwarmWeaver)  G7 Temporal Memory (Cortex-MCP)  │
+│  G4 Trajectory (AgentFlight)                                    │
+└───────────────────────────────┬─────────────────────────────────┘
+                                ▼
+┌─────────────────────────────────────────────────────────────────┐
+│ RFC 6962 Binary SHA-256 Merkle Tree (0x00 Leaf / 0x01 Node)     │
+│  • 9 Canonical Leaves ──► Merkle Root + HMAC-SHA256 Signature   │
+│  • O(log N) Selective-Disclosure Inclusion Proofs + PR Card     │
+└─────────────────────────────────────────────────────────────────┘`,
+        layers: [
+          {
+            name: '7-Gate Deterministic PCAE Verification Pipeline (nexus_aegis/gates.py)',
+            responsibility:
+              'Evaluates prompt-injection/SSRF safety (G1), budget/tier routing (G2), file-lease isolation (G3), loop/schema health (G4), AST test integrity (G5), citation/symbol grounding (G6), and temporal memory freshness (G7).'
+          },
+          {
+            name: 'RFC 6962 Domain-Separated Merkle Tree Engine (nexus_aegis/merkle.py)',
+            responsibility:
+              'Computes 0x00/0x01 domain-separated SHA-256 Merkle roots, O(log N) inclusion proofs, and selective-disclosure verification packages.'
+          },
+          {
+            name: 'PR Attestation Renderer & JSON-RPC 2.0 MCP Server (kernel.py / mcp_server.py)',
+            responsibility:
+              'Renders drop-in GitHub PR Attestation Markdown tables and exposes 4 MCP tools (aegis_attest_agent_run, aegis_verify_merkle_proof, aegis_list_gates, aegis_run_benchmark).'
+          }
+        ],
+        invariants: [
+          'An AegisAttestationBundle is marked overall_passed == True if and only if all 7 deterministic gates pass with zero violations.',
+          'Every gate leaf hash is computed over canonical sorted-key JSON with 0x00 prefixing so leaf hashes can never collide with 0x01 internal Merkle nodes.',
+          'Any single-bit mutation to a gate verdict, sibling hash, or direction flag causes verify_merkle_inclusion_proof() to return False.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Proof-Carrying Agent Execution (PCAE) with RFC 6962 Selective-Disclosure Merkle Trees',
+          context:
+            'Enterprise teams adopting autonomous coding agents need cryptographic assurance that an AI-authored PR passed security, anti-reward-hacking, and grounding gates without exposing private system prompts in public PR comments.',
+          decision:
+            'Compile all 7 gate verdicts plus input/output digests into an RFC 6962 domain-separated SHA-256 Merkle tree so any single gate can be verified via an O(log N) inclusion proof.',
+          tradeOffs:
+            'Adds ~0.04 ms of cryptographic hashing overhead per run, but provides mathematical tamper-evidence and selective disclosure.',
+          verification:
+            'Verified across 77 pytest tests, 35 multi-agent scenarios, and 245 tampered-proof rejection tests.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/nexus-aegis.git',
+        'cd nexus-aegis && pytest -v',
+        'python -m nexus_aegis.cli demo && python -m nexus_aegis.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: '7-Gate PCAE Pipeline',
+          path: 'nexus_aegis/gates.py',
+          url: 'https://github.com/codesphere-u/nexus-aegis/blob/main/nexus_aegis/gates.py',
+          kind: 'source'
+        },
+        {
+          label: 'RFC 6962 Merkle Proof Engine',
+          path: 'nexus_aegis/merkle.py',
+          url: 'https://github.com/codesphere-u/nexus-aegis/blob/main/nexus_aegis/merkle.py',
+          kind: 'source'
+        },
+        {
+          label: '77 Pytest Verification Suite',
+          path: 'tests/test_nexus_aegis.py',
+          url: 'https://github.com/codesphere-u/nexus-aegis/blob/main/tests/test_nexus_aegis.py',
+          kind: 'test'
+        }
+      ]
+    },
+
+    {
       id: 'cortex-mcp',
       slug: 'cortex-mcp',
       name: 'Cortex MCP',
-      version: 'v1.0.0',
+      version: 'v1.1.0',
       isPrimaryFlagship: true,
       visualMotif: 'graph',
       accentColor: '#53C9EE',
       tagline:
-        'Local-First Bi-Temporal Knowledge Graph, Cross-Agent Persistent Memory & Token-Budgeted Context Compiler MCP Server',
+        'Local-First Bi-Temporal Knowledge Graph, Contradiction Auditor & Cross-Agent Persistent Memory MCP Server',
       summary:
-        'Standards-compliant Model Context Protocol (MCP) JSON-RPC 2.0 server that eliminates context amnesia across AI coding agents (Claude Code, Cursor, Windsurf, Antigravity) using bi-temporal fact supersession, hybrid Okapi BM25 + 2-hop graph activation, and deterministic token-budgeted context packing.',
+        'Standards-compliant Model Context Protocol (MCP) JSON-RPC 2.0 server that eliminates context amnesia across AI coding agents (Claude Code, Cursor, Windsurf, Antigravity) using bi-temporal fact supersession, semantic/polarity contradiction auditing, TruthGate citation bundle export, and deterministic token-budgeted context packing.',
       problemStatement:
         'AI coding agents suffer from context amnesia across sessions and IDEs, while static prompt files (.cursorrules, CLAUDE.md) bloat token budgets and retain stale architectural assumptions after migrations.',
       technicalChallenges: [
-        'Implementing automatic bi-temporal conflict detection and supersession (valid_from, valid_until, superseded_by) for singular predicates so updated architectural facts replace outdated ones without losing historical time-travel auditability.',
+        'Implementing automatic bi-temporal conflict detection and supersession (valid_from, valid_until, superseded_by) plus a Semantic & Polarity Contradiction Auditor (contradictions.py) that catches opposing antonym objects and predicate alias drift.',
         'Combining code-aware Okapi BM25 lexical scoring (splitting snake_case, CamelCase, and file paths) with 2-hop ego-graph spreading activation to surface multi-hop architectural dependencies.',
-        'Packing ranked facts, ADRs, and bug root causes strictly within a configurable max_tokens budget with 100% stale-fact suppression and cryptographic SHA-256 provenance citations.'
+        'Packing ranked facts, ADRs, and bug root causes strictly within a configurable max_tokens budget with 100% stale-fact suppression and exporting TruthGate-compatible SourceDocument bundles (grounding_export.py).'
       ],
       securityConsiderations: [
         '100% local-first execution over stdio or in-memory JSON-RPC 2.0 transport with zero external cloud telemetry.',
@@ -770,14 +891,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/cortex-mcp',
       languages: ['Python 3.12', 'MCP JSON-RPC 2.0', 'BM25 + Graph RAG', 'SHA-256 Merkle'],
-      automatedTests: 67,
+      automatedTests: 84,
       headlineMetric: {
         label: 'Bi-Temporal Recall & Stale Suppression',
-        value: '100% Stale Suppression · 67 Tests',
-        detail: '0.003 ms P50 fact upsert and 4.88 ms P50 token-budgeted context compilation across 500 temporal facts & 100 episodes'
+        value: '100% Stale Suppression · 84 Tests',
+        detail: '0.003 ms P50 fact upsert, semantic contradiction auditing, and TruthGate citation bundle export across 84 passing tests'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '67 passing (pytest)' },
+        { label: 'Automated Tests', value: '84 passing (pytest)' },
         { label: 'Fact Upsert Latency', value: '0.003 ms P50 / 0.004 ms P95' },
         { label: '2-Hop Subgraph Query', value: '0.123 ms P50 / 0.185 ms P95' },
         { label: 'Stale Fact Leakage', value: '0.0% (150/150 superseded)' }
@@ -863,20 +984,20 @@ export const PORTFOLIO_DATA = {
       id: 'agentflight',
       slug: 'agentflight',
       name: 'AgentFlight',
-      version: 'v1.0.0',
+      version: 'v1.1.0',
       isPrimaryFlagship: true,
       visualMotif: 'cassette',
       accentColor: '#F4B94C',
       tagline:
-        'AI Agent Black-Box Flight Recorder, Deterministic Cassette Replay, Loop Circuit Breaker & 10-Rule MCP Tool-Smell Linter',
+        'AI Agent Black-Box Flight Recorder, Trajectory Regression Diff Analyzer, OTel Exporter & 10-Rule MCP Linter',
       summary:
-        'Reliability and evaluation toolkit for autonomous AI agents that records execution trajectories into SHA-256 hash-chained cassettes for 2.83 µs ($0) deterministic CI replay, halts runaway tool loops in real time, and statically lints MCP tool schemas across 10 ergonomics rules (TS001–TS010).',
+        'Reliability and evaluation toolkit for autonomous AI agents that records execution trajectories into SHA-256 hash-chained cassettes for 2.83 µs ($0) deterministic CI replay, diffs baseline vs. candidate trajectories (Levenshtein/LCS + cost/loop regression detection), exports W3C OpenTelemetry spans to StackPulse, and lints MCP tool schemas across 10 rules (TS001–TS010).',
       problemStatement:
         'Testing multi-step tool-calling agents against live LLMs in CI is slow, flaky, and expensive, while poorly structured MCP tool schemas ("MCP tool smells") cause agents to misinvoke tools or enter runaway A→B→A→B retry loops.',
       technicalChallenges: [
-        'Designing a canonical JSON input fingerprinter and SHA-256 hash-chained cassette format (.flight.json / .flight.jsonl) that replays multi-step agent trajectories in 2.83 µs/span and raises a structural diff (TrajectoryDivergenceError) when agent behavior drifts.',
+        'Designing a canonical JSON input fingerprinter, SHA-256 hash-chained cassette format (.flight.jsonl), and Trajectory Differential Analyzer (diff.py) that computes Wagner-Fischer Levenshtein / LCS tool-sequence similarity and flags cost/loop regressions across model upgrades.',
         'Static detection of 10 distinct MCP tool-schema anti-patterns (TS001–TS010)—including lexical/cosine overlap between confusing tool pairs (TS008), unconstrained finite-set strings (TS006), and destructive tools lacking confirmation guards (TS010).',
-        'Detecting both exact repeated tool calls and period-2 / period-3 ping-pong oscillations (A→B→A→B, A→B→C→A→B→C) in 3.01 µs/span before token budgets are exhausted.'
+        'Detecting exact and period-2/3 ping-pong oscillations in 3.01 µs/span while exporting W3C TraceContext / OpenTelemetry spans (otel_export.py) directly ingestible by StackPulse.'
       ],
       securityConsiderations: [
         'Tamper-evident SHA-256 hash chain across every recorded TrajectorySpan (verify_cassette detects any payload or sequence mutation).',
@@ -886,15 +1007,15 @@ export const PORTFOLIO_DATA = {
       domains: ['AI', 'Cybersecurity', 'Backend'],
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/agentflight',
-      languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'Trajectory Eval'],
-      automatedTests: 73,
+      languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'OTel W3C Export'],
+      automatedTests: 90,
       headlineMetric: {
         label: 'Deterministic Replay & Ergonomics Gate',
-        value: '2.83 µs/span · 73 Tests',
-        detail: '353,356 spans/sec deterministic $0 CI replay + 10-rule (TS001–TS010) MCP tool-schema linter'
+        value: '2.83 µs/span · 90 Tests',
+        detail: '353,356 spans/sec deterministic $0 CI replay + Trajectory Diff Analyzer + W3C OTel exporter + 10-rule MCP linter'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '73 passing (pytest)' },
+        { label: 'Automated Tests', value: '90 passing (pytest)' },
         { label: 'Cassette Replay Speed', value: '2.83 µs/span (353k spans/s)' },
         { label: 'MCP Linter Rules', value: '10 rules (TS001–TS010)' },
         { label: 'Circuit Breaker Overhead', value: '3.01 µs/span (332k spans/s)' }
@@ -1930,7 +2051,7 @@ export const PORTFOLIO_DATA = {
         'Model Context Protocol (MCP) server implementation & structured Pydantic outputs'
       ],
       technologies: ['Python', 'TypeScript', 'Ollama', 'MLX', 'Whisper', 'MCP', 'BM25 RAG', 'TensorFlow'],
-      relatedProjectIds: ['cortex-mcp', 'agentflight', 'patchpilot', 'synapse-router', 'swarmweaver', 'truthgate', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
+      relatedProjectIds: ['nexus-aegis', 'cortex-mcp', 'agentflight', 'patchpilot', 'synapse-router', 'swarmweaver', 'truthgate', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
       relatedCommercialNames: ['AI Energy Efficiency Tool'],
       connectedNodeIds: ['cybersecurity', 'backend-architecture', 'distributed-systems']
     },
@@ -1951,7 +2072,7 @@ export const PORTFOLIO_DATA = {
         'Loopback sandboxing, CSRF/Origin validation, TOTP MFA, and SHA-256 hash-chained audit logs'
       ],
       technologies: ['OWASP 2026', 'Static Heuristics', 'HMAC-SHA256', 'SHA-256 Audit Chains', 'RBAC / MFA', 'PII Redaction'],
-      relatedProjectIds: ['cyber-dragon', 'agentshield', 'patchpilot', 'truthgate', 'agentflight', 'auralis-local', 'flowledger'],
+      relatedProjectIds: ['nexus-aegis', 'cyber-dragon', 'agentshield', 'patchpilot', 'truthgate', 'agentflight', 'auralis-local', 'flowledger'],
       relatedCommercialNames: ['4codex Security Assessments', 'Funa Gigs Trust & Safety'],
       connectedNodeIds: ['ai-systems', 'backend-architecture', 'cloud-infrastructure']
     },
@@ -2227,29 +2348,42 @@ export const PORTFOLIO_DATA = {
   benchmarks: [
     {
       projectId: 'agentflight',
-      projectName: 'AgentFlight v1.0',
+      projectName: 'AgentFlight v1.1',
       repoSlug: 'codesphere-u/agentflight',
       domain: 'AI',
-      automatedTests: 73,
+      automatedTests: 90,
       primaryLatencyLabel: 'Deterministic Cassette Replay',
       primaryLatencyMs: 0.0028,
-      throughputOrAccuracyLabel: 'Replay & Linter Throughput',
-      throughputOrAccuracyValue: '353,356 spans/s (2.83 µs) · 10 MCP Rules',
-      determinismGuarantee: 'SHA-256 Chained Cassettes + Loop/Cost Circuit Breaker',
+      throughputOrAccuracyLabel: 'Replay, Diff & OTel Export',
+      throughputOrAccuracyValue: '353,356 spans/s (2.83 µs) · 10 MCP Rules + OTel',
+      determinismGuarantee: 'SHA-256 Chained Cassettes + Trajectory Diff + Loop Breaker',
       verificationCommand: 'cd agentflight && pytest -v && python -m agentflight.cli benchmark'
     },
     {
       projectId: 'cortex-mcp',
-      projectName: 'Cortex MCP v1.0',
+      projectName: 'Cortex MCP v1.1',
       repoSlug: 'codesphere-u/cortex-mcp',
       domain: 'AI',
-      automatedTests: 67,
+      automatedTests: 84,
       primaryLatencyLabel: 'Bi-Temporal Fact Upsert (P50)',
       primaryLatencyMs: 0.003,
-      throughputOrAccuracyLabel: 'Stale Suppression & 2-Hop Recall',
+      throughputOrAccuracyLabel: 'Stale Suppression & Contradiction Audit',
       throughputOrAccuracyValue: '100% Stale Suppression · 0.123 ms 2-Hop P50',
-      determinismGuarantee: 'Bi-Temporal Supersession + SHA-256 Merkle Root',
+      determinismGuarantee: 'Bi-Temporal Supersession + Contradiction Audit + Merkle Root',
       verificationCommand: 'cd cortex-mcp && pytest -v && python -m cortex_mcp.cli benchmark'
+    },
+    {
+      projectId: 'nexus-aegis',
+      projectName: 'Nexus Aegis v1.0',
+      repoSlug: 'codesphere-u/nexus-aegis',
+      domain: 'AI',
+      automatedTests: 77,
+      primaryLatencyLabel: '7-Gate PCAE + Merkle Attestation',
+      primaryLatencyMs: 0.27,
+      throughputOrAccuracyLabel: '35-Scenario Recall & Selective Proofs',
+      throughputOrAccuracyValue: '100% Recall (0% FPR) · 245/245 Merkle Proofs',
+      determinismGuarantee: 'RFC 6962 Domain-Separated (0x00/0x01) SHA-256 Merkle Tree',
+      verificationCommand: 'cd nexus-aegis && pytest -v && python -m nexus_aegis.cli benchmark'
     },
     {
       projectId: 'truthgate',
