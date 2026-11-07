@@ -26,7 +26,10 @@ const MIME_TYPES = {
 // Explicit literal path reads so Vercel's Node File Trace (@vercel/nft) always bundles assets
 const STATIC_ASSET_PATHS = {
   '/src/ui/styles.css': path.join(__dirname, 'src', 'ui', 'styles.css'),
+  '/src/ui/editorial.css': path.join(__dirname, 'src', 'ui', 'editorial.css'),
+  '/src/ui/polish.css': path.join(__dirname, 'src', 'ui', 'polish.css'),
   '/src/ui/app.mjs': path.join(__dirname, 'src', 'ui', 'app.mjs'),
+  '/src/ui/navigation.mjs': path.join(__dirname, 'src', 'ui', 'navigation.mjs'),
   '/src/core/explorer.mjs': path.join(__dirname, 'src', 'core', 'explorer.mjs'),
   '/src/data/portfolio-data.mjs': path.join(__dirname, 'src', 'data', 'portfolio-data.mjs'),
   '/src/data/portfolio-data.d.ts': path.join(__dirname, 'src', 'data', 'portfolio-data.d.ts')

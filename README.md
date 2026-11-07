@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-53C9EE.svg)](./LICENSE)
-[![Automated Tests](https://img.shields.io/badge/Verified_Tests-323_Passing-F4B94C.svg)](#verified-engineering-benchmarks-matrix)
+[![Automated Tests](https://img.shields.io/badge/Verified_Tests-463_Passing-F4B94C.svg)](#verified-engineering-benchmarks-matrix)
 
 **Akandwanaho Ivan Alvin** (*commonly known as Alvin*)  
 **Founder & Managing Director, Codesphere Innovations (U) Limited**  
@@ -20,7 +20,7 @@
 
 1. **Experience 01 — Cinematic Opening (`#hero`)**: Editorial hero featuring `AKANDWANAHO IVAN ALVIN`, `"Engineering what comes next."`, specialty ribbon, and an interactive right-hand SVG Systems Architecture Scene with orbital rings and moving data signals.
 2. **Experience 02 — My Journey (`#journey`)**: 6-chapter interactive career storytelling system (*01 Engineering Foundations → 02 Building 4codex Technologies → 03 Technical Leadership → 04 Founding Codesphere Innovations → 05 Building Funa Gigs → 06 Advanced Systems and Open Source*), each detailing *The Challenge*, *My Responsibility*, *Technologies Involved*, *What I Learned*, and *How It Shaped the Next Stage*.
-3. **Experience 03 — Interactive Project Universe (`#projects`)**: Domain filtering (`All`, `AI`, `Cybersecurity`, `Backend`, `Fintech`, `Cloud`, `Full-Stack`), instant search across ADRs, custom SVG architectural motifs for all 8 public repositories, and a full **Case Study Drawer** with ASCII blueprints, Difficult Technical Challenges, Security Invariants, and reproducible CLI commands.
+3. **Experience 03 — Interactive Project Universe (`#projects`)**: Domain filtering (`All`, `AI`, `Cybersecurity`, `Backend`, `Fintech`, `Cloud`, `Full-Stack`), instant search across ADRs, custom SVG architectural motifs for all 10 public repositories, and a full **Case Study Drawer** with ASCII blueprints, Difficult Technical Challenges, Security Invariants, and reproducible CLI commands.
 4. **Experience 04 — Explore My Engineering Mind (`#mindmap`)**: Interactive 8-node SVG Constellation Knowledge Map (`AI Systems`, `Cybersecurity`, `Backend Architecture`, `Databases`, `Distributed Systems`, `Cloud Infrastructure`, `DevOps`, `Flutter`) with live Specialty Inspector and a toggleable non-animated matrix view.
 5. **Experience 05 — Controlled Engineering Terminal (`#terminal`)**: Sandboxed, read-only command interpreter supporting `help`, `about`, `journey`, `projects`, `skills`, `github`, `contact`, and `clear` (never executing OS shell commands).
 6. **Experience 06 — Personal Engineering Philosophy (`#philosophy`)**: Five core architectural convictions backed by concrete repository proof points.
@@ -31,6 +31,8 @@
 
 | Flagship System | Primary Domain | Verified Tests / Suites | Measured Latency | Throughput / Accuracy | Key Determinism & Safety Invariant |
 | :--- | :--- | :---: | :---: | :--- | :--- |
+| [**AgentFlight v1.0**](https://github.com/codesphere-u/agentflight) (`agentflight`) | AI | **73** | `0.0028 ms` (`2.83 µs`) | **353,356 spans/s Replay · 10 MCP Rules** | SHA-256 hash-chained `.flight.jsonl` cassettes + `A↔B` loop breaker + `TS001`–`TS010` schema linter |
+| [**Cortex MCP v1.0**](https://github.com/codesphere-u/cortex-mcp) (`cortex-mcp`) | AI | **67** | `0.003 ms` P50 upsert | **100% Stale Suppression · `0.123 ms` 2-Hop** | Bi-temporal fact supersession (`valid_from` / `valid_until`) + hybrid BM25/graph token-budgeted compiler |
 | [**ARGUS AI v2.1**](https://github.com/codesphere-u/ARGUS-AI) (`ARGUS-AI`) | AI | **61** | `7.8 ms` walk-forward | **100% (3/3 Traps Vetoed · \$488.37 Saved)** | `PointInTimeGuard` + 7-agent Devil's Advocate veto + SHA-256 Trade Passport replay |
 | [**AgriSignal v1.0**](https://github.com/codesphere-u/agrisignal) (`agrisignal`) | Backend | **60** | `0.18 ms` / eval | **≤160 GSM-7 chars** (`en`, `lg`, `sw`) · **20/20 LWW Sync** | Hybrid Logical Clock (`HLC`) monotonicity + SHA-256 sync envelope verification |
 | [**FlowLedger v1.0**](https://github.com/codesphere-u/flowledger) (`flowledger`) | Fintech | **51** | `0.22 ms` / entry | **0 Imbalance (97 Entries · 50 Txs Reconciled)** | Strict integer minor units (IEEE-754 floats banned) + SHA-256 journal hash chain |

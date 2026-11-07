@@ -743,6 +743,234 @@ export const PORTFOLIO_DATA = {
     },
 
     {
+      id: 'cortex-mcp',
+      slug: 'cortex-mcp',
+      name: 'Cortex MCP',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'graph',
+      accentColor: '#53C9EE',
+      tagline:
+        'Local-First Bi-Temporal Knowledge Graph, Cross-Agent Persistent Memory & Token-Budgeted Context Compiler MCP Server',
+      summary:
+        'Standards-compliant Model Context Protocol (MCP) JSON-RPC 2.0 server that eliminates context amnesia across AI coding agents (Claude Code, Cursor, Windsurf, Antigravity) using bi-temporal fact supersession, hybrid Okapi BM25 + 2-hop graph activation, and deterministic token-budgeted context packing.',
+      problemStatement:
+        'AI coding agents suffer from context amnesia across sessions and IDEs, while static prompt files (.cursorrules, CLAUDE.md) bloat token budgets and retain stale architectural assumptions after migrations.',
+      technicalChallenges: [
+        'Implementing automatic bi-temporal conflict detection and supersession (valid_from, valid_until, superseded_by) for singular predicates so updated architectural facts replace outdated ones without losing historical time-travel auditability.',
+        'Combining code-aware Okapi BM25 lexical scoring (splitting snake_case, CamelCase, and file paths) with 2-hop ego-graph spreading activation to surface multi-hop architectural dependencies.',
+        'Packing ranked facts, ADRs, and bug root causes strictly within a configurable max_tokens budget with 100% stale-fact suppression and cryptographic SHA-256 provenance citations.'
+      ],
+      securityConsiderations: [
+        '100% local-first execution over stdio or in-memory JSON-RPC 2.0 transport with zero external cloud telemetry.',
+        'Every Episode and TemporalFact carries a canonical SHA-256 content hash plus a full-graph Merkle root digest verified via memory_verify_integrity.',
+        'Atomic temp-file + os.replace persistence prevents corrupted memory state on abrupt process termination.'
+      ],
+      domains: ['AI', 'Backend', 'Full-Stack'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/cortex-mcp',
+      languages: ['Python 3.12', 'MCP JSON-RPC 2.0', 'BM25 + Graph RAG', 'SHA-256 Merkle'],
+      automatedTests: 67,
+      headlineMetric: {
+        label: 'Bi-Temporal Recall & Stale Suppression',
+        value: '100% Stale Suppression · 67 Tests',
+        detail: '0.003 ms P50 fact upsert and 4.88 ms P50 token-budgeted context compilation across 500 temporal facts & 100 episodes'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '67 passing (pytest)' },
+        { label: 'Fact Upsert Latency', value: '0.003 ms P50 / 0.004 ms P95' },
+        { label: '2-Hop Subgraph Query', value: '0.123 ms P50 / 0.185 ms P95' },
+        { label: 'Stale Fact Leakage', value: '0.0% (150/150 superseded)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Claude Code / Cursor / Windsurf / Antigravity MCP Client]
+        │  JSON-RPC 2.0 (stdio / initialize / tools/call)
+        ▼
+┌───────────────────────────────────────────────────────────┐
+│ CortexMCPServer (6 Tools + 2 Resources + 2 Prompts)       │
+├───────────────────────────┬───────────────────────────────┤
+│ BiTemporalMemoryGraph     │ ContextCompiler               │
+│ • Entities & Episodes     │ • Code-Aware BM25 Tokenizer   │
+│ • TemporalFacts (t_from,  │ • 2-Hop Spreading Activation  │
+│   t_until, superseded_by) │ • Strict max_tokens Packer    │
+│ • SHA-256 Merkle Root     │ • Provenance Citations        │
+└───────────────────────────┴───────────────────────────────┘`,
+        layers: [
+          {
+            name: 'Bi-Temporal Entity-Relationship & Episode Graph (src/cortex_mcp/graph.py)',
+            responsibility:
+              'Maintains Entities, TemporalFacts, and Episodes with automatic conflict supersession, time-travel queries (as_of), and SHA-256 Merkle integrity.'
+          },
+          {
+            name: 'Hybrid BM25 + 2-Hop Graph Context Compiler (src/cortex_mcp/compiler.py)',
+            responsibility:
+              'Scores active knowledge using code-aware BM25 + graph neighbor activation and packs the highest-utility items within max_tokens.'
+          },
+          {
+            name: 'Model Context Protocol JSON-RPC 2.0 Server (src/cortex_mcp/server.py)',
+            responsibility:
+              'Exposes memory_record_episode, memory_upsert_fact, memory_compile_context, memory_query_entity, memory_time_travel, and memory_verify_integrity.'
+          }
+        ],
+        invariants: [
+          'Singular predicate upserts automatically close the prior active fact (valid_until = now, superseded_by = new_fact.id) so active queries never return contradictory state.',
+          'compile_context(..., include_superseded=False) guarantees 0% stale fact leakage and never exceeds max_tokens.',
+          'Any tampering with stored episode or fact payloads invalidates the graph Merkle root in verify_integrity().'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Bi-Temporal Fact Supersession Over Destructive Vector Overwrites',
+          context:
+            'Standard vector-store memory systems append new embeddings without invalidating superseded architectural decisions, causing coding agents to retrieve contradictory instructions.',
+          decision:
+            'Model architectural facts as bi-temporal edges (valid_from, valid_until, superseded_by) combined with hybrid BM25 + 2-hop graph activation.',
+          tradeOffs:
+            'Requires structured (subject, predicate, object) extraction alongside free-text episodes, but guarantees 100% suppression of superseded facts while preserving point-in-time historical queries.',
+          verification:
+            'Verified across 67 pytest tests and a 500-fact / 100-episode benchmark suite.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/cortex-mcp.git',
+        'cd cortex-mcp && pytest -v',
+        'python -m cortex_mcp.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'Bi-Temporal Memory Graph',
+          path: 'src/cortex_mcp/graph.py',
+          url: 'https://github.com/codesphere-u/cortex-mcp/blob/main/src/cortex_mcp/graph.py',
+          kind: 'source'
+        },
+        {
+          label: 'Token-Budgeted Context Compiler',
+          path: 'src/cortex_mcp/compiler.py',
+          url: 'https://github.com/codesphere-u/cortex-mcp/blob/main/src/cortex_mcp/compiler.py',
+          kind: 'source'
+        },
+        {
+          label: '67 Pytest Verification Suite',
+          path: 'tests/test_cortex_mcp.py',
+          url: 'https://github.com/codesphere-u/cortex-mcp/blob/main/tests/test_cortex_mcp.py',
+          kind: 'test'
+        }
+      ]
+    },
+
+    {
+      id: 'agentflight',
+      slug: 'agentflight',
+      name: 'AgentFlight',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'cassette',
+      accentColor: '#F4B94C',
+      tagline:
+        'AI Agent Black-Box Flight Recorder, Deterministic Cassette Replay, Loop Circuit Breaker & 10-Rule MCP Tool-Smell Linter',
+      summary:
+        'Reliability and evaluation toolkit for autonomous AI agents that records execution trajectories into SHA-256 hash-chained cassettes for 2.83 µs ($0) deterministic CI replay, halts runaway tool loops in real time, and statically lints MCP tool schemas across 10 ergonomics rules (TS001–TS010).',
+      problemStatement:
+        'Testing multi-step tool-calling agents against live LLMs in CI is slow, flaky, and expensive, while poorly structured MCP tool schemas ("MCP tool smells") cause agents to misinvoke tools or enter runaway A→B→A→B retry loops.',
+      technicalChallenges: [
+        'Designing a canonical JSON input fingerprinter and SHA-256 hash-chained cassette format (.flight.json / .flight.jsonl) that replays multi-step agent trajectories in 2.83 µs/span and raises a structural diff (TrajectoryDivergenceError) when agent behavior drifts.',
+        'Static detection of 10 distinct MCP tool-schema anti-patterns (TS001–TS010)—including lexical/cosine overlap between confusing tool pairs (TS008), unconstrained finite-set strings (TS006), and destructive tools lacking confirmation guards (TS010).',
+        'Detecting both exact repeated tool calls and period-2 / period-3 ping-pong oscillations (A→B→A→B, A→B→C→A→B→C) in 3.01 µs/span before token budgets are exhausted.'
+      ],
+      securityConsiderations: [
+        'Tamper-evident SHA-256 hash chain across every recorded TrajectorySpan (verify_cassette detects any payload or sequence mutation).',
+        'Rule TS010 flags destructive MCP tools (delete_*, drop_*, exec_*, transfer_*) that lack explicit confirmation or dry-run safeguards.',
+        'Hard token and USD cost circuit breakers prevent denial-of-wallet attacks from runaway agent loops.'
+      ],
+      domains: ['AI', 'Cybersecurity', 'Backend'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/agentflight',
+      languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'Trajectory Eval'],
+      automatedTests: 73,
+      headlineMetric: {
+        label: 'Deterministic Replay & Ergonomics Gate',
+        value: '2.83 µs/span · 73 Tests',
+        detail: '353,356 spans/sec deterministic $0 CI replay + 10-rule (TS001–TS010) MCP tool-schema linter'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '73 passing (pytest)' },
+        { label: 'Cassette Replay Speed', value: '2.83 µs/span (353k spans/s)' },
+        { label: 'MCP Linter Rules', value: '10 rules (TS001–TS010)' },
+        { label: 'Circuit Breaker Overhead', value: '3.01 µs/span (332k spans/s)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Live Agent / MCP Tool Suite]
+        │
+        ├──► 1. ToolSmellLinter (Rules TS001–TS010 + Ergonomics Score 0–100)
+        ├──► 2. TrajectoryCircuitBreaker (Exact Loop, Ping-Pong A↔B, USD Cap)
+        ├──► 3. FlightRecorder ──► [.flight.jsonl SHA-256 Chained Cassette]
+        └──► 4. CassetteReplayer ($0 CI Stub) & TrajectoryEvaluator (F1 Diff)`,
+        layers: [
+          {
+            name: 'Black-Box Flight Recorder & Cassette Replayer (src/agentflight/recorder.py)',
+            responsibility:
+              'Records LLM turns, tool calls, and MCP RPCs into SHA-256 hash-chained cassettes and replays them deterministically in CI with structural divergence diffs.'
+          },
+          {
+            name: '10-Rule MCP Tool-Schema Ergonomics Linter (src/agentflight/linter.py)',
+            responsibility:
+              'Audits MCP and function-calling schemas for TS001–TS010 smells, computing an Agent Ergonomics Score (0–100) and token overhead estimate.'
+          },
+          {
+            name: 'Real-Time Loop Circuit Breaker & Trajectory Evaluator (guard.py / eval.py)',
+            responsibility:
+              'Halts exact repeats, A↔B ping-pong cycles, error storms, and budget overruns; computes Tool Selection Precision/Recall/F1 against golden trajectories.'
+          }
+        ],
+        invariants: [
+          'Any modification to a recorded span payload, latency, or order in a .flight.jsonl cassette causes verify_cassette() to fail.',
+          'CassetteReplayer(strict_order=True) raises TrajectoryDivergenceError with a key-by-key diff the instant an agent deviates from the golden trajectory.',
+          'TrajectoryCircuitBreaker deterministically trips before an agent exceeds max_tokens, max_cost_usd, or period-2/3 oscillation thresholds.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Canonical Input-Hash Cassette Replay & Static MCP Schema Linting',
+          context:
+            'Running live LLM evaluations on every pull request is slow, non-deterministic, and misses structural flaws in MCP tool definitions until runtime.',
+          decision:
+            'Combine static 10-rule MCP schema linting (TS001–TS010) with SHA-256 hash-chained trajectory cassettes for sub-millisecond deterministic replay.',
+          tradeOffs:
+            'Requires re-recording golden cassettes when intentional prompt or tool-schema changes alter agent trajectories, but makes CI regression testing 10,000x faster and $0 cost.',
+          verification:
+            'Verified across 73 pytest tests in tests/test_agentflight.py and GitHub Actions CI.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/agentflight.git',
+        'cd agentflight && pytest -v',
+        'python -m agentflight.cli lint && python -m agentflight.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'Flight Recorder & Cassette Replayer',
+          path: 'src/agentflight/recorder.py',
+          url: 'https://github.com/codesphere-u/agentflight/blob/main/src/agentflight/recorder.py',
+          kind: 'source'
+        },
+        {
+          label: '10-Rule MCP Tool-Smell Linter',
+          path: 'src/agentflight/linter.py',
+          url: 'https://github.com/codesphere-u/agentflight/blob/main/src/agentflight/linter.py',
+          kind: 'source'
+        },
+        {
+          label: '73 Pytest Verification Suite',
+          path: 'tests/test_agentflight.py',
+          url: 'https://github.com/codesphere-u/agentflight/blob/main/tests/test_agentflight.py',
+          kind: 'test'
+        }
+      ]
+    },
+
+    {
       id: 'flowledger',
       slug: 'flowledger',
       name: 'FlowLedger',
@@ -1241,7 +1469,7 @@ export const PORTFOLIO_DATA = {
         'Model Context Protocol (MCP) server implementation & structured Pydantic outputs'
       ],
       technologies: ['Python', 'TypeScript', 'Ollama', 'MLX', 'Whisper', 'MCP', 'BM25 RAG', 'TensorFlow'],
-      relatedProjectIds: ['auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
+      relatedProjectIds: ['cortex-mcp', 'agentflight', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
       relatedCommercialNames: ['AI Energy Efficiency Tool'],
       connectedNodeIds: ['cybersecurity', 'backend-architecture', 'distributed-systems']
     },
@@ -1262,7 +1490,7 @@ export const PORTFOLIO_DATA = {
         'Loopback sandboxing, CSRF/Origin validation, TOTP MFA, and SHA-256 hash-chained audit logs'
       ],
       technologies: ['OWASP 2026', 'Static Heuristics', 'HMAC-SHA256', 'SHA-256 Audit Chains', 'RBAC / MFA', 'PII Redaction'],
-      relatedProjectIds: ['cyber-dragon', 'agentshield', 'auralis-local', 'flowledger'],
+      relatedProjectIds: ['cyber-dragon', 'agentshield', 'agentflight', 'auralis-local', 'flowledger'],
       relatedCommercialNames: ['4codex Security Assessments', 'Funa Gigs Trust & Safety'],
       connectedNodeIds: ['ai-systems', 'backend-architecture', 'cloud-infrastructure']
     },
@@ -1367,7 +1595,7 @@ export const PORTFOLIO_DATA = {
         'Zero-dependency static bundle generation and automated integrity validation'
       ],
       technologies: ['GitHub Actions', 'Docker', 'Pytest', 'Ruff', 'Node Test Runner', 'Turborepo', 'TypeScript Compiler'],
-      relatedProjectIds: ['agentshield', 'stackpulse', 'cyber-dragon', 'auralis-local'],
+      relatedProjectIds: ['agentflight', 'cortex-mcp', 'agentshield', 'stackpulse', 'cyber-dragon', 'auralis-local'],
       relatedCommercialNames: ['Waanverse Labs CI Workflows', 'Codesphere Delivery Pipelines'],
       connectedNodeIds: ['cloud-infrastructure', 'flutter', 'backend-architecture']
     },
@@ -1536,6 +1764,32 @@ export const PORTFOLIO_DATA = {
   ],
 
   benchmarks: [
+    {
+      projectId: 'agentflight',
+      projectName: 'AgentFlight v1.0',
+      repoSlug: 'codesphere-u/agentflight',
+      domain: 'AI',
+      automatedTests: 73,
+      primaryLatencyLabel: 'Deterministic Cassette Replay',
+      primaryLatencyMs: 0.0028,
+      throughputOrAccuracyLabel: 'Replay & Linter Throughput',
+      throughputOrAccuracyValue: '353,356 spans/s (2.83 µs) · 10 MCP Rules',
+      determinismGuarantee: 'SHA-256 Chained Cassettes + Loop/Cost Circuit Breaker',
+      verificationCommand: 'cd agentflight && pytest -v && python -m agentflight.cli benchmark'
+    },
+    {
+      projectId: 'cortex-mcp',
+      projectName: 'Cortex MCP v1.0',
+      repoSlug: 'codesphere-u/cortex-mcp',
+      domain: 'AI',
+      automatedTests: 67,
+      primaryLatencyLabel: 'Bi-Temporal Fact Upsert (P50)',
+      primaryLatencyMs: 0.003,
+      throughputOrAccuracyLabel: 'Stale Suppression & 2-Hop Recall',
+      throughputOrAccuracyValue: '100% Stale Suppression · 0.123 ms 2-Hop P50',
+      determinismGuarantee: 'Bi-Temporal Supersession + SHA-256 Merkle Root',
+      verificationCommand: 'cd cortex-mcp && pytest -v && python -m cortex_mcp.cli benchmark'
+    },
     {
       projectId: 'argus-ai',
       projectName: 'ARGUS AI v2.1',

@@ -29,7 +29,17 @@ export interface FlagshipProject {
   name: string;
   version: string;
   isPrimaryFlagship?: boolean;
-  visualMotif: 'shield' | 'waveform' | 'committee' | 'firewall' | 'ledger' | 'trace' | 'agro' | 'clinical';
+  visualMotif:
+    | 'shield'
+    | 'waveform'
+    | 'committee'
+    | 'firewall'
+    | 'graph'
+    | 'cassette'
+    | 'ledger'
+    | 'trace'
+    | 'agro'
+    | 'clinical';
   accentColor: string;
   tagline: string;
   summary: string;

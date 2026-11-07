@@ -193,6 +193,32 @@ export function renderProjectVisualPreviewSvg(project) {
         <rect x="206" y="22" width="52" height="40" rx="6" fill="#101B2E" stroke="#F4B94C" />
         <text x="140" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="${color}">ALLOW/DENY</text>
       </svg>`;
+    case 'graph':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <line x1="48" y1="26" x2="128" y2="42" stroke="#53C9EE" stroke-width="1.6" />
+        <line x1="48" y1="58" x2="128" y2="42" stroke="#387BFA" stroke-width="1.6" stroke-dasharray="4 3" />
+        <line x1="128" y1="42" x2="216" y2="28" stroke="#F4B94C" stroke-width="1.8" />
+        <line x1="128" y1="42" x2="216" y2="58" stroke="#53C9EE" stroke-width="1.5" />
+        <circle cx="48" cy="26" r="8" fill="#101B2E" stroke="#53C9EE" stroke-width="1.8" />
+        <circle cx="48" cy="58" r="8" fill="#101B2E" stroke="#387BFA" stroke-width="1.5" />
+        <circle cx="128" cy="42" r="11" fill="#101B2E" stroke="${color}" stroke-width="2" />
+        <circle cx="216" cy="28" r="8" fill="#101B2E" stroke="#F4B94C" stroke-width="1.8" />
+        <circle cx="216" cy="58" r="8" fill="#101B2E" stroke="#53C9EE" stroke-width="1.8" />
+        <text x="262" y="74" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8.5" fill="${color}">BI-TEMPORAL MCP</text>
+      </svg>`;
+    case 'cassette':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="24" y="16" width="232" height="52" rx="8" fill="#101B2E" stroke="${color}" stroke-width="1.6" />
+        <circle cx="86" cy="42" r="14" fill="#070B16" stroke="#53C9EE" stroke-width="1.8" />
+        <circle cx="86" cy="42" r="4" fill="#53C9EE" />
+        <circle cx="194" cy="42" r="14" fill="#070B16" stroke="#F4B94C" stroke-width="1.8" />
+        <circle cx="194" cy="42" r="4" fill="#F4B94C" />
+        <line x1="100" y1="32" x2="180" y2="32" stroke="#53C9EE" stroke-width="1.5" stroke-dasharray="5 3" />
+        <line x1="100" y1="52" x2="180" y2="52" stroke="#387BFA" stroke-width="1.5" />
+        <text x="140" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7FAFF">2.83 µs REPLAY</text>
+      </svg>`;
     case 'ledger':
       return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
         <rect width="280" height="84" rx="8" fill="#070B16" />

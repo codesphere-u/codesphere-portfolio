@@ -29,13 +29,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career & Strict Accuracy Rules", () => {
-  it('validates overall portfolio schema and 323 verified automated tests/suites across 8 repositories', () => {
+  it('validates overall portfolio schema and 463 verified automated tests/suites across 10 repositories', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.equal(
       check.totalTests,
-      323,
-      `Expected exactly 323 verified automated tests/suites across the 8 repos, got ${check.totalTests}`
+      463,
+      `Expected exactly 463 verified automated tests/suites across the 10 repos, got ${check.totalTests}`
     );
   });
 
@@ -153,22 +153,24 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     }
   });
 
-  it('verifies Experience 03 — all 8 open-source systems with custom SVG motifs and verified metrics', () => {
+  it('verifies Experience 03 — all 10 open-source systems with custom SVG motifs and verified metrics', () => {
     const expectedSlugs = [
       'cyber-dragon',
       'auralis-local',
       'ARGUS-AI',
       'agentshield',
+      'cortex-mcp',
+      'agentflight',
       'flowledger',
       'stackpulse',
       'agrisignal',
       'Clinical-Virtual-Health-Platform'
     ];
-    assert.equal(PORTFOLIO_DATA.projects.length, 8);
+    assert.equal(PORTFOLIO_DATA.projects.length, 10);
     const primaryCount = PORTFOLIO_DATA.projects.filter(
       (p) => p.isPrimaryFlagship
     ).length;
-    assert.equal(primaryCount, 6);
+    assert.equal(primaryCount, 8);
 
     for (const slug of expectedSlugs) {
       const project = getProjectById(slug);
@@ -179,6 +181,14 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
       assert.ok(project.technicalChallenges.length >= 2);
       assert.ok(project.securityConsiderations.length >= 2);
     }
+
+    const cortexMcp = getProjectById('cortex-mcp');
+    assert.equal(cortexMcp.automatedTests, 67);
+    assert.equal(cortexMcp.visualMotif, 'graph');
+
+    const agentflight = getProjectById('agentflight');
+    assert.equal(agentflight.automatedTests, 73);
+    assert.equal(agentflight.visualMotif, 'cassette');
 
     const cyberDragon = getProjectById('cyber-dragon');
     assert.equal(cyberDragon.automatedTests, 21);
@@ -222,13 +232,13 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
     ];
     assert.deepEqual(PORTFOLIO_DATA.domains, expectedDomains);
 
-    assert.equal(filterProjects({ domain: 'All' }).length, 8);
-    assert.ok(filterProjects({ domain: 'AI' }).length >= 3);
-    assert.ok(filterProjects({ domain: 'Cybersecurity' }).length >= 3);
-    assert.ok(filterProjects({ domain: 'Backend' }).length >= 4);
+    assert.equal(filterProjects({ domain: 'All' }).length, 10);
+    assert.ok(filterProjects({ domain: 'AI' }).length >= 5);
+    assert.ok(filterProjects({ domain: 'Cybersecurity' }).length >= 4);
+    assert.ok(filterProjects({ domain: 'Backend' }).length >= 6);
     assert.ok(filterProjects({ domain: 'Fintech' }).length >= 2);
     assert.ok(filterProjects({ domain: 'Cloud' }).length >= 1);
-    assert.ok(filterProjects({ domain: 'Full-Stack' }).length >= 4);
+    assert.ok(filterProjects({ domain: 'Full-Stack' }).length >= 5);
   });
 
   it('filters projects by search query across ADRs, problem statements, and technical challenges', () => {
@@ -292,7 +302,7 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
 
     const projectsRes = executeTerminalCommand('projects', PORTFOLIO_DATA);
     assert.equal(projectsRes.status, 'ok');
-    assert.equal(projectsRes.lines.length, 8);
+    assert.equal(projectsRes.lines.length, 10);
 
     const skillsRes = executeTerminalCommand('skills', PORTFOLIO_DATA);
     assert.equal(skillsRes.status, 'ok');
@@ -353,8 +363,8 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
   it('builds index.html and dist/index.html with accessible editorial design tokens', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
-    assert.equal(summary.totalProjects, 8);
-    assert.equal(summary.totalAutomatedTests, 323);
+    assert.equal(summary.totalProjects, 10);
+    assert.equal(summary.totalAutomatedTests, 463);
 
     assert.match(html, /class="skip-link"/);
     assert.match(html, /role="banner"/);
@@ -424,8 +434,8 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.equal(body.status, 'ok');
       assert.equal(body.version, '2.0.0');
       assert.equal(body.owner, 'Akandwanaho Ivan Alvin');
-      assert.equal(body.totalProjects, 8);
-      assert.equal(body.totalAutomatedTests, 323);
+      assert.equal(body.totalProjects, 10);
+      assert.equal(body.totalAutomatedTests, 463);
     });
 
     it('serves /api/projects with domain and query filtering', async () => {
@@ -442,7 +452,7 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       const res = await fetch(`${baseUrl}/api/benchmarks?sort=latency-asc`);
       assert.equal(res.status, 200);
       const body = await res.json();
-      assert.equal(body.benchmarks[0].repoSlug, 'codesphere-u/stackpulse');
+      assert.equal(body.benchmarks[0].repoSlug, 'codesphere-u/agentflight');
     });
 
     it('serves static HTML at / with security headers', async () => {
