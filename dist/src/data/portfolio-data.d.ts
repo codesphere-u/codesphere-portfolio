@@ -36,6 +36,8 @@ export interface FlagshipProject {
     | 'firewall'
     | 'graph'
     | 'cassette'
+    | 'ast'
+    | 'router'
     | 'ledger'
     | 'trace'
     | 'agro'

@@ -971,6 +971,229 @@ export const PORTFOLIO_DATA = {
     },
 
     {
+      id: 'patchpilot',
+      slug: 'patchpilot',
+      name: 'PatchPilot',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'ast',
+      accentColor: '#53C9EE',
+      tagline:
+        'Autonomous Code Repair Engine: Stack-Trace & AST Fault Localizer, Anti-Reward-Hacking Verifier & Transactional Sandbox',
+      summary:
+        'Autonomous software repair engine and JSON-RPC 2.0 MCP Server that localizes Python faults via hybrid stack-trace + AST call-graph + BM25 scoring (96.6% prompt token reduction), blocks test-tampering/reward-hacking patches across 8 AST rules (RH001–RH008), and applies fixes inside a rollback-safe transactional workspace.',
+      problemStatement:
+        'Autonomous coding agents (SWE-agent, OpenHands, Devin-style repair loops) frequently flood context windows with entire repositories when a test fails, and often "reward-hack" test suites by deleting assertions, injecting pytest.skip, mutating expected literals, or swallowing exceptions (except Exception: pass).',
+      technicalChallenges: [
+        'Combining stack-frame depth proximity (0.55), bidirectional AST call-graph distance (0.25), and BM25 token overlap (0.20) to achieve 100% Top-1 fault localization across 25 fault scenarios while cutting prompt context tokens by 96.6%.',
+        'Static AST comparison of pre-patch and post-patch syntax trees across 8 rules (RH001–RH008) to achieve 100% recall and 0% false-positive rate against test-skipping, assertion weakening, literal tampering, and broad exception swallowing.',
+        'Guaranteeing byte-exact SHA-256 workspace rollback whenever a candidate patch fails either the AST integrity guard or the regression test suite.'
+      ],
+      securityConsiderations: [
+        'Rule RH005 blocks injection of eval(), exec(), __import__(), os.system(), and subprocess(..., shell=True) inside agent-generated patches.',
+        'Rule RH008 prevents autonomous modification of protected CI workflows (.github/workflows/*), build configs (pyproject.toml), and test harnesses (conftest.py).',
+        'Every repair attempt produces a SHA-256 signed RepairReceipt binding pre-state hashes, post-state hashes, and guard verdicts.'
+      ],
+      domains: ['AI', 'Cybersecurity', 'Backend'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/patchpilot',
+      languages: ['Python 3.12', 'AST Analysis', 'MCP JSON-RPC 2.0', 'Automated Repair'],
+      automatedTests: 58,
+      headlineMetric: {
+        label: 'Fault Localization & Anti-Cheat Gate',
+        value: '100% Top-1 · -96.6% Tokens · 58 Tests',
+        detail: '100% Top-1 fault localization across 25 scenarios and 100% recall (0% FPR) blocking 20 reward-hacking patches (RH001–RH008)'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '58 passing (pytest)' },
+        { label: 'Fault Localization', value: '100% Top-1 (0.373 ms P50)' },
+        { label: 'Context Token Savings', value: '96.6% prompt reduction' },
+        { label: 'Anti-Reward-Hacking', value: '100% Recall / 0% FPR (RH01-08)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Failing Pytest Traceback + Candidate Agent Diff]
+        │
+        ├──► 1. FaultLocalizer (Stack Depth + AST Call-Graph + BM25 Slice)
+        ├──► 2. PatchIntegrityGuard (8 AST Rules RH001–RH008 Anti-Cheat)
+        ├──► 3. TransactionalPatchWorkspace (SHA-256 Snapshot & Rollback)
+        └──► 4. Signed RepairReceipt + PatchPilotMCPServer (stdio)`,
+        layers: [
+          {
+            name: 'Hybrid Stack-Trace & AST Call-Graph Fault Localizer (src/patchpilot/localizer.py)',
+            responsibility:
+              'Parses tracebacks, indexes workspace AST symbols and caller/callee edges, and extracts minimal line-numbered suspect slices.'
+          },
+          {
+            name: '8-Rule AST Anti-Reward-Hacking Guard (src/patchpilot/guard.py)',
+            responsibility:
+              'Inspects before/after ASTs for test deletion/skipping (RH001), assertion weakening (RH002), exception swallowing (RH003), dangerous primitives (RH005), and protected path edits (RH008).'
+          },
+          {
+            name: 'Transactional Patch Sandbox & MCP Server (sandbox.py / server.py)',
+            responsibility:
+              'Applies patches transactionally, runs verification suites, rolls back byte-for-byte on failure, and exposes 4 MCP tools.'
+          }
+        ],
+        invariants: [
+          'Any patch that reduces assertion counts, introduces assert True, or adds pytest.skip/xfail in a test file is deterministically rejected before test execution.',
+          'Failed verification or guard rejection restores all modified, created, or deleted files to their exact pre-transaction SHA-256 digests.',
+          'Protected configuration and CI workflow paths cannot be modified unless explicitly allowlisted.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'AST Structural Diff Verification Against Coding-Agent Reward Hacking',
+          context:
+            'Evaluating coding agents solely by whether pytest exits with code 0 allows agents to pass by deleting failing assertions or catching Exception: pass.',
+          decision:
+            'Enforce a pre-execution AST structural comparison (RH001–RH008) paired with a SHA-256 transactional rollback workspace.',
+          tradeOffs:
+            'Requires language-aware AST parsing prior to running tests, but adds only 0.098 ms P50 latency while eliminating reward-hacked green builds.',
+          verification:
+            'Verified across 58 pytest tests and a 40-patch adversarial benchmark corpus.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/patchpilot.git',
+        'cd patchpilot && pytest -v',
+        'python -m patchpilot.cli demo && python -m patchpilot.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'AST Fault Localizer',
+          path: 'src/patchpilot/localizer.py',
+          url: 'https://github.com/codesphere-u/patchpilot/blob/main/src/patchpilot/localizer.py',
+          kind: 'source'
+        },
+        {
+          label: 'Anti-Reward-Hacking AST Guard',
+          path: 'src/patchpilot/guard.py',
+          url: 'https://github.com/codesphere-u/patchpilot/blob/main/src/patchpilot/guard.py',
+          kind: 'source'
+        },
+        {
+          label: '58 Pytest Verification Suite',
+          path: 'tests/test_guard.py',
+          url: 'https://github.com/codesphere-u/patchpilot/blob/main/tests/test_guard.py',
+          kind: 'test'
+        }
+      ]
+    },
+
+    {
+      id: 'synapse-router',
+      slug: 'synapse-router',
+      name: 'Synapse Router',
+      version: 'v1.0.0',
+      isPrimaryFlagship: true,
+      visualMotif: 'router',
+      accentColor: '#387BFA',
+      tagline:
+        'Cost-Aware Multi-Model AI Agent Router, Confidence-Gated Cascade Escalation, Circuit Breaker & 64-Bit SimHash Semantic Cache',
+      summary:
+        'Multi-model routing and governance gateway for AI agent workflows that classifies prompt/tool complexity into FAST_LOCAL, BALANCED, and FRONTIER_REASONING tiers, cuts token spend by up to 90.6% via confidence-gated cascades and 64-bit SimHash semantic caching, and fails over across HTTP 429 outages in 0.74 ms.',
+      problemStatement:
+        'Multi-agent systems execute dozens of LLM sub-calls per task. Routing every trivial classification or tool-formatting step to a frontier reasoning model wastes 65–90% of token budgets and violates latency SLAs, while single-provider dependence causes workflow crashes during HTTP 429 rate-limit spikes.',
+      technicalChallenges: [
+        'Scoring agent step complexity deterministically across reasoning markers, code/AST syntax density, tool-schema count/nesting depth, and token footprint to select the lowest-cost tier capable of solving the step.',
+        'Implementing confidence-gated cascade escalation (FAST_LOCAL → BALANCED → FRONTIER_REASONING) that validates JSON schema compliance, tool-call completeness, and confidence thresholds before accepting a lower-tier response.',
+        'Building a tool-context-isolated 64-bit locality-sensitive SimHash semantic cache (Hamming distance <= 3 bits) alongside a 3-state (CLOSED → OPEN → HALF_OPEN) provider circuit breaker and tenant budget governor.'
+      ],
+      securityConsiderations: [
+        'Tool-schema fingerprint isolation in SemanticPromptCache ensures cached responses never leak across incompatible tool definitions or tenants.',
+        'TokenBudgetGovernor enforces hard per-workflow and per-tenant USD/token caps (downgrading tiers at 80% soft cap and halting runaway spend at 100%).',
+        'Every routing and cascade decision emits a SHA-256 signed RoutingDecisionReceipt for cost and SLA auditing.'
+      ],
+      domains: ['AI', 'Cloud', 'Backend'],
+      primaryDomain: 'AI',
+      repoUrl: 'https://github.com/codesphere-u/synapse-router',
+      languages: ['Python 3.12', 'Multi-Model Router', '64-Bit SimHash Cache', 'MCP JSON-RPC 2.0'],
+      automatedTests: 61,
+      headlineMetric: {
+        label: 'Cost Reduction & Failover Resilience',
+        value: '90.6% Cost Saved · 100% Failover · 61 Tests',
+        detail: '0.74 ms P50 routing across 500 multi-agent requests ($3.74 → $0.35 USD) with 100% cascade quality retention and 13/13 HTTP 429 recoveries'
+      },
+      secondaryMetrics: [
+        { label: 'Automated Tests', value: '61 passing (pytest)' },
+        { label: 'USD Cost Reduction', value: '90.59% saved (500-req bench)' },
+        { label: 'Routing Latency', value: '0.74 ms P50 / 1.10 ms P95' },
+        { label: 'HTTP 429 Failover', value: '100% recovered (13/13 faults)' }
+      ],
+      architectureBlueprint: {
+        diagram: `[Agent Step Request: Prompt + Tools Schema + SLA + USD Cap]
+        │
+        ├──► 1. SemanticPromptCache (64-Bit SimHash, Hamming <= 3)
+        ├──► 2. TokenBudgetGovernor (80% Soft Downgrade / 100% Hard Cap)
+        ├──► 3. TaskComplexityClassifier & Pareto Utility Scorer
+        └──► 4. Confidence Cascade (FAST_LOCAL ──► BALANCED ──► FRONTIER)
+                + EndpointHealthRegistry Circuit Breaker (CLOSED/OPEN/HALF_OPEN)`,
+        layers: [
+          {
+            name: 'Task Complexity Analyzer & Pareto Utility Router (classifier.py / router.py)',
+            responsibility:
+              'Scores reasoning depth, code density, and tool complexity to route steps across FAST_LOCAL, BALANCED, and FRONTIER_REASONING endpoints.'
+          },
+          {
+            name: 'Confidence-Gated Cascade & 3-State Circuit Breaker (router.py / health.py)',
+            responsibility:
+              'Validates lower-tier outputs for JSON/tool validity and confidence >= threshold, escalating on uncertainty and failing over on HTTP 429/5xx faults.'
+          },
+          {
+            name: '64-Bit SimHash Semantic Cache & Budget Governor (cache.py / budget.py)',
+            responsibility:
+              'Eliminates redundant agent sub-queries via locality-sensitive hashing and enforces tenant/workflow token and USD budgets.'
+          }
+        ],
+        invariants: [
+          'Endpoints in CircuitState.OPEN are never selected until cooldown expires and a HALF_OPEN probe succeeds.',
+          'Cascade escalation only accepts a lower-tier response if it passes ResponseValidator (schema validity, non-refusal, and confidence >= min_confidence).',
+          'Workflows exceeding 100% of their USD or token cap are deterministically blocked before dispatching upstream model calls.'
+        ]
+      },
+      adrs: [
+        {
+          id: 'ADR-001',
+          title: 'Confidence-Gated Speculative Cascade Over Static Model Assignment',
+          context:
+            'Hardcoding a single model per agent either overpays 5–10x on routine steps or fails on unexpected edge cases requiring deep reasoning.',
+          decision:
+            'Combine fast pre-execution complexity classification with post-generation response validation so simple steps finish on FAST_LOCAL while hard steps automatically cascade up to FRONTIER_REASONING.',
+          tradeOffs:
+            'Incurs a small cascade retry overhead on the ~10–15% of steps that escalate, but reduces overall multi-agent workflow cost by 79–90% while preserving 100% quality retention.',
+          verification:
+            'Verified across 61 pytest tests and a 500-request multi-agent benchmark suite.'
+        }
+      ],
+      cliQuickstart: [
+        'git clone https://github.com/codesphere-u/synapse-router.git',
+        'cd synapse-router && pytest -v',
+        'python -m synapse_router.cli demo && python -m synapse_router.cli benchmark'
+      ],
+      sourceLinks: [
+        {
+          label: 'Pareto Router & Confidence Cascade',
+          path: 'src/synapse_router/router.py',
+          url: 'https://github.com/codesphere-u/synapse-router/blob/main/src/synapse_router/router.py',
+          kind: 'source'
+        },
+        {
+          label: '64-Bit SimHash Cache & Circuit Breaker',
+          path: 'src/synapse_router/cache.py',
+          url: 'https://github.com/codesphere-u/synapse-router/blob/main/src/synapse_router/cache.py',
+          kind: 'source'
+        },
+        {
+          label: '61 Pytest Verification Suite',
+          path: 'tests/test_budget_and_router.py',
+          url: 'https://github.com/codesphere-u/synapse-router/blob/main/tests/test_budget_and_router.py',
+          kind: 'test'
+        }
+      ]
+    },
+
+    {
       id: 'flowledger',
       slug: 'flowledger',
       name: 'FlowLedger',
@@ -1469,7 +1692,7 @@ export const PORTFOLIO_DATA = {
         'Model Context Protocol (MCP) server implementation & structured Pydantic outputs'
       ],
       technologies: ['Python', 'TypeScript', 'Ollama', 'MLX', 'Whisper', 'MCP', 'BM25 RAG', 'TensorFlow'],
-      relatedProjectIds: ['cortex-mcp', 'agentflight', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
+      relatedProjectIds: ['cortex-mcp', 'agentflight', 'patchpilot', 'synapse-router', 'auralis-local', 'argus-ai', 'agentshield', 'agrisignal'],
       relatedCommercialNames: ['AI Energy Efficiency Tool'],
       connectedNodeIds: ['cybersecurity', 'backend-architecture', 'distributed-systems']
     },
@@ -1490,7 +1713,7 @@ export const PORTFOLIO_DATA = {
         'Loopback sandboxing, CSRF/Origin validation, TOTP MFA, and SHA-256 hash-chained audit logs'
       ],
       technologies: ['OWASP 2026', 'Static Heuristics', 'HMAC-SHA256', 'SHA-256 Audit Chains', 'RBAC / MFA', 'PII Redaction'],
-      relatedProjectIds: ['cyber-dragon', 'agentshield', 'agentflight', 'auralis-local', 'flowledger'],
+      relatedProjectIds: ['cyber-dragon', 'agentshield', 'patchpilot', 'agentflight', 'auralis-local', 'flowledger'],
       relatedCommercialNames: ['4codex Security Assessments', 'Funa Gigs Trust & Safety'],
       connectedNodeIds: ['ai-systems', 'backend-architecture', 'cloud-infrastructure']
     },
@@ -1574,7 +1797,7 @@ export const PORTFOLIO_DATA = {
         'Google Cloud, AWS, and Vercel production hosting with strict environment isolation'
       ],
       technologies: ['Google Cloud', 'AWS', 'Vercel', 'Docker Compose', 'OpenTelemetry', 'SLO / Error Budgets', 'Linux'],
-      relatedProjectIds: ['stackpulse', 'cyber-dragon', 'clinical-virtual-health-platform'],
+      relatedProjectIds: ['stackpulse', 'synapse-router', 'cyber-dragon', 'clinical-virtual-health-platform'],
       relatedCommercialNames: ['Codesphere Cloud Solutions', 'Funa Gigs Infrastructure'],
       connectedNodeIds: ['devops', 'distributed-systems', 'cybersecurity']
     },
@@ -1804,6 +2027,19 @@ export const PORTFOLIO_DATA = {
       verificationCommand: 'cd ARGUS-AI && pytest -v && python -m argus_ai.cli backtest'
     },
     {
+      projectId: 'synapse-router',
+      projectName: 'Synapse Router v1.0',
+      repoSlug: 'codesphere-u/synapse-router',
+      domain: 'AI',
+      automatedTests: 61,
+      primaryLatencyLabel: 'Pareto Routing & SimHash Cache',
+      primaryLatencyMs: 0.7426,
+      throughputOrAccuracyLabel: 'USD Cost Reduction & Failover',
+      throughputOrAccuracyValue: '90.59% Cost Saved · 100% HTTP 429 Failover',
+      determinismGuarantee: 'Confidence-Gated Cascade + 3-State Circuit Breaker',
+      verificationCommand: 'cd synapse-router && pytest -v && python -m synapse_router.cli benchmark'
+    },
+    {
       projectId: 'agrisignal',
       projectName: 'AgriSignal v1.0',
       repoSlug: 'codesphere-u/agrisignal',
@@ -1815,6 +2051,19 @@ export const PORTFOLIO_DATA = {
       throughputOrAccuracyValue: '≤160 GSM-7 chars (en, lg, sw) · 20/20 LWW Sync',
       determinismGuarantee: 'HLC Monotonicity + SHA-256 Envelope Verification',
       verificationCommand: 'cd agrisignal && pytest -v'
+    },
+    {
+      projectId: 'patchpilot',
+      projectName: 'PatchPilot v1.0',
+      repoSlug: 'codesphere-u/patchpilot',
+      domain: 'AI',
+      automatedTests: 58,
+      primaryLatencyLabel: 'AST Anti-Cheat Guard (P50)',
+      primaryLatencyMs: 0.098,
+      throughputOrAccuracyLabel: 'Fault Localization & Guard Recall',
+      throughputOrAccuracyValue: '100% Top-1 (-96.6% Tok) · 100% RH01-08 Recall',
+      determinismGuarantee: '8-Rule AST Diff Guard + SHA-256 Rollback Sandbox',
+      verificationCommand: 'cd patchpilot && pytest -v && python -m patchpilot.cli benchmark'
     },
     {
       projectId: 'flowledger',

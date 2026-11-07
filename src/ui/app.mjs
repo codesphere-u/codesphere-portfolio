@@ -219,6 +219,34 @@ export function renderProjectVisualPreviewSvg(project) {
         <line x1="100" y1="52" x2="180" y2="52" stroke="#387BFA" stroke-width="1.5" />
         <text x="140" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7FAFF">2.83 µs REPLAY</text>
       </svg>`;
+    case 'ast':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <rect x="18" y="18" width="76" height="48" rx="6" fill="#101B2E" stroke="#387BFA" stroke-width="1.5" />
+        <text x="56" y="38" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#53C9EE">AST SLICE</text>
+        <text x="56" y="52" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#98AFC8">-96.6% TOK</text>
+        <line x1="94" y1="42" x2="132" y2="42" stroke="${color}" stroke-width="2" />
+        <polygon points="154,16 182,42 154,68 126,42" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <text x="154" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F4B94C">RH01-08</text>
+        <line x1="182" y1="42" x2="214" y2="42" stroke="#53C9EE" stroke-width="2" stroke-dasharray="4 3" />
+        <rect x="214" y="22" width="48" height="40" rx="6" fill="#101B2E" stroke="#53C9EE" stroke-width="1.6" />
+        <text x="238" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#F7FAFF">TX OK</text>
+      </svg>`;
+    case 'router':
+      return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
+        <rect width="280" height="84" rx="8" fill="#070B16" />
+        <circle cx="42" cy="42" r="14" fill="#101B2E" stroke="${color}" stroke-width="1.8" />
+        <text x="42" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F7FAFF">ROUTE</text>
+        <line x1="56" y1="36" x2="136" y2="20" stroke="#53C9EE" stroke-width="1.8" />
+        <line x1="56" y1="42" x2="136" y2="42" stroke="#387BFA" stroke-width="1.5" stroke-dasharray="4 3" />
+        <line x1="56" y1="48" x2="136" y2="64" stroke="#F4B94C" stroke-width="1.5" stroke-dasharray="2 3" />
+        <rect x="136" y="11" width="122" height="18" rx="4" fill="#101B2E" stroke="#53C9EE" />
+        <text x="197" y="23" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#53C9EE">FAST_LOCAL · -90.6% $</text>
+        <rect x="136" y="33" width="122" height="18" rx="4" fill="#101B2E" stroke="#387BFA" />
+        <text x="197" y="45" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#98AFC8">BALANCED CASCADE</text>
+        <rect x="136" y="55" width="122" height="18" rx="4" fill="#101B2E" stroke="#F4B94C" />
+        <text x="197" y="67" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#F4B94C">FRONTIER REASONING</text>
+      </svg>`;
     case 'ledger':
       return `<svg viewBox="0 0 280 84" class="project-motif-svg" aria-hidden="true">
         <rect width="280" height="84" rx="8" fill="#070B16" />

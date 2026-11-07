@@ -29,13 +29,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career & Strict Accuracy Rules", () => {
-  it('validates overall portfolio schema and 463 verified automated tests/suites across 10 repositories', () => {
+  it('validates overall portfolio schema and 582 verified automated tests/suites across 12 repositories', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.equal(
       check.totalTests,
-      463,
-      `Expected exactly 463 verified automated tests/suites across the 10 repos, got ${check.totalTests}`
+      582,
+      `Expected exactly 582 verified automated tests/suites across the 12 repos, got ${check.totalTests}`
     );
   });
 
@@ -153,7 +153,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     }
   });
 
-  it('verifies Experience 03 — all 10 open-source systems with custom SVG motifs and verified metrics', () => {
+  it('verifies Experience 03 — all 12 open-source systems with custom SVG motifs and verified metrics', () => {
     const expectedSlugs = [
       'cyber-dragon',
       'auralis-local',
@@ -161,16 +161,18 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
       'agentshield',
       'cortex-mcp',
       'agentflight',
+      'patchpilot',
+      'synapse-router',
       'flowledger',
       'stackpulse',
       'agrisignal',
       'Clinical-Virtual-Health-Platform'
     ];
-    assert.equal(PORTFOLIO_DATA.projects.length, 10);
+    assert.equal(PORTFOLIO_DATA.projects.length, 12);
     const primaryCount = PORTFOLIO_DATA.projects.filter(
       (p) => p.isPrimaryFlagship
     ).length;
-    assert.equal(primaryCount, 8);
+    assert.equal(primaryCount, 10);
 
     for (const slug of expectedSlugs) {
       const project = getProjectById(slug);
@@ -189,6 +191,14 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     const agentflight = getProjectById('agentflight');
     assert.equal(agentflight.automatedTests, 73);
     assert.equal(agentflight.visualMotif, 'cassette');
+
+    const patchpilot = getProjectById('patchpilot');
+    assert.equal(patchpilot.automatedTests, 58);
+    assert.equal(patchpilot.visualMotif, 'ast');
+
+    const synapseRouter = getProjectById('synapse-router');
+    assert.equal(synapseRouter.automatedTests, 61);
+    assert.equal(synapseRouter.visualMotif, 'router');
 
     const cyberDragon = getProjectById('cyber-dragon');
     assert.equal(cyberDragon.automatedTests, 21);
@@ -232,12 +242,12 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
     ];
     assert.deepEqual(PORTFOLIO_DATA.domains, expectedDomains);
 
-    assert.equal(filterProjects({ domain: 'All' }).length, 10);
-    assert.ok(filterProjects({ domain: 'AI' }).length >= 5);
-    assert.ok(filterProjects({ domain: 'Cybersecurity' }).length >= 4);
-    assert.ok(filterProjects({ domain: 'Backend' }).length >= 6);
+    assert.equal(filterProjects({ domain: 'All' }).length, 12);
+    assert.ok(filterProjects({ domain: 'AI' }).length >= 7);
+    assert.ok(filterProjects({ domain: 'Cybersecurity' }).length >= 5);
+    assert.ok(filterProjects({ domain: 'Backend' }).length >= 8);
     assert.ok(filterProjects({ domain: 'Fintech' }).length >= 2);
-    assert.ok(filterProjects({ domain: 'Cloud' }).length >= 1);
+    assert.ok(filterProjects({ domain: 'Cloud' }).length >= 2);
     assert.ok(filterProjects({ domain: 'Full-Stack' }).length >= 5);
   });
 
@@ -302,7 +312,7 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
 
     const projectsRes = executeTerminalCommand('projects', PORTFOLIO_DATA);
     assert.equal(projectsRes.status, 'ok');
-    assert.equal(projectsRes.lines.length, 10);
+    assert.equal(projectsRes.lines.length, 12);
 
     const skillsRes = executeTerminalCommand('skills', PORTFOLIO_DATA);
     assert.equal(skillsRes.status, 'ok');
@@ -363,8 +373,8 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
   it('builds index.html and dist/index.html with accessible editorial design tokens', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
-    assert.equal(summary.totalProjects, 10);
-    assert.equal(summary.totalAutomatedTests, 463);
+    assert.equal(summary.totalProjects, 12);
+    assert.equal(summary.totalAutomatedTests, 582);
 
     assert.match(html, /class="skip-link"/);
     assert.match(html, /role="banner"/);
@@ -434,8 +444,8 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.equal(body.status, 'ok');
       assert.equal(body.version, '2.0.0');
       assert.equal(body.owner, 'Akandwanaho Ivan Alvin');
-      assert.equal(body.totalProjects, 10);
-      assert.equal(body.totalAutomatedTests, 463);
+      assert.equal(body.totalProjects, 12);
+      assert.equal(body.totalAutomatedTests, 582);
     });
 
     it('serves /api/projects with domain and query filtering', async () => {
