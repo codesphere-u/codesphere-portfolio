@@ -93,7 +93,7 @@ export function initNavigation(doc = globalThis.document, win = globalThis.windo
         instance.unobserve(entry.target);
       }
     }, { threshold: .12 });
-    doc.querySelectorAll('.featured-work, .section-header, .product-story').forEach(element => observer.observe(element));
+    doc.querySelectorAll('.section-header').forEach(element => observer.observe(element));
   }
 }
 

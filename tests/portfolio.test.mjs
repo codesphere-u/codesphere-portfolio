@@ -22,7 +22,7 @@ import {
   renderKnowledgeNodeDetailHtml,
   renderPhilosophyCardHtml
 } from '../src/ui/app.mjs';
-import { generatePortfolioHtml } from '../scripts/build.mjs';
+import { generateArchiveHtml, generatePortfolioHtml } from '../scripts/build.mjs';
 import defaultServerHandler, { createPortfolioServer } from '../server.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -39,7 +39,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     );
   });
 
-  it('includes cinematic opening identity, headline, specialties, and architecture scene', () => {
+  it('presents the portfolio owner, role, portrait and work entry point', () => {
     const { profile } = PORTFOLIO_DATA;
     assert.equal(profile.name, 'Akandwanaho Ivan Alvin');
     assert.equal(profile.displayNameUpper, 'AKANDWANAHO IVAN ALVIN');
@@ -73,16 +73,16 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.match(sceneSvg, /SECURE/);
 
     const { html } = generatePortfolioHtml();
-    assert.match(html, /AKANDWANAHO IVAN ALVIN/);
-    assert.match(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '').trim(), /Engineering what comes next\./);
-    assert.match(html, /Explore my work/);
-    assert.match(html, /class="hero-contours"/);
+    assert.match(html, /<h1 id="hero-heading"><span>Akandwanaho<\/span> <span>Ivan Alvin<\/span><\/h1>/);
+    assert.match(html, /Software engineer &amp; founder/);
+    assert.match(html, /src\/media\/alvin\.webp/);
+    assert.match(html, /See selected work/);
   });
 
   it('enforces education & repository accuracy: ISBAT University present, zero Makerere/NEWS2/whitehathackerpr', () => {
     const { html } = generatePortfolioHtml();
     assert.equal(PORTFOLIO_DATA.profile.education.institution, 'ISBAT University');
-    assert.match(html, /ISBAT University — Uganda/);
+    assert.match(html, /ISBAT University in Kampala/);
     assert.doesNotMatch(html, /Makerere/i);
     assert.doesNotMatch(JSON.stringify(PORTFOLIO_DATA), /Makerere/i);
     assert.doesNotMatch(html, /whitehathackerpr/i);
@@ -125,7 +125,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
 
     assert.match(html, /Akandwanaho Ivan Alvin/);
     assert.match(html, /Jaminsa Ventures Limited/);
-    assert.match(html, /March 2025/);
+    assert.match(generateArchiveHtml(), /March 2025/);
     assert.match(html, /https:\/\/www\.codesphereug\.com/);
   });
 
@@ -395,19 +395,18 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     assert.match(html, /class="skip-link"/);
     assert.match(html, /role="banner"/);
     assert.match(html, /role="main"/);
-    assert.match(html, /role="dialog"/);
-    assert.match(html, /Space\+Grotesk/);
-    assert.match(html, /Instrument\+Serif/);
-    assert.match(html, /editorial\.css/);
-    assert.match(html, /class="editorial-featured"/);
-    assert.match(html, /class="art-stage"/);
-    // Navigation & information architecture quality gates.
-    assert.ok(html.indexOf('id="projects"') < html.indexOf('id="journey"'), 'Work must precede the career timeline');
-    for (const id of ['menu-toggle', 'mobile-menu', 'page-progress-bar', 'back-to-top', 'featured-work']) {
-      assert.ok(html.includes('id="' + id + '"'), 'Missing navigation/UX element: ' + id);
+    assert.match(html, /src\/ui\/profile\.css/);
+    assert.match(html, /application\/ld\+json/);
+    assert.match(html, /archive\.html#project-index/);
+    assert.match(html, /cases\/funa-gigs\.html/);
+    const archive = generateArchiveHtml();
+    assert.match(archive, /role="dialog"/);
+    assert.ok(archive.indexOf('id="projects"') < archive.indexOf('id="journey"'), 'Work must precede the career timeline');
+    for (const id of ['menu-toggle', 'mobile-menu', 'page-progress-bar', 'back-to-top', 'project-index']) {
+      assert.ok(archive.includes('id="' + id + '"'), 'Missing archive navigation element: ' + id);
     }
-    assert.match(html, /src\/ui\/navigation\.mjs/);
-    assert.match(html, /src\/ui\/polish\.css/);
+    assert.match(archive, /src\/ui\/navigation\.mjs/);
+    assert.match(archive, /src\/ui\/polish\.css/);
     const navSource = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'navigation.mjs'), 'utf8');
     const polishCss = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'polish.css'), 'utf8');
     assert.match(navSource, /aria-expanded/);
@@ -486,8 +485,22 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.equal(res.status, 200);
       assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
       const html = await res.text();
-      assert.match(html, /AKANDWANAHO IVAN ALVIN/);
-      assert.match(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '').trim(), /Engineering what comes next\./);
+      assert.match(html, /Akandwanaho Ivan Alvin/);
+      assert.match(html, /Selected work/);
+    });
+
+    it('serves the archive, product case study, and locally hosted media', async () => {
+      for (const page of ['archive.html', 'cases/funa-gigs.html']) {
+        const response = await fetch(`${baseUrl}/${page}`);
+        assert.equal(response.status, 200);
+        assert.equal(await response.text(), fs.readFileSync(path.join(ROOT_DIR, 'dist', page), 'utf8'));
+      }
+      for (const image of ['alvin', 'funa-home', 'funa-work', 'cyber-dragon']) {
+        const response = await fetch(`${baseUrl}/src/media/${image}.webp`);
+        assert.equal(response.status, 200);
+        assert.equal(response.headers.get('content-type'), 'image/webp');
+        assert.ok((await response.arrayBuffer()).byteLength > 0);
+      }
     });
 
     it('serves every linked case study in both Node and the static build', async () => {

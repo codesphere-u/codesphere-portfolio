@@ -335,78 +335,26 @@ export function renderProjectVisualPreviewSvg(project) {
 }
 
 export function renderProjectCardHtml(project) {
-  const domainBadges = (project.domains || [])
-    .map((d) => `<span class="domain-pill">${escapeHtml(d)}</span>`)
+  const title = escapeHtml(project.name);
+  const technologies = (project.languages || [])
+    .map(language => `<li>${escapeHtml(language)}</li>`)
     .join('');
-
-  const langBadges = (project.languages || [])
-    .map((l) => `<span class="lang-chip">${escapeHtml(l)}</span>`)
-    .join('');
-
-  const metricsHtml = (project.secondaryMetrics || [])
-    .slice(0, 4)
-    .map(
-      (m) => `
-      <div class="metric-cell">
-        <span class="metric-cell-label">${escapeHtml(m.label)}</span>
-        <span class="metric-cell-value">${escapeHtml(m.value)}</span>
-      </div>`
-    )
-    .join('');
-
-  const demoLinkHtml = project.liveDemoUrl
-    ? `<a href="${escapeHtml(project.liveDemoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-card-link btn-live-demo">Live Workbench ↗</a>`
+  const demoLink = project.liveDemoUrl
+    ? `<a href="${escapeHtml(project.liveDemoUrl)}">Demo ↗</a>`
     : '';
 
-  const flagshipBadge = project.isPrimaryFlagship
-    ? `<span class="flagship-star-badge">★ PRIMARY FLAGSHIP</span>`
-    : `<span class="version-badge">${escapeHtml(project.version)}</span>`;
-
   return `
-    <article class="project-card motif-${escapeHtml(project.visualMotif)}" data-project-id="${escapeHtml(project.id)}" data-primary-domain="${escapeHtml(project.primaryDomain)}" style="--card-accent: ${escapeHtml(project.accentColor)}">
-      <div class="project-card-visual">
-        ${renderProjectVisualPreviewSvg(project)}
+    <article class="archive-project" data-project-id="${escapeHtml(project.id)}">
+      <div class="archive-project-meta">${escapeHtml(project.primaryDomain)} <span>${escapeHtml(project.version)}</span></div>
+      <div class="archive-project-copy">
+        <h3>${title}</h3>
+        <p>${escapeHtml(project.summary)}</p>
+        <ul class="archive-technologies" aria-label="Technologies">${technologies}</ul>
       </div>
-
-      <div class="project-card-top">
-        <div class="project-badge-row">
-          <span class="slug-badge">${escapeHtml(project.slug)}</span>
-          ${flagshipBadge}
-        </div>
-        <div class="domain-pill-group">${domainBadges}</div>
-      </div>
-
-      <h3 class="project-title">${escapeHtml(project.name)}</h3>
-      <p class="project-tagline">${escapeHtml(project.tagline)}</p>
-      <p class="project-summary">${escapeHtml(project.summary)}</p>
-
-      <div class="headline-metric-box">
-        <div class="headline-metric-header">
-          <span class="headline-metric-label">${escapeHtml(project.headlineMetric.label)}</span>
-          <strong class="headline-metric-value">${escapeHtml(project.headlineMetric.value)}</strong>
-        </div>
-        <p class="headline-metric-detail">${escapeHtml(project.headlineMetric.detail)}</p>
-      </div>
-
-      <div class="secondary-metrics-grid">
-        ${metricsHtml}
-      </div>
-
-      <div class="lang-chip-row" aria-label="Technology stack">
-        ${langBadges}
-      </div>
-
-      <div class="project-card-actions">
-        <a class="btn-inspect-adr" href="./cases/${escapeHtml(project.id)}.html" data-open-drawer="${escapeHtml(project.id)}">
-          <span>Read case study</span>
-          <span aria-hidden="true">→</span>
-        </a>
-        <div class="project-external-links">
-          ${demoLinkHtml}
-          <a href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-card-link">
-            GitHub Repo ↗
-          </a>
-        </div>
+      <div class="archive-project-links">
+        <a class="archive-study-link" href="./cases/${escapeHtml(project.id)}.html" aria-label="Read case study for ${title}" data-open-drawer="${escapeHtml(project.id)}">Read case study <span aria-hidden="true">→</span></a>
+        <a href="${escapeHtml(project.repoUrl)}" aria-label="${title} on GitHub">GitHub ↗</a>
+        ${demoLink}
       </div>
     </article>`;
 }
