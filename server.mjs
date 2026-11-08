@@ -8,7 +8,9 @@ import {
   computePortfolioSummary,
   sortBenchmarks
 } from './src/core/explorer.mjs';
-import { generateCaseStudyHtml, generatePortfolioHtml } from './scripts/build.mjs';
+import { generateArchiveHtml, generateCaseStudyHtml, generatePortfolioHtml } from './scripts/build.mjs';
+
+import { renderFunaCaseStudy } from './scripts/profile.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -20,11 +22,13 @@ const MIME_TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
+  '.webp': 'image/webp',
   '.ico': 'image/x-icon'
 };
 
 // Explicit literal path reads so Vercel's Node File Trace (@vercel/nft) always bundles assets
 const STATIC_ASSET_PATHS = {
+  '/src/ui/profile.css': path.join(__dirname, 'src', 'ui', 'profile.css'),
   '/src/ui/styles.css': path.join(__dirname, 'src', 'ui', 'styles.css'),
   '/src/ui/editorial.css': path.join(__dirname, 'src', 'ui', 'editorial.css'),
   '/src/ui/polish.css': path.join(__dirname, 'src', 'ui', 'polish.css'),
@@ -116,11 +120,17 @@ export function handlePortfolioRequest(req, res) {
       return;
     }
 
+    if (url.pathname === '/archive.html' || url.pathname === '/cases/funa-gigs.html') {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(url.pathname === '/archive.html' ? generateArchiveHtml() : renderFunaCaseStudy());
+      return;
+    }
+
     const caseMatch = /^\/cases\/([a-z0-9-]+)\.html$/.exec(url.pathname);
     if (caseMatch) {
       const project = PORTFOLIO_DATA.projects.find(({ id }) => id === caseMatch[1]);
       res.writeHead(project ? 200 : 404, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(project ? generateCaseStudyHtml(project) : '<!doctype html><title>Case study not found</title><h1>Case study not found</h1><a href="/#project-index">Project index</a>');
+      res.end(project ? generateCaseStudyHtml(project) : '<!doctype html><title>Case study not found</title><h1>Case study not found</h1><a href="/archive.html#project-index">Project index</a>');
       return;
     }
 

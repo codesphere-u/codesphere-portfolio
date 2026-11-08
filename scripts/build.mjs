@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderProfile, renderFunaCaseStudy } from './profile.mjs';
 import { PORTFOLIO_DATA } from '../src/data/portfolio-data.mjs';
 import {
   computePortfolioSummary,
@@ -33,14 +34,23 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
-export function generatePortfolioHtml() {
-  const startMs = performance.now();
+function getVerifiedSummary() {
   const integrity = validatePortfolioIntegrity(PORTFOLIO_DATA);
   if (!integrity.valid) {
     throw new Error(`Portfolio integrity check failed:\n${integrity.errors.join('\n')}`);
   }
+  return computePortfolioSummary(PORTFOLIO_DATA);
+}
 
-  const summary = computePortfolioSummary(PORTFOLIO_DATA);
+export function generatePortfolioHtml() {
+  const startMs = performance.now();
+  const summary = getVerifiedSummary();
+  const html = renderProfile(PORTFOLIO_DATA.profile, summary);
+  return { html, summary, elapsedMs: (performance.now() - startMs).toFixed(1) };
+}
+
+export function generateArchiveHtml() {
+  const summary = getVerifiedSummary();
   const {
     profile,
     domains,
@@ -52,11 +62,6 @@ export function generatePortfolioHtml() {
     broaderProjects,
     benchmarks
   } = PORTFOLIO_DATA;
-
-  const heroContours = Array.from({ length: 31 }, (_, index) => {
-    const y = 48 + index * 13;
-    return `<path d="M-36 ${y} C100 ${y - 190} 141 ${y + 180} 275 ${y + 30} S456 ${y - 151} 595 ${y - 18}"/>`;
-  }).join('');
 
   // Experience 02: Interactive 6-Chapter Journey
   const journeyTabsHtml = journey
@@ -98,21 +103,6 @@ export function generatePortfolioHtml() {
     .join('');
 
   const cardsHtml = projects.map(renderProjectCardHtml).join('\n');
-  const featuredWorkHtml = [
-    { id: 'agentshield', label: 'AI security', title: 'AgentShield', description: 'Enforcing tool permissions at the boundary between an AI agent and the systems it can touch.', mark: 'shield' },
-    { id: 'agentflight', label: 'Developer tooling', title: 'AgentFlight', description: 'Recording and replaying agent runs so developers can investigate failures and test fixes.', mark: 'flight' },
-    { label: 'Marketplace · Founder & Project Lead', title: 'Funa Gigs', description: 'A Ugandan marketplace for finding local help, managing jobs and paying through mobile money.', mark: 'market' },
-  ].map((item, index) => `
-    <a class="featured-work feature-${item.mark}" href="${item.id ? './cases/' + item.id + '.html' : '#funa-gigs'}">
-      <span class="featured-index"><span>0${index + 1} / ${item.label}</span><span aria-hidden="true">↗</span></span>
-      <span class="featured-illustration" aria-hidden="true"><i></i><i></i><i></i></span>
-      <div class="featured-bottom">
-        <h3 class="featured-name">${item.title}</h3>
-        <p class="featured-tag">${item.description}</p>
-        <span class="featured-action">${item.id ? 'Read case study' : 'Explore the product'} <span aria-hidden="true">→</span></span>
-      </div>
-    </a>`).join('\n');
-
   // Experience 04: Interactive 8-Node Engineering Knowledge Map
   const firstNode = knowledgeMap[0];
   const kmapPillsHtml = knowledgeMap
@@ -174,33 +164,13 @@ export function generatePortfolioHtml() {
   const sortedBenchmarks = sortBenchmarks(benchmarks, 'tests-desc');
   const benchmarkRowsHtml = renderBenchmarkRowsHtml(sortedBenchmarks, summary);
 
-  const description = 'Akandwanaho Ivan Alvin is a software engineer, cybersecurity practitioner and founder in Kampala, Uganda. Explore his engineering case studies and product work.';
-  const person = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    mainEntity: {
-      '@type': 'Person',
-      name: profile.name,
-      alternateName: profile.shortName,
-      jobTitle: 'Software Engineer and Founder',
-      worksFor: { '@type': 'Organization', name: profile.companyName, url: profile.companyWebsiteUrl },
-      sameAs: [profile.githubUrl, profile.linkedinUrl]
-    }
-  }).replace(/</g, '\\u003c');
-
   const html = `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${escapeHtml(profile.name)} | Software Engineer &amp; Founder</title>
-  <meta name="description" content="${escapeHtml(description)}" />
-  <meta name="theme-color" content="#141713" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:title" content="${escapeHtml(profile.name)} | Software Engineer &amp; Founder" />
-  <meta property="og:description" content="${escapeHtml(description)}" />
-  <meta name="twitter:card" content="summary" />
-  <script type="application/ld+json">${person}</script>
+  <title>Engineering Archive | ${escapeHtml(profile.name)}</title>
+  <meta name="description" content="Public engineering projects, architecture case studies, benchmarks and career history for ${escapeHtml(profile.name)}." />
 
   <!-- Editorial & Technical Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -216,7 +186,7 @@ export function generatePortfolioHtml() {
 
   <header class="site-header" role="banner">
     <div class="container header-inner">
-      <a href="#hero" class="brand-link">
+      <a href="./index.html" class="brand-link">
         <span class="brand-mark" aria-hidden="true">IA.</span>
         <span class="brand-text-wrap">
           <span class="brand-name">${escapeHtml(profile.name)}</span>
@@ -225,7 +195,7 @@ export function generatePortfolioHtml() {
       </a>
 
       <nav class="nav-links" aria-label="Primary Portfolio Navigation" id="desktop-nav">
-        <a href="#projects" class="nav-link" data-section-link="projects">Work</a>
+        <a href="./index.html#projects" class="nav-link">Selected work</a>
         <a href="#journey" class="nav-link" data-section-link="journey">Journey</a>
         <a href="#experience" class="nav-link" data-section-link="experience">Leadership</a>
         <a href="#about" class="nav-link" data-section-link="about">About</a>
@@ -249,51 +219,18 @@ export function generatePortfolioHtml() {
   </nav>
 
   <main id="main-content" role="main" tabindex="-1">
-    <!-- EXPERIENCE 01 — CINEMATIC OPENING -->
-    <section id="hero" class="hero-section" aria-labelledby="hero-heading">
+    <section id="hero" class="archive-intro" aria-labelledby="archive-title">
       <div class="container">
-        <div class="hero-cinema-grid">
-          <div class="hero-editorial-col">
-            <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> Kampala, Uganda</p>
-            <p class="hero-kicker-name">${escapeHtml(profile.displayNameUpper)}</p>
-            <h1 id="hero-heading" class="hero-editorial-headline">
-              <span class="hero-line">Engineering</span> <span class="hero-line">what comes <em>next.</em></span>
-            </h1>
-            <p class="hero-mission">I build software across AI and cybersecurity, and lead product engineering as founder of Codesphere Innovations.</p>
-            <div class="hero-cta-row">
-              <a href="#projects" class="btn btn-primary btn-cta-hero"><span>Explore my work</span><span aria-hidden="true">↘</span></a>
-              <a href="#experience" class="btn btn-secondary">Leadership &amp; experience</a>
-            </div>
-          </div>
-          <figure class="hero-scene-col">
-            <div class="art-stage" aria-hidden="true">
-              <svg class="hero-contours" viewBox="0 0 560 510" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <defs>
-                  <linearGradient id="signal-ink" x1="30" x2="525" y1="485" y2="25" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#5e7540"/><stop offset=".54" stop-color="#e3ff95"/><stop offset="1" stop-color="#83a54c"/>
-                  </linearGradient>
-                  <pattern id="signal-grid" width="28" height="28" patternUnits="userSpaceOnUse">
-                    <path d="M0 28V0H28" fill="none" stroke="#7c905d" stroke-opacity=".22"/>
-                  </pattern>
-                </defs>
-                <rect width="560" height="510" fill="url(#signal-grid)"/>
-                <g class="contour-field" fill="none" stroke="url(#signal-ink)" stroke-width="1.25">${heroContours}</g>
-                <g fill="none" stroke="#e3ff95" stroke-width="1.3">
-                  <circle cx="280" cy="285" r="43"/><circle cx="280" cy="285" r="67" stroke-opacity=".45"/>
-                  <path d="M272 285h16m-8-8v16M20 40h25m-12-12v24M515 465h25m-12-12v24"/>
-                </g>
-              </svg>
-              <span class="hero-art-label">FIG. 01 / SIGNAL FIELD</span>
-              <span class="hero-art-caption">KAMPALA · UG</span>
-            </div>
-            <figcaption class="figure-meta"><span>SOFTWARE / SECURITY / PRODUCT</span><a href="#mindmap">Explore my disciplines ↗</a></figcaption>
-          </figure>
-        </div>
-        <div class="hero-proof" aria-label="Portfolio highlights">
-          <a href="#project-index"><strong>${summary.totalProjects}</strong><span>Public systems</span></a>
-          <a href="#benchmarks-matrix"><strong>${summary.totalAutomatedTests}</strong><span>Repository-reported tests &amp; suites</span></a>
-          <a href="#experience"><strong>Founder</strong><span>Codesphere Innovations</span></a>
-        </div>
+        <a href="./index.html">← Back to the portfolio</a>
+        <p class="section-eyebrow">AKANDWANAHO IVAN ALVIN</p>
+        <h1 id="archive-title" class="section-title">Engineering archive</h1>
+        <p class="section-subtitle">Browse ${summary.totalProjects} public systems, from AI tooling and cybersecurity to financial and cloud infrastructure.</p>
+        <nav aria-label="Archive contents">
+          <a href="#project-index">Project index</a>
+          <a href="#journey">Career journey</a>
+          <a href="#mindmap">Knowledge map</a>
+          <a href="#benchmarks-matrix">Benchmarks</a>
+        </nav>
       </div>
     </section>
 
@@ -302,15 +239,11 @@ export function generatePortfolioHtml() {
       <div id="flagship-explorer" class="container">
         <div class="section-header">
           <div>
-            <span class="section-eyebrow">02 / SELECTED WORK</span>
-            <h2 id="explorer-heading" class="section-title">Selected work.</h2>
-            <p class="section-subtitle">Security tools, developer infrastructure and products built for real workflows.</p>
+            <h2 id="explorer-heading" class="section-title">Public systems</h2>
+            <p class="section-subtitle">Search by technology or filter by engineering domain.</p>
           </div>
         </div>
 
-        <div class="editorial-featured" aria-label="Selected flagship projects" id="featured-work">
-          ${featuredWorkHtml}
-        </div>
         <div class="project-list-heading" id="project-index"><h3>Engineering project index</h3><p class="project-results" id="projects-results-count" role="status">${summary.totalProjects} projects</p></div>
         <div class="explorer-controls" hidden role="region" aria-label="Filter and search flagship systems">
           <div class="domain-tabs" role="group" aria-label="Filter by engineering domain">
@@ -329,7 +262,7 @@ export function generatePortfolioHtml() {
           </div>
         </div>
 
-        <div id="projects-grid" class="projects-grid">
+        <div id="projects-grid" class="archive-projects">
           ${cardsHtml}
           <div class="empty-filter-state" id="project-empty" hidden>
             <p>No projects match those filters.</p>
@@ -551,13 +484,7 @@ export function generatePortfolioHtml() {
           </div>
         </div>
 
-        <article id="funa-gigs" class="product-story">
-          <div><span class="section-eyebrow">FOUNDER &amp; PROJECT LEAD · JAMINSA VENTURES LIMITED</span><h3>Funa Gigs</h3>
-          <p>Funa Gigs helps people in Uganda find nearby workers for immediate or planned jobs. The product brings job posting, hiring and payment into one workflow.</p>
-          <a class="btn btn-primary" href="https://www.funagigs.com/">Visit Funa Gigs ↗</a></div>
-          <dl><dt>Discovery</dt><dd>Clients can match with nearby taskers or compare applicants for a posted job.</dd>
-          <dt>Payment</dt><dd>Funa Vault holds payment until approval. Taskers can withdraw to MTN or Airtel Money.</dd></dl>
-        </article>
+        <p><a class="btn btn-primary" href="./cases/funa-gigs.html">Read the Funa Gigs case study →</a></p>
         <div class="projects-grid">
           ${broaderCardsHtml}
         </div>
@@ -676,8 +603,7 @@ export function generatePortfolioHtml() {
 </body>
 </html>`;
 
-  const elapsedMs = (performance.now() - startMs).toFixed(1);
-  return { html: html.replace(/[ \t]+$/gm, ''), elapsedMs, summary };
+  return html.replace(/[ \t]+$/gm, '');
 }
 
 export function generateCaseStudyHtml(project) {
@@ -700,7 +626,7 @@ export function generateCaseStudyHtml(project) {
 <body class="case-page">
   <a href="#case-content" class="skip-link">Skip to case study</a>
   <header class="case-header"><div class="container">
-    <a href="../index.html#project-index">← Project index</a>
+    <a href="../archive.html#project-index">← Project index</a>
     <a href="../index.html">Akandwanaho Ivan Alvin</a>
   </div></header>
   <main class="container case-content" id="case-content" tabindex="-1">
@@ -731,9 +657,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
   fs.mkdirSync(DIST_DIR, { recursive: true });
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), html, 'utf8');
+  fs.writeFileSync(path.join(DIST_DIR, 'archive.html'), generateArchiveHtml());
   copyDirectoryRecursive(path.join(ROOT_DIR, 'src'), path.join(DIST_DIR, 'src'));
   const casesDir = path.join(DIST_DIR, 'cases');
   fs.mkdirSync(casesDir, { recursive: true });
+  fs.writeFileSync(path.join(casesDir, 'funa-gigs.html'), renderFunaCaseStudy());
   for (const project of PORTFOLIO_DATA.projects) {
     fs.writeFileSync(path.join(casesDir, project.id + '.html'), generateCaseStudyHtml(project));
   }
