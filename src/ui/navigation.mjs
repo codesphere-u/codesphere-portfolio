@@ -1,8 +1,3 @@
-/**
- * Portfolio navigation layer.
- * Progressive enhancement: all content and links work without JavaScript.
- * No third-party dependencies or tracking.
- */
 export function initNavigation(doc = globalThis.document, win = globalThis.window) {
   if (!doc || !win) return;
   const toggle = doc.getElementById('menu-toggle');
@@ -10,68 +5,64 @@ export function initNavigation(doc = globalThis.document, win = globalThis.windo
   const progressBar = doc.getElementById('page-progress-bar');
   const backToTop = doc.getElementById('back-to-top');
   const header = doc.querySelector('.site-header');
-  const sectionIds = ['projects','journey','mindmap','terminal','philosophy','about','experience','broader-archive','benchmarks-matrix','contact'];
-  const sections = sectionIds.map(id => doc.getElementById(id)).filter(Boolean);
   const navLinks = [...doc.querySelectorAll('[data-section-link]')];
-  const reducedMotion = win.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
-  let menuIsOpen = false;
-  let previousFocus = null;
-  let rafScheduled = false;
+  const sections = [...doc.querySelectorAll('main > section')];
+  const menuBreakpoint = win.matchMedia('(max-width: 900px)');
+  let framePending = false;
 
-  const menuFocusable = () => [...menu.querySelectorAll('a[href],button:not([disabled])')].filter(el => el.getClientRects().length > 0);
+  if (toggle && menu) {
+    toggle.hidden = false;
+    const setMenu = open => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      toggle.classList.toggle('is-open', open);
+      doc.body.classList.toggle('menu-open', open);
+    };
 
-  function setMenu(open, restoreFocus = false) {
-    if (!menu || !toggle) return;
-    menuIsOpen = Boolean(open);
-    menu.hidden = !menuIsOpen;
-    toggle.setAttribute('aria-expanded', String(menuIsOpen));
-    toggle.setAttribute('aria-label', menuIsOpen ? 'Close navigation menu' : 'Open navigation menu');
-    toggle.classList.toggle('is-open', menuIsOpen);
-    doc.body.classList.toggle('menu-open', menuIsOpen);
-    if (menuIsOpen) {
-      previousFocus = doc.activeElement;
-      menuFocusable()[0]?.focus();
-    } else if (restoreFocus) {
-      (previousFocus || toggle).focus?.();
+    toggle.addEventListener('click', () => {
+      const open = menu.hidden;
+      setMenu(open);
+      if (open) menu.querySelector('a')?.focus();
+    });
+
+    for (const link of menu.querySelectorAll('[data-mobile-link]')) {
+      link.addEventListener('click', () => {
+        const target = doc.getElementById(link.dataset.sectionLink);
+        setMenu(false);
+        if (!target) return;
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      });
     }
+
+    doc.addEventListener('keydown', event => {
+      if (menu.hidden || event.key !== 'Escape') return;
+      event.preventDefault();
+      setMenu(false);
+      toggle.focus();
+    });
+    doc.addEventListener('focusin', event => {
+      if (!menu.hidden && event.target !== toggle && !menu.contains(event.target)) setMenu(false);
+    });
+    doc.addEventListener('pointerdown', event => {
+      if (!menu.hidden && !toggle.contains(event.target) && !menu.contains(event.target)) setMenu(false);
+    });
+    menuBreakpoint.addEventListener('change', () => {
+      if (!menuBreakpoint.matches && !menu.hidden) setMenu(false);
+    });
+    win.addEventListener('hashchange', () => setMenu(false));
   }
 
-  toggle?.addEventListener('click', () => setMenu(!menuIsOpen, menuIsOpen));
-  menu?.querySelectorAll('[data-mobile-link]').forEach(link => link.addEventListener('click', () => setMenu(false)));
-  win.addEventListener('hashchange', () => setMenu(false));
-
-  doc.addEventListener('keydown', event => {
-    if (!menuIsOpen) return;
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      setMenu(false, true);
-      return;
-    }
-    if (event.key === 'Tab') {
-      const targets = [toggle, ...menuFocusable()].filter(Boolean);
-      if (!targets.length) return;
-      const first = targets[0], last = targets[targets.length - 1];
-      if (event.shiftKey && doc.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && doc.activeElement === last) { event.preventDefault(); first.focus(); }
-    }
-  });
-  doc.addEventListener('pointerdown', event => {
-    if (menuIsOpen && !menu.contains(event.target) && !toggle?.contains(event.target)) setMenu(false);
-  });
-  win.addEventListener('resize', () => {
-    if (win.innerWidth > 900 && menuIsOpen) setMenu(false);
-    scheduleUpdate();
-  }, {passive:true});
-
   function updateScrollState() {
-    rafScheduled = false;
+    framePending = false;
     const root = doc.documentElement;
-    const max = Math.max(0, root.scrollHeight - win.innerHeight);
-    const scrolled = Math.max(0, win.scrollY || root.scrollTop || 0);
-    const pct = max === 0 ? 0 : Math.min(100, Math.max(0, scrolled / max * 100));
-    if (progressBar) progressBar.style.width = pct.toFixed(2) + '%';
-    if (header) header.classList.toggle('has-scrolled', scrolled > 28);
-    if (backToTop) backToTop.classList.toggle('is-visible', scrolled > 650);
+    const max = root.scrollHeight - win.innerHeight;
+    const scrolled = Math.max(0, win.scrollY);
+    if (progressBar) progressBar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrolled / max) : 0})`;
+    header?.classList.toggle('has-scrolled', scrolled > 28);
+    if (backToTop) backToTop.hidden = scrolled <= 650;
+
     let active = '';
     const boundary = Math.min(230, win.innerHeight * .30);
     for (const section of sections) {
@@ -84,25 +75,28 @@ export function initNavigation(doc = globalThis.document, win = globalThis.windo
       else link.removeAttribute('aria-current');
     }
   }
+
   function scheduleUpdate() {
-    if (rafScheduled) return;
-    rafScheduled = true;
-    win.requestAnimationFrame?.(updateScrollState) ?? updateScrollState();
+    if (framePending) return;
+    framePending = true;
+    win.requestAnimationFrame(updateScrollState);
   }
   win.addEventListener('scroll', scheduleUpdate, { passive: true });
+  win.addEventListener('resize', scheduleUpdate, { passive: true });
   scheduleUpdate();
 
-  // Subtle, one-time reveal—only for users who accept motion.
-  if (!reducedMotion && 'IntersectionObserver' in win) {
-    const targets = [...doc.querySelectorAll('.section-header, .featured-work, .project-card, .experience-card')];
-    const observer = new win.IntersectionObserver((entries, obs) => {
+  if (!win.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in win) {
+    const observer = new win.IntersectionObserver((entries, instance) => {
       for (const entry of entries) {
-        if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); obs.unobserve(entry.target); }
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-revealed');
+        instance.unobserve(entry.target);
       }
-    }, {threshold:0.04, rootMargin:'0px 0px -24px 0px'});
-    targets.forEach(el => {el.classList.add('is-reveal-ready');observer.observe(el);});
+    }, { threshold: .12 });
+    doc.querySelectorAll('.featured-work, .section-header, .product-story').forEach(element => observer.observe(element));
   }
 }
+
 if (typeof document !== 'undefined') {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => initNavigation());
   else initNavigation();

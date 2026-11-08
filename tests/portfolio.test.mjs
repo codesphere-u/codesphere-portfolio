@@ -74,8 +74,9 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
 
     const { html } = generatePortfolioHtml();
     assert.match(html, /AKANDWANAHO IVAN ALVIN/);
-    assert.match(html, /Engineering what comes next\./);
-    assert.match(html, /Explore selected work/);
+    assert.match(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '').trim(), /Engineering what comes next\./);
+    assert.match(html, /Explore my work/);
+    assert.match(html, /class="hero-contours"/);
   });
 
   it('enforces education & repository accuracy: ISBAT University present, zero Makerere/NEWS2/whitehathackerpr', () => {
@@ -486,7 +487,21 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
       const html = await res.text();
       assert.match(html, /AKANDWANAHO IVAN ALVIN/);
-      assert.match(html, /Engineering what comes next\./);
+      assert.match(html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)[1].replace(/<[^>]+>/g, '').trim(), /Engineering what comes next\./);
+    });
+
+    it('serves every linked case study in both Node and the static build', async () => {
+      for (const project of PORTFOLIO_DATA.projects) {
+        const url = `/cases/${project.id}.html`;
+        const response = await fetch(baseUrl + url);
+        assert.equal(response.status, 200);
+        assert.match(response.headers.get('content-type'), /text\/html/);
+        const html = await response.text();
+        assert.ok(html.includes('<h1 id="drawer-title"'));
+        assert.ok(html.includes(project.repoUrl));
+        assert.equal(html, fs.readFileSync(path.join(ROOT_DIR, 'dist', url), 'utf8'));
+      }
+      assert.equal((await fetch(baseUrl + '/cases/missing.html')).status, 404);
     });
 
     it('exports a default (req, res) handler compatible with Vercel Serverless Function invocation and serves CSS/JS assets', async () => {

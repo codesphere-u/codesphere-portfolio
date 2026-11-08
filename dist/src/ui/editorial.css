@@ -13,7 +13,7 @@
   --border-gold:rgba(245,243,236,.22);--shadow-card:none;
   --font-display:'Space Grotesk',Arial,sans-serif;
   --font-sans:'DM Sans',Arial,sans-serif;
-  --font-mono:'DM Mono','SFMono-Regular',monospace;
+  --font-mono:ui-monospace,'SFMono-Regular',monospace;
   --radius-sm:6px;--radius-md:12px;--radius-lg:18px;
 }
 [data-theme="light"]{
@@ -137,67 +137,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
   background:transparent!important;border-radius:0;
   padding:0!important;overflow:visible;
 }
-.hero-scene-top-bar,.hero-scene-caption{display:none!important}
-.art-stage{
-  aspect-ratio:4/4.7;min-height:520px;max-height:680px;
-  position:relative;transform-style:preserve-3d;
-}
-.art-stage:before{
-  content:"";position:absolute;left:9%;top:5%;width:83%;height:83%;
-  background:radial-gradient(closest-side,rgba(175,151,255,.22),transparent 80%);
-  filter:blur(28px);pointer-events:none;
-}
-.art-ring{position:absolute;inset:6% 4%;border:1px solid rgba(245,243,236,.18);border-radius:50%;transform:rotate(-19deg) scaleX(.82)}
-.art-ring.two{inset:16% -4% 9% 6%;transform:rotate(54deg) scaleX(.88);border-style:dashed;opacity:.5;animation:art-spin 70s linear infinite}
-.art-disc{
-  width:82%;aspect-ratio:1;position:absolute;top:12%;left:9%;
-  border-radius:50%;
-  background:radial-gradient(circle at 32% 25%,#d9ff85 0,#c7fa69 25%,#91b957 58%,#36583c 79%,#18271b 100%);
-  box-shadow:inset -45px -46px 80px rgba(15,25,15,.49),0 35px 120px rgba(199,250,105,.14);
-  transform:rotate(-18deg);animation:art-float 9s ease-in-out infinite;
-  overflow:hidden;
-}
-.art-disc:after{
-  content:"";position:absolute;inset:-25%;border:1px solid rgba(12,30,13,.24);
-  background:repeating-linear-gradient(135deg,transparent 0 18px,rgba(6,33,10,.13) 18px 19px);
-  transform:rotate(21deg);
-}
-.art-disc .disc-letter{
-  position:absolute;z-index:2;top:21%;left:8%;
-  font:700 clamp(8rem,21vw,19rem)/.8 var(--font-display);
-  letter-spacing:-.18em;color:#192218;
-  transform:rotate(14deg);
-}
-.art-rail{
-  position:absolute;z-index:3;left:6%;right:1%;bottom:9%;
-  padding:20px 22px;background:rgba(21,23,20,.86);
-  backdrop-filter:blur(18px);border:1px solid rgba(245,243,236,.22);
-  box-shadow:0 24px 80px rgba(0,0,0,.4);border-radius:15px;
-  transform:rotate(-7deg);
-  animation:art-float-secondary 8s ease-in-out infinite;
-}
-.art-rail-top{display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.17);padding-bottom:16px;
-  font:600 .67rem var(--font-mono);letter-spacing:.13em;color:#b9bdb2}
-.art-led{width:8px;height:8px;border-radius:50%;background:#c7fa69;box-shadow:0 0 18px rgba(199,250,105,.7)}
-.art-rail-name{font:700 clamp(1.4rem,3vw,2.5rem)/1.1 var(--font-display);letter-spacing:-.04em;margin:18px 0 8px;color:#fff}
-.art-rail-desc{color:#b6baaf;font-size:.81rem;line-height:1.55;margin:0}
-.art-rail-bottom{display:flex;justify-content:space-between;color:#c7fa69;font:.67rem var(--font-mono);letter-spacing:.08em;margin-top:20px}
-.art-note{
-  position:absolute;z-index:5;top:5%;right:-1%;
-  padding:13px 16px;background:#c4afff;color:#201d25;
-  font:700 .75rem var(--font-mono);transform:rotate(8deg);
-  border-radius:4px;box-shadow:0 22px 52px rgba(0,0,0,.22)
-}
-.art-caption{position:absolute;bottom:0;left:5%;font:.65rem var(--font-mono);color:var(--text-muted);letter-spacing:.19em}
-.editorial-manifesto{
-  border-top:1px solid var(--border-subtle);
-  border-bottom:1px solid var(--border-subtle);
-  display:grid;grid-template-columns:.24fr 1fr .3fr;
-  gap:30px;align-items:center;padding:24px 0;
-}
-.manifesto-index{font:600 .7rem var(--font-mono);letter-spacing:.1em;color:var(--accent-primary)}
-.manifesto-text{font-size:clamp(.85rem,1.3vw,1.05rem);line-height:1.6;color:var(--text-secondary)}
-.manifesto-scroll{text-align:right;font:.72rem var(--font-mono);letter-spacing:.13em;color:var(--text-muted)}
 .telemetry-grid{display:none}
 .section{padding:clamp(80px,10vw,155px) 0;border:0}
 .section-header{margin-bottom:clamp(40px,5vw,72px);gap:32px;align-items:end}
@@ -343,13 +282,9 @@ button,a { -webkit-tap-highlight-color:transparent; }
 #contact .btn{border-color:#24242a;color:#1d2116}
 #contact .btn-primary{color:#fff}
 .site-footer{background:#10110f;color:#f5f3ec}
-@keyframes art-float{0%,100%{transform:rotate(-18deg) translateY(0)}50%{transform:rotate(-15deg) translateY(-14px)}}
-@keyframes art-float-secondary{0%,100%{transform:rotate(-7deg) translateY(0)}50%{transform:rotate(-5deg) translateY(11px)}}
-@keyframes art-spin{to{transform:rotate(414deg) scaleX(.88)}}
 @media(max-width:1100px){
  .hero-cinema-grid{grid-template-columns:1.1fr .9fr;gap:22px}
  .hero-editorial-headline{font-size:clamp(3.25rem,6.7vw,7rem)}
- .art-stage{min-height:460px}
  .nav-links{gap:10px}
  .nav-link{font-size:.78rem}
  .featured-name{font-size:2.1rem}
@@ -362,13 +297,11 @@ button,a { -webkit-tap-highlight-color:transparent; }
  .hero-cinema-grid{grid-template-columns:1fr;gap:24px}
  .hero-editorial-headline{font-size:clamp(3.8rem,11vw,7rem)}
  .hero-scene-col{width:min(100%,560px);margin:0 auto}
- .art-stage{min-height:430px;max-height:540px}
  .editorial-featured{grid-template-columns:1fr 1fr}
  .featured-work:first-child{grid-column:1/-1}
  .featured-work{min-height:260px}
  .projects-grid{grid-template-columns:1fr}
  .section{padding:80px 0}
- .manifesto-text{font-size:.84rem}
 }
 @media(max-width:540px){
  .container{padding-inline:20px}
@@ -388,13 +321,6 @@ button,a { -webkit-tap-highlight-color:transparent; }
  .hero-cta-row{display:grid;grid-template-columns:1fr;gap:10px}
  .hero-cta-row .btn{justify-content:center;text-align:center}
  .hero-scene-col{margin-top:-8px}
- .art-stage{min-height:365px;max-height:435px}
- .art-disc .disc-letter{font-size:10rem}
- .art-rail{padding:16px}
- .art-rail-name{font-size:1.6rem}
- .art-note{font-size:.62rem}
- .editorial-manifesto{grid-template-columns:1fr;gap:8px}
- .manifesto-scroll{text-align:left}
  .section-title{font-size:clamp(2.7rem,11vw,4.4rem)}
  .editorial-featured{grid-template-columns:1fr;gap:12px;margin-bottom:45px}
  .featured-work:first-child{grid-column:auto}
