@@ -17,7 +17,7 @@
 
 ### Explore the portfolio
 
-- **Selected work** introduces AgentShield, AgentFlight and Funa Gigs. Use the project index to filter or search the complete set of public engineering projects.
+- **Selected work** introduces Funa Gigs, Cyber Dragon and AgentFlight. Open the separate engineering archive to filter or search the complete set of public projects.
 - **Case studies** are standalone HTML pages under `/cases/`. Each includes architecture, security boundaries, decision records, source links and reproduction commands. The project index also supports a quick view.
 - **Leadership and journey** cover founder roles, past engineering leadership, education and open-source work.
 - **Engineering tools** include the knowledge map, read-only terminal and a benchmark table. The benchmark table is generated from `src/data/portfolio-data.mjs`. Measurements and test counts reflect the workloads and environments reported by the respective repositories.
@@ -36,3 +36,11 @@ Open `http://127.0.0.1:4173`. To publish to a static host, run `npm run build` a
 ## License
 
 Released under the [MIT License](./LICENSE).
+
+## Design references and media
+
+- [Brittany Chiang](https://brittanychiang.com/) leads with name, role, and concise experience. The portfolio uses the same priority with its own editorial layout and a four-role leadership timeline.
+- [Rauno Freiberg’s Craft](https://rauno.me/craft) lets people see the work and open the production example. The homepage shows the actual Funa Gigs and Cyber Dragon interfaces, with separate case study and product links.
+- [Emil Kowalski’s toast case study](https://emilkowal.ski/ui/building-a-toast-component) pairs explanation with an inspectable example. The portfolio uses that pattern for AgentFlight’s sample output and its reproducible case study.
+
+The portrait comes from [Alvin’s public LinkMe profile](https://link.me/4codex). Funa Gigs images are the Android home and worker-matching screens from the [official Google Play listing](https://play.google.com/store/apps/details?id=com.codesphereinnovations.funa_giggs). The Cyber Dragon image is a capture of the [public workbench](https://cyber-dragon-ivory.vercel.app/). The AgentFlight example uses the synthetic incident from the [project README](https://github.com/codesphere-u/agentflight#quickstart).
