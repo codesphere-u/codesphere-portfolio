@@ -8,7 +8,7 @@ import {
   computePortfolioSummary,
   sortBenchmarks
 } from './src/core/explorer.mjs';
-import { generatePortfolioHtml } from './scripts/build.mjs';
+import { generateCaseStudyHtml, generatePortfolioHtml } from './scripts/build.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -113,6 +113,14 @@ export function handlePortfolioRequest(req, res) {
       const html = getIndexHtml();
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(html);
+      return;
+    }
+
+    const caseMatch = /^\/cases\/([a-z0-9-]+)\.html$/.exec(url.pathname);
+    if (caseMatch) {
+      const project = PORTFOLIO_DATA.projects.find(({ id }) => id === caseMatch[1]);
+      res.writeHead(project ? 200 : 404, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(project ? generateCaseStudyHtml(project) : '<!doctype html><title>Case study not found</title><h1>Case study not found</h1><a href="/#project-index">Project index</a>');
       return;
     }
 

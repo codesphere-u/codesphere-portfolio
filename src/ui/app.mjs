@@ -111,7 +111,7 @@ export function renderJourneyStageHtml(chapter, isActive = false) {
     .map((t) => `<span class="tech-pill">${escapeHtml(t)}</span>`)
     .join('');
 
-  return `<article class="journey-chapter-card ${isActive ? 'is-active' : ''}" data-chapter-panel="${chapter.stageNumber}" id="journey-panel-${chapter.stageNumber}" role="tabpanel" aria-labelledby="journey-tab-${chapter.stageNumber}" ${isActive ? '' : 'hidden'}>
+  return `<div class="journey-chapter-card ${isActive ? 'is-active' : ''}" data-chapter-panel="${chapter.stageNumber}" id="journey-panel-${chapter.stageNumber}" role="tabpanel" tabindex="0" aria-labelledby="journey-tab-${chapter.stageNumber}" ${isActive ? '' : 'hidden'}>
     <div class="journey-chapter-header">
       <div class="journey-chapter-eyebrow">
         <span class="chapter-code-badge">CHAPTER ${escapeHtml(chapter.chapterCode)}</span>
@@ -145,7 +145,7 @@ export function renderJourneyStageHtml(chapter, isActive = false) {
       <span class="story-box-label">TECHNOLOGIES &amp; PRACTICES INVOLVED</span>
       <div class="tech-pill-row">${techBadges}</div>
     </div>
-  </article>`;
+  </div>`;
 }
 
 export function renderProjectVisualPreviewSvg(project) {
@@ -397,10 +397,10 @@ export function renderProjectCardHtml(project) {
       </div>
 
       <div class="project-card-actions">
-        <button type="button" class="btn-inspect-adr" data-open-drawer="${escapeHtml(project.id)}" aria-haspopup="dialog">
-          <span>Open Full Case Study &amp; Architecture</span>
+        <a class="btn-inspect-adr" href="./cases/${escapeHtml(project.id)}.html" data-open-drawer="${escapeHtml(project.id)}">
+          <span>Read case study</span>
           <span aria-hidden="true">→</span>
-        </button>
+        </a>
         <div class="project-external-links">
           ${demoLinkHtml}
           <a href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer" class="btn-card-link">
@@ -411,8 +411,13 @@ export function renderProjectCardHtml(project) {
     </article>`;
 }
 
-export function renderDrawerContentHtml(project) {
+export function renderDrawerContentHtml(project, { standalone = false } = {}) {
   if (!project) return '';
+
+  const titleTag = standalone ? 'h1' : 'h2';
+  const sectionTag = standalone ? 'h2' : 'h3';
+  const detailTag = standalone ? 'h3' : 'h4';
+
 
   const challengesHtml = (project.technicalChallenges || [])
     .map((c) => `<li class="invariant-item">${escapeHtml(c)}</li>`)
@@ -426,7 +431,7 @@ export function renderDrawerContentHtml(project) {
     .map(
       (layer) => `
       <div class="blueprint-layer">
-        <h5 class="blueprint-layer-name">${escapeHtml(layer.name)}</h5>
+        <${detailTag} class="blueprint-layer-name">${escapeHtml(layer.name)}</${detailTag}>
         <p class="blueprint-layer-desc">${escapeHtml(layer.responsibility)}</p>
       </div>`
     )
@@ -442,7 +447,7 @@ export function renderDrawerContentHtml(project) {
       <div class="adr-card">
         <div class="adr-header">
           <span class="adr-id">${escapeHtml(adr.id)}</span>
-          <h5 class="adr-title">${escapeHtml(adr.title)}</h5>
+          <${detailTag} class="adr-title">${escapeHtml(adr.title)}</${detailTag}>
         </div>
         <div class="adr-body">
           <div class="adr-field">
@@ -486,19 +491,30 @@ export function renderDrawerContentHtml(project) {
     <div class="drawer-inner-content" data-drawer-project="${escapeHtml(project.id)}">
       <div class="drawer-top-meta">
         <span class="slug-badge">${escapeHtml(project.slug)} · ${escapeHtml(project.version)}</span>
-        <span class="test-count-pill">✓ ${escapeHtml(project.automatedTests)} Verified Automated Tests / Suites</span>
+        <span class="test-count-pill">${escapeHtml(project.automatedTests)} repo-reported tests / suites</span>
       </div>
 
-      <h3 id="drawer-title" class="drawer-project-title">${escapeHtml(project.name)}</h3>
+      <${titleTag} id="drawer-title" class="drawer-project-title">${escapeHtml(project.name)}</${titleTag}>
       <p class="drawer-project-tagline">${escapeHtml(project.tagline)}</p>
+      <div class="case-evidence">
+        <span>Repository-reported benchmark · ${escapeHtml(project.headlineMetric.label)}</span>
+        <strong>${escapeHtml(project.headlineMetric.value)}</strong>
+        <p>${escapeHtml(project.headlineMetric.detail)}</p>
+      </div>
+      ${standalone ? `<nav class="case-outline" aria-label="In this case study">
+        <a href="#architecture">Architecture</a>
+        <a href="#security">Security</a>
+        <a href="#decisions">Decisions</a>
+        <a href="#verification">Verification</a>
+      </nav>` : ''}
 
       <section class="drawer-section">
-        <h4 class="drawer-section-heading">1. Problem Statement</h4>
+        <${sectionTag} class="drawer-section-heading">1. Problem Statement</${sectionTag}>
         <p class="drawer-prose">${escapeHtml(project.problemStatement)}</p>
       </section>
 
-      <section class="drawer-section">
-        <h4 class="drawer-section-heading">2. System Architecture Blueprint</h4>
+      <section class="drawer-section" id="architecture">
+        <${sectionTag} class="drawer-section-heading">2. System Architecture Blueprint</${sectionTag}>
         <pre class="ascii-diagram" tabindex="0" aria-label="System architecture diagram for ${escapeHtml(project.name)}"><code>${escapeHtml(project.architectureBlueprint?.diagram || '')}</code></pre>
         <div class="blueprint-layers-grid">
           ${layersHtml}
@@ -506,39 +522,39 @@ export function renderDrawerContentHtml(project) {
       </section>
 
       <section class="drawer-section">
-        <h4 class="drawer-section-heading">3. Difficult Technical Challenges Solved</h4>
+        <${sectionTag} class="drawer-section-heading">3. Difficult Technical Challenges Solved</${sectionTag}>
         <ul class="invariants-list">
           ${challengesHtml}
         </ul>
       </section>
 
-      <section class="drawer-section">
-        <h4 class="drawer-section-heading">4. Security Considerations &amp; System Invariants</h4>
+      <section class="drawer-section" id="security">
+        <${sectionTag} class="drawer-section-heading">4. Security Considerations &amp; System Invariants</${sectionTag}>
         <ul class="invariants-list">
           ${securityHtml}
           ${invariantsHtml}
         </ul>
       </section>
 
-      <section class="drawer-section">
-        <h4 class="drawer-section-heading">5. Architectural Decision Records (ADRs)</h4>
+      <section class="drawer-section" id="decisions">
+        <${sectionTag} class="drawer-section-heading">5. Architectural Decision Records (ADRs)</${sectionTag}>
         <div class="adr-list">
           ${adrsHtml}
         </div>
       </section>
 
-      <section class="drawer-section">
+      <section class="drawer-section" id="verification">
         <div class="cli-section-header">
-          <h4 class="drawer-section-heading">6. Reproducible Verification &amp; CLI Quickstart</h4>
-          <button type="button" class="btn-copy-cli" data-copy-text="${escapeHtml(cliText)}">
+          <${sectionTag} class="drawer-section-heading">6. Reproducible Verification &amp; CLI Quickstart</${sectionTag}>
+          ${standalone ? '' : `<button type="button" class="btn-copy-cli" data-copy-text="${escapeHtml(cliText)}">
             Copy Commands
-          </button>
+          </button>`}
         </div>
         <pre class="cli-code-block" tabindex="0"><code>${escapeHtml(cliText)}</code></pre>
       </section>
 
       <section class="drawer-section">
-        <h4 class="drawer-section-heading">7. Direct Repository Source &amp; Test Inspection</h4>
+        <${sectionTag} class="drawer-section-heading">7. Direct Repository Source &amp; Test Inspection</${sectionTag}>
         <div class="source-links-grid">
           ${sourceLinksHtml}
         </div>
@@ -549,6 +565,7 @@ export function renderDrawerContentHtml(project) {
           Inspect GitHub Repository ↗
         </a>
         ${liveDemoButton}
+        ${standalone ? '' : `<a class="btn-secondary" href="./cases/${escapeHtml(project.id)}.html">Open standalone case study ↗</a>`}
       </div>
     </div>`;
 }
@@ -577,7 +594,7 @@ export function renderKnowledgeMapSvg(knowledgeMap, activeNodeId = 'ai-systems')
     .map((node) => {
       const isSelected = node.id === activeNodeId;
       return `
-      <g class="kmap-svg-node ${isSelected ? 'is-selected' : ''}" data-kmap-node="${escapeHtml(node.id)}" transform="translate(${node.x}, ${node.y})" tabindex="0" role="button" aria-label="Select specialty node ${escapeHtml(node.label)}" aria-pressed="${isSelected ? 'true' : 'false'}">
+      <g class="kmap-svg-node ${isSelected ? 'is-selected' : ''}" data-kmap-node="${escapeHtml(node.id)}" transform="translate(${node.x}, ${node.y})" tabindex="0" role="button" aria-label="${escapeHtml(node.shortCode)} ${escapeHtml(node.label)}" aria-pressed="${isSelected ? 'true' : 'false'}">
         <circle r="34" class="kmap-node-halo" stroke="${escapeHtml(node.accentColor)}" />
         <circle r="24" class="kmap-node-core" stroke="${escapeHtml(node.accentColor)}" />
         <text y="-2" text-anchor="middle" class="kmap-node-code">${escapeHtml(node.shortCode)}</text>
@@ -586,7 +603,7 @@ export function renderKnowledgeMapSvg(knowledgeMap, activeNodeId = 'ai-systems')
     })
     .join('');
 
-  return `<svg class="kmap-constellation-svg" viewBox="0 0 1000 520" role="img" aria-label="Interactive Engineering Knowledge Map showing 8 connected technical specialties">
+  return `<svg class="kmap-constellation-svg" viewBox="0 0 1000 520" role="group" aria-label="Engineering knowledge map">
     <g class="kmap-edges-layer">${edgesSvg.join('\n')}</g>
     <g class="kmap-nodes-layer">${nodesSvg}</g>
   </svg>`;
@@ -608,7 +625,7 @@ export function renderKnowledgeNodeDetailHtml(node, allProjects) {
         </div>
         <p>${escapeHtml(proj.tagline)}</p>
         <div class="kmap-proof-actions">
-          <button type="button" class="btn-inline-case" data-open-drawer="${escapeHtml(proj.id)}">Inspect Case Study →</button>
+          <a class="btn-inline-case" href="./cases/${escapeHtml(proj.id)}.html" data-open-drawer="${escapeHtml(proj.id)}">Inspect case study →</a>
           <a href="${escapeHtml(proj.repoUrl)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </div>
       </div>`
@@ -826,7 +843,8 @@ export function initPortfolioApp() {
       const num = Number(tab.getAttribute('data-chapter-tab'));
       const isSelected = num === activeChapter;
       const isCompleted = num < activeChapter;
-      tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      tab.setAttribute('aria-selected', String(isSelected));
+      tab.tabIndex = isSelected ? 0 : -1;
       tab.classList.toggle('is-active', isSelected);
       tab.classList.toggle('is-completed', isCompleted);
     });
@@ -846,9 +864,21 @@ export function initPortfolioApp() {
     if (nextChapterBtn) nextChapterBtn.disabled = activeChapter >= total;
   }
 
-  chapterTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      selectJourneyChapter(Number(tab.getAttribute('data-chapter-tab')));
+  chapterTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectJourneyChapter(index + 1));
+    tab.addEventListener('keydown', event => {
+      const last = chapterTabs.length - 1;
+      const destinations = {
+        ArrowLeft: index === 0 ? last : index - 1,
+        ArrowRight: index === last ? 0 : index + 1,
+        Home: 0,
+        End: last
+      };
+      if (!Object.hasOwn(destinations, event.key)) return;
+      event.preventDefault();
+      const next = destinations[event.key];
+      selectJourneyChapter(next + 1);
+      chapterTabs[next].focus();
     });
   });
   if (prevChapterBtn) {
@@ -864,37 +894,28 @@ export function initPortfolioApp() {
   const domainButtons = Array.from(document.querySelectorAll('[data-domain]'));
   const searchInput = document.getElementById('project-search');
 
+  const projectCards = [...(projectsGrid?.querySelectorAll('[data-project-id]') ?? [])];
+  const emptyState = document.getElementById('project-empty');
+  searchInput?.closest('.explorer-controls')?.removeAttribute('hidden');
+
   function updateProjectsView() {
-    if (!projectsGrid) return;
     const filtered = filterProjects(PORTFOLIO_DATA.projects, activeDomain, searchQuery);
+    const visibleIds = new Set(filtered.map(project => project.id));
+    for (const card of projectCards) card.hidden = !visibleIds.has(card.dataset.projectId);
     if (resultsCounter) {
       resultsCounter.textContent = `Showing ${filtered.length} of ${PORTFOLIO_DATA.projects.length} projects`;
     }
-    // The featured collection is an editorial introduction to all projects.
-    // Hide it while filters/search are active so search results are unambiguous.
-    const featured = document.getElementById('featured-work');
-    if (featured) featured.hidden = activeDomain !== 'All' || searchQuery.trim().length > 0;
-    if (filtered.length === 0) {
-      projectsGrid.innerHTML = `
-        <div class="empty-filter-state" role="status">
-          <p>No engineering systems matched <strong>"${escapeHtml(searchQuery)}"</strong> in category <strong>${escapeHtml(activeDomain)}</strong>.</p>
-          <button type="button" id="reset-filters-btn" class="btn-secondary">Reset Filters</button>
-        </div>`;
-      const resetBtn = document.getElementById('reset-filters-btn');
-      if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-          activeDomain = 'All';
-          searchQuery = '';
-          if (searchInput) searchInput.value = '';
-          syncDomainButtons();
-          updateProjectsView();
-        });
-      }
-      return;
-    }
-    projectsGrid.innerHTML = filtered.map(renderProjectCardHtml).join('\n');
-    bindDrawerTriggers();
+    if (emptyState) emptyState.hidden = filtered.length > 0;
   }
+
+  document.getElementById('reset-filters-btn')?.addEventListener('click', () => {
+    activeDomain = 'All';
+    searchQuery = '';
+    if (searchInput) searchInput.value = '';
+    syncDomainButtons();
+    updateProjectsView();
+    searchInput?.focus();
+  });
 
   function syncDomainButtons() {
     for (const btn of domainButtons) {
@@ -939,16 +960,18 @@ export function initPortfolioApp() {
       btn.classList.toggle('is-active', isSel);
     });
 
-    if (kmapCanvasWrap) {
-      kmapCanvasWrap.innerHTML = renderKnowledgeMapSvg(
-        PORTFOLIO_DATA.knowledgeMap,
-        activeKnowledgeNodeId
-      );
-      bindSvgKnowledgeNodes();
+    for (const button of kmapCanvasWrap?.querySelectorAll('[data-kmap-node]') ?? []) {
+      const selected = button.dataset.kmapNode === activeKnowledgeNodeId;
+      button.classList.toggle('is-selected', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    }
+    for (const edge of kmapCanvasWrap?.querySelectorAll('[data-edge-from]') ?? []) {
+      const connected = [edge.dataset.edgeFrom, edge.dataset.edgeTo].includes(activeKnowledgeNodeId);
+      edge.classList.toggle('is-highlighted', connected);
     }
     if (kmapDetailWrap) {
       kmapDetailWrap.innerHTML = renderKnowledgeNodeDetailHtml(node, PORTFOLIO_DATA.projects);
-      bindDrawerTriggers();
+      markDialogLinks(kmapDetailWrap);
     }
   }
 
@@ -1024,7 +1047,7 @@ export function initPortfolioApp() {
     if (shouldScrollSection && res.targetSectionId) {
       const targetEl = document.getElementById(res.targetSectionId);
       if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetEl.scrollIntoView({ block: 'start' });
       }
     }
   }
@@ -1077,49 +1100,38 @@ export function initPortfolioApp() {
   }
 
   // 7. Case Study Drawer Modal
-  const drawerBackdrop = document.getElementById('adr-drawer-backdrop');
   const drawerPanel = document.getElementById('adr-drawer');
   const drawerBody = document.getElementById('adr-drawer-body');
   const drawerCloseBtn = document.getElementById('adr-drawer-close');
-  let lastFocusedTrigger = null;
+  let lastFocusedTrigger;
 
-  function openDrawer(projectId, triggerEl) {
-    const project = PORTFOLIO_DATA.projects.find((p) => p.id === projectId);
-    if (!project || !drawerPanel || !drawerBody) return;
-    lastFocusedTrigger = triggerEl || document.activeElement;
-    drawerBody.innerHTML = renderDrawerContentHtml(project);
-    drawerPanel.classList.add('is-open');
-    drawerPanel.setAttribute('aria-hidden', 'false');
-    if (drawerBackdrop) {
-      drawerBackdrop.classList.add('is-open');
-      drawerBackdrop.setAttribute('aria-hidden', 'false');
-    }
-    document.body.style.overflow = 'hidden';
-    bindCopyButtons();
-    if (drawerCloseBtn) drawerCloseBtn.focus();
+  if (drawerPanel?.showModal && drawerBody && drawerCloseBtn) {
+    markDialogLinks(document);
+    document.addEventListener('click', event => {
+      const trigger = event.target.closest?.('a[data-open-drawer]');
+      if (!trigger || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const project = PORTFOLIO_DATA.projects.find(({ id }) => id === trigger.dataset.openDrawer);
+      if (!project) return;
+      event.preventDefault();
+      lastFocusedTrigger = trigger;
+      drawerBody.innerHTML = renderDrawerContentHtml(project);
+      bindCopyButtons();
+      drawerPanel.showModal();
+      document.body.classList.add('case-open');
+      drawerPanel.scrollTop = 0;
+      drawerCloseBtn.focus();
+    });
+    drawerCloseBtn.addEventListener('click', () => drawerPanel.close());
+    drawerPanel.addEventListener('close', () => {
+      document.body.classList.remove('case-open');
+      lastFocusedTrigger?.focus();
+    });
   }
 
-  function closeDrawer() {
-    if (!drawerPanel) return;
-    drawerPanel.classList.remove('is-open');
-    drawerPanel.setAttribute('aria-hidden', 'true');
-    if (drawerBackdrop) {
-      drawerBackdrop.classList.remove('is-open');
-      drawerBackdrop.setAttribute('aria-hidden', 'true');
-    }
-    document.body.style.overflow = '';
-    if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
-      lastFocusedTrigger.focus();
-    }
-  }
-
-  function bindDrawerTriggers() {
-    const triggers = Array.from(document.querySelectorAll('[data-open-drawer]'));
-    for (const trigger of triggers) {
-      trigger.onclick = () => {
-        const pid = trigger.getAttribute('data-open-drawer');
-        openDrawer(pid, trigger);
-      };
+  function markDialogLinks(root) {
+    if (!drawerPanel?.showModal) return;
+    for (const link of root.querySelectorAll('a[data-open-drawer]')) {
+      link.setAttribute('aria-haspopup', 'dialog');
     }
   }
 
@@ -1129,9 +1141,7 @@ export function initPortfolioApp() {
       btn.onclick = async () => {
         const text = btn.getAttribute('data-copy-text') || '';
         try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(text);
-          }
+          await navigator.clipboard.writeText(text);
           const orig = btn.textContent;
           btn.textContent = '✓ Copied to Clipboard';
           setTimeout(() => {
@@ -1144,39 +1154,7 @@ export function initPortfolioApp() {
     }
   }
 
-  if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeDrawer);
-  if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
 
-  document.addEventListener('keydown', (e) => {
-    if (drawerPanel?.classList.contains('is-open')) {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        closeDrawer();
-        return;
-      }
-      if (e.key === 'Tab') {
-        const focusables = [...drawerPanel.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')]
-          .filter(el => el.getClientRects().length > 0);
-        if (focusables.length) {
-          const first = focusables[0], last = focusables[focusables.length - 1];
-          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        }
-      }
-    }
-    if (
-      e.key === '/' &&
-      document.activeElement !== searchInput &&
-      document.activeElement !== terminalInput &&
-      !drawerPanel?.classList.contains('is-open')
-    ) {
-      e.preventDefault();
-      if (searchInput) searchInput.focus();
-    }
-  });
-
-  bindDrawerTriggers();
-  bindCopyButtons();
 }
 
 if (typeof window !== 'undefined') {
