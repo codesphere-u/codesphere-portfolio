@@ -455,7 +455,7 @@ export function generatePortfolioHtml() {
             ${terminalChipsHtml}
           </div>
 
-          <div id="terminal-output" class="terminal-output" role="log" aria-live="polite">
+          <div id="terminal-output" class="terminal-output" role="log" aria-label="Terminal output" aria-live="polite" tabindex="0">
             <div class="term-entry status-ok">
               <div class="term-prompt-echo"><span class="term-user">alvin@codesphere-uganda:~$</span> <code>help</code></div>
               <div class="term-res-title">${escapeHtml(initialHelp.title)}</div>
