@@ -1,5 +1,6 @@
 import { PORTFOLIO_DATA } from '../src/data/portfolio-data.mjs';
 import { renderShowcase } from './showcase.mjs';
+import { CV, cvPdf } from './cv-data.mjs';
 
 const { profile, projects, experience } = PORTFOLIO_DATA;
 const storeUrl = 'https://play.google.com/store/apps/details?id=com.codesphereinnovations.funa_giggs';
@@ -32,7 +33,8 @@ const projectIds = [...new Set([...featuredIds, ...engineeringIds, ...projects.m
 const nav = [
   ['home', 'Home', 'index.html'],
   ['work', 'Work', 'work.html'],
-  ['leadership', 'Leadership', 'leadership.html']
+  ['leadership', 'Leadership', 'leadership.html'],
+  ['cv', 'CV', 'cv.html']
 ];
 
 export function escapeHtml(value) {
@@ -68,8 +70,7 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="${prefix}${logo}" type="image/svg+xml">
-  <link rel="stylesheet" href="${prefix}src/ui/profile.css">
-  ${page === 'home' ? '<link rel="stylesheet" href="./src/ui/showcase.css">' : ''}
+  <link rel="stylesheet" href="${prefix}src/ui/profile.css">${page === 'home' ? '\n  <link rel="stylesheet" href="./src/ui/showcase.css">' : ''}${page === 'cv' ? '\n  <link rel="stylesheet" href="./src/ui/cv.css">' : ''}
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -115,7 +116,7 @@ ${body}
   </main>
   <footer class="folio-footer"><div class="folio-container">
     <span>Akandwanaho Ivan <span class="footer-alias">· Also known as Alvin</span></span>
-    <div><a href="${prefix}${logo}" download="akandwanaho-ivan.svg">Download logo</a><a href="${profile.githubUrl}">GitHub ↗</a></div>
+    <div><a href="${prefix}cv.html">CV</a><a href="${prefix}${logo}" download="akandwanaho-ivan.svg">Download logo</a><a href="${profile.githubUrl}">GitHub ↗</a></div>
   </div></footer>
   <script type="module" src="${prefix}src/ui/site-nav.mjs"></script>
   ${page === 'home' ? '<script type="module" src="./src/ui/showcase.mjs"></script>' : ''}
@@ -251,7 +252,8 @@ export function renderProfile() {
       <div class="folio-container leadership-grid" data-scroll-reveal="copy">
         <div><p class="folio-label">02 / Leadership</p><h2 id="leadership-heading">Building teams and products</h2></div>
         <div><p>I founded Codesphere Innovations and lead Funa Gigs under Jaminsa Ventures Limited. Before that, I led engineering at Waanverse Labs.</p>
-        ${action('./leadership.html', 'See my leadership roles', { secondary: true, arrow: '→' })}</div>
+        ${action('./leadership.html', 'See my leadership roles', { secondary: true, arrow: '→' })}
+        <a class="folio-text-link" href="./cv.html">View my CV <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>`
   });
@@ -287,6 +289,94 @@ export function renderLeadershipPage() {
           </div></li>`).join('\n')}
         </ol>
       </section>`
+  });
+}
+
+export function renderCvPage() {
+  const text = escapeHtml;
+  const download = `<a class="folio-action cv-download" href="./${cvPdf}" download>Download CV <span aria-hidden="true">↓</span></a>`;
+  const chapters = [
+    ['cv-experience', 'Experience'],
+    ['cv-projects', 'Selected engineering'],
+    ['cv-skills', 'Technical skills'],
+    ['cv-education', 'Education']
+  ];
+  const section = (index, body) => {
+    const [id, title] = chapters[index];
+    return `<section class="cv-section" aria-labelledby="${id}">
+      <div class="cv-section-heading" data-scroll-reveal="copy"><span aria-hidden="true">0${index + 1}</span><h2 id="${id}">${title}</h2></div>
+      ${body}
+    </section>`;
+  };
+  const featured = [
+    ['Product engineering', 'Funa Gigs', 'funa-gigs'],
+    ['Defensive security', 'Cyber Dragon', 'cyber-dragon'],
+    ['AI reliability', 'AgentFlight', 'agentflight']
+  ];
+  const sources = links => links.map(({ label, url }) =>
+    `<a href="${text(url)}">${text(label)} <span aria-hidden="true">↗</span></a>`
+  ).join('');
+  return frame({
+    page: 'cv', title: 'CV', type: 'profile', description: CV.summary,
+    body: `<section class="cv-cover" aria-labelledby="cv-name">
+      <div class="folio-container cv-cover-grid">
+        <div class="cv-cover-copy">
+          <p class="folio-label cv-location">Curriculum vitae</p>
+          <h1 id="cv-name">${text(CV.name)}</h1>
+          <p class="cv-title">${text(CV.title)}</p>
+          <p class="cv-byline">${text(CV.location)} <span aria-hidden="true">·</span> Also known as ${text(CV.alias)}</p>
+          <p class="cv-summary">${text(CV.summary)}</p>
+          <div class="cv-cover-actions">${download}<span>PDF · 2 pages</span></div>
+          <div class="cv-cover-links">${sources(CV.links)}</div>
+        </div>
+        <figure class="cv-portrait">
+          <img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high">
+        </figure>
+      </div>
+      <div class="cv-featured"><div class="folio-container">
+        <ul aria-label="Featured work">${featured.map(([area, name, id]) => `<li><a href="./${casePath(id)}"><div><span class="folio-label">${area}</span><strong>${name}</strong></div><span aria-hidden="true">↗</span></a></li>`).join('')}</ul>
+      </div></div>
+    </section>
+    <div class="folio-container cv-content">
+      <nav class="cv-index" aria-label="On this page">
+        <p class="folio-label">On this page</p>
+        <ol>${chapters.map(([id, title], i) => `<li><a href="#${id}"><span aria-hidden="true">0${i + 1}</span>${title}</a></li>`).join('')}</ol>
+        <a class="cv-index-download" href="./${cvPdf}" download>Download PDF <span aria-hidden="true">↓</span></a>
+      </nav>
+      <div class="cv-sections">
+        ${section(0, `<ol class="cv-roles">${CV.experience.map(item => `
+          <li><article class="cv-role" data-scroll-reveal="copy">
+            <div class="cv-role-heading"><div><h3>${text(item.organization)}</h3><p class="cv-role-title">${text(item.title)}</p></div><p class="cv-period">${text(item.period)}</p></div>
+            <ul>${item.highlights.map(highlight => `<li>${text(highlight)}</li>`).join('')}</ul>
+            ${item.links ? `<div class="cv-source-links">${sources(item.links)}</div>` : ''}
+          </article></li>`).join('')}</ol>`)}
+        ${section(1, `<ul class="cv-projects">${CV.projects.map(({ id, name, area, detail, evidence, repo }, index) => `
+          <li><article class="cv-project" data-scroll-reveal="copy">
+            <div class="cv-project-top"><p class="folio-label">${text(area)}</p><span aria-hidden="true">0${index + 1}</span></div>
+            <h3>${text(name)}</h3>
+            <p>${text(detail)}</p>
+            <p class="cv-proof"><strong>How it works</strong> ${text(evidence)}</p>
+            <div class="cv-source-links">${sources([
+              { label: `${name} case study`, url: './' + casePath(id) },
+              { label: `${name} source`, url: repo }
+            ])}</div>
+          </article></li>`).join('')}</ul>`)}
+        ${section(2, `<dl class="cv-skills">${CV.skills.map(({ label, detail }) => `<div><dt>${text(label)}</dt><dd>${text(detail)}</dd></div>`).join('')}</dl>`)}
+        ${section(3, `<div class="cv-education">
+          <div><h3>${text(CV.education.institution)}</h3><p class="cv-period">${text(CV.education.location)}</p></div>
+          <div class="cv-foundations">
+            <p>${text(CV.education.detail)}</p>
+            <p><strong>Additional training</strong> · ${text(CV.education.training)}</p>
+            <p>${text(CV.education.earlyWork)}</p>
+            <div class="cv-source-links">${sources(CV.education.links)}</div>
+          </div>
+        </div>`)}
+        <div class="cv-close">
+          <div><h2>Get in touch</h2><p>For engineering roles, technical leadership, and collaboration.</p></div>
+          <div class="cv-close-actions">${download}${action('./contact.html', 'Contact me', { secondary: true, arrow: '→' })}</div>
+        </div>
+      </div>
+    </div>`
   });
 }
 
@@ -389,6 +479,7 @@ export function sitePages() {
     ['index.html', renderProfile()],
     ['work.html', renderWorkPage()],
     ['leadership.html', renderLeadershipPage()],
+    ['cv.html', renderCvPage()],
     ['contact.html', renderContactPage()],
     [casePath('funa-gigs'), renderFunaCaseStudy()],
     ...projects.map(project => [casePath(project.id), renderTechnicalCase(project)])

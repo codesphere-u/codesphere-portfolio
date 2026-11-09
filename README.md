@@ -3,7 +3,7 @@
 [![CI](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml)
 [![Node.js 20+](https://img.shields.io/badge/node.js-20%2B%20%7C%2022%2B-green.svg)](https://nodejs.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external%20runtime-emerald.svg)](package.json)
-[![Automated Tests](https://img.shields.io/badge/tests-19%20passed%20(79ms)-brightgreen.svg)](tests/)
+[![Automated Tests](https://img.shields.io/badge/tests-20%20passed-brightgreen.svg)](tests/)
 [![Verified System Tests](https://img.shields.io/badge/ecosystem%20tests-931%20verified-blue.svg)](https://github.com/codesphere-u)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -82,7 +82,7 @@ codesphere-portfolio/
 │   ├── data/                     # Strictly verified biographical & project data
 │   └── styles/                   # Modern vanilla CSS design system
 ├── tests/
-│   └── portfolio.test.mjs        # 19 automated assertions & API tests
+│   └── portfolio.test.mjs        # 20 automated assertions & API tests
 ├── .editorconfig                 # Coding & whitespace standards
 ├── CHANGELOG.md                  # Semantic release log
 ├── CODE_OF_CONDUCT.md            # Contributor Covenant Code of Conduct
@@ -108,7 +108,7 @@ git clone https://github.com/codesphere-u/codesphere-portfolio.git
 cd codesphere-portfolio
 npm test
 ```
-Runs the 19 automated test suites and compiles the static site into `dist/`.
+Runs the 20 automated test suites and compiles the static site into `dist/`.
 
 ### 2. Start the Local Server
 ```bash
@@ -117,6 +117,10 @@ npm start
 Open [http://127.0.0.1:4173](http://127.0.0.1:4173) in your browser.
 
 ---
+
+## Professional CV
+
+Open `/cv.html` from the portfolio navigation. The HTML page and the downloadable two-page PDF use `scripts/cv-data.mjs` for the same roles, education, and project evidence. After editing that file, use `python3 scripts/build-cv.py` with ReportLab installed to regenerate the PDF, then run `npm test` to rebuild and verify the site. The published site and its normal build require no Python dependencies.
 
 ## REST API Reference
 
