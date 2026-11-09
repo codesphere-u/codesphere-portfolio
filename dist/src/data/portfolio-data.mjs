@@ -1556,42 +1556,47 @@ export const PORTFOLIO_DATA = {
       id: 'flowledger',
       slug: 'flowledger',
       name: 'FlowLedger',
-      version: 'v1.1.0',
+      version: 'v2.0.0',
       isPrimaryFlagship: true,
       visualMotif: 'ledger',
       accentColor: '#F4B94C',
       tagline:
-        'African Payment Orchestration, Idempotent State Machine & Double-Entry Reconciliation Engine',
+        'Pan-African & Global Interledger Engine, Multi-Rail Payment Orchestrator & Double-Entry Reconciliation System',
       summary:
-        'Financial infrastructure engine demonstrating institutional double-entry ledger accounting, idempotent payment processing, ISO 20022 CAMT.053 XML statement parsing, multi-party marketplace escrow, Model Context Protocol (MCP) tooling, and automated 3-way reconciliation.',
+        'Institutional double-entry ledger accounting, idempotent payment processing, Safaricom M-Pesa Daraja 2.0 (STK Push, C2B, B2C), ISO 20022 messaging (pacs.008, pacs.002, camt.053), rate-locked cross-border FX corridors, offline-first cryptographic vouchers, SQLite WAL persistence, and RFC 6962 Merkle audit proofs across 12 currencies.',
       problemStatement:
         'Mobile money and payment integrations face duplicate webhook deliveries, out-of-order settlement callbacks arriving before authorization responses, network timeouts, and provider fee discrepancies that corrupt naive single-column balance tables.',
       technicalChallenges: [
-        'Eliminating floating-point representation errors by enforcing strict integer minor-unit arithmetic across UGX, KES, NGN, and USD accounts and verifying zero-sum balanced postings on every journal commit.',
-        'Parsing ISO 20022 CAMT.053 XML bank statements and generating automated CSV reconciliation and exceptions exports for operational finance teams.',
+        'Eliminating floating-point representation errors by enforcing strict integer minor-unit arithmetic across 12 currencies (UGX, KES, NGN, GHS, ZAR, TZS, RWF, XOF, XAF, USD, USDC, EURC) and verifying zero-sum balanced postings on every journal commit.',
+        'Safaricom M-Pesa Daraja 2.0 request building and callback parsing with strict whole-shilling divisibility checks on KES minor units and spec-conformant Base64 password calculation.',
+        'Rate-locked cross-border FX corridors executing as paired single-currency journals with explicit spread revenue accounting and single-use TTL quote expiry.',
+        'Offline-first HMAC-SHA256 signed payment vouchers with monotonic nonce sequencing and replay-safe settlement queueing for zero-connectivity rural commerce.',
+        'Parsing and generating ISO 20022 messages (pacs.008 customer credit transfers, pacs.002 payment status reports, and camt.053 bank statements) with automatic decimal-to-minor unit conversion.',
         'Handling out-of-order and duplicate mobile-money webhooks idempotently using SHA-256 request payload fingerprinting and deterministic state-machine transitions.',
         'Reconciling internal payment intents, double-entry ledger postings, and external provider settlement statements (3-way reconciliation) to automatically classify fee discrepancies and missing settlements.'
       ],
       securityConsiderations: [
         'Constant-time HMAC-SHA256 webhook signature verification (hmac.compare_digest) with timestamp replay-window enforcement and nonce caching.',
         'SHA-256 hash-chained journal entries (entry_hash = sha256(prev_hash + canonical_payload)) prevent silent ledger mutation.',
+        'RFC 6962 standard Merkle tree inclusion proofs enabling logarithmic cryptographic verification of journal entry inclusion.',
+        'SQLite Write-Ahead Logging (WAL) mode persistence with database-level append-only triggers preventing UPDATE and DELETE mutations on journal records.',
         '100% synthetic sandbox data—no live merchant credentials or proprietary customer records are used.'
       ],
       domains: ['Fintech', 'Backend', 'Full-Stack'],
       primaryDomain: 'Fintech',
       repoUrl: 'https://github.com/codesphere-u/flowledger',
       languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'Double-Entry Engine'],
-      automatedTests: 66,
+      automatedTests: 94,
       headlineMetric: {
         label: 'Ledger Invariant Integrity',
-        value: '0 Imbalance · 97 Chained Entries',
-        detail: '100% balanced debits == credits across 50 synthetic East African mobile money transactions with injected failures'
+        value: '0 Imbalance · 94 Verified Tests',
+        detail: '100% balanced debits == credits across 12 currencies, M-Pesa Daraja 2.0, ISO 20022, FX corridors, and offline vouchers'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '66 passing (pytest)' },
-        { label: 'Hash-Chained Entries', value: '97 verified (0 imbalance)' },
+        { label: 'Automated Tests', value: '94 passing (pytest)' },
+        { label: 'Supported Currencies', value: '12 (Pan-African & Stablecoin)' },
         { label: '3-Way Reconciliation', value: '50 synthetic txs classified' },
-        { label: 'Arithmetic Model', value: 'Strict Integer Minor Units' }
+        { label: 'Storage Engine', value: 'SQLite WAL + Merkle Proofs' }
       ],
       architectureBlueprint: {
         diagram: `[Payment Initiation / MTN MoMo & Airtel Sandbox Webhooks]
@@ -2467,15 +2472,15 @@ export const PORTFOLIO_DATA = {
     },
     {
       projectId: 'flowledger',
-      projectName: 'FlowLedger v1.1',
+      projectName: 'FlowLedger v2.0',
       repoSlug: 'codesphere-u/flowledger',
       domain: 'Fintech',
-      automatedTests: 66,
+      automatedTests: 94,
       primaryLatencyLabel: 'Double-Entry Commit & Hash',
       primaryLatencyMs: 0.22,
-      throughputOrAccuracyLabel: 'Trial Balance & Reconciliation',
-      throughputOrAccuracyValue: '0 Imbalance (66 Tests · ISO 20022 CAMT.053 & Escrow)',
-      determinismGuarantee: 'Integer Minor Units + SHA-256 Journal Hash Chain',
+      throughputOrAccuracyLabel: 'Trial Balance & Invariant Verification',
+      throughputOrAccuracyValue: '0 Imbalance (94 Tests · Pan-African Rails, ISO 20022 & FX)',
+      determinismGuarantee: 'Integer Minor Units + SHA-256 Chain + Merkle Tree',
       verificationCommand: 'cd flowledger && pytest -v && python -m flowledger.cli verify-invariants'
     },
     {
