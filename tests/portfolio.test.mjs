@@ -467,6 +467,9 @@ describe('Portfolio pages and server', () => {
       assert.match(html, /ISBAT University/);
       assert.match(html, /Jaminsa Ventures Limited/);
       assert.match(html, /Until March 2025/);
+      assert.match(html, /PDF · 2 pages/);
+      assert.match(html, /Auralis Local source/);
+      assert.match(html, /same idempotency key with a changed payload raises a conflict/);
       assert.ok(html.includes(`href="./${cvPdf}" download`));
 
       const response = await fetch(baseUrl + '/' + cvPdf);

@@ -120,7 +120,7 @@ Open [http://127.0.0.1:4173](http://127.0.0.1:4173) in your browser.
 
 ## Professional CV
 
-Open `/cv.html` from the portfolio navigation. The HTML page and the downloadable one-page PDF use `scripts/cv-data.mjs` for the same roles, education, and project evidence. After editing that file, use `python3 scripts/build-cv.py` with ReportLab installed to regenerate the PDF, then run `npm test` to rebuild and verify the site. The published site and its normal build require no Python dependencies.
+Open `/cv.html` from the portfolio navigation. The HTML page and the downloadable two-page PDF use `scripts/cv-data.mjs` for the same roles, education, and project evidence. After editing that file, use `python3 scripts/build-cv.py` with ReportLab installed to regenerate the PDF, then run `npm test` to rebuild and verify the site. The published site and its normal build require no Python dependencies.
 
 ## REST API Reference
 

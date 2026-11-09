@@ -308,6 +308,11 @@ export function renderCvPage() {
       ${body}
     </section>`;
   };
+  const featured = [
+    ['Product engineering', 'Funa Gigs', 'funa-gigs'],
+    ['Defensive security', 'Cyber Dragon', 'cyber-dragon'],
+    ['AI reliability', 'AgentFlight', 'agentflight']
+  ];
   const sources = links => links.map(({ label, url }) =>
     `<a href="${text(url)}">${text(label)} <span aria-hidden="true">↗</span></a>`
   ).join('');
@@ -316,38 +321,45 @@ export function renderCvPage() {
     body: `<section class="cv-cover" aria-labelledby="cv-name">
       <div class="folio-container cv-cover-grid">
         <div class="cv-cover-copy">
-          <p class="folio-label cv-location">Curriculum vitae <span aria-hidden="true"></span> ${text(CV.location)}</p>
+          <p class="folio-label cv-location">Curriculum vitae</p>
           <h1 id="cv-name">${text(CV.name)}</h1>
-          <p class="cv-title">${text(CV.title)} <small>Also known as ${text(CV.alias)}</small></p>
+          <p class="cv-title">${text(CV.title)}</p>
+          <p class="cv-byline">${text(CV.location)} <span aria-hidden="true">·</span> Also known as ${text(CV.alias)}</p>
           <p class="cv-summary">${text(CV.summary)}</p>
-          <div class="cv-cover-actions">${download}<span>PDF · 1 page</span></div>
+          <div class="cv-cover-actions">${download}<span>PDF · 2 pages</span></div>
           <div class="cv-cover-links">${sources(CV.links)}</div>
         </div>
         <figure class="cv-portrait">
           <img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high">
-          <figcaption><span>AKANDWANAHO IVAN</span><span>KAMPALA / UG</span></figcaption>
         </figure>
       </div>
+      <div class="cv-featured"><div class="folio-container">
+        <ul aria-label="Featured work">${featured.map(([area, name, id]) => `<li><a href="./${casePath(id)}"><div><span class="folio-label">${area}</span><strong>${name}</strong></div><span aria-hidden="true">↗</span></a></li>`).join('')}</ul>
+      </div></div>
     </section>
     <div class="folio-container cv-content">
       <nav class="cv-index" aria-label="On this page">
         <p class="folio-label">On this page</p>
         <ol>${chapters.map(([id, title], i) => `<li><a href="#${id}"><span aria-hidden="true">0${i + 1}</span>${title}</a></li>`).join('')}</ol>
+        <a class="cv-index-download" href="./${cvPdf}" download>Download PDF <span aria-hidden="true">↓</span></a>
       </nav>
       <div class="cv-sections">
         ${section(0, `<ol class="cv-roles">${CV.experience.map(item => `
           <li><article class="cv-role" data-scroll-reveal="copy">
-            <div class="cv-role-heading"><div><p class="cv-org">${text(item.organization)}</p><h3>${text(item.title)}</h3></div><p class="cv-period">${text(item.period)}</p></div>
+            <div class="cv-role-heading"><div><h3>${text(item.organization)}</h3><p class="cv-role-title">${text(item.title)}</p></div><p class="cv-period">${text(item.period)}</p></div>
             <ul>${item.highlights.map(highlight => `<li>${text(highlight)}</li>`).join('')}</ul>
             ${item.links ? `<div class="cv-source-links">${sources(item.links)}</div>` : ''}
           </article></li>`).join('')}</ol>`)}
-        ${section(1, `<ul class="cv-projects">${CV.projects.map(({ id, name, area, detail, repo }) => `
+        ${section(1, `<ul class="cv-projects">${CV.projects.map(({ id, name, area, detail, evidence, repo }, index) => `
           <li><article class="cv-project" data-scroll-reveal="copy">
-            <div><p class="folio-label">${text(area)}</p><h3>${text(name)}</h3></div>
-            <div><p>${text(detail)}</p><div class="cv-source-links">${sources([
+            <div class="cv-project-top"><p class="folio-label">${text(area)}</p><span aria-hidden="true">0${index + 1}</span></div>
+            <h3>${text(name)}</h3>
+            <p>${text(detail)}</p>
+            <p class="cv-proof"><strong>How it works</strong> ${text(evidence)}</p>
+            <div class="cv-source-links">${sources([
               { label: `${name} case study`, url: './' + casePath(id) },
               { label: `${name} source`, url: repo }
-            ])}</div></div>
+            ])}</div>
           </article></li>`).join('')}</ul>`)}
         ${section(2, `<dl class="cv-skills">${CV.skills.map(({ label, detail }) => `<div><dt>${text(label)}</dt><dd>${text(detail)}</dd></div>`).join('')}</dl>`)}
         ${section(3, `<div class="cv-education"><div><h3>${text(CV.education.institution)}</h3><p class="cv-period">${text(CV.education.location)}</p></div><p>${text(CV.education.detail)}</p></div>`)}
