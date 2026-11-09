@@ -46,6 +46,12 @@ function action(href, label, { secondary = false, arrow = '↗' } = {}) {
   return `<a class="folio-action${secondary ? ' folio-action-secondary' : ''}" href="${escapeHtml(href)}">${escapeHtml(label)}<span aria-hidden="true">${arrow}</span></a>`;
 }
 
+function projectThumb(id, prefix) {
+  if (id === 'funa-gigs') return `<img src="${prefix}src/media/funa-home.webp" width="352" height="760" alt="" loading="lazy" decoding="async">`;
+  if (id === 'cyber-dragon') return `<img src="${prefix}src/media/cyber-dragon.webp" width="960" height="932" alt="" loading="lazy" decoding="async">`;
+  return '<span class="hero-trace" aria-hidden="true"><span>15m → replay</span><span>30m → diff</span></span>';
+}
+
 function frame({ page, title, description, body, prefix = './', type = 'website' }) {
   const fullTitle = title ? `${title} | ${profile.name}` : `${profile.name} | Software Engineer & Founder`;
   return `<!doctype html>
@@ -86,7 +92,11 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
                 <p class="folio-label">Featured case studies</p>
                 <ul>${featuredIds.map(id => {
                   const [name, area] = projectLeads[id];
-                  return `<li><a href="${prefix}${casePath(id)}"><strong>${name}</strong><small>${area}</small><span aria-hidden="true">↗</span></a></li>`;
+                  return `<li><a href="${prefix}${casePath(id)}">
+                    <span class="nav-project-thumb preview-${id}" aria-hidden="true">${projectThumb(id, prefix)}</span>
+                    <span class="nav-project-label"><strong>${name}</strong><small>${area}</small></span>
+                    <span aria-hidden="true">↗</span>
+                  </a></li>`;
                 }).join('')}</ul>
                 <a class="nav-all-work" href="${prefix}work.html">View all case studies <span aria-hidden="true">→</span></a>
               </div>
@@ -95,6 +105,7 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
           <li class="nav-contact"><a href="${prefix}contact.html"${page === 'contact' ? ' aria-current="page"' : ''}>Contact</a></li>
         </ul>
       </nav>
+      <span class="reading-line" aria-hidden="true"></span>
     </div>
   </header>
   <main id="main-content" tabindex="-1">
@@ -110,7 +121,7 @@ ${body}
 }
 
 function funaMedia(prefix) {
-  return `<figure class="project-media funa-media">
+  return `<figure class="project-media funa-media" data-scroll-reveal="media">
     <div class="funa-screens">
       <img src="${prefix}src/media/funa-home.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android home screen with Instant Hire and service categories">
       <img src="${prefix}src/media/funa-work.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android worker-matching screen showing a nearby search in progress">
@@ -121,11 +132,11 @@ function funaMedia(prefix) {
 
 function projectMedia(id, prefix) {
   if (id === 'funa-gigs') return funaMedia(prefix);
-  if (id === 'cyber-dragon') return `<figure class="project-media cyber-media">
+  if (id === 'cyber-dragon') return `<figure class="project-media cyber-media" data-scroll-reveal="media">
     <img src="${prefix}src/media/cyber-dragon.webp" width="960" height="932" loading="lazy" decoding="async" alt="Cyber Dragon workbench with fraud inspection modes and built-in sample scenarios">
     <figcaption>Cyber Dragon · Live inspection workbench</figcaption>
   </figure>`;
-  return `<figure class="project-media replay-media">
+  return `<figure class="project-media replay-media" data-scroll-reveal="media">
     <div class="replay-window">
       <div class="replay-bar"><span class="replay-dot" aria-hidden="true"></span>incident.flight.json</div>
       <div class="replay-content">
@@ -149,7 +160,7 @@ function featuredCards(prefix = './') {
   return featuredIds.map((id, index) => {
     const [name, area, headline, summary] = projectLeads[id];
     return `<article class="feature-card feature-${id}">
-      <div class="feature-copy">
+      <div class="feature-copy" data-scroll-reveal="copy">
         <p class="folio-label">0${index + 1} / ${area}</p>
         <h3>${name}</h3>
         <p class="feature-headline">${headline}</p>
@@ -162,7 +173,7 @@ function featuredCards(prefix = './') {
 }
 
 function sectionHeading(label, title, intro, id) {
-  return `<div class="folio-section-heading">
+  return `<div class="folio-section-heading" data-scroll-reveal="copy">
     <div><p class="folio-label">${label}</p><h2 id="${id}">${title}</h2></div>
     <p>${intro}</p>
   </div>`;
@@ -175,16 +186,11 @@ function pageIntro(label, title, intro, actions = '') {
 }
 
 function heroProjects() {
-  const previews = {
-    'funa-gigs': `<img src="./src/media/funa-home.webp" width="352" height="760" alt="" decoding="async">`,
-    'cyber-dragon': `<img src="./src/media/cyber-dragon.webp" width="960" height="932" alt="" decoding="async">`,
-    agentflight: `<span class="hero-trace" aria-hidden="true"><span>15m → replay</span><span>30m → diff</span></span>`
-  };
   return featuredIds.map((id, index) => {
     const [name, area, headline] = projectLeads[id];
     return `<li><a class="hero-project preview-${id}" href="./${casePath(id)}">
       <div class="hero-project-copy"><span class="folio-label">0${index + 1} / ${area}</span><strong>${name}</strong><span class="hero-project-deck">${headline}</span></div>
-      <span class="hero-project-image" aria-hidden="true">${previews[id]}</span>
+      <span class="hero-project-image" aria-hidden="true">${projectThumb(id, './')}</span>
       <span class="hero-project-arrow" aria-hidden="true">↗</span>
     </a></li>`;
   }).join('\n        ');
@@ -239,7 +245,7 @@ export function renderProfile() {
       </div>
     </section>
     <section class="home-leadership" aria-labelledby="leadership-heading">
-      <div class="folio-container leadership-grid">
+      <div class="folio-container leadership-grid" data-scroll-reveal="copy">
         <div><p class="folio-label">02 / Leadership</p><h2 id="leadership-heading">Building teams and products</h2></div>
         <div><p>I founded Codesphere Innovations and lead Funa Gigs under Jaminsa Ventures Limited. Before that, I led engineering at Waanverse Labs.</p>
         ${action('./leadership.html', 'See my leadership roles', { secondary: true, arrow: '→' })}</div>
@@ -251,7 +257,7 @@ export function renderProfile() {
 export function renderWorkPage() {
   const list = projectIds.filter(id => !featuredIds.includes(id)).map(id => {
     const [name, area, headline] = projectLeads[id];
-    return `<li><a href="./${casePath(id)}"><span class="folio-label">${area}</span><div><h3>${name}</h3><p>${headline}</p></div><span aria-hidden="true">↗</span></a></li>`;
+    return `<li data-scroll-reveal="copy"><a href="./${casePath(id)}"><span class="folio-label">${area}</span><div><h3>${name}</h3><p>${headline}</p></div><span aria-hidden="true">↗</span></a></li>`;
   }).join('\n');
   return frame({
     page: 'work', title: 'Work', description: 'Product and engineering case studies by Akandwanaho Ivan.',
@@ -272,7 +278,7 @@ export function renderLeadershipPage() {
       <section class="folio-container role-section" aria-labelledby="roles-heading">
         <p class="folio-label">Experience</p><h2 id="roles-heading">Where I’ve led</h2>
         <ol class="role-timeline">
-          ${experience.map(item => `<li><p class="folio-label">${escapeHtml(item.status)}</p><div><h3>${escapeHtml(item.organization)}</h3><p class="role-title">${escapeHtml(item.role)}</p><p>${escapeHtml(item.summary)}</p>
+          ${experience.map(item => `<li data-scroll-reveal="copy"><p class="folio-label">${escapeHtml(item.status)}</p><div><h3>${escapeHtml(item.organization)}</h3><p class="role-title">${escapeHtml(item.role)}</p><p>${escapeHtml(item.summary)}</p>
             ${item.id === 'funa-gigs-jaminsa' ? action('./work/funa-gigs.html', 'Read the Funa Gigs case study', { secondary: true, arrow: '→' }) : ''}
             ${item.id === 'codesphere-innovations' ? action(item.websiteUrl, 'Visit Codesphere Innovations', { secondary: true }) : ''}
           </div></li>`).join('\n')}
@@ -293,7 +299,7 @@ export function renderContactPage() {
 }
 
 function caseSection(number, label, title, content) {
-  return `<section class="case-chapter" aria-labelledby="chapter-${number}">
+  return `<section class="case-chapter" aria-labelledby="chapter-${number}" data-scroll-reveal="copy">
     <div><p class="folio-label">${number} / ${label}</p><h2 id="chapter-${number}">${title}</h2></div>
     <div class="chapter-body">${content}</div>
   </section>`;
@@ -324,7 +330,7 @@ function caseFooter(primary, nextId) {
 }
 
 function technicalVisual(project) {
-  return `<figure class="project-media system-media">
+  return `<figure class="project-media system-media" data-scroll-reveal="media">
     <div class="system-visual"><p class="folio-label">System architecture</p>
     <ol>${project.architectureBlueprint.layers.map(({ name }, index) => `<li><span aria-hidden="true">0${index + 1}</span>${escapeHtml(name)}</li>`).join('')}</ol></div>
     <figcaption>Three layers from the project’s architecture blueprint</figcaption>

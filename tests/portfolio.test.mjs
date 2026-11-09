@@ -374,6 +374,8 @@ describe('Portfolio pages and server', () => {
     assert.match(html, /href="\.\/index\.html" aria-current="page"/);
     assert.match(html, /aria-controls="site-nav" aria-expanded="false" hidden/);
     assert.match(html, /<details class="project-disclosure">/);
+    assert.match(html, /class="reading-line" aria-hidden="true"/);
+    assert.match(html, /data-scroll-reveal="media"/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/site-nav\.mjs"/);
     for (const page of ['work', 'leadership', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'archive.html')), false);
