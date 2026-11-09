@@ -4,4 +4,8 @@ node_modules/
 .env
 .env.*
 
-/dist/cases/
+/dist/work/
+/dist/work.html
+/dist/leadership.html
+/dist/contact.html
+/dist/404.html

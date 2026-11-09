@@ -13,15 +13,7 @@ import {
   sortBenchmarks,
   validatePortfolioIntegrity
 } from '../src/core/explorer.mjs';
-import {
-  renderHeroArchitectureSceneSvg,
-  renderJourneyStageHtml,
-  renderProjectCardHtml,
-  renderDrawerContentHtml,
-  renderKnowledgeMapSvg,
-  renderKnowledgeNodeDetailHtml,
-  renderPhilosophyCardHtml
-} from '../src/ui/app.mjs';
+import { renderLeadershipPage, sitePages } from '../scripts/profile.mjs';
 import { generatePortfolioHtml } from '../scripts/build.mjs';
 import defaultServerHandler, { createPortfolioServer } from '../server.mjs';
 
@@ -41,8 +33,8 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
 
   it('presents the portfolio owner, role, portrait and work entry point', () => {
     const { profile } = PORTFOLIO_DATA;
-    assert.equal(profile.name, 'Akandwanaho Ivan Alvin');
-    assert.equal(profile.displayNameUpper, 'AKANDWANAHO IVAN ALVIN');
+    assert.equal(profile.name, 'Akandwanaho Ivan');
+    assert.equal(profile.displayNameUpper, 'AKANDWANAHO IVAN');
     assert.equal(profile.shortName, 'Alvin');
     assert.equal(profile.heroEditorialHeadline, 'Engineering what comes next.');
     assert.deepEqual(profile.heroSpecialties, [
@@ -66,23 +58,19 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(profile.githubUrl, 'https://github.com/codesphere-u');
     assert.equal(profile.liveDemoUrl, 'https://cyber-dragon-ivory.vercel.app');
 
-    const sceneSvg = renderHeroArchitectureSceneSvg();
-    assert.match(sceneSvg, /<svg class="hero-scene-svg"/);
-    assert.match(sceneSvg, /DESIGN/);
-    assert.match(sceneSvg, /BUILD/);
-    assert.match(sceneSvg, /SECURE/);
-
     const { html } = generatePortfolioHtml();
-    assert.match(html, /<h1 id="hero-heading"><span>Akandwanaho<\/span> <span>Ivan Alvin<\/span><\/h1>/);
+    assert.match(html, /<h1 id="hero-heading"><span>Akandwanaho<\/span> <span>Ivan<\/span><\/h1>/);
     assert.match(html, /Software engineer &amp; founder/);
     assert.match(html, /src\/media\/alvin\.webp/);
-    assert.match(html, /See selected work/);
+    assert.match(html, /Explore my work/);
+    assert.match(html, /"alternateName":"Alvin"/);
+    assert.match(html, /akandwanaho-ivan\.svg/);
   });
 
   it('enforces education & repository accuracy: ISBAT University present, zero Makerere/NEWS2/whitehathackerpr', () => {
     const { html } = generatePortfolioHtml();
     assert.equal(PORTFOLIO_DATA.profile.education.institution, 'ISBAT University');
-    assert.match(html, /ISBAT University in Kampala/);
+    assert.match(renderLeadershipPage(), /ISBAT University in Kampala/);
     assert.doesNotMatch(html, /Makerere/i);
     assert.doesNotMatch(JSON.stringify(PORTFOLIO_DATA), /Makerere/i);
     assert.doesNotMatch(html, /whitehathackerpr/i);
@@ -123,13 +111,14 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(fourCodex.isCurrent, false);
     assert.match(fourCodex.organization, /4codex Technologies/);
 
-    assert.match(html, /Akandwanaho Ivan Alvin/);
+    assert.match(html, /Akandwanaho Ivan/);
     assert.match(html, /Jaminsa Ventures Limited/);
-    assert.match(html, /March 2025/);
-    assert.match(html, /https:\/\/www\.codesphereug\.com/);
+    const leadership = renderLeadershipPage();
+    assert.match(leadership, /March 2025/);
+    assert.match(leadership, /https:\/\/www\.codesphereug\.com/);
   });
 
-  it('renders Experience 02 — 6 interactive chapters of My Journey with Challenge, Responsibility, Learned, ShapedNext & Technologies', () => {
+  it('preserves all six career milestones in the data', () => {
     assert.equal(PORTFOLIO_DATA.journey.length, 6);
     const codes = PORTFOLIO_DATA.journey.map((j) => j.chapterCode);
     assert.deepEqual(codes, ['01', '02', '03', '04', '05', '06']);
@@ -144,14 +133,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
       'Advanced Systems and Open Source'
     ]);
 
-    for (const ch of PORTFOLIO_DATA.journey) {
-      const panelHtml = renderJourneyStageHtml(ch, ch.stageNumber === 1);
-      assert.match(panelHtml, /01 \/ THE CHALLENGE/);
-      assert.match(panelHtml, /02 \/ MY RESPONSIBILITY/);
-      assert.match(panelHtml, /03 \/ WHAT I LEARNED/);
-      assert.match(panelHtml, /04 \/ HOW IT SHAPED THE NEXT STAGE/);
-      assert.match(panelHtml, /TECHNOLOGIES &amp; PRACTICES INVOLVED/);
-    }
+
   });
 
   it('verifies Experience 03 — all 15 open-source systems with custom SVG motifs and verified metrics', () => {
@@ -284,7 +266,7 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
     assert.equal(empty.length, 0);
   });
 
-  it('renders Experience 04 — 8-node Interactive Knowledge Map and node inspector', () => {
+  it('preserves eight engineering specialty records', () => {
     assert.equal(PORTFOLIO_DATA.knowledgeMap.length, 8);
     const expectedIds = [
       'ai-systems',
@@ -301,15 +283,9 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
       expectedIds
     );
 
-    const svg = renderKnowledgeMapSvg(PORTFOLIO_DATA.knowledgeMap, 'cybersecurity');
-    assert.match(svg, /kmap-constellation-svg/);
-    assert.match(svg, /data-kmap-node="cybersecurity"/);
-
     const secNode = getKnowledgeNodeById(PORTFOLIO_DATA.knowledgeMap, 'cybersecurity');
-    const detailHtml = renderKnowledgeNodeDetailHtml(secNode, PORTFOLIO_DATA.projects);
-    assert.match(detailHtml, /Cybersecurity/);
-    assert.match(detailHtml, /Cyber Dragon/);
-    assert.match(detailHtml, /AgentShield/);
+    assert.equal(secNode.label, 'Cybersecurity');
+
   });
 
   it('executes Experience 05 — Controlled Engineering Terminal commands safely without OS execution', () => {
@@ -350,7 +326,7 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
     assert.ok(unknownRes.lines.some((l) => l.includes('no OS shell commands are executed')));
   });
 
-  it('renders Experience 06 — all 5 Personal Engineering Philosophy principles', () => {
+  it('preserves all five engineering philosophy records', () => {
     assert.equal(PORTFOLIO_DATA.philosophy.length, 5);
     const statements = PORTFOLIO_DATA.philosophy.map((p) => p.statement);
     assert.deepEqual(statements, [
@@ -361,63 +337,44 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
       'Build technology that creates opportunity.'
     ]);
 
-    for (const p of PORTFOLIO_DATA.philosophy) {
-      const card = renderPhilosophyCardHtml(p);
-      assert.match(card, new RegExp(p.statement));
-    }
+
   });
 });
 
-describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server', () => {
-  it('renders complete Case Study Drawer with Problem Statement, Architecture Blueprint, Challenges, Security, ADRs, and CLI', () => {
+describe('Portfolio pages and server', () => {
+  it('uses the new shared shell for every case study and top-level page', () => {
+    const pages = new Map(sitePages());
+    assert.equal(pages.size, 20);
+    for (const [name, html] of pages) {
+      assert.match(html, /class="folio-header"/, name);
+      assert.match(html, /src\/ui\/profile\.css/, name);
+      assert.match(html, /aria-label="Main navigation"/, name);
+      assert.doesNotMatch(html, /href="[^"]*(?:archive\.html|\/cases\/)/, name);
+      assert.doesNotMatch(html, /Akandwanaho Ivan Alvin/, name);
+    }
     for (const project of PORTFOLIO_DATA.projects) {
-      const cardHtml = renderProjectCardHtml(project);
-      assert.match(cardHtml, new RegExp(project.name));
-      assert.match(cardHtml, new RegExp(project.repoUrl));
-
-      const drawerHtml = renderDrawerContentHtml(project);
-      assert.match(drawerHtml, /1\. Problem Statement/);
-      assert.match(drawerHtml, /2\. System Architecture Blueprint/);
-      assert.match(drawerHtml, /3\. Difficult Technical Challenges Solved/);
-      assert.match(drawerHtml, /4\. Security Considerations &amp; System Invariants/);
-      assert.match(drawerHtml, /5\. Architectural Decision Records \(ADRs\)/);
-      assert.match(drawerHtml, /6\. Reproducible Verification &amp; CLI Quickstart/);
-      assert.match(drawerHtml, /7\. Direct Repository Source &amp; Test Inspection/);
+      const html = pages.get(`work/${project.id}.html`);
+      assert.ok(html.includes(project.repoUrl), project.id);
+      assert.match(html, /Why it exists/);
+      assert.match(html, /How it works/);
+      assert.match(html, /How to verify it/);
+      assert.match(html, /Next case study/);
     }
   });
 
-  it('builds index.html and dist/index.html with accessible editorial design tokens', () => {
+  it('builds the new navigation, identity, and standalone project pages', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
     assert.equal(summary.totalProjects, 15);
     assert.equal(summary.totalAutomatedTests, 856);
-
     assert.match(html, /class="skip-link"/);
-    assert.match(html, /role="banner"/);
-    assert.match(html, /role="main"/);
-    assert.match(html, /src\/ui\/profile\.css/);
     assert.match(html, /application\/ld\+json/);
-    assert.doesNotMatch(html, /archive\.html/);
+    assert.match(html, /href="\.\/index\.html" aria-current="page"/);
+    for (const page of ['work', 'leadership', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'archive.html')), false);
-    assert.match(html, /aria-label="Jump to a featured project"/);
-    assert.match(html, /<details class="replay-compare">/);
-    for (const id of ['funa-gigs', 'cyber-dragon', 'agentflight', 'agentshield', 'flowledger', 'stackpulse']) {
-      assert.ok(html.includes(`./cases/${id}.html`), `Missing case study link for ${id}`);
-    }
-
-    const css = fs.readFileSync(
-      path.join(ROOT_DIR, 'src', 'ui', 'styles.css'),
-      'utf8'
-    );
-    assert.match(css, /#070B16/i);
-    assert.match(css, /#101B2E/i);
-    assert.match(css, /#53C9EE/i);
-    assert.match(css, /#387BFA/i);
-    assert.match(css, /#F4B94C/i);
-    assert.match(css, /#F7FAFF/i);
-    assert.match(css, /#98AFC8/i);
+    assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'cases')), false);
+    const css = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'profile.css'), 'utf8');
     assert.match(css, /prefers-reduced-motion:\s*reduce/);
-    assert.match(css, /\[data-theme="light"\]/);
   });
 
   describe('HTTP Server & API Endpoints', () => {
@@ -447,7 +404,7 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       const body = await res.json();
       assert.equal(body.status, 'ok');
       assert.equal(body.version, '2.0.0');
-      assert.equal(body.owner, 'Akandwanaho Ivan Alvin');
+      assert.equal(body.owner, 'Akandwanaho Ivan');
       assert.equal(body.totalProjects, 15);
       assert.equal(body.totalAutomatedTests, 856);
     });
@@ -474,52 +431,36 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.equal(res.status, 200);
       assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
       const html = await res.text();
-      assert.match(html, /Akandwanaho Ivan Alvin/);
+      assert.match(html, /Akandwanaho Ivan/);
       assert.match(html, /Selected work/);
     });
 
-    it('redirects old archive URLs and serves the product case study and locally hosted media', async () => {
-      for (const page of ['archive', 'archive.html']) {
-        const redirect = await fetch(`${baseUrl}/${page}`, { redirect: 'manual' });
-        assert.equal(redirect.status, 301);
-        assert.equal(redirect.headers.get('location'), '/#projects');
+    it('serves all new pages with static-build parity and removes old paths', async () => {
+      for (const [page] of sitePages()) {
+        const response = await fetch(`${baseUrl}/${page}`);
+        assert.equal(response.status, 200, page);
+        assert.match(response.headers.get('content-type'), /text\/html/);
+        assert.equal(await response.text(), fs.readFileSync(path.join(ROOT_DIR, 'dist', page), 'utf8'));
       }
-      const casePath = 'cases/funa-gigs.html';
-      const response = await fetch(`${baseUrl}/${casePath}`);
-      assert.equal(response.status, 200);
-      assert.equal(await response.text(), fs.readFileSync(path.join(ROOT_DIR, 'dist', casePath), 'utf8'));
-      for (const image of ['alvin', 'funa-home', 'funa-work', 'cyber-dragon']) {
-        const response = await fetch(`${baseUrl}/src/media/${image}.webp`);
+      for (const page of ['/archive', '/archive.html', '/cases/funa-gigs.html', '/cases/agentflight.html', '/work/missing.html']) {
+        const response = await fetch(baseUrl + page);
+        assert.equal(response.status, 404, page);
+        assert.match(await response.text(), /Page not found/);
+      }
+    });
+
+    it('serves the new design, logo and locally hosted media', async () => {
+      assert.equal(typeof defaultServerHandler, 'function');
+      for (const [asset, type] of [
+        ['/src/ui/profile.css', 'text/css; charset=utf-8'],
+        ['/src/media/akandwanaho-ivan.svg', 'image/svg+xml'],
+        ...['alvin', 'funa-home', 'funa-work', 'cyber-dragon'].map(name => [`/src/media/${name}.webp`, 'image/webp'])
+      ]) {
+        const response = await fetch(baseUrl + asset);
         assert.equal(response.status, 200);
-        assert.equal(response.headers.get('content-type'), 'image/webp');
+        assert.equal(response.headers.get('content-type'), type);
         assert.ok((await response.arrayBuffer()).byteLength > 0);
       }
-    });
-
-    it('serves every linked case study in both Node and the static build', async () => {
-      for (const project of PORTFOLIO_DATA.projects) {
-        const url = `/cases/${project.id}.html`;
-        const response = await fetch(baseUrl + url);
-        assert.equal(response.status, 200);
-        assert.match(response.headers.get('content-type'), /text\/html/);
-        const html = await response.text();
-        assert.ok(html.includes('<h1 id="drawer-title"'));
-        assert.ok(html.includes(project.repoUrl));
-        assert.equal(html, fs.readFileSync(path.join(ROOT_DIR, 'dist', url), 'utf8'));
-      }
-      assert.equal((await fetch(baseUrl + '/cases/missing.html')).status, 404);
-    });
-
-    it('exports a default (req, res) handler compatible with Vercel Serverless Function invocation and serves CSS/JS assets', async () => {
-      assert.equal(typeof defaultServerHandler, 'function');
-
-      const cssRes = await fetch(`${baseUrl}/src/ui/styles.css`);
-      assert.equal(cssRes.status, 200);
-      assert.match(cssRes.headers.get('content-type'), /text\/css/);
-
-      const jsRes = await fetch(`${baseUrl}/src/ui/app.mjs`);
-      assert.equal(jsRes.status, 200);
-      assert.match(jsRes.headers.get('content-type'), /text\/javascript/);
     });
   });
 });

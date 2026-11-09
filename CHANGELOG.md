@@ -5,7 +5,7 @@ All notable changes to `codesphere-portfolio` are documented in this file.
 ## [1.1.0] - 2026-11-02
 
 ### Added
-- **Executive Biographical & Career Identity for Akandwanaho Ivan Alvin (“Alvin”)**:
+- **Executive Biographical & Career Identity for Akandwanaho Ivan (“Alvin”)**:
   - Added full executive positioning, tagline (*"Building intelligent, secure, and scalable software — from Uganda to the world."*), and verified links (`https://www.codesphereug.com`, `https://www.linkedin.com/in/the4codex`, `https://github.com/codesphere-u`, `https://cyber-dragon-ivory.vercel.app`).
   - Added long-form **About Me & Education** section highlighting studies at **ISBAT University — Uganda** and continuous independent systems engineering.
   - Added **Executive Leadership & Career Experience** section detailing roles at **Codesphere Innovations (U) Limited**, **Funa Gigs** (*Jaminsa Ventures Limited* — explicitly distinguished from Codesphere Innovations), **Waanverse Labs Inc.** (*Former CTO & Head of Engineering — Departed March 2025*), and **4codex Technologies**.
