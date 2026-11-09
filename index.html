@@ -12,6 +12,7 @@
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="./src/media/akandwanaho-ivan.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./src/ui/profile.css">
+  <link rel="stylesheet" href="./src/ui/showcase.css">
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -69,8 +70,8 @@
             <h1 id="hero-heading">I build systems <em>people can trust.</em></h1>
             <p class="hero-intro">I’m a software engineer and founder of Codesphere Innovations. I build for local hiring, mobile-money fraud defense, and AI agents that developers can test and audit.</p>
             <div class="folio-actions">
-              <a class="folio-action" href="./work.html">Explore my work<span aria-hidden="true">→</span></a>
-              <a class="folio-action folio-action-secondary" href="./leadership.html">Founder &amp; engineering roles<span aria-hidden="true">→</span></a>
+              <a class="folio-action" href="#work-heading">Try the work<span aria-hidden="true">↓</span></a>
+              <a class="folio-action folio-action-secondary" href="./work.html">All case studies<span aria-hidden="true">→</span></a>
             </div>
           </div>
         </div>
@@ -97,65 +98,129 @@
     <section class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
         <div class="folio-section-heading" data-scroll-reveal="copy">
-    <div><p class="folio-label">01 / Selected work</p><h2 id="work-heading">Projects you can explore</h2></div>
-    <p>See the product, the engineering decision behind it, and how to verify the result.</p>
+    <div><p class="folio-label">01 / Selected work</p><h2 id="work-heading">Work in action</h2></div>
+    <p>Try a hiring flow, compare two fraud-analysis results, or change an AI tool call and see what breaks.</p>
   </div>
-        <article class="feature-card feature-funa-gigs">
-      <div class="feature-copy" data-scroll-reveal="copy">
-        <p class="folio-label">01 / Product leadership</p>
-        <h3>Funa Gigs</h3>
-        <p class="feature-headline">Hire nearby. Pay after approval.</p>
-        <p>A Ugandan marketplace for matching with local taskers, coordinating the job, and paying in UGX.</p>
-        <a class="folio-action folio-action-secondary" href="./work/funa-gigs.html">Read the Funa Gigs case study<span aria-hidden="true">→</span></a>
-      </div>
-      <figure class="project-media funa-media" data-scroll-reveal="media">
-    <div class="funa-screens">
-      <img src="./src/media/funa-home.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android home screen with Instant Hire and service categories">
-      <img src="./src/media/funa-work.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android worker-matching screen showing a nearby search in progress">
+        <div class="project-showcase" data-switcher>
+    <div class="switcher-controls" data-switcher-controls aria-label="Choose a featured project" hidden>
+      <button type="button" id="portfolio-showcase-tab-1" aria-controls="portfolio-showcase-panel-1">
+        <span class="switcher-number" aria-hidden="true">01</span><span>Funa Gigs</span>
+      </button>
+      <button type="button" id="portfolio-showcase-tab-2" aria-controls="portfolio-showcase-panel-2">
+        <span class="switcher-number" aria-hidden="true">02</span><span>Cyber Dragon</span>
+      </button>
+      <button type="button" id="portfolio-showcase-tab-3" aria-controls="portfolio-showcase-panel-3">
+        <span class="switcher-number" aria-hidden="true">03</span><span>AgentFlight</span>
+      </button>
     </div>
-    <figcaption>Funa Gigs Android app · Official Google Play screenshots</figcaption>
-  </figure>
-    </article>
-<article class="feature-card feature-cyber-dragon">
-      <div class="feature-copy" data-scroll-reveal="copy">
-        <p class="folio-label">02 / Defensive security</p>
-        <h3>Cyber Dragon</h3>
-        <p class="feature-headline">Inspect suspicious messages without opening the link.</p>
-        <p>A browser workbench that explains the signs of mobile-money scams, lookalike domains, and USSD traps.</p>
-        <a class="folio-action folio-action-secondary" href="./work/cyber-dragon.html">Read the Cyber Dragon case study<span aria-hidden="true">→</span></a>
-      </div>
-      <figure class="project-media cyber-media" data-scroll-reveal="media">
-    <img src="./src/media/cyber-dragon.webp" width="960" height="932" loading="lazy" decoding="async" alt="Cyber Dragon workbench with fraud inspection modes and built-in sample scenarios">
-    <figcaption>Cyber Dragon · Live inspection workbench</figcaption>
-  </figure>
-    </article>
-<article class="feature-card feature-agentflight">
-      <div class="feature-copy" data-scroll-reveal="copy">
-        <p class="folio-label">03 / Developer tools</p>
-        <h3>AgentFlight</h3>
-        <p class="feature-headline">Replay an AI agent’s failure in a test.</p>
-        <p>A recorder and replay tool for comparing AI agent runs without repeating live model or tool calls.</p>
-        <a class="folio-action folio-action-secondary" href="./work/agentflight.html">Read the AgentFlight case study<span aria-hidden="true">→</span></a>
-      </div>
-      <figure class="project-media replay-media" data-scroll-reveal="media">
-    <div class="replay-window">
-      <div class="replay-bar"><span class="replay-dot" aria-hidden="true"></span>incident.flight.json</div>
-      <div class="replay-content">
-        <p class="replay-file">Recorded tool call · payment-api · 15m</p>
-        <pre><code>{
-  "p99_latency_ms": 1840.0,
-  "anomaly": true
+    <div id="portfolio-showcase-panel-1" data-switcher-panel><article class="showcase-exhibit showcase-funa-gigs">
+    <div class="showcase-copy">
+      <p class="folio-label">Product leadership</p>
+      <h3>Funa Gigs</h3>
+      <p class="showcase-headline">From looking for help to finding someone nearby.</p>
+      <p>Walk through the opening steps of Instant Hire, part of the marketplace I lead under Jaminsa Ventures Limited.</p>
+      <a class="folio-action folio-action-secondary" href="./work/funa-gigs.html">Read the Funa Gigs case study <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="showcase-stage" data-scroll-reveal="media">
+      <div class="evidence-switcher" data-switcher>
+    <div class="switcher-controls" data-switcher-controls aria-label="Funa Gigs hiring flow" hidden>
+      <button type="button" id="funa-flow-tab-1" aria-controls="funa-flow-panel-1">
+        <span class="switcher-number" aria-hidden="true">01</span><span>Choose a service</span>
+      </button>
+      <button type="button" id="funa-flow-tab-2" aria-controls="funa-flow-panel-2">
+        <span class="switcher-number" aria-hidden="true">02</span><span>Find a worker</span>
+      </button>
+    </div>
+    <div id="funa-flow-panel-1" data-switcher-panel><figure class="evidence-screen">
+    <div class="evidence-device"><img src="./src/media/funa-home.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android home screen showing Instant Hire and service categories"></div>
+    <figcaption><strong>Choose a service</strong><span>Instant Hire starts from the home screen. Customers can also browse categories or post a job for later.</span></figcaption>
+  </figure></div>
+    <div id="funa-flow-panel-2" data-switcher-panel><figure class="evidence-screen">
+    <div class="evidence-device"><img src="./src/media/funa-work.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android matching screen showing a search for a nearby worker"></div>
+    <figcaption><strong>Find a worker</strong><span>The matching screen shows what the app is doing while it looks for an available tasker nearby.</span></figcaption>
+  </figure></div>
+  </div>
+      <p class="showcase-note">Official Funa Gigs Android screenshots · Google Play</p>
+    </div>
+  </article></div>
+    <div id="portfolio-showcase-panel-2" data-switcher-panel><article class="showcase-exhibit showcase-cyber-dragon">
+    <div class="showcase-copy">
+      <p class="folio-label">Defensive security</p>
+      <h3>Cyber Dragon</h3>
+      <p class="showcase-headline">See why a message raises a flag.</p>
+      <p>Compare a mobile-money reversal lure with an ordinary meeting reminder to see how the heuristic engine explains the difference.</p>
+      <a class="folio-action folio-action-secondary" href="./work/cyber-dragon.html">Read the Cyber Dragon case study <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="showcase-stage" data-scroll-reveal="media">
+      <div class="evidence-switcher" data-switcher>
+    <div class="switcher-controls" data-switcher-controls aria-label="Cyber Dragon sample messages" hidden>
+      <button type="button" id="cyber-sample-tab-1" aria-controls="cyber-sample-panel-1">
+        <span class="switcher-number" aria-hidden="true">01</span><span>Fake reversal</span>
+      </button>
+      <button type="button" id="cyber-sample-tab-2" aria-controls="cyber-sample-panel-2">
+        <span class="switcher-number" aria-hidden="true">02</span><span>Meeting reminder</span>
+      </button>
+    </div>
+    <div id="cyber-sample-panel-1" data-switcher-panel><div class="evidence-result">
+    <p class="evidence-kicker">Fake reversal · Message excerpt</p>
+    <blockquote>“Please approve the reversal prompt with your MoMo PIN immediately…”</blockquote>
+    <div class="threat-result threat-high"><strong>92<span>/100</span></strong><span>High risk</span></div>
+    <ul class="evidence-signals"><li>Credential request</li><li>Mobile-money context</li><li>Reversal pattern</li><li>Urgency</li></ul>
+    <p class="evidence-caution">The heuristic engine flags signals in the text without opening a link.</p>
+  </div></div>
+    <div id="cyber-sample-panel-2" data-switcher-panel><div class="evidence-result">
+    <p class="evidence-kicker">Meeting reminder · Message excerpt</p>
+    <blockquote>“Hi team, our sprint planning meeting starts at 10:00 AM tomorrow…”</blockquote>
+    <div class="threat-result threat-low"><strong>0<span>/100</span></strong><span>Low indicators</span></div>
+    <ul class="evidence-signals"><li>No strong indicators found</li></ul>
+    <p class="evidence-caution">A low score does not establish that a message is safe.</p>
+  </div></div>
+  </div>
+      <p class="showcase-note">Recorded analyzer output · Two built-in Cyber Dragon presets</p>
+    </div>
+  </article></div>
+    <div id="portfolio-showcase-panel-3" data-switcher-panel><article class="showcase-exhibit showcase-agentflight">
+    <div class="showcase-copy">
+      <p class="folio-label">Developer tools</p>
+      <h3>AgentFlight</h3>
+      <p class="showcase-headline">Change one input. See exactly what broke.</p>
+      <p>Replay a recorded tool call from a simulated incident, then change the time window and inspect the mismatch.</p>
+      <a class="folio-action folio-action-secondary" href="./work/agentflight.html">Read the AgentFlight case study <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="showcase-stage" data-scroll-reveal="media">
+      <div class="evidence-switcher" data-switcher>
+    <div class="switcher-controls" data-switcher-controls aria-label="AgentFlight replay inputs" hidden>
+      <button type="button" id="agent-replay-tab-1" aria-controls="agent-replay-panel-1">
+        <span class="switcher-number" aria-hidden="true">01</span><span>Replay 15 minutes</span>
+      </button>
+      <button type="button" id="agent-replay-tab-2" aria-controls="agent-replay-panel-2">
+        <span class="switcher-number" aria-hidden="true">02</span><span>Change to 30 minutes</span>
+      </button>
+    </div>
+    <div id="agent-replay-panel-1" data-switcher-panel><div class="evidence-result replay-sample">
+    <p class="evidence-kicker">prometheus.query_metrics</p>
+    <pre><code>{ "service": "payment-api", "window": "15m" }</code></pre>
+    <p class="replay-status">Matched the recorded tool call</p>
+    <pre><code>{
+  "anomaly": true,
+  "p99_latency_ms": 1840.0
 }</code></pre>
-        <p class="replay-result">✓ Matching input replays the recorded response</p>
-        <details class="replay-compare">
-          <summary>What if the call asks for 30 minutes?</summary>
-          <div class="replay-diff"><strong>TrajectoryDivergenceError</strong><br><code>window: expected "15m", got "30m"</code></div>
-        </details>
-      </div>
+    <p class="evidence-caution">A matching call returns the recorded response without calling the live tool.</p>
+  </div></div>
+    <div id="agent-replay-panel-2" data-switcher-panel><div class="evidence-result replay-sample">
+    <p class="evidence-kicker">prometheus.query_metrics</p>
+    <pre><code>{ "service": "payment-api", "window": "30m" }</code></pre>
+    <p class="replay-status replay-changed">TrajectoryDivergenceError</p>
+    <pre><code>changed_values.window
+  expected: "15m"
+  actual:   "30m"</code></pre>
+    <p class="evidence-caution">The tool name still matches, but the changed argument is enough to fail the replay.</p>
+  </div></div>
+  </div>
+      <p class="showcase-note">Recorded replay output · AgentFlight README’s simulated incident</p>
     </div>
-    <figcaption>AgentFlight replay · Simulated incident from the project README</figcaption>
-  </figure>
-    </article>
+  </article></div>
+  </div>
         <div class="section-end"><a class="folio-action folio-action-secondary" href="./work.html">See all project case studies<span aria-hidden="true">→</span></a></div>
       </div>
     </section>
@@ -172,5 +237,6 @@
     <div><a href="./src/media/akandwanaho-ivan.svg" download="akandwanaho-ivan.svg">Download logo</a><a href="https://github.com/codesphere-u">GitHub ↗</a></div>
   </div></footer>
   <script type="module" src="./src/ui/site-nav.mjs"></script>
+  <script type="module" src="./src/ui/showcase.mjs"></script>
 </body>
 </html>

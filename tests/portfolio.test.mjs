@@ -64,7 +64,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.match(html, /class="hero-projects"/);
     assert.match(html, /Software engineer &amp; founder/);
     assert.match(html, /src\/media\/alvin\.webp/);
-    assert.match(html, /Explore my work/);
+    assert.match(html, /Try the work/);
     assert.match(html, /"alternateName":"Alvin"/);
     assert.match(html, /akandwanaho-ivan\.svg/);
   });
@@ -376,6 +376,8 @@ describe('Portfolio pages and server', () => {
     assert.match(html, /<details class="project-disclosure">/);
     assert.match(html, /class="reading-line" aria-hidden="true"/);
     assert.match(html, /data-scroll-reveal="media"/);
+    assert.match(html, /aria-controls="portfolio-showcase-panel-3"/);
+    assert.match(html, /TrajectoryDivergenceError/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/site-nav\.mjs"/);
     for (const page of ['work', 'leadership', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'archive.html')), false);
@@ -460,6 +462,8 @@ describe('Portfolio pages and server', () => {
       assert.equal(typeof defaultServerHandler, 'function');
       for (const [asset, type] of [
         ['/src/ui/profile.css', 'text/css; charset=utf-8'],
+        ['/src/ui/showcase.css', 'text/css; charset=utf-8'],
+        ['/src/ui/showcase.mjs', 'text/javascript; charset=utf-8'],
         ['/src/ui/site-nav.mjs', 'text/javascript; charset=utf-8'],
         ['/src/media/akandwanaho-ivan.svg', 'image/svg+xml'],
         ...['alvin', 'funa-home', 'funa-work', 'cyber-dragon'].map(name => [`/src/media/${name}.webp`, 'image/webp'])
