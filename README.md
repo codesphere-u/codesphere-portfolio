@@ -17,10 +17,10 @@
 
 ### Explore the portfolio
 
-- **Selected work** introduces Funa Gigs, Cyber Dragon and AgentFlight. Open the separate engineering archive to filter or search the complete set of public projects.
+- **Selected work** introduces Funa Gigs, Cyber Dragon and AgentFlight. Each feature pairs a product or code example with the decision behind it. The engineering section highlights additional case studies for AgentShield, FlowLedger, and StackPulse.
 - **Case studies** are standalone HTML pages under `/cases/`. Each includes architecture, security boundaries, decision records, source links and reproduction commands. The project index also supports a quick view.
-- **Leadership and journey** cover founder roles, past engineering leadership, education and open-source work.
-- **Engineering tools** include the knowledge map, read-only terminal and a benchmark table. The benchmark table is generated from `src/data/portfolio-data.mjs`. Measurements and test counts reflect the workloads and environments reported by the respective repositories.
+- **Leadership** covers founder roles, past engineering leadership, and education.
+- **Technical evidence** lives in individual case studies. Measurements and test counts reflect the workloads and environments reported by the respective repositories.
 
 ### Run locally
 
@@ -38,6 +38,9 @@ Open `http://127.0.0.1:4173`. To publish to a static host, run `npm run build` a
 Released under the [MIT License](./LICENSE).
 
 ## Design references and media
+
+- [Nielsen Norman Group’s portfolio research](https://www.nngroup.com/articles/ux-design-portfolios/) informed the focus on the problem, the owner’s role, and specific decisions.
+- [Jonnie Hallman’s homepage process](https://destroytoday.com/blog/homepage-concept) informed making the work itself part of the homepage. The AgentFlight comparison uses two locally verified outcomes from one recorded example. Changing the query window from 15 minutes to 30 triggers the divergence check.
 
 - [Brittany Chiang](https://brittanychiang.com/) leads with name, role, and concise experience. The portfolio uses the same priority with its own editorial layout and a four-role leadership timeline.
 - [Rauno Freiberg’s Craft](https://rauno.me/craft) lets people see the work and open the production example. The homepage shows the actual Funa Gigs and Cyber Dragon interfaces, with separate case study and product links.

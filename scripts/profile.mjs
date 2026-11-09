@@ -27,7 +27,7 @@ function frame({ title, description, body, prefix = './', sectionPrefix = '' }) 
       <nav aria-label="Main navigation">
         <a href="${sectionPrefix}#projects">Work</a>
         <a href="${sectionPrefix}#experience">Leadership</a>
-        <a href="${prefix}archive.html">Archive</a>
+        <a href="${sectionPrefix}#engineering">Engineering</a>
         <a href="${sectionPrefix}#contact">Contact <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -51,7 +51,7 @@ function funaMedia(prefix) {
   </figure>`;
 }
 
-export function renderProfile(profile, summary) {
+export function renderProfile(profile) {
   const description = 'Akandwanaho Ivan Alvin is a software engineer, cybersecurity practitioner and founder based in Kampala, Uganda.';
   const structured = JSON.stringify({
     '@context': 'https://schema.org',
@@ -72,27 +72,34 @@ export function renderProfile(profile, summary) {
     body: `
   <script type="application/ld+json">${structured}</script>
   <main id="main-content" tabindex="-1" role="main">
-    <section class="folio-container folio-hero" aria-labelledby="hero-heading">
+    <section class="folio-opening" aria-labelledby="hero-heading">
+      <div class="folio-container folio-hero">
       <div class="hero-copy">
         <p class="folio-label hero-location"><span aria-hidden="true"></span> Kampala, Uganda</p>
         <h1 id="hero-heading"><span>Akandwanaho</span> <span>Ivan Alvin</span></h1>
         <p class="hero-role">Software engineer &amp; founder</p>
-        <p class="hero-intro">I build software for local work, safer digital transactions, and more reliable AI. I lead engineering at Codesphere Innovations in Kampala.</p>
+        <p class="hero-intro">I lead Codesphere Innovations in Kampala. My work spans a marketplace for hiring local workers, tools for spotting mobile-money scams, and infrastructure for testing AI agents.</p>
         <div class="folio-actions">
           ${action('#projects', 'See selected work', { arrow: '↓' })}
-          ${action(profile.linkedinUrl, 'Get in touch', { secondary: true })}
+          ${action('#experience', 'My leadership roles', { secondary: true, arrow: '→' })}
         </div>
       </div>
       <figure class="hero-portrait">
         <div class="hero-photo"><img src="./src/media/alvin.webp" width="1254" height="1254" alt="Portrait of Akandwanaho Ivan Alvin" fetchpriority="high"></div>
-        <figcaption><span>Akandwanaho Ivan Alvin</span><span>Studio portrait</span></figcaption>
+        <figcaption><span>Akandwanaho Ivan Alvin</span><span>Based in Kampala</span></figcaption>
       </figure>
+      </div>
+      <nav class="folio-container work-shortcuts" aria-label="Jump to a featured project">
+        <a href="#funa-gigs"><span class="folio-label">01 / Product leadership</span><strong>Funa Gigs</strong><span class="shortcut-arrow" aria-hidden="true">↓</span></a>
+        <a href="#cyber-dragon"><span class="folio-label">02 / Defensive security</span><strong>Cyber Dragon</strong><span class="shortcut-arrow" aria-hidden="true">↓</span></a>
+        <a href="#agentflight"><span class="folio-label">03 / Developer tools</span><strong>AgentFlight</strong><span class="shortcut-arrow" aria-hidden="true">↓</span></a>
+      </nav>
     </section>
     <section id="projects" class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
         <div class="folio-section-heading">
           <div><p class="folio-label">01 / Projects</p><h2 id="work-heading">Selected work</h2></div>
-          ${action('./archive.html#project-index', 'Engineering archive', { secondary: true })}
+          <p>Three projects that show how I lead a product and engineer for trust, safety, and reproducibility.</p>
         </div>
 
         <article id="funa-gigs" class="folio-project folio-project-featured">
@@ -100,8 +107,13 @@ export function renderProfile(profile, summary) {
           <div class="project-copy">
             <p class="folio-label">01 / Product leadership</p>
             <h3>Funa Gigs</h3>
-            <p class="project-deck">Find local help. Manage the job. Pay in UGX.</p>
-            <p>I lead the product under Jaminsa Ventures Limited. Funa Gigs gives clients a choice between hiring someone nearby now and posting a job for later.</p>
+            <p class="project-deck">Hire nearby. Pay after the work is approved.</p>
+            <p>As founder and project lead under Jaminsa Ventures Limited, I lead a marketplace for clients who need help now and those who want to compare applicants for planned work.</p>
+            <ol class="funa-flow" aria-label="Funa Gigs hiring flow">
+              <li><span>01</span> Match with a tasker</li>
+              <li><span>02</span> Approve the work</li>
+              <li><span>03</span> Release payment in UGX</li>
+            </ol>
             <div class="folio-actions">
               ${action('./cases/funa-gigs.html', 'Read the case study', { arrow: '→' })}
               ${action('https://www.funagigs.com/', 'Live product', { secondary: true })}
@@ -110,7 +122,7 @@ export function renderProfile(profile, summary) {
         </article>
 
         <div class="folio-project-pair">
-          <article class="folio-project">
+          <article id="cyber-dragon" class="folio-project">
             <figure class="project-media cyber-media">
               <img src="./src/media/cyber-dragon.webp" width="960" height="932" loading="lazy" decoding="async" alt="Cyber Dragon workbench with scam inspection modes and built-in scenarios">
               <figcaption>Live inspection workbench</figcaption>
@@ -119,7 +131,8 @@ export function renderProfile(profile, summary) {
               <p class="folio-label">02 / Cybersecurity</p>
               <h3>Cyber Dragon</h3>
               <p class="project-deck">Inspect a suspicious message before acting on it.</p>
-              <p>Analyze mobile-money scams, lookalike links, and USSD codes in the browser. The workbench explains the warning signs without opening the suspect link.</p>
+              <p>Opening a suspicious link to investigate it can create another risk. Cyber Dragon inspects text, lookalike URLs, and USSD codes locally and explains which signals triggered its assessment.</p>
+              <p class="project-proof"><strong>Try it</strong> Load the built-in MTN MoMo reversal scenario in the workbench.</p>
               <div class="folio-actions">
                 ${action('./cases/cyber-dragon.html', 'Read the case study', { arrow: '→' })}
                 ${action(profile.liveDemoUrl, 'Try a sample', { secondary: true })}
@@ -127,17 +140,21 @@ export function renderProfile(profile, summary) {
             </div>
           </article>
 
-          <article class="folio-project">
+          <article id="agentflight" class="folio-project">
             <figure class="project-media replay-media">
               <div class="replay-window">
                 <div class="replay-bar"><span class="replay-dot" aria-hidden="true"></span><span>incident.flight.json</span></div>
                 <div class="replay-content">
-                  <p class="replay-file">Recorded tool response</p>
-                  <pre tabindex="0" aria-label="Example AgentFlight recorded response"><code>{
+                  <p class="replay-file">Recorded tool call · payment-api · 15m</p>
+                  <pre aria-label="Recorded AgentFlight response"><code>{
   "p99_latency_ms": 1840.0,
   "anomaly": true
 }</code></pre>
-                  <p class="replay-result">✓ Integrity check passed</p>
+                  <p class="replay-result">✓ Matching input replays the recorded response</p>
+                  <details class="replay-compare">
+                    <summary>What if the call asks for 30 minutes?</summary>
+                    <div class="replay-diff"><strong>TrajectoryDivergenceError</strong><br><code>window: expected "15m", got "30m"</code></div>
+                  </details>
                 </div>
               </div>
               <figcaption>AgentFlight README example · simulated incident</figcaption>
@@ -146,7 +163,8 @@ export function renderProfile(profile, summary) {
               <p class="folio-label">03 / Open-source engineering</p>
               <h3>AgentFlight</h3>
               <p class="project-deck">Replay an AI agent’s failure in a test.</p>
-              <p>Record an agent’s model turns and tool calls, then replay them from a cassette to check whether a code change sends the agent down a different path.</p>
+              <p>Live model calls make regressions hard to reproduce. AgentFlight records model turns and tool calls so developers can replay the same run and catch changed arguments.</p>
+              <p class="project-proof"><strong>Inspect it</strong> Open the replay comparison above to see a real mismatch.</p>
               <div class="folio-actions">
                 ${action('./cases/agentflight.html', 'Read the case study', { arrow: '→' })}
                 ${action('https://github.com/codesphere-u/agentflight', 'GitHub', { secondary: true })}
@@ -163,28 +181,36 @@ export function renderProfile(profile, summary) {
           <p class="folio-label">02 / Experience</p>
           <h2 id="leadership-heading">Building teams<br>and products</h2>
           <p>My work spans product direction, architecture, and hands-on engineering. I studied at ISBAT University in Kampala.</p>
-          ${action('./archive.html#journey', 'Read my journey', { secondary: true, arrow: '→' })}
+          ${action(profile.companyWebsiteUrl, 'Visit Codesphere Innovations', { secondary: true })}
         </div>
         <ol class="leadership-list">
           <li><span class="folio-label">Current</span><div><h3>Codesphere Innovations</h3><p>Founder &amp; Managing Director</p></div><a href="${profile.companyWebsiteUrl}" aria-label="Visit Codesphere Innovations">↗</a></li>
           <li><span class="folio-label">Current</span><div><h3>Funa Gigs</h3><p>Founder &amp; Project Lead · Jaminsa Ventures Limited</p></div><a href="./cases/funa-gigs.html" aria-label="Read the Funa Gigs case study">↗</a></li>
-          <li><span class="folio-label">Until Mar 2025</span><div><h3>Waanverse Labs Inc.</h3><p>CTO &amp; Head of Engineering</p></div></li>
+          <li><span class="folio-label">Until March 2025</span><div><h3>Waanverse Labs Inc.</h3><p>CTO &amp; Head of Engineering</p></div></li>
           <li><span class="folio-label">Earlier</span><div><h3>4codex Technologies</h3><p>Founder</p></div></li>
         </ol>
       </div>
     </section>
 
-    <section class="folio-container folio-archive" aria-labelledby="archive-heading">
-      <div><p class="folio-label">03 / Technical reference</p><h2 id="archive-heading">Engineering archive</h2>
-        <p>Browse ${summary.totalProjects} public systems, their design decisions, and benchmarks reported by each repository.</p></div>
-      ${action('./archive.html#project-index', 'Browse all projects', { arrow: '→' })}
+    <section id="engineering" class="folio-engineering" aria-labelledby="engineering-heading">
+      <div class="folio-container">
+        <div class="folio-section-heading">
+          <div><p class="folio-label">03 / Engineering decisions</p><h2 id="engineering-heading">Inside the systems</h2></div>
+          <p>Three examples of how I design for accountability, from AI permissions to ledger integrity and incident diagnosis.</p>
+        </div>
+        <div class="decision-list">
+          <article><p class="folio-label">AI security</p><h3>Put a policy in front of every tool call.</h3><p>AgentShield checks what an agent is allowed to do and records policy decisions in a hash-chained audit log.</p><a href="./cases/agentshield.html">AgentShield case study <span aria-hidden="true">↗</span></a></article>
+          <article><p class="folio-label">Financial infrastructure</p><h3>Keep every ledger entry balanced.</h3><p>FlowLedger uses double-entry accounting and integer minor units to keep floating-point rounding out of balances.</p><a href="./cases/flowledger.html">FlowLedger case study <span aria-hidden="true">↗</span></a></article>
+          <article><p class="folio-label">Cloud observability</p><h3>Measure where the time went.</h3><p>StackPulse accounts for overlapping spans so a trace can distinguish time spent in a service from time spent waiting on its dependencies.</p><a href="./cases/stackpulse.html">StackPulse case study <span aria-hidden="true">↗</span></a></article>
+        </div>
+      </div>
     </section>
 
     <section id="contact" class="folio-contact" aria-labelledby="contact-heading">
       <div class="folio-container">
         <p class="folio-label">04 / Contact</p>
         <h2 id="contact-heading">Let’s talk.</h2>
-        <p>For engineering roles, technical leadership, or open-source collaboration, reach me on LinkedIn.</p>
+        <p>Have a product to build, a system to secure, or an engineering team to grow? Tell me what you’re working on.</p>
         <div class="folio-actions">${action(profile.linkedinUrl, 'Message me on LinkedIn')}${action(profile.githubUrl, 'Explore my GitHub', { secondary: true })}</div>
       </div>
     </section>

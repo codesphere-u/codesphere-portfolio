@@ -22,7 +22,7 @@ import {
   renderKnowledgeNodeDetailHtml,
   renderPhilosophyCardHtml
 } from '../src/ui/app.mjs';
-import { generateArchiveHtml, generatePortfolioHtml } from '../scripts/build.mjs';
+import { generatePortfolioHtml } from '../scripts/build.mjs';
 import defaultServerHandler, { createPortfolioServer } from '../server.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -125,7 +125,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
 
     assert.match(html, /Akandwanaho Ivan Alvin/);
     assert.match(html, /Jaminsa Ventures Limited/);
-    assert.match(generateArchiveHtml(), /March 2025/);
+    assert.match(html, /March 2025/);
     assert.match(html, /https:\/\/www\.codesphereug\.com/);
   });
 
@@ -397,24 +397,13 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
     assert.match(html, /role="main"/);
     assert.match(html, /src\/ui\/profile\.css/);
     assert.match(html, /application\/ld\+json/);
-    assert.match(html, /archive\.html#project-index/);
-    assert.match(html, /cases\/funa-gigs\.html/);
-    const archive = generateArchiveHtml();
-    assert.match(archive, /role="dialog"/);
-    assert.ok(archive.indexOf('id="projects"') < archive.indexOf('id="journey"'), 'Work must precede the career timeline');
-    for (const id of ['menu-toggle', 'mobile-menu', 'page-progress-bar', 'back-to-top', 'project-index']) {
-      assert.ok(archive.includes('id="' + id + '"'), 'Missing archive navigation element: ' + id);
+    assert.doesNotMatch(html, /archive\.html/);
+    assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'archive.html')), false);
+    assert.match(html, /aria-label="Jump to a featured project"/);
+    assert.match(html, /<details class="replay-compare">/);
+    for (const id of ['funa-gigs', 'cyber-dragon', 'agentflight', 'agentshield', 'flowledger', 'stackpulse']) {
+      assert.ok(html.includes(`./cases/${id}.html`), `Missing case study link for ${id}`);
     }
-    assert.match(archive, /src\/ui\/navigation\.mjs/);
-    assert.match(archive, /src\/ui\/polish\.css/);
-    const navSource = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'navigation.mjs'), 'utf8');
-    const polishCss = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'polish.css'), 'utf8');
-    assert.match(navSource, /aria-expanded/);
-    assert.match(navSource, /Escape/);
-    assert.match(navSource, /prefers-reduced-motion/);
-    assert.match(polishCss, /max-width:900px/);
-    assert.match(polishCss, /prefers-reduced-motion/);
-
 
     const css = fs.readFileSync(
       path.join(ROOT_DIR, 'src', 'ui', 'styles.css'),
@@ -489,12 +478,16 @@ describe('Codesphere Portfolio v2.0 — Case Study Drawer, Static Build & Server
       assert.match(html, /Selected work/);
     });
 
-    it('serves the archive, product case study, and locally hosted media', async () => {
-      for (const page of ['archive.html', 'cases/funa-gigs.html']) {
-        const response = await fetch(`${baseUrl}/${page}`);
-        assert.equal(response.status, 200);
-        assert.equal(await response.text(), fs.readFileSync(path.join(ROOT_DIR, 'dist', page), 'utf8'));
+    it('redirects old archive URLs and serves the product case study and locally hosted media', async () => {
+      for (const page of ['archive', 'archive.html']) {
+        const redirect = await fetch(`${baseUrl}/${page}`, { redirect: 'manual' });
+        assert.equal(redirect.status, 301);
+        assert.equal(redirect.headers.get('location'), '/#projects');
       }
+      const casePath = 'cases/funa-gigs.html';
+      const response = await fetch(`${baseUrl}/${casePath}`);
+      assert.equal(response.status, 200);
+      assert.equal(await response.text(), fs.readFileSync(path.join(ROOT_DIR, 'dist', casePath), 'utf8'));
       for (const image of ['alvin', 'funa-home', 'funa-work', 'cyber-dragon']) {
         const response = await fetch(`${baseUrl}/src/media/${image}.webp`);
         assert.equal(response.status, 200);
