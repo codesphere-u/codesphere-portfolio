@@ -9,12 +9,15 @@ import {
   sortBenchmarks
 } from './src/core/explorer.mjs';
 import { renderNotFoundPage, sitePages } from './scripts/profile.mjs';
+import { cvPdf } from './scripts/cv-data.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pages = new Map(sitePages().map(([name, html]) => ['/' + name, html]));
 pages.set('/', pages.get('/index.html'));
 
 const staticAssets = new Map([
+  ['/' + cvPdf, 'application/pdf'],
+  ['/src/ui/cv.css', 'text/css; charset=utf-8'],
   ['/src/ui/profile.css', 'text/css; charset=utf-8'],
   ['/src/ui/showcase.css', 'text/css; charset=utf-8'],
   ['/src/ui/showcase.mjs', 'text/javascript; charset=utf-8'],
@@ -90,6 +93,9 @@ export function handlePortfolioRequest(req, res) {
     const contentType = staticAssets.get(url.pathname);
     if (contentType) {
       const file = fs.readFileSync(path.join(__dirname, url.pathname.slice(1)));
+      if (url.pathname === '/' + cvPdf) {
+        res.setHeader('Content-Disposition', 'attachment; filename="akandwanaho-ivan-cv.pdf"');
+      }
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(file);
       return;

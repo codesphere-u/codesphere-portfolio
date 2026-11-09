@@ -274,6 +274,11 @@ html { scroll-padding-top: 96px; }
 .contact-links article { border: 1px solid var(--rule); padding: clamp(20px, 4vw, 45px); }
 .contact-links h2 { margin-top: 12px; }
 
+.folio .folio-text-link {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px;
+  margin-inline-start: 10px; color: #872c20; font-size: .84rem; font-weight: 670;
+}
+.folio .folio-text-link:hover { color: #481711; }
 .folio-footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: .84rem; }
 .folio-footer .folio-container,.folio-footer .folio-container > div { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
 .folio-footer .folio-container { padding-block: 17px; }

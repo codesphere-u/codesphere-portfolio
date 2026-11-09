@@ -14,6 +14,7 @@ import {
   validatePortfolioIntegrity
 } from '../src/core/explorer.mjs';
 import { renderLeadershipPage, sitePages } from '../scripts/profile.mjs';
+import { cvPdf } from '../scripts/cv-data.mjs';
 import { generatePortfolioHtml } from '../scripts/build.mjs';
 import defaultServerHandler, { createPortfolioServer } from '../server.mjs';
 
@@ -346,7 +347,7 @@ describe('Codesphere Portfolio v2.0 — Domain Filtering, Knowledge Map, Termina
 describe('Portfolio pages and server', () => {
   it('uses the new shared shell for every case study and top-level page', () => {
     const pages = new Map(sitePages());
-    assert.equal(pages.size, 20);
+    assert.equal(pages.size, 21);
     for (const [name, html] of pages) {
       assert.match(html, /class="folio-header"/, name);
       assert.match(html, /src\/ui\/profile\.css/, name);
@@ -379,7 +380,7 @@ describe('Portfolio pages and server', () => {
     assert.match(html, /aria-controls="portfolio-showcase-panel-3"/);
     assert.match(html, /TrajectoryDivergenceError/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/site-nav\.mjs"/);
-    for (const page of ['work', 'leadership', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
+    for (const page of ['work', 'leadership', 'cv', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'archive.html')), false);
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'cases')), false);
     const css = fs.readFileSync(path.join(ROOT_DIR, 'src', 'ui', 'profile.css'), 'utf8');
@@ -458,9 +459,29 @@ describe('Portfolio pages and server', () => {
       }
     });
 
+    it('serves the CV page and its downloadable PDF in both builds', async () => {
+      const page = await fetch(baseUrl + '/cv.html');
+      assert.equal(page.status, 200);
+      const html = await page.text();
+      assert.match(html, /href="\.\/cv\.html" aria-current="page"/);
+      assert.match(html, /ISBAT University/);
+      assert.match(html, /Jaminsa Ventures Limited/);
+      assert.match(html, /Until March 2025/);
+      assert.ok(html.includes(`href="./${cvPdf}" download`));
+
+      const response = await fetch(baseUrl + '/' + cvPdf);
+      assert.equal(response.status, 200);
+      assert.equal(response.headers.get('content-type'), 'application/pdf');
+      assert.equal(response.headers.get('content-disposition'), 'attachment; filename="akandwanaho-ivan-cv.pdf"');
+      const pdf = Buffer.from(await response.arrayBuffer());
+      assert.equal(pdf.subarray(0, 5).toString('ascii'), '%PDF-');
+      assert.deepEqual(pdf, fs.readFileSync(path.join(ROOT_DIR, 'dist', cvPdf)));
+    });
+
     it('serves the new design, logo and locally hosted media', async () => {
       assert.equal(typeof defaultServerHandler, 'function');
       for (const [asset, type] of [
+        ['/src/ui/cv.css', 'text/css; charset=utf-8'],
         ['/src/ui/profile.css', 'text/css; charset=utf-8'],
         ['/src/ui/showcase.css', 'text/css; charset=utf-8'],
         ['/src/ui/showcase.mjs', 'text/javascript; charset=utf-8'],
