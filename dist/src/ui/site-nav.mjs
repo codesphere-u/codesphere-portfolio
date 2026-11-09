@@ -1,7 +1,6 @@
 import { motion as motionQuery, sortHeadings } from './motion.mjs';
 
 const header = document.querySelector('[data-site-header]');
-const brand = header.querySelector('.folio-brand');
 const nav = header.querySelector('nav');
 const button = header.querySelector('.nav-toggle');
 const orb = header.querySelector('.nav-orb');
@@ -23,7 +22,7 @@ let open = false;
 let closing;
 
 const navItems = () => [...nav.querySelectorAll('.nav-pages > li')];
-const barItems = () => [brand, button, ...navItems()].filter(element => element.getClientRects().length > 0);
+const barItems = () => [button, ...navItems()].filter(element => element.getClientRects().length > 0);
 
 function centerOf(element) {
   const box = element.getBoundingClientRect();
@@ -46,13 +45,19 @@ function byDistance(elements, target) {
     .sort((a, b) => Math.hypot(a.dx, a.dy) - Math.hypot(b.dx, b.dy));
 }
 
+// The links show as a card when the menu is open from the orb, or from the Menu island on small screens.
+function syncCard() {
+  const showing = open || header.classList.contains('is-closing');
+  header.classList.toggle('is-card', showing && (orbMode || compact.matches));
+}
+
 function render() {
   header.classList.toggle('is-orb', orbMode);
   header.classList.toggle('is-open', open);
+  syncCard();
   for (const toggle of [button, orb]) toggle.setAttribute('aria-expanded', String(open));
   orb.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
   nav.hidden = !orbMode && compact.matches && !open;
-  brand.inert = orbMode;
   button.inert = orbMode;
   orb.inert = !orbMode;
   nav.inert = orbMode && !open;
@@ -65,6 +70,7 @@ function collapseToOrb(animate) {
   orbMode = true;
   open = false;
   render();
+  placeHighlight(null);
   if (!moves.length) return;
 
   // Each item winds up a touch, then is pulled into the orb.
@@ -88,6 +94,7 @@ function expandToBar(animate) {
   const target = centerOf(orb);
   orbMode = false;
   render();
+  restHighlight();
   if (!animate || !motion.matches) return;
 
   orbCore.animate([
@@ -117,7 +124,9 @@ function finishClosing() {
   closing.cancel();
   closing = undefined;
   header.classList.remove('is-closing');
+  syncCard();
   settle(navItems());
+  restHighlight();
 }
 
 function openMenu() {
@@ -171,6 +180,40 @@ function closeMenu({ instant = false } = {}) {
   ], { duration: 460, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'forwards' });
   closing.onfinish = finishClosing;
 }
+
+// The dock's highlight rests on the current page and slides to whatever is hovered or focused.
+const pages = nav.querySelector('.nav-pages');
+const dockItem = target => target?.closest('.nav-pages > li:not(.nav-contact)');
+
+function placeHighlight(item) {
+  if (!item || header.classList.contains('is-card') || orbMode) {
+    pages.style.setProperty('--hl-o', '0');
+    return;
+  }
+  pages.style.setProperty('--hl-x', `${item.offsetLeft}px`);
+  pages.style.setProperty('--hl-w', `${item.offsetWidth}px`);
+  pages.style.setProperty('--hl-o', '1');
+}
+
+function restHighlight() {
+  placeHighlight(dockItem(pages.querySelector(':scope > li > a:is([aria-current], [data-active-section])')));
+}
+
+pages.addEventListener('pointerover', event => {
+  const item = dockItem(event.target);
+  if (item) placeHighlight(item);
+});
+pages.addEventListener('pointerleave', restHighlight);
+pages.addEventListener('focusin', event => {
+  const item = dockItem(event.target);
+  if (item) placeHighlight(item);
+  else restHighlight();
+});
+pages.addEventListener('focusout', event => {
+  if (!pages.contains(event.relatedTarget)) restHighlight();
+});
+addEventListener('resize', restHighlight, { passive: true });
+document.fonts?.ready.then(restHighlight);
 
 function syncLayout() {
   const focusWasInNav = nav.contains(document.activeElement);
@@ -228,6 +271,7 @@ document.addEventListener('focusin', event => {
 
 addEventListener('pagehide', () => closeMenu({ instant: true }));
 syncLayout();
+restHighlight();
 
 let scrollFrame;
 let primed = false;

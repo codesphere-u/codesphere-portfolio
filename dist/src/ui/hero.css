@@ -5,7 +5,7 @@
 .folio-opening .hero-stage { --exit: 0; }
 .folio-opening .folio-hero {
   position: relative; z-index: 2; display: grid; grid-template-rows: minmax(0, 1fr) auto; align-items: center;
-  min-height: max(600px, calc(100svh - 78px)); padding-block: clamp(30px, 4vw, 56px) 0;
+  min-height: max(640px, 100svh); padding-block: calc(var(--nav-h) + clamp(10px, 2vw, 30px)) 0;
 }
 .folio-opening .hero-copy {
   translate: 0 calc(var(--exit) * -56px);
@@ -80,7 +80,7 @@
 .marquee-star { display: inline-block; color: #d0603f; font-size: clamp(1.1rem, 2.2vw, 1.9rem); }
 
 @media (max-width: 760px) {
-  .folio-opening .folio-hero { min-height: auto; padding-top: 36px; }
+  .folio-opening .folio-hero { min-height: auto; padding-top: calc(var(--nav-h) + 24px); }
   .hero-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; }
   .hero-now { grid-column: 1 / -1; justify-self: start; text-align: left; }
 }

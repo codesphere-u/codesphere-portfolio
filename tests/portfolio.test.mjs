@@ -69,7 +69,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.match(html, /data-kampala-time/);
     assert.match(html, /<div class="hero-marquee" aria-hidden="true">/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/hero\.mjs"><\/script>/);
-    assert.match(html, /Software engineer &amp; founder/);
+    assert.doesNotMatch(html, /class="folio-brand"/);
     assert.match(html, /src\/media\/alvin\.webp/);
     assert.match(html, /Try the work/);
     assert.match(html, /"alternateName":"Alvin"/);

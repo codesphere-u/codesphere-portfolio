@@ -75,7 +75,8 @@
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: radial-gradient(55% 85% at 88% 0%, #ffcb8d1f, transparent 62%), radial-gradient(45% 70% at 0% 100%, #d0603f17, transparent 62%);
 }
-.opener-inner { padding-block: clamp(64px, 11vw, 150px) clamp(52px, 7vw, 100px); }
+/* Openings start under the floating navigation islands. */
+.opener-inner { padding-block: calc(var(--nav-h) + clamp(28px, 7vw, 96px)) clamp(52px, 7vw, 100px); }
 .folio .opener h1 { max-width: 13ch; margin-block: 24px 28px; font-size: clamp(3.4rem, 9.6vw, 9.8rem); line-height: .9; letter-spacing: -.066em; }
 .folio .opener-lede { max-width: 52ch; color: var(--stage-muted); font-size: clamp(1.05rem, 1.7vw, 1.3rem); }
 .folio .opener-meta {
@@ -85,7 +86,7 @@
 }
 .opener-meta strong { margin-right: 8px; color: var(--stage-ink); font: 400 clamp(1.4rem, 2.2vw, 1.9rem)/1 var(--display); letter-spacing: -.035em; text-transform: none; }
 .opener .folio-actions { margin-top: 32px; }
-.opener-full .opener-inner { display: flex; flex-direction: column; justify-content: center; min-height: calc(100svh - 78px); }
+.opener-full .opener-inner { display: flex; flex-direction: column; justify-content: center; min-height: 100svh; }
 .folio .opener-full h1 { font-size: clamp(3.6rem, 12vw, 12rem); }
 
 /* ---------- Home: hero ledger and leadership track ---------- */
@@ -237,7 +238,7 @@
 .contact-open .footer-offers li { border-color: var(--rule); }
 
 /* ---------- Case studies ---------- */
-.case-hero { padding-block: clamp(22px, 3.4vw, 40px) clamp(52px, 7vw, 100px); background: var(--w-bg); color: var(--w-ink); }
+.case-hero { padding-block: calc(var(--nav-h) + clamp(10px, 2vw, 24px)) clamp(52px, 7vw, 100px); background: var(--w-bg); color: var(--w-ink); }
 .case-hero .folio-back { gap: 8px; margin-bottom: clamp(20px, 3vw, 36px); color: var(--w-muted); text-decoration: none; font-weight: 650; font-size: .9rem; }
 .case-hero .folio-back:hover { color: var(--w-ink); }
 .folio .case-hero h1 { margin-block: 18px 22px; font-size: clamp(3.2rem, 7.6vw, 8rem); line-height: .9; letter-spacing: -.066em; }
@@ -310,6 +311,7 @@
 
 /* ---------- CV cover on the dark stage ---------- */
 body.folio .cv-cover { color: var(--stage-ink); background: var(--stage); border-bottom: 0; }
+body.folio .cv-cover-grid { padding-top: calc(var(--nav-h) + clamp(16px, 3vw, 44px)); }
 body.folio .cv-cover h1 { font-size: clamp(3.2rem, 7vw, 7rem); line-height: .92; letter-spacing: -.065em; }
 body.folio .cv-cover .cv-location { color: var(--gold); }
 body.folio .cv-cover :is(.cv-byline, .cv-summary, .cv-cover-actions > span) { color: var(--stage-muted); }

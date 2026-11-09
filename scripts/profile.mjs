@@ -79,10 +79,6 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
   <header class="folio-header" data-site-header>
     <div class="folio-container folio-header-inner">
       <span class="header-skin" aria-hidden="true"></span>
-      <a class="folio-brand" href="${prefix}index.html">
-        <img src="${prefix}${logo}" width="42" height="42" alt="">
-        <span>Akandwanaho Ivan <small>Software engineer &amp; founder</small></span>
-      </a>
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true"></span></button>
       <button class="nav-orb" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" inert>
         <span class="nav-orb-core" aria-hidden="true">
