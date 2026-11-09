@@ -3,6 +3,7 @@ import { PORTFOLIO_DATA } from '../src/data/portfolio-data.mjs';
 const { profile, experience, projects } = PORTFOLIO_DATA;
 const role = id => experience.find(item => item.id === id);
 const project = id => projects.find(item => item.id === id);
+const codesphereBio = profile.companyWebsiteUrl + '/leadership/akandwanaho-ivan';
 
 export const CV = {
   name: profile.name,
@@ -13,20 +14,21 @@ export const CV = {
   links: [
     { label: 'LinkedIn', display: 'linkedin.com/in/the4codex', url: profile.linkedinUrl },
     { label: 'GitHub', display: 'github.com/codesphere-u', url: profile.githubUrl },
-    { label: 'Codesphere', display: 'codesphereug.com', url: profile.companyWebsiteUrl }
+    { label: 'Codesphere profile', display: 'codesphereug.com', url: codesphereBio }
   ],
   experience: [
     {
       organization: profile.companyName,
-      title: role('codesphere-innovations').role,
+      title: 'CEO & Co-Founder',
       period: 'Current',
       highlights: [
         'Set technology direction, lead product architecture and engineering delivery, and define application security standards.',
         'Design web, mobile, and cloud systems for custom software, workflow automation, and applied AI.',
-        'Oversee a company portfolio that includes Hinzia, an agriculture technology product, and a clinical case management platform.'
+        'Build Hinzia, an agricultural platform connecting farmers, buyers, and suppliers with trading and farm-record tools.'
       ],
       links: [
-        { label: 'Codesphere company profile', url: profile.companyWebsiteUrl + '/about' },
+        { label: 'Codesphere leadership profile', url: codesphereBio },
+        { label: 'Hinzia on Google Play', url: 'https://play.google.com/store/apps/details?id=codesphere.labs.hinzia' },
         { label: 'Codesphere project portfolio', url: profile.companyWebsiteUrl + '/work' }
       ]
     },
@@ -35,8 +37,8 @@ export const CV = {
       title: 'Founder & Project Lead, Funa Gigs',
       period: 'Current',
       highlights: [
-        'Lead architecture and engineering for a Ugandan services marketplace available on Android and the web.',
-        'Develop location-aware Instant Hire and workflows for messaging, job coordination, and identity verification.',
+        'Lead engineering for a Ugandan services marketplace available on Android and the web.',
+        'Develop location-aware Instant Hire, in-app messaging, job coordination, and identity verification.',
         'Design payment flows that release funds after job approval, with withdrawals through MTN and Airtel Money.'
       ],
       links: [
@@ -49,7 +51,7 @@ export const CV = {
       title: 'CTO & Head of Engineering',
       period: 'Until March 2025',
       highlights: [
-        'Directed technical strategy and engineering delivery, including service boundaries, API contracts, and architecture decisions.',
+        'Directed technical strategy and delivery, including service boundaries and API contracts.',
         'Guided code reviews and release workflows, mentored developers, and coordinated implementation with product stakeholders.'
       ]
     },
@@ -109,7 +111,10 @@ export const CV = {
   education: {
     institution: profile.education.institution,
     location: profile.education.location,
-    detail: 'University studies alongside independent work building operational software for local businesses.'
+    detail: 'University studies alongside independent work building operational software for local businesses.',
+    training: 'Ethical hacking certificates',
+    earlyWork: 'Started programming at 13 in Mbarara. Early work included Haxcon VPN and Haxcon Droid VPN, projects that explored internet access in Uganda.',
+    links: [{ label: 'Read the Codesphere biography', url: codesphereBio }]
   }
 };
 

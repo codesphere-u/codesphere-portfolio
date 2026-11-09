@@ -123,7 +123,7 @@
 .cv-project-top { display: flex; justify-content: space-between; align-items: baseline; gap: 9px; }
 .cv-project h3,.cv-education h3 { font-size: clamp(1.7rem, 3.1vw, 2.45rem); }
 .cv-project h3 { margin-block: 8px 13px; }
-.cv-project p:not(.folio-label),.cv-education > p,.cv-skills dd { color: var(--muted); }
+.cv-project p:not(.folio-label),.cv-foundations,.cv-skills dd { color: var(--muted); }
 .cv-project .cv-proof { margin-top: 13px; padding-top: 11px; border-top: 1px solid #e1d7cc; }
 .cv-proof strong { display: block; color: #293746; font-size: .85rem; }
 .cv-project .cv-source-links { margin-top: auto; padding-top: 7px; }
@@ -131,6 +131,7 @@
   display: grid; grid-template-columns: minmax(145px, .5fr) minmax(0, 1fr); gap: 10px clamp(16px, 4vw, 55px);
 }
 .cv-education .cv-period { margin-top: 8px; }
+.cv-foundations p + p { margin-top: 9px; }
 .cv-skills dt { font-weight: 710; }
 .cv-close {
   background: #eee5da; border: 1px solid #d9c9b8; margin-top: clamp(30px, 5vw, 60px);

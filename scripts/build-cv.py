@@ -171,7 +171,11 @@ def build():
         *(Paragraph(f"<b>{escape(item['label'])}</b> &nbsp; {escape(item['detail'])}", ITEM) for item in CV["skills"]),
         section("Education"),
         Paragraph(f"<b>{escape(education['institution'])}</b> &nbsp;|&nbsp; {escape(education['location'])}", ITEM),
-        Paragraph(escape(education["detail"]), ITEM),
+        Paragraph(
+            f"{escape(education['detail'])} Additional training: {escape(education['training'])}.",
+            ITEM,
+        ),
+        Paragraph(escape(education["earlyWork"]), ITEM),
         PageBreak(),
         Spacer(1, 27),
         section("Selected engineering"),

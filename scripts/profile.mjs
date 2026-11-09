@@ -362,7 +362,15 @@ export function renderCvPage() {
             ])}</div>
           </article></li>`).join('')}</ul>`)}
         ${section(2, `<dl class="cv-skills">${CV.skills.map(({ label, detail }) => `<div><dt>${text(label)}</dt><dd>${text(detail)}</dd></div>`).join('')}</dl>`)}
-        ${section(3, `<div class="cv-education"><div><h3>${text(CV.education.institution)}</h3><p class="cv-period">${text(CV.education.location)}</p></div><p>${text(CV.education.detail)}</p></div>`)}
+        ${section(3, `<div class="cv-education">
+          <div><h3>${text(CV.education.institution)}</h3><p class="cv-period">${text(CV.education.location)}</p></div>
+          <div class="cv-foundations">
+            <p>${text(CV.education.detail)}</p>
+            <p><strong>Additional training</strong> · ${text(CV.education.training)}</p>
+            <p>${text(CV.education.earlyWork)}</p>
+            <div class="cv-source-links">${sources(CV.education.links)}</div>
+          </div>
+        </div>`)}
         <div class="cv-close">
           <div><h2>Get in touch</h2><p>For engineering roles, technical leadership, and collaboration.</p></div>
           <div class="cv-close-actions">${download}${action('./contact.html', 'Contact me', { secondary: true, arrow: '→' })}</div>
