@@ -123,6 +123,12 @@ html { scroll-padding-top: 96px; }
 .nav-toggle { display: none; cursor: pointer; }
 .nav-toggle:not([hidden]) { display: flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 18px; font: 650 .88rem/1 var(--sans); }
 
+/* On larger screens, at the very top of a page the dock stays out of the way of the opening. It returns as the
+   orb once the page scrolls, and keyboard focus brings it back at any time. Small screens keep the Menu island. */
+@media (min-width: 761px) {
+  .folio-header.is-hidden:not(.is-card):not(:focus-within) #site-nav { opacity: 0; translate: 0 -14px; pointer-events: none; }
+}
+
 /* ---------- The orb ---------- */
 .folio-header.is-orb .nav-toggle { visibility: hidden; }
 .folio-header.is-orb:not(.is-card) #site-nav {
@@ -204,10 +210,10 @@ html { scroll-padding-top: 96px; }
 
 @media (prefers-reduced-motion: no-preference) {
   .nav-pages::before { transition: left .5s cubic-bezier(.3,1.25,.45,1), width .5s cubic-bezier(.3,1.25,.45,1), opacity .25s ease; }
-  .nav-toggle { transition: background-color .3s ease, border-color .3s ease; }
+  .nav-toggle { transition: background-color .3s ease, border-color .3s ease, opacity .35s ease, translate .45s cubic-bezier(.2,.8,.3,1); }
   /* The dock condenses into the orb: its glass shrinks to the right end, then it hides once the orb is out. */
   /* At rest the clip reaches well past the dock so the Projects panel below it is never cut off. */
-  .folio-header:not(.is-card) #site-nav { clip-path: inset(-40px -80px -100vh -480px); transition: clip-path .55s cubic-bezier(.75,0,.2,1); }
+  .folio-header:not(.is-card) #site-nav { clip-path: inset(-40px -80px -100vh -480px); transition: clip-path .55s cubic-bezier(.75,0,.2,1), opacity .35s ease, translate .45s cubic-bezier(.2,.8,.3,1); }
   .folio-header.is-orb:not(.is-card) #site-nav { transition: clip-path .5s cubic-bezier(.75,0,.2,1), visibility 0s .52s; }
   .project-disclosure[open] .nav-panel { animation: nav-panel-in .32s cubic-bezier(.2,.8,.3,1) both; }
   .folio-header.is-card:not(.is-orb) #site-nav { animation: nav-panel-in .32s cubic-bezier(.2,.8,.3,1) both; }

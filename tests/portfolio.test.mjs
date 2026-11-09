@@ -355,7 +355,8 @@ describe('Portfolio pages and server', () => {
     const pages = new Map(sitePages());
     assert.equal(pages.size, 21);
     for (const [name, html] of pages) {
-      assert.match(html, /class="folio-header"/, name);
+      assert.match(html, /class="folio-header is-hidden"/, name);
+      assert.match(html, /<noscript><style>\.folio-header\.is-hidden/, name);
       assert.match(html, /src\/ui\/profile\.css/, name);
       assert.match(html, /aria-label="Main navigation"/, name);
       assert.match(html, /src\/ui\/site\.css/, name);

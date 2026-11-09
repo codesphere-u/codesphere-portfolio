@@ -11,11 +11,12 @@ const compact = matchMedia('(max-width: 760px)');
 const motion = matchMedia('(prefers-reduced-motion: no-preference)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 
-// Scroll offsets (px): the bar docks into a pill, condenses into the orb, and (with some
-// hysteresis so it never flickers) opens back into the bar near the top of the page.
+// On larger screens the dock stays hidden at the very top so each page's opening is seen in full (keyboard
+// focus still brings it back); small screens keep the Menu island. The orb appears as soon as the page
+// scrolls, with a little hysteresis so it never flickers at the boundary.
 const DOCK_AT = 48;
-const ORB_AT = 220;
-const BAR_AT = 140;
+const ORB_AT = 32;
+const BAR_AT = 12;
 
 let orbMode = false;
 let open = false;
@@ -53,6 +54,7 @@ function syncCard() {
 
 function render() {
   header.classList.toggle('is-orb', orbMode);
+  header.classList.toggle('is-hidden', !orbMode);
   header.classList.toggle('is-open', open);
   syncCard();
   for (const toggle of [button, orb]) toggle.setAttribute('aria-expanded', String(open));
@@ -66,12 +68,15 @@ function render() {
 
 function collapseToOrb(animate) {
   settle([...barItems(), orbCore]);
-  const moves = animate && motion.matches ? byDistance(barItems(), centerOf(orb)) : [];
+  // On small screens the Menu island is always shown, so it flies into the orb; on larger screens the dock
+  // is only on screen at the top when keyboard focus has revealed it.
+  const dockShown = compact.matches || header.matches(':focus-within');
+  const moves = animate && motion.matches && dockShown ? byDistance(barItems(), centerOf(orb)) : [];
   orbMode = true;
   open = false;
   render();
   placeHighlight(null);
-  if (!moves.length) return;
+  if (!animate || !motion.matches) return;
 
   // Each item winds up a touch, then is pulled into the orb.
   moves.forEach(({ element, dx, dy }, index) => {
@@ -85,7 +90,7 @@ function collapseToOrb(animate) {
     { transform: 'scale(0) rotate(-140deg)' },
     { transform: 'scale(1.16) rotate(10deg)', offset: 0.68 },
     { transform: 'none' }
-  ], { duration: 560, delay: 300, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'backwards' });
+  ], { duration: 560, delay: moves.length ? 300 : 0, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'backwards' });
 }
 
 function expandToBar(animate) {
@@ -101,6 +106,7 @@ function expandToBar(animate) {
     { visibility: 'visible', opacity: 1, transform: 'none' },
     { visibility: 'visible', opacity: 0, transform: 'scale(0) rotate(120deg)' }
   ], { duration: 280, easing: 'cubic-bezier(.5,0,.75,0)' });
+  if (!compact.matches && !header.matches(':focus-within')) return;
   byDistance(barItems(), target).forEach(({ element, dx, dy }, index) => {
     element.animate([
       { opacity: 0, transform: `translate(${dx}px, ${dy}px) scale(0.1)`, filter: 'blur(4px)' },

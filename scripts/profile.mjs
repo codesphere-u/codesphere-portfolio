@@ -72,11 +72,12 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="${prefix}${logo}" type="image/svg+xml">
   <link rel="stylesheet" href="${prefix}src/ui/profile.css">
-  <link rel="stylesheet" href="${prefix}src/ui/site.css">${page === 'home' ? '\n  <link rel="stylesheet" href="./src/ui/showcase.css">\n  <link rel="stylesheet" href="./src/ui/hero.css">' : ''}${page === 'cv' ? '\n  <link rel="stylesheet" href="./src/ui/cv.css">' : ''}
+  <link rel="stylesheet" href="${prefix}src/ui/site.css">
+  <noscript><style>.folio-header.is-hidden #site-nav { opacity: 1; translate: none; pointer-events: auto; }</style></noscript>${page === 'home' ? '\n  <link rel="stylesheet" href="./src/ui/showcase.css">\n  <link rel="stylesheet" href="./src/ui/hero.css">' : ''}${page === 'cv' ? '\n  <link rel="stylesheet" href="./src/ui/cv.css">' : ''}
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="folio-header" data-site-header>
+  <header class="folio-header is-hidden" data-site-header>
     <div class="folio-container folio-header-inner">
       <span class="header-skin" aria-hidden="true"></span>
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true"></span></button>
