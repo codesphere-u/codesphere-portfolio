@@ -22,6 +22,8 @@ Open `http://127.0.0.1:4173/`. For static hosting, run `npm run build` and publi
 
 ## Research and media
 
+From [Emma Bostian’s developer portfolio directory](https://github.com/emmabostian/developer-portfolios), the homepage draws on [Ilan Lenzner’s](https://ilans.net/) clear opening statement, [Carlton Lindsay’s](https://carlton.dev/) first-screen project previews, and [Kay Evans-Stocks’](https://www.kaystocks.com/) separation of Work and Contact. The featured cards use this portfolio’s own app screens and replay example. The mobile menu and project disclosure follow the [W3C disclosure navigation pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/examples/disclosure-navigation/).
+
 - [Nielsen Norman Group](https://www.nngroup.com/articles/ux-design-portfolios/) informed the problem, role, design, and evidence structure.
 - [W3C WAI](https://www.w3.org/WAI/tutorials/menus/structure/) informed the shared navigation landmarks, link list, and current-page indication.
 - [Jonnie Hallman’s homepage process](https://destroytoday.com/blog/homepage-concept) informed the placement of inspectable examples directly on the homepage.

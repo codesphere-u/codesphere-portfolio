@@ -16,6 +16,7 @@ pages.set('/', pages.get('/index.html'));
 
 const staticAssets = new Map([
   ['/src/ui/profile.css', 'text/css; charset=utf-8'],
+  ['/src/ui/site-nav.mjs', 'text/javascript; charset=utf-8'],
   ['/src/media/akandwanaho-ivan.svg', 'image/svg+xml'],
   ...['alvin', 'cyber-dragon', 'funa-home', 'funa-work'].map(name => ['/src/media/' + name + '.webp', 'image/webp'])
 ]);

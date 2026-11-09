@@ -31,8 +31,7 @@ const projectIds = [...new Set([...featuredIds, ...engineeringIds, ...projects.m
 const nav = [
   ['home', 'Home', 'index.html'],
   ['work', 'Work', 'work.html'],
-  ['leadership', 'Leadership', 'leadership.html'],
-  ['contact', 'Contact', 'contact.html']
+  ['leadership', 'Leadership', 'leadership.html']
 ];
 
 export function escapeHtml(value) {
@@ -66,19 +65,36 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="folio-header">
+  <header class="folio-header" data-site-header>
     <div class="folio-container folio-header-inner">
       <a class="folio-brand" href="${prefix}index.html">
-        <img src="${prefix}${logo}" width="44" height="44" alt="">
-        <span>Akandwanaho Ivan</span>
+        <img src="${prefix}${logo}" width="42" height="42" alt="">
+        <span>Akandwanaho Ivan <small>Software engineer &amp; founder</small></span>
       </a>
-      <nav aria-label="Main navigation"><ul>
-        ${nav.map(([key, label, href]) => {
-          const active = page === key;
-          const section = page === 'project' && key === 'work';
-          return `<li><a href="${prefix}${href}"${active ? ' aria-current="page"' : ''}${section ? ' data-active-section' : ''}>${label}</a></li>`;
-        }).join('\n        ')}
-      </ul></nav>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true"></span></button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <ul class="nav-pages">
+          ${nav.map(([key, label, href]) => {
+            const active = page === key;
+            const section = page === 'project' && key === 'work';
+            return `<li class="nav-${key}"><a href="${prefix}${href}"${active ? ' aria-current="page"' : ''}${section ? ' data-active-section' : ''}>${label}</a></li>`;
+          }).join('\n          ')}
+          <li class="nav-projects">
+            <details class="project-disclosure">
+              <summary>Projects <span aria-hidden="true"></span></summary>
+              <div class="nav-panel">
+                <p class="folio-label">Featured case studies</p>
+                <ul>${featuredIds.map(id => {
+                  const [name, area] = projectLeads[id];
+                  return `<li><a href="${prefix}${casePath(id)}"><strong>${name}</strong><small>${area}</small><span aria-hidden="true">↗</span></a></li>`;
+                }).join('')}</ul>
+                <a class="nav-all-work" href="${prefix}work.html">View all case studies <span aria-hidden="true">→</span></a>
+              </div>
+            </details>
+          </li>
+          <li class="nav-contact"><a href="${prefix}contact.html"${page === 'contact' ? ' aria-current="page"' : ''}>Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
   <main id="main-content" tabindex="-1">
@@ -88,6 +104,7 @@ ${body}
     <span>Akandwanaho Ivan <span class="footer-alias">· Also known as Alvin</span></span>
     <div><a href="${prefix}${logo}" download="akandwanaho-ivan.svg">Download logo</a><a href="${profile.githubUrl}">GitHub ↗</a></div>
   </div></footer>
+  <script type="module" src="${prefix}src/ui/site-nav.mjs"></script>
 </body>
 </html>`;
 }
@@ -157,6 +174,22 @@ function pageIntro(label, title, intro, actions = '') {
   </div></section>`;
 }
 
+function heroProjects() {
+  const previews = {
+    'funa-gigs': `<img src="./src/media/funa-home.webp" width="352" height="760" alt="" decoding="async">`,
+    'cyber-dragon': `<img src="./src/media/cyber-dragon.webp" width="960" height="932" alt="" decoding="async">`,
+    agentflight: `<span class="hero-trace" aria-hidden="true"><span>15m → replay</span><span>30m → diff</span></span>`
+  };
+  return featuredIds.map((id, index) => {
+    const [name, area, headline] = projectLeads[id];
+    return `<li><a class="hero-project preview-${id}" href="./${casePath(id)}">
+      <div class="hero-project-copy"><span class="folio-label">0${index + 1} / ${area}</span><strong>${name}</strong><span class="hero-project-deck">${headline}</span></div>
+      <span class="hero-project-image" aria-hidden="true">${previews[id]}</span>
+      <span class="hero-project-arrow" aria-hidden="true">↗</span>
+    </a></li>`;
+  }).join('\n        ');
+}
+
 export function renderProfile() {
   const description = 'Akandwanaho Ivan, also known as Alvin, is a software engineer and founder in Kampala, Uganda. Explore his product, security, and open-source engineering work.';
   const structured = JSON.stringify({
@@ -176,28 +209,27 @@ export function renderProfile() {
     page: 'home', description,
     body: `<script type="application/ld+json">${structured}</script>
     <section class="folio-opening" aria-labelledby="hero-heading">
-      <div class="folio-container folio-hero">
-        <div class="hero-copy">
-          <p class="folio-label hero-location"><span aria-hidden="true"></span> Kampala, Uganda · Also known as Alvin</p>
-          <h1 id="hero-heading"><span>Akandwanaho</span> <span>Ivan</span></h1>
-          <p class="hero-role">Software engineer &amp; founder</p>
-          <p class="hero-intro">I lead Codesphere Innovations and build software for problems close to home, from hiring local workers to spotting mobile-money fraud. My open-source work helps developers test and secure AI agents.</p>
-          <div class="folio-actions">
-            ${action('./work.html', 'Explore my work', { arrow: '→' })}
-            ${action('./contact.html', 'Get in touch', { secondary: true })}
+      <div class="hero-stage">
+        <div class="hero-visual">
+          <img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high">
+        </div>
+        <div class="folio-container folio-hero">
+          <div class="hero-copy">
+            <p class="folio-label hero-location"><span aria-hidden="true"></span> Kampala, Uganda · Also known as Alvin</p>
+            <p class="hero-identity">Akandwanaho Ivan</p>
+            <h1 id="hero-heading">I build systems <em>people can trust.</em></h1>
+            <p class="hero-intro">I’m a software engineer and founder of Codesphere Innovations. I build for local hiring, mobile-money fraud defense, and AI agents that developers can test and audit.</p>
+            <div class="folio-actions">
+              ${action('./work.html', 'Explore my work', { arrow: '→' })}
+              ${action('./leadership.html', 'Founder & engineering roles', { secondary: true, arrow: '→' })}
+            </div>
           </div>
         </div>
-        <figure class="hero-portrait">
-          <div class="hero-photo"><img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high"></div>
-          <figcaption><span>Akandwanaho Ivan</span><span>Engineer · Founder</span></figcaption>
-        </figure>
       </div>
-      <div class="folio-container work-shortcuts" aria-label="Featured projects">
-        ${featuredIds.map((id, index) => {
-          const [name, area] = projectLeads[id];
-          return `<a href="./${casePath(id)}"><span class="folio-label">0${index + 1} / ${area}</span><strong>${name}</strong><span class="shortcut-arrow" aria-hidden="true">↗</span></a>`;
-        }).join('\n        ')}
-      </div>
+      <div class="hero-shelf"><div class="folio-container">
+        <div class="hero-shelf-heading"><h2>Featured work</h2><a href="./work.html">All case studies <span aria-hidden="true">→</span></a></div>
+        <ul class="hero-projects">${heroProjects()}</ul>
+      </div></div>
     </section>
     <section class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
