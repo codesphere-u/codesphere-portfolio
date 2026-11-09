@@ -266,11 +266,11 @@ export function validatePortfolioIntegrity(data) {
     return { valid: false, errors: ['Portfolio data root is missing.'], totalTests: 0 };
   }
 
-  if (data.profile?.name !== 'Akandwanaho Ivan Alvin') {
-    errors.push('Profile name must be Akandwanaho Ivan Alvin.');
+  if (data.profile?.name !== 'Akandwanaho Ivan') {
+    errors.push('Profile name must be Akandwanaho Ivan.');
   }
-  if (data.profile?.displayNameUpper !== 'AKANDWANAHO IVAN ALVIN') {
-    errors.push('Hero displayNameUpper must be AKANDWANAHO IVAN ALVIN.');
+  if (data.profile?.displayNameUpper !== 'AKANDWANAHO IVAN') {
+    errors.push('Hero displayNameUpper must be AKANDWANAHO IVAN.');
   }
   if (data.profile?.heroEditorialHeadline !== 'Engineering what comes next.') {
     errors.push('Hero editorial headline must be "Engineering what comes next."');

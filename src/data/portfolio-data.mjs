@@ -1,6 +1,6 @@
 /**
  * Verified Engineering Portfolio & Architecture Case-Study Dataset — v2.0 ("The Builder's Journey")
- * Owner: Akandwanaho Ivan Alvin (https://github.com/codesphere-u)
+ * Owner: Akandwanaho Ivan (https://github.com/codesphere-u)
  *
  * Every repository URL, test count, latency measurement, career milestone, and architectural
  * invariant in this file corresponds to verified source code and factual career history.
@@ -9,8 +9,8 @@
 export const PORTFOLIO_DATA = {
   profile: {
     handle: 'codesphere-u',
-    name: 'Akandwanaho Ivan Alvin',
-    displayNameUpper: 'AKANDWANAHO IVAN ALVIN',
+    name: 'Akandwanaho Ivan',
+    displayNameUpper: 'AKANDWANAHO IVAN',
     shortName: 'Alvin',
     heroEditorialHeadline: 'Engineering what comes next.',
     heroSpecialties: [
@@ -36,7 +36,7 @@ export const PORTFOLIO_DATA = {
     missionStatement:
       'Architecting auditable AI systems, defensive cybersecurity platforms, double-entry financial infrastructure, and resilient digital products that solve real operational problems across Africa and the world.',
     aboutParagraphs: [
-      'I am Akandwanaho Ivan Alvin (commonly known as Alvin), a software engineer, cybersecurity practitioner, full-stack developer, and technology entrepreneur from Kampala, Uganda with a deep focus on artificial intelligence, defensive security, distributed systems, and building software that solves meaningful problems.',
+      'I am Akandwanaho Ivan (commonly known as Alvin), a software engineer, cybersecurity practitioner, full-stack developer, and technology entrepreneur from Kampala, Uganda with a deep focus on artificial intelligence, defensive security, distributed systems, and building software that solves meaningful problems.',
       'My journey in technology began with developing practical business management systems, web applications, mobile platforms, AI-assisted tools, and cloud-connected services. Over time, my work expanded beyond application development into system architecture, technical leadership, engineering operations, and technology entrepreneurship.',
       'I founded 4codex Technologies, previously served as Chief Technology Officer (CTO) and Head of Engineering at Waanverse Labs Inc. (departing in March 2025), and currently serve as Founder and Managing Director of Codesphere Innovations (U) Limited. I also serve as Founder and Project Lead for Funa Gigs, a real-time digital services marketplace developed under Jaminsa Ventures Limited.',
       'Across both commercial platforms and open-source flagships—such as Cyber Dragon, Auralis Local, ARGUS AI, AgentShield, FlowLedger, StackPulse, and AgriSignal—my goal is to combine serious engineering rigor, deterministic safety boundaries, and thoughtful user experience.'

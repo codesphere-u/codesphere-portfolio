@@ -1,7 +1,7 @@
 {
   "name": "codesphere-portfolio",
   "version": "2.0.0",
-  "description": "The Builder's Journey — Interactive Engineering Documentary & Architecture Case-Study Portfolio for Akandwanaho Ivan Alvin (codesphere-u).",
+  "description": "The Builder's Journey — Interactive Engineering Documentary & Architecture Case-Study Portfolio for Akandwanaho Ivan (codesphere-u).",
   "type": "module",
   "main": "src/core/explorer.mjs",
   "types": "src/data/portfolio-data.d.ts",
