@@ -8,7 +8,7 @@ import {
   computePortfolioSummary,
   sortBenchmarks
 } from './src/core/explorer.mjs';
-import { generateArchiveHtml, generateCaseStudyHtml, generatePortfolioHtml } from './scripts/build.mjs';
+import { generateCaseStudyHtml, generatePortfolioHtml } from './scripts/build.mjs';
 
 import { renderFunaCaseStudy } from './scripts/profile.mjs';
 
@@ -33,7 +33,6 @@ const STATIC_ASSET_PATHS = {
   '/src/ui/editorial.css': path.join(__dirname, 'src', 'ui', 'editorial.css'),
   '/src/ui/polish.css': path.join(__dirname, 'src', 'ui', 'polish.css'),
   '/src/ui/app.mjs': path.join(__dirname, 'src', 'ui', 'app.mjs'),
-  '/src/ui/navigation.mjs': path.join(__dirname, 'src', 'ui', 'navigation.mjs'),
   '/src/core/explorer.mjs': path.join(__dirname, 'src', 'core', 'explorer.mjs'),
   '/src/data/portfolio-data.mjs': path.join(__dirname, 'src', 'data', 'portfolio-data.mjs'),
   '/src/data/portfolio-data.d.ts': path.join(__dirname, 'src', 'data', 'portfolio-data.d.ts')
@@ -120,9 +119,15 @@ export function handlePortfolioRequest(req, res) {
       return;
     }
 
-    if (url.pathname === '/archive.html' || url.pathname === '/cases/funa-gigs.html') {
+    if (url.pathname === '/archive.html' || url.pathname === '/archive') {
+      res.writeHead(301, { Location: '/#projects' });
+      res.end();
+      return;
+    }
+
+    if (url.pathname === '/cases/funa-gigs.html') {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(url.pathname === '/archive.html' ? generateArchiveHtml() : renderFunaCaseStudy());
+      res.end(renderFunaCaseStudy());
       return;
     }
 
@@ -130,7 +135,7 @@ export function handlePortfolioRequest(req, res) {
     if (caseMatch) {
       const project = PORTFOLIO_DATA.projects.find(({ id }) => id === caseMatch[1]);
       res.writeHead(project ? 200 : 404, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(project ? generateCaseStudyHtml(project) : '<!doctype html><title>Case study not found</title><h1>Case study not found</h1><a href="/archive.html#project-index">Project index</a>');
+      res.end(project ? generateCaseStudyHtml(project) : '<!doctype html><title>Case study not found</title><h1>Case study not found</h1><a href="/#projects">Selected work</a>');
       return;
     }
 
