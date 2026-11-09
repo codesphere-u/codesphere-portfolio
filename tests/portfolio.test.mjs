@@ -21,13 +21,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career & Strict Accuracy Rules", () => {
-  it('validates overall portfolio schema and 856 verified automated tests/suites across 15 repositories', () => {
+  it('validates overall portfolio schema and 900 verified automated tests/suites across 15 repositories', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.equal(
       check.totalTests,
-      856,
-      `Expected exactly 856 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
+      900,
+      `Expected exactly 900 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
     );
   });
 
@@ -203,7 +203,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(cyberDragon.liveDemoUrl, 'https://cyber-dragon-ivory.vercel.app');
 
     const auralis = getProjectById('auralis-local');
-    assert.equal(auralis.automatedTests, 36);
+    assert.equal(auralis.automatedTests, 47);
 
     const argus = getProjectById('ARGUS-AI');
     assert.equal(argus.automatedTests, 61);
@@ -212,10 +212,10 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(agentshield.automatedTests, 42);
 
     const flowledger = getProjectById('flowledger');
-    assert.equal(flowledger.automatedTests, 51);
+    assert.equal(flowledger.automatedTests, 66);
 
     const stackpulse = getProjectById('stackpulse');
-    assert.equal(stackpulse.automatedTests, 47);
+    assert.equal(stackpulse.automatedTests, 65);
 
     const agrisignal = getProjectById('agrisignal');
     assert.equal(agrisignal.automatedTests, 60);
@@ -366,7 +366,7 @@ describe('Portfolio pages and server', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
     assert.equal(summary.totalProjects, 15);
-    assert.equal(summary.totalAutomatedTests, 856);
+    assert.equal(summary.totalAutomatedTests, 900);
     assert.match(html, /class="skip-link"/);
     assert.match(html, /application\/ld\+json/);
     assert.match(html, /href="\.\/index\.html" aria-current="page"/);
@@ -406,7 +406,7 @@ describe('Portfolio pages and server', () => {
       assert.equal(body.version, '2.0.0');
       assert.equal(body.owner, 'Akandwanaho Ivan');
       assert.equal(body.totalProjects, 15);
-      assert.equal(body.totalAutomatedTests, 856);
+      assert.equal(body.totalAutomatedTests, 900);
     });
 
     it('serves /api/projects with domain and query filtering', async () => {

@@ -384,19 +384,19 @@ export const PORTFOLIO_DATA = {
       id: 'auralis-local',
       slug: 'auralis-local',
       name: 'Auralis Local',
-      version: 'v0.2.0',
+      version: 'v0.3.0',
       isPrimaryFlagship: true,
       visualMotif: 'waveform',
       accentColor: '#387BFA',
       tagline:
         'Privacy-First Local AI Workspace, Hybrid BM25 RAG & Local Voice Room for Apple Silicon',
       summary:
-        'Local-first AI assistant engineered for 16 GB Apple Silicon Macs. Combines streaming Ollama inference, local MLX/Whisper voice conversations, a line-aware Hybrid BM25 + Phrase RAG knowledge base with inline citations, and approval-gated workspace tools.',
+        'Local-first AI assistant engineered for Apple Silicon Macs. Combines streaming Ollama inference, local MLX/Whisper voice conversations, a line-aware Hybrid BM25 + Phrase RAG knowledge base with offline PDF text extraction, and automated M-series unified memory pressure profiling across 4K vs 8K context windows.',
       problemStatement:
         'Developers want capable coding, document retrieval, and voice assistants without streaming private source code or notes to external cloud APIs—or giving an LLM unrestricted shell and filesystem write access.',
       technicalChallenges: [
-        'Keeping unified memory pressure predictable on a 16 GB Apple Silicon Mac through bounded context profiles (Fast vs. Balanced), short model residency, and single-flight generation.',
-        'Implementing deterministic, zero-cloud document chunking and Hybrid BM25 + Exact-Phrase retrieval that cites exact line ranges (#Lstart-Lend) in sub-millisecond latency.',
+        'Keeping unified memory pressure predictable on Apple Silicon Macs through bounded context profiles (Fast vs. Balanced), short model residency, and single-flight generation.',
+        'Implementing deterministic, zero-cloud document chunking, zero-dependency PDF text stream parsing, and Hybrid BM25 + Exact-Phrase retrieval that cites exact line ranges (#Lstart-Lend) in sub-millisecond latency.',
         'Enforcing strict path-traversal, symlink, and dotfile/secret blocking in the workspace inspector while gating state mutations behind expiring human approval tokens.'
       ],
       securityConsiderations: [
@@ -408,14 +408,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/auralis-local',
       languages: ['TypeScript', 'React 19', 'Node.js', 'Python (MLX/Whisper)'],
-      automatedTests: 36,
+      automatedTests: 47,
       headlineMetric: {
         label: 'Hybrid BM25 RAG Latency',
         value: '0.245 ms P50 · 3,110 docs/s',
         detail: 'Line-aware local document chunking and hybrid retrieval with deterministic source citations'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '36 passing (Linux & macOS CI)' },
+        { label: 'Automated Tests', value: '47 passing (Linux & macOS CI)' },
         { label: 'Retrieval P50 Latency', value: '0.245 ms' },
         { label: 'Indexing Throughput', value: '3,110 docs/sec' },
         { label: 'Network Binding', value: '127.0.0.1 Loopback Only' }
@@ -466,7 +466,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires an extra user click to approve a note or document index, but eliminates silent prompt-injected writes.',
           verification:
-            'Verified across 36 automated tests in tests/security.test.ts, tests/knowledge.test.ts, and tests/api.test.ts.'
+            'Verified across 47 automated tests in tests/security.test.ts, tests/knowledge.test.ts, tests/pdf.test.ts, tests/memory.test.ts, and tests/api.test.ts.'
         }
       ],
       cliQuickstart: [
@@ -1556,18 +1556,19 @@ export const PORTFOLIO_DATA = {
       id: 'flowledger',
       slug: 'flowledger',
       name: 'FlowLedger',
-      version: 'v1.0.0',
+      version: 'v1.1.0',
       isPrimaryFlagship: true,
       visualMotif: 'ledger',
       accentColor: '#F4B94C',
       tagline:
         'African Payment Orchestration, Idempotent State Machine & Double-Entry Reconciliation Engine',
       summary:
-        'Financial infrastructure engine demonstrating institutional double-entry ledger accounting, idempotent payment processing, HMAC webhook verification, simulated MTN MoMo & Airtel Money adapters, and automated 3-way reconciliation.',
+        'Financial infrastructure engine demonstrating institutional double-entry ledger accounting, idempotent payment processing, ISO 20022 CAMT.053 XML statement parsing, multi-party marketplace escrow, Model Context Protocol (MCP) tooling, and automated 3-way reconciliation.',
       problemStatement:
         'Mobile money and payment integrations face duplicate webhook deliveries, out-of-order settlement callbacks arriving before authorization responses, network timeouts, and provider fee discrepancies that corrupt naive single-column balance tables.',
       technicalChallenges: [
         'Eliminating floating-point representation errors by enforcing strict integer minor-unit arithmetic across UGX, KES, NGN, and USD accounts and verifying zero-sum balanced postings on every journal commit.',
+        'Parsing ISO 20022 CAMT.053 XML bank statements and generating automated CSV reconciliation and exceptions exports for operational finance teams.',
         'Handling out-of-order and duplicate mobile-money webhooks idempotently using SHA-256 request payload fingerprinting and deterministic state-machine transitions.',
         'Reconciling internal payment intents, double-entry ledger postings, and external provider settlement statements (3-way reconciliation) to automatically classify fee discrepancies and missing settlements.'
       ],
@@ -1580,14 +1581,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Fintech',
       repoUrl: 'https://github.com/codesphere-u/flowledger',
       languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'Double-Entry Engine'],
-      automatedTests: 51,
+      automatedTests: 66,
       headlineMetric: {
         label: 'Ledger Invariant Integrity',
         value: '0 Imbalance · 97 Chained Entries',
         detail: '100% balanced debits == credits across 50 synthetic East African mobile money transactions with injected failures'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '51 passing (pytest)' },
+        { label: 'Automated Tests', value: '66 passing (pytest)' },
         { label: 'Hash-Chained Entries', value: '97 verified (0 imbalance)' },
         { label: '3-Way Reconciliation', value: '50 synthetic txs classified' },
         { label: 'Arithmetic Model', value: 'Strict Integer Minor Units' }
@@ -1642,7 +1643,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires explicit currency minor-unit scaling at display boundaries, but guarantees zero rounding drift and complete auditability.',
           verification:
-            'Verified across 51 automated tests in tests/test_ledger_invariants.py and tests/test_reconciliation_and_api.py.'
+            'Verified across 66 automated tests in tests/test_ledger_invariants.py, tests/test_reconciliation_and_api.py, tests/test_camt053_and_csv.py, tests/test_split_and_escrow.py, and tests/test_mcp_and_aegis.py.'
         }
       ],
       cliQuickstart: [
@@ -1676,20 +1677,21 @@ export const PORTFOLIO_DATA = {
       id: 'stackpulse',
       slug: 'stackpulse',
       name: 'StackPulse',
-      version: 'v1.0.0',
+      version: 'v1.1.0',
       isPrimaryFlagship: true,
       visualMotif: 'trace',
       accentColor: '#387BFA',
       tagline:
         'Cloud Observability, OpenTelemetry Trace DAG Critical-Path Analyzer & Multi-Window SLO Lab',
       summary:
-        'Self-hostable cloud reliability and incident investigation platform. Reconstructs W3C distributed trace DAGs, computes true critical-path bottlenecks, automatically detects ORM N+1 query regressions, tracks Google SRE multi-window SLO burn rates, and generates blameless postmortems.',
+        'Self-hostable cloud reliability and incident investigation platform. Supports standard OpenTelemetry OTLP/HTTP /v1/traces ingestion, reconstructs W3C distributed trace DAGs, computes true critical-path bottlenecks, automatically detects ORM N+1 regressions, dispatches webhook alerts on multi-window SLO burn rates, and generates blameless postmortems.',
       problemStatement:
         'During microservice latency spikes or retry storms, engineers waste critical minutes staring at flat span lists without knowing which downstream service owns the true critical path or whether error budgets are burning at a page-worthy rate.',
       technicalChallenges: [
+        'Ingesting standard OpenTelemetry Collector OTLP/HTTP JSON resourceSpans payloads at /v1/traces and normalizing 128-bit trace and 64-bit span identifiers.',
         'Reconstructing parent-child span DAG trees and computing interval-union child coverage so parallel child spans are not double-counted when attributing self-exclusive latency.',
         'Automatically detecting N+1 ORM query regressions (repeated sequential database child spans under a single parent) and cascading HTTP 503 retry amplification.',
-        'Implementing Google SRE Workbook multi-window, multi-burn-rate alerting (1h/6h fast burn at 14.4x vs. 24h/72h slow burn at 6x) with time-to-exhaustion projections.'
+        'Implementing Google SRE Workbook multi-window, multi-burn-rate alerting (1h/6h fast burn at 14.4x vs. 24h/72h slow burn at 6x) with time-to-exhaustion projections and webhook alerting.'
       ],
       securityConsiderations: [
         'Bounded in-memory ring-buffer store prevents unbounded memory exhaustion under high span ingestion load.',
@@ -1700,14 +1702,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Cloud',
       repoUrl: 'https://github.com/codesphere-u/stackpulse',
       languages: ['Python 3.12', 'FastAPI', 'OpenTelemetry', 'Docker Compose'],
-      automatedTests: 47,
+      automatedTests: 65,
       headlineMetric: {
         label: 'Trace DAG Critical-Path Speed',
         value: '19,525 traces/s · 51.2 µs/trace',
         detail: 'Reconstructs W3C span trees, identifies critical-path bottlenecks, and flags N+1 query patterns'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '47 passing (pytest + Ruff)' },
+        { label: 'Automated Tests', value: '65 passing (pytest + Ruff)' },
         { label: 'DAG Assembly Speed', value: '19,525 traces/sec' },
         { label: 'Critical-Path Latency', value: '51.2 µs / trace' },
         { label: 'SLO Alerting Model', value: 'Multi-Window Burn Rate (14.4x / 6x)' }
@@ -1764,7 +1766,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires sorting child span intervals per parent node (O(k log k)), which executes in ~51 µs per trace.',
           verification:
-            'Verified across 47 pytest tests in tests/test_stackpulse.py and benchmarked across 500 traces (3,625 spans).'
+            'Verified across 65 pytest tests in tests/test_stackpulse.py and tests/test_otlp_and_alerts.py and benchmarked across 500 traces (3,625 spans).'
         }
       ],
       cliQuickstart: [
@@ -1786,7 +1788,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '47 Observability Tests',
+          label: '65 Observability Tests',
           path: 'tests/test_stackpulse.py',
           url: 'https://github.com/codesphere-u/stackpulse/blob/main/tests/test_stackpulse.py',
           kind: 'test'
@@ -2465,28 +2467,28 @@ export const PORTFOLIO_DATA = {
     },
     {
       projectId: 'flowledger',
-      projectName: 'FlowLedger v1.0',
+      projectName: 'FlowLedger v1.1',
       repoSlug: 'codesphere-u/flowledger',
       domain: 'Fintech',
-      automatedTests: 51,
+      automatedTests: 66,
       primaryLatencyLabel: 'Double-Entry Commit & Hash',
       primaryLatencyMs: 0.22,
       throughputOrAccuracyLabel: 'Trial Balance & Reconciliation',
-      throughputOrAccuracyValue: '0 Imbalance (97 Entries · 50 Txs Reconciled)',
+      throughputOrAccuracyValue: '0 Imbalance (66 Tests · ISO 20022 CAMT.053 & Escrow)',
       determinismGuarantee: 'Integer Minor Units + SHA-256 Journal Hash Chain',
       verificationCommand: 'cd flowledger && pytest -v && python -m flowledger.cli verify-invariants'
     },
     {
       projectId: 'stackpulse',
-      projectName: 'StackPulse v1.0',
+      projectName: 'StackPulse v1.1',
       repoSlug: 'codesphere-u/stackpulse',
       domain: 'Cloud',
-      automatedTests: 47,
+      automatedTests: 65,
       primaryLatencyLabel: 'Critical-Path DAG Assembly',
       primaryLatencyMs: 0.051,
       throughputOrAccuracyLabel: 'DAG & Span Throughput',
       throughputOrAccuracyValue: '19,525 traces/sec · 3.7M+ spans/sec',
-      determinismGuarantee: 'Interval-Union Exclusive Duration + Multi-Window Burn Rate',
+      determinismGuarantee: 'OTLP/HTTP /v1/traces + Multi-Window SLO Burn Rate',
       verificationCommand: 'cd stackpulse && pytest -v && python -m stackpulse.cli benchmark'
     },
     {
@@ -2504,14 +2506,14 @@ export const PORTFOLIO_DATA = {
     },
     {
       projectId: 'auralis-local',
-      projectName: 'Auralis Local v0.2',
+      projectName: 'Auralis Local v0.3',
       repoSlug: 'codesphere-u/auralis-local',
       domain: 'AI',
-      automatedTests: 36,
+      automatedTests: 47,
       primaryLatencyLabel: 'Hybrid BM25 Retrieval (P50)',
       primaryLatencyMs: 0.245,
       throughputOrAccuracyLabel: 'Local Indexing Throughput',
-      throughputOrAccuracyValue: '3,110 docs/sec (P95 Retrieval: 0.558 ms)',
+      throughputOrAccuracyValue: '3,110 docs/sec · PDF Extractor · 4K/8K Memory Profiling',
       determinismGuarantee: '127.0.0.1 Loopback Sandbox + Single-Use Approval Tokens',
       verificationCommand: 'cd auralis-local && npm test && npm run benchmark'
     },
