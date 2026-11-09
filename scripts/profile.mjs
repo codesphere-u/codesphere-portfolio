@@ -1,4 +1,5 @@
 import { PORTFOLIO_DATA } from '../src/data/portfolio-data.mjs';
+import { renderShowcase } from './showcase.mjs';
 
 const { profile, projects, experience } = PORTFOLIO_DATA;
 const storeUrl = 'https://play.google.com/store/apps/details?id=com.codesphereinnovations.funa_giggs';
@@ -68,6 +69,7 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="${prefix}${logo}" type="image/svg+xml">
   <link rel="stylesheet" href="${prefix}src/ui/profile.css">
+  ${page === 'home' ? '<link rel="stylesheet" href="./src/ui/showcase.css">' : ''}
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -116,6 +118,7 @@ ${body}
     <div><a href="${prefix}${logo}" download="akandwanaho-ivan.svg">Download logo</a><a href="${profile.githubUrl}">GitHub ↗</a></div>
   </div></footer>
   <script type="module" src="${prefix}src/ui/site-nav.mjs"></script>
+  ${page === 'home' ? '<script type="module" src="./src/ui/showcase.mjs"></script>' : ''}
 </body>
 </html>`;
 }
@@ -226,8 +229,8 @@ export function renderProfile() {
             <h1 id="hero-heading">I build systems <em>people can trust.</em></h1>
             <p class="hero-intro">I’m a software engineer and founder of Codesphere Innovations. I build for local hiring, mobile-money fraud defense, and AI agents that developers can test and audit.</p>
             <div class="folio-actions">
-              ${action('./work.html', 'Explore my work', { arrow: '→' })}
-              ${action('./leadership.html', 'Founder & engineering roles', { secondary: true, arrow: '→' })}
+              ${action('#work-heading', 'Try the work', { arrow: '↓' })}
+              ${action('./work.html', 'All case studies', { secondary: true, arrow: '→' })}
             </div>
           </div>
         </div>
@@ -239,8 +242,8 @@ export function renderProfile() {
     </section>
     <section class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
-        ${sectionHeading('01 / Selected work', 'Projects you can explore', 'See the product, the engineering decision behind it, and how to verify the result.', 'work-heading')}
-        ${featuredCards()}
+        ${sectionHeading('01 / Selected work', 'Work in action', 'Try a hiring flow, compare two fraud-analysis results, or change an AI tool call and see what breaks.', 'work-heading')}
+        ${renderShowcase()}
         <div class="section-end">${action('./work.html', 'See all project case studies', { secondary: true, arrow: '→' })}</div>
       </div>
     </section>

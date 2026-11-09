@@ -141,6 +141,10 @@ Returns latency, throughput, and memory measurements across flagship repositorie
 
 ---
 
+## Interactive Work in Action
+
+The homepage includes a keyboard-accessible project showcase. Funa Gigs uses two published Android screens from the official app listing. Cyber Dragon shows recorded results from the reversal and meeting-reminder presets in the [analyzer at commit 9d519b8](https://github.com/codesphere-u/cyber-dragon/blob/9d519b8/apps/web/lib/analyze.ts). AgentFlight uses the [documented synthetic replay](https://github.com/codesphere-u/agentflight#quickstart) and its argument-divergence result. All examples remain visible in a linear layout without JavaScript. The tabs follow the [W3C tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
 ## Research, Accessibility & Media Acknowledgements
 
 - **Design Systems Research**: Informed by [Nielsen Norman Group's UX Design Portfolios Guidance](https://www.nngroup.com/articles/ux-design-portfolios/) on role, context, architectural decisions, and evidence presentation.
