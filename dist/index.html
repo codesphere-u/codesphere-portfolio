@@ -15,44 +15,71 @@
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="folio-header">
+  <header class="folio-header" data-site-header>
     <div class="folio-container folio-header-inner">
       <a class="folio-brand" href="./index.html">
-        <img src="./src/media/akandwanaho-ivan.svg" width="44" height="44" alt="">
-        <span>Akandwanaho Ivan</span>
+        <img src="./src/media/akandwanaho-ivan.svg" width="42" height="42" alt="">
+        <span>Akandwanaho Ivan <small>Software engineer &amp; founder</small></span>
       </a>
-      <nav aria-label="Main navigation"><ul>
-        <li><a href="./index.html" aria-current="page">Home</a></li>
-        <li><a href="./work.html">Work</a></li>
-        <li><a href="./leadership.html">Leadership</a></li>
-        <li><a href="./contact.html">Contact</a></li>
-      </ul></nav>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true"></span></button>
+      <nav id="site-nav" aria-label="Main navigation">
+        <ul class="nav-pages">
+          <li class="nav-home"><a href="./index.html" aria-current="page">Home</a></li>
+          <li class="nav-work"><a href="./work.html">Work</a></li>
+          <li class="nav-leadership"><a href="./leadership.html">Leadership</a></li>
+          <li class="nav-projects">
+            <details class="project-disclosure">
+              <summary>Projects <span aria-hidden="true"></span></summary>
+              <div class="nav-panel">
+                <p class="folio-label">Featured case studies</p>
+                <ul><li><a href="./work/funa-gigs.html"><strong>Funa Gigs</strong><small>Product leadership</small><span aria-hidden="true">↗</span></a></li><li><a href="./work/cyber-dragon.html"><strong>Cyber Dragon</strong><small>Defensive security</small><span aria-hidden="true">↗</span></a></li><li><a href="./work/agentflight.html"><strong>AgentFlight</strong><small>Developer tools</small><span aria-hidden="true">↗</span></a></li></ul>
+                <a class="nav-all-work" href="./work.html">View all case studies <span aria-hidden="true">→</span></a>
+              </div>
+            </details>
+          </li>
+          <li class="nav-contact"><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
   <main id="main-content" tabindex="-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Akandwanaho Ivan","alternateName":"Alvin","jobTitle":"Software Engineer and Founder","worksFor":{"@type":"Organization","name":"Codesphere Innovations (U) Limited","url":"https://www.codesphereug.com"},"sameAs":["https://github.com/codesphere-u","https://www.linkedin.com/in/the4codex"]}}</script>
     <section class="folio-opening" aria-labelledby="hero-heading">
-      <div class="folio-container folio-hero">
-        <div class="hero-copy">
-          <p class="folio-label hero-location"><span aria-hidden="true"></span> Kampala, Uganda · Also known as Alvin</p>
-          <h1 id="hero-heading"><span>Akandwanaho</span> <span>Ivan</span></h1>
-          <p class="hero-role">Software engineer &amp; founder</p>
-          <p class="hero-intro">I lead Codesphere Innovations and build software for problems close to home, from hiring local workers to spotting mobile-money fraud. My open-source work helps developers test and secure AI agents.</p>
-          <div class="folio-actions">
-            <a class="folio-action" href="./work.html">Explore my work<span aria-hidden="true">→</span></a>
-            <a class="folio-action folio-action-secondary" href="./contact.html">Get in touch<span aria-hidden="true">↗</span></a>
+      <div class="hero-stage">
+        <div class="hero-visual">
+          <img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high">
+        </div>
+        <div class="folio-container folio-hero">
+          <div class="hero-copy">
+            <p class="folio-label hero-location"><span aria-hidden="true"></span> Kampala, Uganda · Also known as Alvin</p>
+            <p class="hero-identity">Akandwanaho Ivan</p>
+            <h1 id="hero-heading">I build systems <em>people can trust.</em></h1>
+            <p class="hero-intro">I’m a software engineer and founder of Codesphere Innovations. I build for local hiring, mobile-money fraud defense, and AI agents that developers can test and audit.</p>
+            <div class="folio-actions">
+              <a class="folio-action" href="./work.html">Explore my work<span aria-hidden="true">→</span></a>
+              <a class="folio-action folio-action-secondary" href="./leadership.html">Founder &amp; engineering roles<span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </div>
-        <figure class="hero-portrait">
-          <div class="hero-photo"><img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high"></div>
-          <figcaption><span>Akandwanaho Ivan</span><span>Engineer · Founder</span></figcaption>
-        </figure>
       </div>
-      <div class="folio-container work-shortcuts" aria-label="Featured projects">
-        <a href="./work/funa-gigs.html"><span class="folio-label">01 / Product leadership</span><strong>Funa Gigs</strong><span class="shortcut-arrow" aria-hidden="true">↗</span></a>
-        <a href="./work/cyber-dragon.html"><span class="folio-label">02 / Defensive security</span><strong>Cyber Dragon</strong><span class="shortcut-arrow" aria-hidden="true">↗</span></a>
-        <a href="./work/agentflight.html"><span class="folio-label">03 / Developer tools</span><strong>AgentFlight</strong><span class="shortcut-arrow" aria-hidden="true">↗</span></a>
-      </div>
+      <div class="hero-shelf"><div class="folio-container">
+        <div class="hero-shelf-heading"><h2>Featured work</h2><a href="./work.html">All case studies <span aria-hidden="true">→</span></a></div>
+        <ul class="hero-projects"><li><a class="hero-project preview-funa-gigs" href="./work/funa-gigs.html">
+      <div class="hero-project-copy"><span class="folio-label">01 / Product leadership</span><strong>Funa Gigs</strong><span class="hero-project-deck">Hire nearby. Pay after approval.</span></div>
+      <span class="hero-project-image" aria-hidden="true"><img src="./src/media/funa-home.webp" width="352" height="760" alt="" decoding="async"></span>
+      <span class="hero-project-arrow" aria-hidden="true">↗</span>
+    </a></li>
+        <li><a class="hero-project preview-cyber-dragon" href="./work/cyber-dragon.html">
+      <div class="hero-project-copy"><span class="folio-label">02 / Defensive security</span><strong>Cyber Dragon</strong><span class="hero-project-deck">Inspect suspicious messages without opening the link.</span></div>
+      <span class="hero-project-image" aria-hidden="true"><img src="./src/media/cyber-dragon.webp" width="960" height="932" alt="" decoding="async"></span>
+      <span class="hero-project-arrow" aria-hidden="true">↗</span>
+    </a></li>
+        <li><a class="hero-project preview-agentflight" href="./work/agentflight.html">
+      <div class="hero-project-copy"><span class="folio-label">03 / Developer tools</span><strong>AgentFlight</strong><span class="hero-project-deck">Replay an AI agent’s failure in a test.</span></div>
+      <span class="hero-project-image" aria-hidden="true"><span class="hero-trace" aria-hidden="true"><span>15m → replay</span><span>30m → diff</span></span></span>
+      <span class="hero-project-arrow" aria-hidden="true">↗</span>
+    </a></li></ul>
+      </div></div>
     </section>
     <section class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
@@ -131,5 +158,6 @@
     <span>Akandwanaho Ivan <span class="footer-alias">· Also known as Alvin</span></span>
     <div><a href="./src/media/akandwanaho-ivan.svg" download="akandwanaho-ivan.svg">Download logo</a><a href="https://github.com/codesphere-u">GitHub ↗</a></div>
   </div></footer>
+  <script type="module" src="./src/ui/site-nav.mjs"></script>
 </body>
 </html>

@@ -59,7 +59,9 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(profile.liveDemoUrl, 'https://cyber-dragon-ivory.vercel.app');
 
     const { html } = generatePortfolioHtml();
-    assert.match(html, /<h1 id="hero-heading"><span>Akandwanaho<\/span> <span>Ivan<\/span><\/h1>/);
+    assert.match(html, /<p class="hero-identity">Akandwanaho Ivan<\/p>/);
+    assert.match(html, /<h1 id="hero-heading">I build systems/);
+    assert.match(html, /class="hero-projects"/);
     assert.match(html, /Software engineer &amp; founder/);
     assert.match(html, /src\/media\/alvin\.webp/);
     assert.match(html, /Explore my work/);
@@ -370,6 +372,9 @@ describe('Portfolio pages and server', () => {
     assert.match(html, /class="skip-link"/);
     assert.match(html, /application\/ld\+json/);
     assert.match(html, /href="\.\/index\.html" aria-current="page"/);
+    assert.match(html, /aria-controls="site-nav" aria-expanded="false" hidden/);
+    assert.match(html, /<details class="project-disclosure">/);
+    assert.match(html, /<script type="module" src="\.\/src\/ui\/site-nav\.mjs"/);
     for (const page of ['work', 'leadership', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'archive.html')), false);
     assert.equal(fs.existsSync(path.join(ROOT_DIR, 'dist', 'cases')), false);
@@ -453,6 +458,7 @@ describe('Portfolio pages and server', () => {
       assert.equal(typeof defaultServerHandler, 'function');
       for (const [asset, type] of [
         ['/src/ui/profile.css', 'text/css; charset=utf-8'],
+        ['/src/ui/site-nav.mjs', 'text/javascript; charset=utf-8'],
         ['/src/media/akandwanaho-ivan.svg', 'image/svg+xml'],
         ...['alvin', 'funa-home', 'funa-work', 'cyber-dragon'].map(name => [`/src/media/${name}.webp`, 'image/webp'])
       ]) {
