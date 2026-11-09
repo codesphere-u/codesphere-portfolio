@@ -1,4 +1,7 @@
-// Each exhibit is inspectable as ordinary HTML and becomes a tab set when enhanced.
+// "The Exhibition": the home page's selected work.
+// The markup reads as three ordinary project articles; showcase.mjs pins them into a
+// scroll-driven stage on large screens and turns each demo's options into tabs.
+
 function switcher(id, label, items, className) {
   return `<div class="${className}" data-switcher>
     <div class="switcher-controls" data-switcher-controls aria-label="${label}" hidden>
@@ -10,139 +13,171 @@ function switcher(id, label, items, className) {
   </div>`;
 }
 
-function exhibit({ id, category, name, headline, intro, evidence, footnote }) {
-  return `<article class="showcase-exhibit showcase-${id}">
-    <div class="showcase-copy">
-      <p class="folio-label">${category}</p>
-      <h3>${name}</h3>
-      <p class="showcase-headline">${headline}</p>
-      <p>${intro}</p>
-      <a class="folio-action folio-action-secondary" href="./work/${id}.html">Read the ${name} case study <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="showcase-stage" data-scroll-reveal="media">
-      ${evidence}
-      <p class="showcase-note">${footnote}</p>
-    </div>
-  </article>`;
-}
+// Funa Gigs: the real Google Play screenshots in a phone, with a radar behind it.
+const radar = '<div class="funa-radar" aria-hidden="true"><i></i><i></i><i></i><b style="--a: 32deg; --d: 128px"></b><b style="--a: 148deg; --d: 152px"></b><b style="--a: 251deg; --d: 112px"></b><b style="--a: 318deg; --d: 170px"></b></div>';
 
-function funaScreen({ name, image, alt, note }) {
-  return `<figure class="evidence-screen">
-    <div class="evidence-device"><img src="./src/media/${image}.webp" width="352" height="760" loading="lazy" decoding="async" alt="${alt}"></div>
+function funaStep({ name, image, alt, note, searching = false }) {
+  return `<figure class="funa-step${searching ? ' funa-searching' : ''}">
+    <div class="funa-phone-wrap">${searching ? radar : '<span class="funa-glow" aria-hidden="true"></span>'}<div class="funa-phone"><img src="./src/media/${image}.webp" width="352" height="760" loading="lazy" decoding="async" alt="${alt}"></div></div>
     <figcaption><strong>${name}</strong><span>${note}</span></figcaption>
   </figure>`;
 }
 
-const funa = switcher('funa-flow', 'Funa Gigs hiring flow', [
-  {
-    label: 'Choose a service',
-    content: funaScreen({
-      name: 'Choose a service',
-      image: 'funa-home',
-      alt: 'Funa Gigs Android home screen showing Instant Hire and service categories',
-      note: 'Instant Hire starts from the home screen. Customers can also browse categories or post a job for later.'
-    })
-  },
-  {
-    label: 'Find a worker',
-    content: funaScreen({
-      name: 'Find a worker',
-      image: 'funa-work',
-      alt: 'Funa Gigs Android matching screen showing a search for a nearby worker',
-      note: 'The matching screen shows what the app is doing while it looks for an available tasker nearby.'
-    })
-  }
-], 'evidence-switcher');
+const funa = `<div class="funa-demo" data-demo="funa">
+  ${switcher('funa-flow', 'Funa Gigs hiring flow', [
+    {
+      label: 'Choose a service',
+      content: funaStep({
+        name: 'Choose a service', image: 'funa-home',
+        alt: 'Funa Gigs Android home screen showing Instant Hire and service categories',
+        note: 'Instant Hire starts from the home screen. Customers can also browse categories or post a job for later.'
+      })
+    },
+    {
+      label: 'Find a worker',
+      content: funaStep({
+        name: 'Find a worker', image: 'funa-work',
+        alt: 'Funa Gigs Android matching screen showing a search for a nearby worker',
+        note: 'The matching screen shows what the app is doing while it looks for an available tasker nearby.',
+        searching: true
+      })
+    }
+  ], 'demo-switcher')}
+</div>`;
 
-// Results from Cyber Dragon's built-in presets at 9d519b8. Message excerpts omit the example phone number.
-function threatResult({ label, message, score, level, signals, caution }) {
-  return `<div class="evidence-result">
-    <p class="evidence-kicker">${label} · Message excerpt</p>
-    <blockquote>${message}</blockquote>
-    <div class="threat-result ${score ? 'threat-high' : 'threat-low'}"><strong>${score}<span>/100</span></strong><span>${level}</span></div>
-    <ul class="evidence-signals">${signals.map(signal => `<li>${signal}</li>`).join('')}</ul>
-    <p class="evidence-caution">${caution}</p>
+// Cyber Dragon: results from its built-in presets at 9d519b8. Excerpts omit the example phone number.
+// Highlights show where each reported signal appears in the message text.
+function scan({ message, score, level, signals, caution }) {
+  const risk = score >= 50 ? 'high' : 'low';
+  return `<div class="scan-result scan-${risk}" data-scan style="--score: ${score}">
+    <p class="demo-kicker">Message excerpt</p>
+    <div class="scan-message"><p>${message}</p><span class="scan-beam" aria-hidden="true"></span></div>
+    <div class="scan-readout">
+      <div class="scan-gauge">
+        <svg viewBox="0 0 120 68" aria-hidden="true" focusable="false"><path class="gauge-track" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/><path class="gauge-value" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/></svg>
+        <p><strong data-score="${score}">${score}</strong><small>/100</small></p>
+        <span>${level}</span>
+      </div>
+      <ul class="scan-signals">${signals.map((signal, index) => `<li data-signal="${index}">${signal}</li>`).join('')}</ul>
+    </div>
+    <p class="demo-caution">${caution}</p>
   </div>`;
 }
 
 const cyber = switcher('cyber-sample', 'Cyber Dragon sample messages', [
   {
     label: 'Fake reversal',
-    content: threatResult({
-      label: 'Fake reversal', message: '“Please approve the reversal prompt with your MoMo PIN immediately…”',
+    content: scan({
+      message: '“Please approve the <mark data-signal="2">reversal</mark> prompt with your <mark data-signal="1">MoMo</mark> <mark data-signal="0">PIN</mark> <mark data-signal="3">immediately</mark>…”',
       score: 92, level: 'High risk',
       signals: ['Credential request', 'Mobile-money context', 'Reversal pattern', 'Urgency'],
-      caution: 'The heuristic engine flags signals in the text without opening a link.'
+      caution: 'The heuristic engine flags signals in the text without opening a link. Highlights show where each signal appears.'
     })
   },
   {
     label: 'Meeting reminder',
-    content: threatResult({
-      label: 'Meeting reminder', message: '“Hi team, our sprint planning meeting starts at 10:00 AM tomorrow…”',
+    content: scan({
+      message: '“Hi team, our sprint planning meeting starts at 10:00 AM tomorrow…”',
       score: 0, level: 'Low indicators',
       signals: ['No strong indicators found'],
       caution: 'A low score does not establish that a message is safe.'
     })
   }
-], 'evidence-switcher');
+], 'demo-switcher');
 
-function replayResult({ window, status, result, note, changed = false }) {
-  return `<div class="evidence-result replay-sample">
-    <p class="evidence-kicker">prometheus.query_metrics</p>
-    <pre><code>{ "service": "payment-api", "window": "${window}" }</code></pre>
-    <p class="replay-status${changed ? ' replay-changed' : ''}">${status}</p>
-    <pre><code>${result}</code></pre>
-    <p class="evidence-caution">${note}</p>
+// AgentFlight: recorded replay output from the README's simulated incident.
+function replay({ window, changed, lines, note }) {
+  return `<div class="replay-run${changed ? ' replay-diverged' : ''}" data-replay>
+    <ol class="console-lines">
+      <li class="line-recorded"><span class="line-tag">recorded</span><code>prometheus.query_metrics({ "service": "payment-api", "window": "15m" })</code></li>
+      <li><span class="line-tag">replay</span><code data-type>prometheus.query_metrics({ "service": "payment-api", "window": ${changed ? `<mark>"${window}"</mark>` : `"${window}"`} })</code></li>
+      ${lines}
+    </ol>
+    <p class="demo-caution">${note}</p>
   </div>`;
 }
 
-const agentflight = switcher('agent-replay', 'AgentFlight replay inputs', [
-  {
-    label: 'Replay 15 minutes',
-    content: replayResult({
-      window: '15m', status: 'Matched the recorded tool call',
-      result: '{\n  "anomaly": true,\n  "p99_latency_ms": 1840.0\n}',
-      note: 'A matching call returns the recorded response without calling the live tool.'
-    })
-  },
-  {
-    label: 'Change to 30 minutes',
-    content: replayResult({
-      window: '30m', status: 'TrajectoryDivergenceError', changed: true,
-      result: 'changed_values.window\n  expected: "15m"\n  actual:   "30m"',
-      note: 'The tool name still matches, but the changed argument is enough to fail the replay.'
-    })
-  }
-], 'evidence-switcher');
-
-export function renderShowcase() {
-  return switcher('portfolio-showcase', 'Choose a featured project', [
+const agentflight = `<div class="replay-console">
+  <div class="console-bar" aria-hidden="true"><i></i><i></i><i></i><span>agentflight · replay</span></div>
+  ${switcher('agent-replay', 'AgentFlight replay inputs', [
     {
-      label: 'Funa Gigs',
-      content: exhibit({
-        id: 'funa-gigs', category: 'Product leadership', name: 'Funa Gigs',
-        headline: 'From looking for help to finding someone nearby.',
-        intro: 'Walk through the opening steps of Instant Hire, part of the marketplace I lead under Jaminsa Ventures Limited.',
-        evidence: funa, footnote: 'Official Funa Gigs Android screenshots · Google Play'
+      label: 'window: "15m"',
+      content: replay({
+        window: '15m', changed: false,
+        lines: `<li class="line-ok"><span class="line-tag">✓ match</span><span>Matched the recorded tool call</span></li>
+      <li class="line-output"><pre><code>{
+  "anomaly": true,
+  "p99_latency_ms": 1840.0
+}</code></pre></li>`,
+        note: 'A matching call returns the recorded response without calling the live tool.'
       })
     },
     {
-      label: 'Cyber Dragon',
-      content: exhibit({
-        id: 'cyber-dragon', category: 'Defensive security', name: 'Cyber Dragon',
-        headline: 'See why a message raises a flag.',
-        intro: 'Compare a mobile-money reversal lure with an ordinary meeting reminder to see how the heuristic engine explains the difference.',
-        evidence: cyber, footnote: 'Recorded analyzer output · Two built-in Cyber Dragon presets'
-      })
-    },
-    {
-      label: 'AgentFlight',
-      content: exhibit({
-        id: 'agentflight', category: 'Developer tools', name: 'AgentFlight',
-        headline: 'Change one input. See exactly what broke.',
-        intro: 'Replay a recorded tool call from a simulated incident, then change the time window and inspect the mismatch.',
-        evidence: agentflight, footnote: 'Recorded replay output · AgentFlight README’s simulated incident'
+      label: 'window: "30m"',
+      content: replay({
+        window: '30m', changed: true,
+        lines: `<li class="line-error"><span class="line-tag">✗ fail</span><strong>TrajectoryDivergenceError</strong></li>
+      <li class="line-output"><pre><code>changed_values.window
+<del>- expected: "15m"</del>
+<ins>+ actual:   "30m"</ins></code></pre></li>`,
+        note: 'The tool name still matches, but the changed argument is enough to fail the replay.'
       })
     }
-  ], 'project-showcase');
+  ], 'demo-switcher')}
+</div>`;
+
+const chapters = [
+  {
+    id: 'funa-gigs', category: 'Product leadership', name: 'Funa Gigs',
+    headline: 'From looking for help to finding someone nearby.',
+    intro: 'Walk through the opening steps of Instant Hire, part of the marketplace I lead under Jaminsa Ventures Limited.',
+    demo: funa, footnote: 'Official Funa Gigs Android screenshots · Google Play'
+  },
+  {
+    id: 'cyber-dragon', category: 'Defensive security', name: 'Cyber Dragon',
+    headline: 'See why a message raises a flag.',
+    intro: 'Compare a mobile-money reversal lure with an ordinary meeting reminder to see how the heuristic engine explains the difference.',
+    demo: cyber, footnote: 'Recorded analyzer output · Two built-in Cyber Dragon presets'
+  },
+  {
+    id: 'agentflight', category: 'Developer tools', name: 'AgentFlight',
+    headline: 'Change one input. See exactly what broke.',
+    intro: 'Replay a recorded tool call from a simulated incident, then change the time window and inspect the mismatch.',
+    demo: agentflight, footnote: 'Recorded replay output · AgentFlight README’s simulated incident'
+  }
+];
+
+function chapter({ id, category, name, headline, intro, demo, footnote }, index) {
+  const number = String(index + 1).padStart(2, '0');
+  return `<article id="portfolio-showcase-panel-${index + 1}" class="chapter chapter-${id}" data-chapter="${id}" aria-labelledby="chapter-title-${index + 1}">
+      <div class="chapter-inner">
+        <span class="chapter-numeral" aria-hidden="true">${number}</span>
+        <div class="chapter-copy">
+          <p class="chapter-label"><span>${number}</span>${category}</p>
+          <h3 id="chapter-title-${index + 1}">${name}</h3>
+          <p class="chapter-headline">${headline}</p>
+          <p class="chapter-intro">${intro}</p>
+          <a class="chapter-link" href="./work/${id}.html"><span>Read the ${name} case study</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="chapter-stage">
+          ${demo}
+          <p class="chapter-note">${footnote}</p>
+        </div>
+      </div>
+    </article>`;
+}
+
+export function renderShowcase() {
+  return `<div class="exhibition" data-exhibition style="--chapters: ${chapters.length}">
+    <div class="exhibition-frame">
+    ${chapters.map(chapter).join('\n    ')}
+      <nav class="exhibition-rail" aria-label="Featured projects">
+        <ol>${chapters.map(({ name }, index) => `
+          <li><button type="button" aria-controls="portfolio-showcase-panel-${index + 1}" data-chapter-link="${index}"><span aria-hidden="true">0${index + 1}</span>${name}</button></li>`).join('')}
+        </ol>
+        <span class="rail-progress" aria-hidden="true"><i></i></span>
+        <p class="rail-counter" aria-hidden="true"><span data-counter>01</span> / 0${chapters.length}</p>
+      </nav>
+    </div>
+  </div>`;
 }

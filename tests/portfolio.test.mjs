@@ -62,7 +62,13 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     const { html } = generatePortfolioHtml();
     assert.match(html, /<p class="hero-identity">Akandwanaho Ivan<\/p>/);
     assert.match(html, /<h1 id="hero-heading">I build systems/);
-    assert.match(html, /class="hero-projects"/);
+    assert.match(html, /<div class="hero-now"><dt>Currently<\/dt>/);
+    assert.match(html, /<section class="folio-opening" aria-labelledby="hero-heading" data-hero>/);
+    assert.match(html, /<canvas class="hero-compile" aria-hidden="true" hidden><\/canvas>/);
+    assert.match(html, /<dd data-count="931">931<\/dd>/);
+    assert.match(html, /data-kampala-time/);
+    assert.match(html, /<div class="hero-marquee" aria-hidden="true">/);
+    assert.match(html, /<script type="module" src="\.\/src\/ui\/hero\.mjs"><\/script>/);
     assert.match(html, /Software engineer &amp; founder/);
     assert.match(html, /src\/media\/alvin\.webp/);
     assert.match(html, /Try the work/);
@@ -352,6 +358,9 @@ describe('Portfolio pages and server', () => {
       assert.match(html, /class="folio-header"/, name);
       assert.match(html, /src\/ui\/profile\.css/, name);
       assert.match(html, /aria-label="Main navigation"/, name);
+      assert.match(html, /src\/ui\/site\.css/, name);
+      assert.match(html, /<footer class="site-footer">/, name);
+      assert.match(html, /<h1[^>]*data-sort|<h1 id="hero-heading">/, name);
       assert.doesNotMatch(html, /href="[^"]*(?:archive\.html|\/cases\/)/, name);
       assert.doesNotMatch(html, /Akandwanaho Ivan Alvin/, name);
     }
@@ -362,6 +371,8 @@ describe('Portfolio pages and server', () => {
       assert.match(html, /How it works/);
       assert.match(html, /How to verify it/);
       assert.match(html, /Next case study/);
+      assert.match(html, /data-case-rail/);
+      assert.match(html, /class="case-hero world-(?:cyan|blue|gold|green)"/);
     }
   });
 
@@ -374,10 +385,17 @@ describe('Portfolio pages and server', () => {
     assert.match(html, /application\/ld\+json/);
     assert.match(html, /href="\.\/index\.html" aria-current="page"/);
     assert.match(html, /aria-controls="site-nav" aria-expanded="false" hidden/);
+    assert.match(html, /<button class="nav-orb" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" inert>/);
+    assert.match(html, /<span class="header-skin" aria-hidden="true"><\/span>/);
+    assert.match(html, /class="nav-orb-progress"/);
     assert.match(html, /<details class="project-disclosure">/);
     assert.match(html, /class="reading-line" aria-hidden="true"/);
-    assert.match(html, /data-scroll-reveal="media"/);
+    assert.match(html, /data-scroll-reveal="copy"/);
     assert.match(html, /aria-controls="portfolio-showcase-panel-3"/);
+    assert.match(html, /<div class="exhibition" data-exhibition style="--chapters: 3">/);
+    for (const id of ['funa-gigs', 'cyber-dragon', 'agentflight']) assert.match(html, new RegExp(`data-chapter="${id}"`));
+    assert.match(html, /<strong data-score="92">92<\/strong>/);
+    assert.match(html, /<strong>TrajectoryDivergenceError<\/strong>/);
     assert.match(html, /TrajectoryDivergenceError/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/site-nav\.mjs"/);
     for (const page of ['work', 'leadership', 'cv', 'contact']) assert.ok(html.includes(`href="./${page}.html"`));
@@ -492,6 +510,10 @@ describe('Portfolio pages and server', () => {
         ['/src/ui/profile.css', 'text/css; charset=utf-8'],
         ['/src/ui/showcase.css', 'text/css; charset=utf-8'],
         ['/src/ui/showcase.mjs', 'text/javascript; charset=utf-8'],
+        ['/src/ui/hero.css', 'text/css; charset=utf-8'],
+        ['/src/ui/hero.mjs', 'text/javascript; charset=utf-8'],
+        ['/src/ui/motion.mjs', 'text/javascript; charset=utf-8'],
+        ['/src/ui/site.css', 'text/css; charset=utf-8'],
         ['/src/ui/site-nav.mjs', 'text/javascript; charset=utf-8'],
         ['/src/media/akandwanaho-ivan.svg', 'image/svg+xml'],
         ...['alvin', 'funa-home', 'funa-work', 'cyber-dragon'].map(name => [`/src/media/${name}.webp`, 'image/webp'])

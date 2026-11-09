@@ -1,7 +1,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PORTFOLIO_DATA } from './src/data/portfolio-data.mjs';
 import {
   filterProjects,
@@ -18,6 +18,10 @@ pages.set('/', pages.get('/index.html'));
 const staticAssets = new Map([
   ['/' + cvPdf, 'application/pdf'],
   ['/src/ui/cv.css', 'text/css; charset=utf-8'],
+  ['/src/ui/hero.css', 'text/css; charset=utf-8'],
+  ['/src/ui/hero.mjs', 'text/javascript; charset=utf-8'],
+  ['/src/ui/motion.mjs', 'text/javascript; charset=utf-8'],
+  ['/src/ui/site.css', 'text/css; charset=utf-8'],
   ['/src/ui/profile.css', 'text/css; charset=utf-8'],
   ['/src/ui/showcase.css', 'text/css; charset=utf-8'],
   ['/src/ui/showcase.mjs', 'text/javascript; charset=utf-8'],
@@ -116,7 +120,7 @@ export function createPortfolioServer() {
 // Default export for Vercel Serverless Function entrypoint (`Using server.mjs as the root entrypoint`)
 export default handlePortfolioRequest;
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const port = Number(process.env.PORT || 4173);
   const host = process.env.HOST || '127.0.0.1';
   const server = createPortfolioServer();

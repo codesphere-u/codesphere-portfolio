@@ -1,4 +1,5 @@
 import { PORTFOLIO_DATA } from '../src/data/portfolio-data.mjs';
+import { computePortfolioSummary } from '../src/core/explorer.mjs';
 import { renderShowcase } from './showcase.mjs';
 import { CV, cvPdf } from './cv-data.mjs';
 
@@ -70,17 +71,25 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="${prefix}${logo}" type="image/svg+xml">
-  <link rel="stylesheet" href="${prefix}src/ui/profile.css">${page === 'home' ? '\n  <link rel="stylesheet" href="./src/ui/showcase.css">' : ''}${page === 'cv' ? '\n  <link rel="stylesheet" href="./src/ui/cv.css">' : ''}
+  <link rel="stylesheet" href="${prefix}src/ui/profile.css">
+  <link rel="stylesheet" href="${prefix}src/ui/site.css">${page === 'home' ? '\n  <link rel="stylesheet" href="./src/ui/showcase.css">\n  <link rel="stylesheet" href="./src/ui/hero.css">' : ''}${page === 'cv' ? '\n  <link rel="stylesheet" href="./src/ui/cv.css">' : ''}
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="folio-header" data-site-header>
     <div class="folio-container folio-header-inner">
+      <span class="header-skin" aria-hidden="true"></span>
       <a class="folio-brand" href="${prefix}index.html">
         <img src="${prefix}${logo}" width="42" height="42" alt="">
         <span>Akandwanaho Ivan <small>Software engineer &amp; founder</small></span>
       </a>
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true"></span></button>
+      <button class="nav-orb" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" inert>
+        <span class="nav-orb-core" aria-hidden="true">
+          <svg class="nav-orb-ring" viewBox="0 0 62 62" focusable="false"><circle cx="31" cy="31" r="29.5" pathLength="1"/><circle class="nav-orb-progress" cx="31" cy="31" r="29.5" pathLength="1"/></svg>
+          <span class="nav-orb-lines"><i></i><i></i></span>
+        </span>
+      </button>
       <nav id="site-nav" aria-label="Main navigation">
         <ul class="nav-pages">
           ${nav.map(([key, label, href]) => {
@@ -114,14 +123,52 @@ function frame({ page, title, description, body, prefix = './', type = 'website'
   <main id="main-content" tabindex="-1">
 ${body}
   </main>
-  <footer class="folio-footer"><div class="folio-container">
-    <span>Akandwanaho Ivan <span class="footer-alias">· Also known as Alvin</span></span>
-    <div><a href="${prefix}cv.html">CV</a><a href="${prefix}${logo}" download="akandwanaho-ivan.svg">Download logo</a><a href="${profile.githubUrl}">GitHub ↗</a></div>
-  </div></footer>
+  ${siteFooter(page, prefix)}
   <script type="module" src="${prefix}src/ui/site-nav.mjs"></script>
-  ${page === 'home' ? '<script type="module" src="./src/ui/showcase.mjs"></script>' : ''}
+  ${page === 'home' ? '<script type="module" src="./src/ui/showcase.mjs"></script>\n  <script type="module" src="./src/ui/hero.mjs"></script>' : ''}
 </body>
 </html>`;
+}
+
+// Shared footer. The closing call to action is left off pages that already end with one.
+function siteFooter(page, prefix) {
+  const offers = availability();
+  const cta = ['contact', 'cv'].includes(page) ? '' : `<section class="footer-cta" aria-labelledby="footer-cta-title">
+      <p class="folio-label">Open to</p>
+      <h2 id="footer-cta-title" data-sort>Let’s build something <em>people can trust.</em></h2>
+      <ul class="footer-offers">${offers.map(offer => `<li>${escapeHtml(offer)}</li>`).join('')}</ul>
+      <div class="folio-actions">${action(prefix + 'contact.html', 'Start a conversation', { arrow: '→' })}${action(profile.linkedinUrl, 'Message me on LinkedIn', { secondary: true })}</div>
+    </section>`;
+  const column = (title, links) => `<div><p class="folio-label">${title}</p><ul>${links.map(([label, href, extra = '']) => `<li><a href="${href}"${extra}>${label}</a></li>`).join('')}</ul></div>`;
+  return `<footer class="site-footer">
+    <div class="folio-container">
+      ${cta}
+      <div class="footer-grid">
+        <p class="footer-place"><span class="live-dot" aria-hidden="true"></span>Kampala, Uganda<br><span data-local-time>EAT</span></p>
+        <nav class="footer-links" aria-label="Footer">
+          ${column('Pages', [['Home', prefix + 'index.html'], ['Work', prefix + 'work.html'], ['Leadership', prefix + 'leadership.html'], ['CV', prefix + 'cv.html'], ['Contact', prefix + 'contact.html']])}
+          ${column('Elsewhere', [['GitHub ↗', profile.githubUrl], ['LinkedIn ↗', profile.linkedinUrl], ['Codesphere ↗', profile.companyWebsiteUrl]])}
+          ${column('Files', [['Download CV', prefix + cvPdf, ' download'], ['Download logo', prefix + logo, ' download="akandwanaho-ivan.svg"']])}
+        </nav>
+      </div>
+      <p class="footer-wordmark" aria-hidden="true">Akandwanaho&nbsp;Ivan</p>
+      <div class="footer-legal"><span>© 2026 · Also known as Alvin</span><a href="#main-content">Back to top <span aria-hidden="true">↑</span></a></div>
+    </div>
+  </footer>`;
+}
+
+// "Open to …" from the profile, as a list.
+function availability() {
+  return profile.availability.replace(/^Open to\s+/i, '').split(/,\s*/).map(item => item.trim()).filter(Boolean);
+}
+
+// Each project's colour world, from its accent colour (Funa Gigs keeps its own gold).
+const worldByAccent = { '#53C9EE': 'cyan', '#387BFA': 'blue', '#F4B94C': 'gold' };
+function worldOf(id) {
+  if (id === 'funa-gigs') return 'world-funa';
+  if (id === 'agentflight') return 'world-green';
+  const project = projects.find(item => item.id === id);
+  return `world-${worldByAccent[project?.accentColor] || 'blue'}`;
 }
 
 function funaMedia(prefix) {
@@ -160,22 +207,6 @@ function projectMedia(id, prefix) {
   </figure>`;
 }
 
-function featuredCards(prefix = './') {
-  return featuredIds.map((id, index) => {
-    const [name, area, headline, summary] = projectLeads[id];
-    return `<article class="feature-card feature-${id}">
-      <div class="feature-copy" data-scroll-reveal="copy">
-        <p class="folio-label">0${index + 1} / ${area}</p>
-        <h3>${name}</h3>
-        <p class="feature-headline">${headline}</p>
-        <p>${summary}</p>
-        ${action(prefix + casePath(id), `Read the ${name} case study`, { secondary: true, arrow: '→' })}
-      </div>
-      ${projectMedia(id, prefix)}
-    </article>`;
-  }).join('\n');
-}
-
 function sectionHeading(label, title, intro, id) {
   return `<div class="folio-section-heading" data-scroll-reveal="copy">
     <div><p class="folio-label">${label}</p><h2 id="${id}">${title}</h2></div>
@@ -183,24 +214,24 @@ function sectionHeading(label, title, intro, id) {
   </div>`;
 }
 
-function pageIntro(label, title, intro, actions = '') {
-  return `<section class="page-intro"><div class="folio-container">
-    <p class="folio-label">${label}</p><h1>${title}</h1><p class="page-lead">${intro}</p>${actions}
+// Every page opens on the same dark stage, with a title that sorts its letters into place.
+function pageOpener({ eyebrow, title, lede, meta = '', actions = '', className = '' }) {
+  return `<section class="opener ${className}"><div class="folio-container opener-inner">
+    <p class="opener-eyebrow"><span aria-hidden="true"></span>${eyebrow}</p>
+    <h1 data-sort>${title}</h1>
+    <p class="opener-lede">${lede}</p>${meta}${actions}
   </div></section>`;
 }
 
-function heroProjects() {
-  return featuredIds.map((id, index) => {
-    const [name, area, headline] = projectLeads[id];
-    return `<li><a class="hero-project preview-${id}" href="./${casePath(id)}">
-      <div class="hero-project-copy"><span class="folio-label">0${index + 1} / ${area}</span><strong>${name}</strong><span class="hero-project-deck">${headline}</span></div>
-      <span class="hero-project-image" aria-hidden="true">${projectThumb(id, './')}</span>
-      <span class="hero-project-arrow" aria-hidden="true">↗</span>
-    </a></li>`;
-  }).join('\n        ');
+// The band between the opening and the work: the problem areas the case studies cover.
+function marquee() {
+  const areas = [...new Set(Object.values(projectLeads).map(([, area]) => area))];
+  const run = areas.map((area, index) => `<span class="marquee-item${index % 2 ? ' marquee-item-alt' : ''}">${escapeHtml(area)}</span><span class="marquee-star">✦</span>`).join('');
+  return `<div class="hero-marquee" aria-hidden="true"><div class="marquee-track" data-marquee>${run}${run}</div></div>`;
 }
 
 export function renderProfile() {
+  const summary = computePortfolioSummary(PORTFOLIO_DATA);
   const description = 'Akandwanaho Ivan, also known as Alvin, is a software engineer and founder in Kampala, Uganda. Explore his product, security, and open-source engineering work.';
   const structured = JSON.stringify({
     '@context': 'https://schema.org',
@@ -218,10 +249,11 @@ export function renderProfile() {
   return frame({
     page: 'home', description,
     body: `<script type="application/ld+json">${structured}</script>
-    <section class="folio-opening" aria-labelledby="hero-heading">
+    <section class="folio-opening" aria-labelledby="hero-heading" data-hero>
       <div class="hero-stage">
         <div class="hero-visual">
           <img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high">
+          <canvas class="hero-compile" aria-hidden="true" hidden></canvas>
         </div>
         <div class="folio-container folio-hero">
           <div class="hero-copy">
@@ -234,59 +266,133 @@ export function renderProfile() {
               ${action('./work.html', 'All case studies', { secondary: true, arrow: '→' })}
             </div>
           </div>
+          <dl class="hero-proof">
+              <div><dt>Automated tests</dt><dd data-count="${summary.totalAutomatedTests}">${summary.totalAutomatedTests}</dd></div>
+              <div><dt>Open-source systems</dt><dd data-count="${summary.totalProjects}">${summary.totalProjects}</dd></div>
+              <div><dt>Architecture decisions</dt><dd data-count="${summary.totalAdrs}">${summary.totalAdrs}</dd></div>
+              <div class="hero-clock"><dt>Kampala time</dt><dd data-kampala-time>EAT</dd></div>
+              <div class="hero-now"><dt>Currently</dt><dd>${escapeHtml(experience[0].role)} · ${escapeHtml(profile.companyName)}</dd></div>
+            </dl>
         </div>
       </div>
-      <div class="hero-shelf"><div class="folio-container">
-        <div class="hero-shelf-heading"><h2>Featured work</h2><a href="./work.html">All case studies <span aria-hidden="true">→</span></a></div>
-        <ul class="hero-projects">${heroProjects()}</ul>
-      </div></div>
     </section>
+    ${marquee()}
     <section class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
         ${sectionHeading('01 / Selected work', 'Work in action', 'Try a hiring flow, compare two fraud-analysis results, or change an AI tool call and see what breaks.', 'work-heading')}
-        ${renderShowcase()}
+      </div>
+      ${renderShowcase()}
+      <div class="folio-container">
         <div class="section-end">${action('./work.html', 'See all project case studies', { secondary: true, arrow: '→' })}</div>
       </div>
     </section>
     <section class="home-leadership" aria-labelledby="leadership-heading">
-      <div class="folio-container leadership-grid" data-scroll-reveal="copy">
-        <div><p class="folio-label">02 / Leadership</p><h2 id="leadership-heading">Building teams and products</h2></div>
-        <div><p>I founded Codesphere Innovations and lead Funa Gigs under Jaminsa Ventures Limited. Before that, I led engineering at Waanverse Labs.</p>
-        ${action('./leadership.html', 'See my leadership roles', { secondary: true, arrow: '→' })}
-        <a class="folio-text-link" href="./cv.html">View my CV <span aria-hidden="true">↗</span></a></div>
+      <div class="folio-container">
+        ${sectionHeading('02 / Leadership', 'Building teams and products', 'I founded Codesphere Innovations and lead Funa Gigs under Jaminsa Ventures Limited. Before that, I led engineering at Waanverse Labs.', 'leadership-heading')}
+        <ol class="role-track">${experience.map(item => `
+          <li data-scroll-reveal="copy">
+            <p class="role-status${item.isCurrent ? ' is-current' : ''}">${escapeHtml(item.isCurrent ? 'Current' : item.status.replace(/^Former Role — /, ''))}</p>
+            <h3>${escapeHtml(item.role)}</h3>
+            <p class="role-org">${escapeHtml(item.organization)}</p>
+          </li>`).join('')}
+        </ol>
+        <div class="section-end">${action('./leadership.html', 'See my leadership roles', { secondary: true, arrow: '→' })}<a class="folio-text-link" href="./cv.html">View my CV <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>`
   });
 }
 
+const domainLabels = { AI: 'AI', Cybersecurity: 'Security', Fintech: 'Fintech', Cloud: 'Cloud', Backend: 'Backend', 'Full-Stack': 'Full-stack' };
+
+function workFeature(id, index) {
+  const [name, area, headline, summary] = projectLeads[id];
+  return `<article class="work-feature ${worldOf(id)}" data-scroll-reveal="copy">
+      <div class="work-feature-copy">
+        <p class="opener-eyebrow"><span aria-hidden="true"></span>0${index + 1} / ${area}</p>
+        <h3>${name}</h3>
+        <p class="work-feature-headline">${headline}</p>
+        <p>${summary}</p>
+        <a class="pill-link" href="./${casePath(id)}"><span>Read the ${name} case study</span><span class="pill-link-arrow" aria-hidden="true">↗</span></a>
+      </div>
+      ${projectMedia(id, './')}
+    </article>`;
+}
+
 export function renderWorkPage() {
-  const list = projectIds.filter(id => !featuredIds.includes(id)).map(id => {
+  const summary = computePortfolioSummary(PORTFOLIO_DATA);
+  const systems = projectIds.filter(id => !featuredIds.includes(id));
+  const domains = [...new Set(systems.flatMap(id => projects.find(item => item.id === id)?.domains || []))]
+    .filter(domain => domainLabels[domain]);
+  const rows = systems.map((id, index) => {
+    const project = projects.find(item => item.id === id);
     const [name, area, headline] = projectLeads[id];
-    return `<li data-scroll-reveal="copy"><a href="./${casePath(id)}"><span class="folio-label">${area}</span><div><h3>${name}</h3><p>${headline}</p></div><span aria-hidden="true">↗</span></a></li>`;
-  }).join('\n');
+    const metric = project.headlineMetric;
+    return `<li class="${worldOf(id)}" data-domains="${project.domains.join(' ')}">
+        <a href="./${casePath(id)}">
+          <span class="index-number">${String(index + 1).padStart(2, '0')}</span>
+          <span class="index-name"><strong>${name}</strong><span>${headline}</span></span>
+          <span class="index-area">${area}</span>
+          <span class="index-tests">${project.automatedTests} tests</span>
+          <span class="index-arrow" aria-hidden="true">↗</span>
+          <span class="index-preview" aria-hidden="true"><span class="folio-label">${escapeHtml(metric.label)}</span><strong>${escapeHtml(metric.value)}</strong><span>Repository-reported · ${project.automatedTests} automated tests</span></span>
+        </a>
+      </li>`;
+  }).join('\n      ');
   return frame({
     page: 'work', title: 'Work', description: 'Product and engineering case studies by Akandwanaho Ivan.',
-    body: `${pageIntro('Product · Security · Infrastructure', 'Selected work', 'Start with three featured projects or explore the systems I’ve built for agent safety, payments, observability, and more.')}
-      <section class="folio-container work-page-section" aria-labelledby="featured-heading"><h2 id="featured-heading" class="work-feature-heading">Featured case studies</h2>
-        ${featuredCards()}</section>
-      <section class="folio-engineering" aria-labelledby="systems-heading"><div class="folio-container">
+    body: `${pageOpener({
+      eyebrow: 'Product · Security · Infrastructure', title: 'Selected work',
+      lede: 'Start with three featured projects or explore the systems I’ve built for agent safety, payments, observability, and more.',
+      meta: `<p class="opener-meta"><span><strong>${projectIds.length}</strong> case studies</span><span><strong>${summary.totalAutomatedTests}</strong> automated tests</span><span><strong>${summary.totalAdrs}</strong> architecture decisions</span></p>`
+    })}
+      <section class="folio-container work-features" aria-labelledby="featured-heading">
+        <h2 id="featured-heading" class="section-kicker">Featured case studies</h2>
+        ${featuredIds.map(workFeature).join('\n        ')}
+      </section>
+      <section class="work-index-section" aria-labelledby="systems-heading"><div class="folio-container">
         ${sectionHeading('Open source', 'Inside the systems', 'Each case study explains the problem, the design, and how to check the evidence.', 'systems-heading')}
-        <ul class="systems-list">${list}</ul>
+        <div class="index-filters" data-index-filters hidden>
+          <span class="folio-label" id="index-filter-label">Filter</span>
+          <div role="group" aria-labelledby="index-filter-label">
+            <button type="button" data-filter="" aria-pressed="true">All <span>${systems.length}</span></button>
+            ${domains.map(domain => `<button type="button" data-filter="${domain}" aria-pressed="false">${domainLabels[domain]} <span>${systems.filter(id => projects.find(item => item.id === id).domains.includes(domain)).length}</span></button>`).join('\n            ')}
+          </div>
+        </div>
+        <ol class="work-index" data-work-index>
+      ${rows}
+        </ol>
+        <p class="index-empty" data-index-empty hidden>No systems match this filter.</p>
       </div></section>`
   });
 }
 
 export function renderLeadershipPage() {
+  const current = experience.filter(item => item.isCurrent).length;
   return frame({
     page: 'leadership', title: 'Leadership', description: 'Akandwanaho Ivan’s founder and engineering leadership roles in Kampala.',
-    body: `${pageIntro('Leadership / Kampala, Uganda', 'Building teams and products', 'I lead product direction and stay close to architecture and implementation. My engineering foundations come from studying at ISBAT University in Kampala and building software for local businesses.')}
+    body: `${pageOpener({
+      eyebrow: 'Leadership / Kampala, Uganda', title: 'Building teams and products',
+      lede: 'I lead product direction and stay close to architecture and implementation. My engineering foundations come from studying at ISBAT University in Kampala and building software for local businesses.',
+      meta: `<p class="opener-meta"><span><strong>${experience.length}</strong> roles</span><span><strong>${current}</strong> current</span><span>Founder · CTO · Engineer</span></p>`
+    })}
       <section class="folio-container role-section" aria-labelledby="roles-heading">
-        <p class="folio-label">Experience</p><h2 id="roles-heading">Where I’ve led</h2>
-        <ol class="role-timeline">
-          ${experience.map(item => `<li data-scroll-reveal="copy"><p class="folio-label">${escapeHtml(item.status)}</p><div><h3>${escapeHtml(item.organization)}</h3><p class="role-title">${escapeHtml(item.role)}</p><p>${escapeHtml(item.summary)}</p>
-            ${item.id === 'funa-gigs-jaminsa' ? action('./work/funa-gigs.html', 'Read the Funa Gigs case study', { secondary: true, arrow: '→' }) : ''}
-            ${item.id === 'codesphere-innovations' ? action(item.websiteUrl, 'Visit Codesphere Innovations', { secondary: true }) : ''}
-          </div></li>`).join('\n')}
+        ${sectionHeading('Experience', 'Where I’ve led', 'From the first software I built for local businesses to the companies I run today.', 'roles-heading')}
+        <ol class="role-path">
+          ${experience.map(item => `<li class="role-stop" data-scroll-reveal="copy">
+            <div class="role-meta">
+              <p class="role-status${item.isCurrent ? ' is-current' : ''}">${escapeHtml(item.status)}</p>
+              <p class="role-org">${escapeHtml(item.organization)}</p>
+              <p class="role-place">${escapeHtml(item.location || '')}</p>
+            </div>
+            <div class="role-detail">
+              <h3>${escapeHtml(item.role)}</h3>
+              <p>${escapeHtml(item.summary)}</p>
+              <ul class="role-highlights">${item.highlights.map(highlight => `<li>${escapeHtml(highlight)}</li>`).join('')}</ul>
+              ${item.technologies?.length ? `<ul class="role-tech" aria-label="Technologies">${item.technologies.slice(0, 8).map(tech => `<li>${escapeHtml(tech)}</li>`).join('')}</ul>` : ''}
+              ${item.id === 'funa-gigs-jaminsa' ? action('./work/funa-gigs.html', 'Read the Funa Gigs case study', { secondary: true, arrow: '→' }) : ''}
+              ${item.id === 'codesphere-innovations' ? action(item.websiteUrl, 'Visit Codesphere Innovations', { secondary: true }) : ''}
+            </div>
+          </li>`).join('\n          ')}
         </ol>
       </section>`
   });
@@ -322,7 +428,7 @@ export function renderCvPage() {
       <div class="folio-container cv-cover-grid">
         <div class="cv-cover-copy">
           <p class="folio-label cv-location">Curriculum vitae</p>
-          <h1 id="cv-name">${text(CV.name)}</h1>
+          <h1 id="cv-name" data-sort>${text(CV.name)}</h1>
           <p class="cv-title">${text(CV.title)}</p>
           <p class="cv-byline">${text(CV.location)} <span aria-hidden="true">·</span> Also known as ${text(CV.alias)}</p>
           <p class="cv-summary">${text(CV.summary)}</p>
@@ -381,45 +487,86 @@ export function renderCvPage() {
 }
 
 export function renderContactPage() {
+  const channels = [
+    ['Message', 'LinkedIn', 'Send me a message about a role, a product, or a collaboration.', profile.linkedinUrl],
+    ['Open source', 'GitHub', 'Explore my repositories and source code.', profile.githubUrl],
+    ['Company', 'Codesphere Innovations', 'For product engineering and company inquiries.', profile.companyWebsiteUrl]
+  ];
   return frame({
     page: 'contact', title: 'Contact', description: 'Get in touch with Akandwanaho Ivan about engineering, technical leadership, or open-source work.',
-    body: `${pageIntro('Kampala, Uganda', 'Let’s talk', 'Have a product to build, a system to secure, or an engineering team to grow? Tell me what you’re working on.', `<div class="folio-actions">${action(profile.linkedinUrl, 'Message me on LinkedIn')}</div>`)}
-      <section class="folio-container contact-links" aria-label="Professional links">
-        <article><p class="folio-label">Company</p><h2>Codesphere Innovations</h2><p>For product engineering and company inquiries.</p>${action(profile.companyWebsiteUrl, 'Visit Codesphere', { secondary: true })}</article>
-        <article><p class="folio-label">Open source</p><h2>GitHub</h2><p>Explore my repositories and source code.</p>${action(profile.githubUrl, 'View GitHub profile', { secondary: true })}</article>
+    body: `${pageOpener({
+      eyebrow: 'Contact · Kampala, Uganda', title: 'Let’s talk',
+      lede: 'Have a product to build, a system to secure, or an engineering team to grow? Tell me what you’re working on.',
+      meta: `<p class="opener-meta"><span><span class="live-dot" aria-hidden="true"></span>Kampala time <strong data-local-time>EAT</strong></span></p>`
+    })}
+      <section class="folio-container contact-section" aria-labelledby="channels-heading">
+        <h2 id="channels-heading" class="section-kicker">Ways to reach me</h2>
+        <ul class="channels">
+          ${channels.map(([kind, name, note, url], index) => `<li><a class="channel" href="${url}">
+            <span class="channel-kind"><span>0${index + 1}</span>${kind}</span>
+            <span class="channel-name">${name}</span>
+            <span class="channel-note">${note}</span>
+            <span class="channel-arrow" aria-hidden="true">↗</span>
+          </a></li>`).join('\n          ')}
+        </ul>
+        <div class="contact-open">
+          <p class="folio-label">Open to</p>
+          <ul class="footer-offers">${availability().map(offer => `<li>${escapeHtml(offer)}</li>`).join('')}</ul>
+        </div>
       </section>`
   });
 }
 
 function caseSection(number, label, title, content) {
   return `<section class="case-chapter" aria-labelledby="chapter-${number}" data-scroll-reveal="copy">
-    <div><p class="folio-label">${number} / ${label}</p><h2 id="chapter-${number}">${title}</h2></div>
+    <div class="case-chapter-heading"><p class="folio-label">${number} / ${label}</p><h2 id="chapter-${number}">${title}</h2></div>
     <div class="chapter-body">${content}</div>
   </section>`;
 }
 
 function caseOpening(id, facts, visual) {
   const [name, area, headline, summary] = projectLeads[id];
-  return `<section class="folio-container case-opening" aria-labelledby="case-title">
-    <a class="folio-back" href="../work.html">← All work</a>
+  return `<section class="case-hero ${worldOf(id)}" aria-labelledby="case-title"><div class="folio-container">
+    <a class="folio-back" href="../work.html"><span aria-hidden="true">←</span> All work</a>
     <div class="case-opening-grid">
-      <div>
-        <p class="folio-label">${area} / Case study</p>
-        <h1 id="case-title">${name}</h1>
+      <div class="case-hero-copy">
+        <p class="opener-eyebrow"><span aria-hidden="true"></span>${area} / Case study</p>
+        <h1 id="case-title" data-sort>${name}</h1>
         <p class="case-headline">${headline}</p>
         ${summary ? `<p class="case-intro">${summary}</p>` : ''}
         <dl class="case-facts">${facts.map(([key, value]) => `<div><dt>${key}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl>
       </div>
       ${visual}
     </div>
-  </section>`;
+  </div></section>`;
+}
+
+// The chapters with a sticky rail beside them that tracks reading progress.
+function caseBody(chapters, end) {
+  return `<div class="folio-container case-body">
+    <nav class="case-rail" aria-label="Case study chapters" data-case-rail>
+      <p class="folio-label">On this page</p>
+      <ol>${chapters.map(([number, , title]) => `<li><a href="#chapter-${number}"><span>${number}</span>${title}</a></li>`).join('')}</ol>
+      <span class="case-rail-progress" aria-hidden="true"><i></i></span>
+    </nav>
+    <div class="case-story" data-case-story>
+      ${chapters.map(([number, label, title, content]) => caseSection(number, label, title, content)).join('\n      ')}
+      ${end}
+    </div>
+  </div>`;
 }
 
 function caseFooter(primary, nextId) {
-  const [nextName] = projectLeads[nextId];
-  return `<div class="case-end"><div class="folio-actions">${primary}</div>
-    <a class="next-study" href="../${casePath(nextId)}"><span class="folio-label">Next case study</span><strong>${nextName}</strong><span aria-hidden="true">↗</span></a>
-  </div>`;
+  const [nextName, nextArea, nextHeadline] = projectLeads[nextId];
+  return {
+    end: `<div class="case-end"><div class="folio-actions">${primary}</div></div>`,
+    next: `<a class="next-case ${worldOf(nextId)}" href="../${casePath(nextId)}"><span class="folio-container next-case-inner">
+      <span class="folio-label">Next case study · ${nextArea}</span>
+      <strong>${nextName}</strong>
+      <span class="next-case-headline">${nextHeadline}</span>
+      <span class="next-case-arrow" aria-hidden="true">→</span>
+    </span></a>`
+  };
 }
 
 function technicalVisual(project) {
@@ -442,35 +589,37 @@ function renderTechnicalCase(project) {
   </details>`).join('');
   const constraints = [...new Set([...project.securityConsiderations, ...architectureBlueprint.invariants])];
   const visual = featuredIds.includes(id) ? projectMedia(id, '../') : technicalVisual(project);
+  const { end, next: nextBand } = caseFooter(action(repoUrl, 'View source on GitHub') + (liveDemoUrl ? action(liveDemoUrl, 'Open the live demo', { secondary: true }) : ''), next);
   return frame({
     page: 'project', title: name, description: headline, prefix: '../', type: 'article',
-    body: `${caseOpening(id, [['Type', 'Open-source engineering'], ['Release', version], ['Stack', languages.join(' · ')]], visual)}
-    <div class="folio-container case-story">
-      ${caseSection('01', 'Problem', 'Why it exists', `<p>${escapeHtml(problemStatement)}</p>`)}
-      ${caseSection('02', 'Design', 'How it works', `
+    body: `${caseOpening(id, [['Type', 'Open-source engineering'], ['Release', version], ['Stack', languages.join(' · ')], ['Automated tests', String(project.automatedTests)]], visual)}
+    ${caseBody([
+      ['01', 'Problem', 'Why it exists', `<p class="case-lead">${escapeHtml(problemStatement)}</p>`],
+      ['02', 'Design', 'How it works', `
         <p>${escapeHtml(leadDecision.decision)}</p>
-        <div class="case-layers">${architectureBlueprint.layers.map(({ name: layer, responsibility }) => `<article><h3>${escapeHtml(layer)}</h3><p>${escapeHtml(responsibility)}</p></article>`).join('')}</div>
+        <ol class="case-layers">${architectureBlueprint.layers.map(({ name: layer, responsibility }) => `<li><h3>${escapeHtml(layer)}</h3><p>${escapeHtml(responsibility)}</p></li>`).join('')}</ol>
         ${decisions}
-        <details><summary>Security and operational constraints</summary><ul>${constraints.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></details>`)}
-      ${caseSection('03', 'Evidence', 'How to verify it', `
+        <details><summary>Security and operational constraints</summary><ul>${constraints.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul></details>`],
+      ['03', 'Evidence', 'How to verify it', `
         <div class="case-evidence"><p class="folio-label">Repository-reported / ${escapeHtml(headlineMetric.label)}</p><strong>${escapeHtml(headlineMetric.value)}</strong><p>${escapeHtml(headlineMetric.detail)}</p></div>
         <ul class="case-sources">${sources}</ul>
-        <details><summary>Reproduce from the command line</summary><pre tabindex="0" aria-label="Reproduction commands"><code>${escapeHtml(project.cliQuickstart.join('\n'))}</code></pre></details>`)}
-      ${caseFooter(action(repoUrl, 'View source on GitHub') + (liveDemoUrl ? action(liveDemoUrl, 'Open the live demo', { secondary: true }) : ''), next)}
-    </div>`
+        <details><summary>Reproduce from the command line</summary><pre tabindex="0" aria-label="Reproduction commands"><code>${escapeHtml(project.cliQuickstart.join('\n'))}</code></pre></details>`]
+    ], end)}
+    ${nextBand}`
   });
 }
 
 function renderFunaCaseStudy() {
+  const { end, next } = caseFooter(action(funaUrl, 'Visit Funa Gigs') + action(storeUrl, 'View on Google Play', { secondary: true }), 'cyber-dragon');
   return frame({
     page: 'project', title: 'Funa Gigs', description: 'How Funa Gigs connects local hiring, job approval, and mobile-money payments in Uganda.', prefix: '../', type: 'article',
     body: `${caseOpening('funa-gigs', [['My role', 'Founder & Project Lead'], ['Company', 'Jaminsa Ventures Limited'], ['Market', 'Uganda']], funaMedia('../'))}
-    <div class="folio-container case-story">
-      ${caseSection('01', 'Discovery', 'Two ways to hire', '<p>Someone with an urgent repair needs a different hiring flow from someone planning a project. Instant Hire finds available nearby taskers. Marketplace jobs let clients describe planned work and compare applicants.</p>')}
-      ${caseSection('02', 'Coordination', 'From match to completion', '<p>Clients and taskers can coordinate in the app, track the job, and approve completion before releasing payment.</p>')}
-      ${caseSection('03', 'Payment', 'Mobile money after approval', '<p>Funa Vault holds payment until the job is approved. Taskers can withdraw in UGX through MTN or Airtel Money.</p>')}
-      ${caseFooter(action(funaUrl, 'Visit Funa Gigs') + action(storeUrl, 'View on Google Play', { secondary: true }), 'cyber-dragon')}
-    </div>`
+    ${caseBody([
+      ['01', 'Discovery', 'Two ways to hire', '<p class="case-lead">Someone with an urgent repair needs a different hiring flow from someone planning a project. Instant Hire finds available nearby taskers. Marketplace jobs let clients describe planned work and compare applicants.</p>'],
+      ['02', 'Coordination', 'From match to completion', '<p class="case-lead">Clients and taskers can coordinate in the app, track the job, and approve completion before releasing payment.</p>'],
+      ['03', 'Payment', 'Mobile money after approval', '<p class="case-lead">Funa Vault holds payment until the job is approved. Taskers can withdraw in UGX through MTN or Airtel Money.</p>']
+    ], end)}
+    ${next}`
   });
 }
 
@@ -489,6 +638,10 @@ export function sitePages() {
 export function renderNotFoundPage(prefix = './') {
   return frame({
     page: '', prefix, title: 'Page not found', description: 'Return to the portfolio to find the work you were looking for.',
-    body: pageIntro('404', 'Page not found', 'Browse the current projects and case studies.', `<div class="folio-actions">${action(prefix + 'work.html', 'Explore work', { arrow: '→' })}</div>`)
+    body: pageOpener({
+      eyebrow: 'Error 404', title: 'Page not found', className: 'opener-full',
+      lede: 'This page may have moved. Browse the current projects and case studies instead.',
+      actions: `<div class="folio-actions">${action(prefix + 'work.html', 'Explore work', { arrow: '→' })}${action(prefix + 'index.html', 'Back to home', { secondary: true, arrow: '←' })}</div>`
+    })
   });
 }

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderProfile, renderNotFoundPage, sitePages } from './profile.mjs';
 import { PORTFOLIO_DATA } from '../src/data/portfolio-data.mjs';
 import { computePortfolioSummary, validatePortfolioIntegrity } from '../src/core/explorer.mjs';
@@ -18,7 +18,7 @@ export function generatePortfolioHtml() {
   return { html: renderProfile(), summary, elapsedMs: (performance.now() - startMs).toFixed(1) };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const { html, summary } = generatePortfolioHtml();
   fs.writeFileSync(path.join(ROOT_DIR, 'index.html'), html, 'utf8');
 

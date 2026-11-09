@@ -12,17 +12,26 @@
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="./src/media/akandwanaho-ivan.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./src/ui/profile.css">
+  <link rel="stylesheet" href="./src/ui/site.css">
   <link rel="stylesheet" href="./src/ui/showcase.css">
+  <link rel="stylesheet" href="./src/ui/hero.css">
 </head>
 <body class="folio">
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="folio-header" data-site-header>
     <div class="folio-container folio-header-inner">
+      <span class="header-skin" aria-hidden="true"></span>
       <a class="folio-brand" href="./index.html">
         <img src="./src/media/akandwanaho-ivan.svg" width="42" height="42" alt="">
         <span>Akandwanaho Ivan <small>Software engineer &amp; founder</small></span>
       </a>
       <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Menu <span aria-hidden="true"></span></button>
+      <button class="nav-orb" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open navigation" inert>
+        <span class="nav-orb-core" aria-hidden="true">
+          <svg class="nav-orb-ring" viewBox="0 0 62 62" focusable="false"><circle cx="31" cy="31" r="29.5" pathLength="1"/><circle class="nav-orb-progress" cx="31" cy="31" r="29.5" pathLength="1"/></svg>
+          <span class="nav-orb-lines"><i></i><i></i></span>
+        </span>
+      </button>
       <nav id="site-nav" aria-label="Main navigation">
         <ul class="nav-pages">
           <li class="nav-home"><a href="./index.html" aria-current="page">Home</a></li>
@@ -59,10 +68,11 @@
   </header>
   <main id="main-content" tabindex="-1">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Akandwanaho Ivan","alternateName":"Alvin","jobTitle":"Software Engineer and Founder","worksFor":{"@type":"Organization","name":"Codesphere Innovations (U) Limited","url":"https://www.codesphereug.com"},"sameAs":["https://github.com/codesphere-u","https://www.linkedin.com/in/the4codex"]}}</script>
-    <section class="folio-opening" aria-labelledby="hero-heading">
+    <section class="folio-opening" aria-labelledby="hero-heading" data-hero>
       <div class="hero-stage">
         <div class="hero-visual">
           <img src="./src/media/alvin.webp" width="1254" height="1254" alt="Studio portrait of Akandwanaho Ivan" fetchpriority="high">
+          <canvas class="hero-compile" aria-hidden="true" hidden></canvas>
         </div>
         <div class="folio-container folio-hero">
           <div class="hero-copy">
@@ -75,55 +85,39 @@
               <a class="folio-action folio-action-secondary" href="./work.html">All case studies<span aria-hidden="true">→</span></a>
             </div>
           </div>
+          <dl class="hero-proof">
+              <div><dt>Automated tests</dt><dd data-count="931">931</dd></div>
+              <div><dt>Open-source systems</dt><dd data-count="15">15</dd></div>
+              <div><dt>Architecture decisions</dt><dd data-count="15">15</dd></div>
+              <div class="hero-clock"><dt>Kampala time</dt><dd data-kampala-time>EAT</dd></div>
+              <div class="hero-now"><dt>Currently</dt><dd>Founder &amp; Managing Director · Codesphere Innovations (U) Limited</dd></div>
+            </dl>
         </div>
       </div>
-      <div class="hero-shelf"><div class="folio-container">
-        <div class="hero-shelf-heading"><h2>Featured work</h2><a href="./work.html">All case studies <span aria-hidden="true">→</span></a></div>
-        <ul class="hero-projects"><li><a class="hero-project preview-funa-gigs" href="./work/funa-gigs.html">
-      <div class="hero-project-copy"><span class="folio-label">01 / Product leadership</span><strong>Funa Gigs</strong><span class="hero-project-deck">Hire nearby. Pay after approval.</span></div>
-      <span class="hero-project-image" aria-hidden="true"><img src="./src/media/funa-home.webp" width="352" height="760" alt="" loading="lazy" decoding="async"></span>
-      <span class="hero-project-arrow" aria-hidden="true">↗</span>
-    </a></li>
-        <li><a class="hero-project preview-cyber-dragon" href="./work/cyber-dragon.html">
-      <div class="hero-project-copy"><span class="folio-label">02 / Defensive security</span><strong>Cyber Dragon</strong><span class="hero-project-deck">Inspect suspicious messages without opening the link.</span></div>
-      <span class="hero-project-image" aria-hidden="true"><img src="./src/media/cyber-dragon.webp" width="960" height="932" alt="" loading="lazy" decoding="async"></span>
-      <span class="hero-project-arrow" aria-hidden="true">↗</span>
-    </a></li>
-        <li><a class="hero-project preview-agentflight" href="./work/agentflight.html">
-      <div class="hero-project-copy"><span class="folio-label">03 / Developer tools</span><strong>AgentFlight</strong><span class="hero-project-deck">Replay an AI agent’s failure in a test.</span></div>
-      <span class="hero-project-image" aria-hidden="true"><span class="hero-trace" aria-hidden="true"><span>15m → replay</span><span>30m → diff</span></span></span>
-      <span class="hero-project-arrow" aria-hidden="true">↗</span>
-    </a></li></ul>
-      </div></div>
     </section>
+    <div class="hero-marquee" aria-hidden="true"><div class="marquee-track" data-marquee><span class="marquee-item">Product leadership</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Defensive security</span><span class="marquee-star">✦</span><span class="marquee-item">Developer tools</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">AI security</span><span class="marquee-star">✦</span><span class="marquee-item">Financial infrastructure</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Cloud observability</span><span class="marquee-star">✦</span><span class="marquee-item">Local AI</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Research tooling</span><span class="marquee-star">✦</span><span class="marquee-item">AI verification</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Agent memory</span><span class="marquee-star">✦</span><span class="marquee-item">AI infrastructure</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Agent orchestration</span><span class="marquee-star">✦</span><span class="marquee-item">Offline-first systems</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Digital health</span><span class="marquee-star">✦</span><span class="marquee-item">Product leadership</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Defensive security</span><span class="marquee-star">✦</span><span class="marquee-item">Developer tools</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">AI security</span><span class="marquee-star">✦</span><span class="marquee-item">Financial infrastructure</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Cloud observability</span><span class="marquee-star">✦</span><span class="marquee-item">Local AI</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Research tooling</span><span class="marquee-star">✦</span><span class="marquee-item">AI verification</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Agent memory</span><span class="marquee-star">✦</span><span class="marquee-item">AI infrastructure</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Agent orchestration</span><span class="marquee-star">✦</span><span class="marquee-item">Offline-first systems</span><span class="marquee-star">✦</span><span class="marquee-item marquee-item-alt">Digital health</span><span class="marquee-star">✦</span></div></div>
     <section class="folio-work" aria-labelledby="work-heading">
       <div class="folio-container">
         <div class="folio-section-heading" data-scroll-reveal="copy">
     <div><p class="folio-label">01 / Selected work</p><h2 id="work-heading">Work in action</h2></div>
     <p>Try a hiring flow, compare two fraud-analysis results, or change an AI tool call and see what breaks.</p>
   </div>
-        <div class="project-showcase" data-switcher>
-    <div class="switcher-controls" data-switcher-controls aria-label="Choose a featured project" hidden>
-      <button type="button" id="portfolio-showcase-tab-1" aria-controls="portfolio-showcase-panel-1">
-        <span class="switcher-number" aria-hidden="true">01</span><span>Funa Gigs</span>
-      </button>
-      <button type="button" id="portfolio-showcase-tab-2" aria-controls="portfolio-showcase-panel-2">
-        <span class="switcher-number" aria-hidden="true">02</span><span>Cyber Dragon</span>
-      </button>
-      <button type="button" id="portfolio-showcase-tab-3" aria-controls="portfolio-showcase-panel-3">
-        <span class="switcher-number" aria-hidden="true">03</span><span>AgentFlight</span>
-      </button>
-    </div>
-    <div id="portfolio-showcase-panel-1" data-switcher-panel><article class="showcase-exhibit showcase-funa-gigs">
-    <div class="showcase-copy">
-      <p class="folio-label">Product leadership</p>
-      <h3>Funa Gigs</h3>
-      <p class="showcase-headline">From looking for help to finding someone nearby.</p>
-      <p>Walk through the opening steps of Instant Hire, part of the marketplace I lead under Jaminsa Ventures Limited.</p>
-      <a class="folio-action folio-action-secondary" href="./work/funa-gigs.html">Read the Funa Gigs case study <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="showcase-stage" data-scroll-reveal="media">
-      <div class="evidence-switcher" data-switcher>
+      </div>
+      <div class="exhibition" data-exhibition style="--chapters: 3">
+    <div class="exhibition-frame">
+    <article id="portfolio-showcase-panel-1" class="chapter chapter-funa-gigs" data-chapter="funa-gigs" aria-labelledby="chapter-title-1">
+      <div class="chapter-inner">
+        <span class="chapter-numeral" aria-hidden="true">01</span>
+        <div class="chapter-copy">
+          <p class="chapter-label"><span>01</span>Product leadership</p>
+          <h3 id="chapter-title-1">Funa Gigs</h3>
+          <p class="chapter-headline">From looking for help to finding someone nearby.</p>
+          <p class="chapter-intro">Walk through the opening steps of Instant Hire, part of the marketplace I lead under Jaminsa Ventures Limited.</p>
+          <a class="chapter-link" href="./work/funa-gigs.html"><span>Read the Funa Gigs case study</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="chapter-stage">
+          <div class="funa-demo" data-demo="funa">
+  <div class="demo-switcher" data-switcher>
     <div class="switcher-controls" data-switcher-controls aria-label="Funa Gigs hiring flow" hidden>
       <button type="button" id="funa-flow-tab-1" aria-controls="funa-flow-panel-1">
         <span class="switcher-number" aria-hidden="true">01</span><span>Choose a service</span>
@@ -132,28 +126,32 @@
         <span class="switcher-number" aria-hidden="true">02</span><span>Find a worker</span>
       </button>
     </div>
-    <div id="funa-flow-panel-1" data-switcher-panel><figure class="evidence-screen">
-    <div class="evidence-device"><img src="./src/media/funa-home.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android home screen showing Instant Hire and service categories"></div>
+    <div id="funa-flow-panel-1" data-switcher-panel><figure class="funa-step">
+    <div class="funa-phone-wrap"><span class="funa-glow" aria-hidden="true"></span><div class="funa-phone"><img src="./src/media/funa-home.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android home screen showing Instant Hire and service categories"></div></div>
     <figcaption><strong>Choose a service</strong><span>Instant Hire starts from the home screen. Customers can also browse categories or post a job for later.</span></figcaption>
   </figure></div>
-    <div id="funa-flow-panel-2" data-switcher-panel><figure class="evidence-screen">
-    <div class="evidence-device"><img src="./src/media/funa-work.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android matching screen showing a search for a nearby worker"></div>
+    <div id="funa-flow-panel-2" data-switcher-panel><figure class="funa-step funa-searching">
+    <div class="funa-phone-wrap"><div class="funa-radar" aria-hidden="true"><i></i><i></i><i></i><b style="--a: 32deg; --d: 128px"></b><b style="--a: 148deg; --d: 152px"></b><b style="--a: 251deg; --d: 112px"></b><b style="--a: 318deg; --d: 170px"></b></div><div class="funa-phone"><img src="./src/media/funa-work.webp" width="352" height="760" loading="lazy" decoding="async" alt="Funa Gigs Android matching screen showing a search for a nearby worker"></div></div>
     <figcaption><strong>Find a worker</strong><span>The matching screen shows what the app is doing while it looks for an available tasker nearby.</span></figcaption>
   </figure></div>
   </div>
-      <p class="showcase-note">Official Funa Gigs Android screenshots · Google Play</p>
-    </div>
-  </article></div>
-    <div id="portfolio-showcase-panel-2" data-switcher-panel><article class="showcase-exhibit showcase-cyber-dragon">
-    <div class="showcase-copy">
-      <p class="folio-label">Defensive security</p>
-      <h3>Cyber Dragon</h3>
-      <p class="showcase-headline">See why a message raises a flag.</p>
-      <p>Compare a mobile-money reversal lure with an ordinary meeting reminder to see how the heuristic engine explains the difference.</p>
-      <a class="folio-action folio-action-secondary" href="./work/cyber-dragon.html">Read the Cyber Dragon case study <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="showcase-stage" data-scroll-reveal="media">
-      <div class="evidence-switcher" data-switcher>
+</div>
+          <p class="chapter-note">Official Funa Gigs Android screenshots · Google Play</p>
+        </div>
+      </div>
+    </article>
+    <article id="portfolio-showcase-panel-2" class="chapter chapter-cyber-dragon" data-chapter="cyber-dragon" aria-labelledby="chapter-title-2">
+      <div class="chapter-inner">
+        <span class="chapter-numeral" aria-hidden="true">02</span>
+        <div class="chapter-copy">
+          <p class="chapter-label"><span>02</span>Defensive security</p>
+          <h3 id="chapter-title-2">Cyber Dragon</h3>
+          <p class="chapter-headline">See why a message raises a flag.</p>
+          <p class="chapter-intro">Compare a mobile-money reversal lure with an ordinary meeting reminder to see how the heuristic engine explains the difference.</p>
+          <a class="chapter-link" href="./work/cyber-dragon.html"><span>Read the Cyber Dragon case study</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="chapter-stage">
+          <div class="demo-switcher" data-switcher>
     <div class="switcher-controls" data-switcher-controls aria-label="Cyber Dragon sample messages" hidden>
       <button type="button" id="cyber-sample-tab-1" aria-controls="cyber-sample-panel-1">
         <span class="switcher-number" aria-hidden="true">01</span><span>Fake reversal</span>
@@ -162,83 +160,157 @@
         <span class="switcher-number" aria-hidden="true">02</span><span>Meeting reminder</span>
       </button>
     </div>
-    <div id="cyber-sample-panel-1" data-switcher-panel><div class="evidence-result">
-    <p class="evidence-kicker">Fake reversal · Message excerpt</p>
-    <blockquote>“Please approve the reversal prompt with your MoMo PIN immediately…”</blockquote>
-    <div class="threat-result threat-high"><strong>92<span>/100</span></strong><span>High risk</span></div>
-    <ul class="evidence-signals"><li>Credential request</li><li>Mobile-money context</li><li>Reversal pattern</li><li>Urgency</li></ul>
-    <p class="evidence-caution">The heuristic engine flags signals in the text without opening a link.</p>
+    <div id="cyber-sample-panel-1" data-switcher-panel><div class="scan-result scan-high" data-scan style="--score: 92">
+    <p class="demo-kicker">Message excerpt</p>
+    <div class="scan-message"><p>“Please approve the <mark data-signal="2">reversal</mark> prompt with your <mark data-signal="1">MoMo</mark> <mark data-signal="0">PIN</mark> <mark data-signal="3">immediately</mark>…”</p><span class="scan-beam" aria-hidden="true"></span></div>
+    <div class="scan-readout">
+      <div class="scan-gauge">
+        <svg viewBox="0 0 120 68" aria-hidden="true" focusable="false"><path class="gauge-track" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/><path class="gauge-value" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/></svg>
+        <p><strong data-score="92">92</strong><small>/100</small></p>
+        <span>High risk</span>
+      </div>
+      <ul class="scan-signals"><li data-signal="0">Credential request</li><li data-signal="1">Mobile-money context</li><li data-signal="2">Reversal pattern</li><li data-signal="3">Urgency</li></ul>
+    </div>
+    <p class="demo-caution">The heuristic engine flags signals in the text without opening a link. Highlights show where each signal appears.</p>
   </div></div>
-    <div id="cyber-sample-panel-2" data-switcher-panel><div class="evidence-result">
-    <p class="evidence-kicker">Meeting reminder · Message excerpt</p>
-    <blockquote>“Hi team, our sprint planning meeting starts at 10:00 AM tomorrow…”</blockquote>
-    <div class="threat-result threat-low"><strong>0<span>/100</span></strong><span>Low indicators</span></div>
-    <ul class="evidence-signals"><li>No strong indicators found</li></ul>
-    <p class="evidence-caution">A low score does not establish that a message is safe.</p>
+    <div id="cyber-sample-panel-2" data-switcher-panel><div class="scan-result scan-low" data-scan style="--score: 0">
+    <p class="demo-kicker">Message excerpt</p>
+    <div class="scan-message"><p>“Hi team, our sprint planning meeting starts at 10:00 AM tomorrow…”</p><span class="scan-beam" aria-hidden="true"></span></div>
+    <div class="scan-readout">
+      <div class="scan-gauge">
+        <svg viewBox="0 0 120 68" aria-hidden="true" focusable="false"><path class="gauge-track" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/><path class="gauge-value" d="M10 62 A50 50 0 0 1 110 62" pathLength="100"/></svg>
+        <p><strong data-score="0">0</strong><small>/100</small></p>
+        <span>Low indicators</span>
+      </div>
+      <ul class="scan-signals"><li data-signal="0">No strong indicators found</li></ul>
+    </div>
+    <p class="demo-caution">A low score does not establish that a message is safe.</p>
   </div></div>
   </div>
-      <p class="showcase-note">Recorded analyzer output · Two built-in Cyber Dragon presets</p>
-    </div>
-  </article></div>
-    <div id="portfolio-showcase-panel-3" data-switcher-panel><article class="showcase-exhibit showcase-agentflight">
-    <div class="showcase-copy">
-      <p class="folio-label">Developer tools</p>
-      <h3>AgentFlight</h3>
-      <p class="showcase-headline">Change one input. See exactly what broke.</p>
-      <p>Replay a recorded tool call from a simulated incident, then change the time window and inspect the mismatch.</p>
-      <a class="folio-action folio-action-secondary" href="./work/agentflight.html">Read the AgentFlight case study <span aria-hidden="true">↗</span></a>
-    </div>
-    <div class="showcase-stage" data-scroll-reveal="media">
-      <div class="evidence-switcher" data-switcher>
+          <p class="chapter-note">Recorded analyzer output · Two built-in Cyber Dragon presets</p>
+        </div>
+      </div>
+    </article>
+    <article id="portfolio-showcase-panel-3" class="chapter chapter-agentflight" data-chapter="agentflight" aria-labelledby="chapter-title-3">
+      <div class="chapter-inner">
+        <span class="chapter-numeral" aria-hidden="true">03</span>
+        <div class="chapter-copy">
+          <p class="chapter-label"><span>03</span>Developer tools</p>
+          <h3 id="chapter-title-3">AgentFlight</h3>
+          <p class="chapter-headline">Change one input. See exactly what broke.</p>
+          <p class="chapter-intro">Replay a recorded tool call from a simulated incident, then change the time window and inspect the mismatch.</p>
+          <a class="chapter-link" href="./work/agentflight.html"><span>Read the AgentFlight case study</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="chapter-stage">
+          <div class="replay-console">
+  <div class="console-bar" aria-hidden="true"><i></i><i></i><i></i><span>agentflight · replay</span></div>
+  <div class="demo-switcher" data-switcher>
     <div class="switcher-controls" data-switcher-controls aria-label="AgentFlight replay inputs" hidden>
       <button type="button" id="agent-replay-tab-1" aria-controls="agent-replay-panel-1">
-        <span class="switcher-number" aria-hidden="true">01</span><span>Replay 15 minutes</span>
+        <span class="switcher-number" aria-hidden="true">01</span><span>window: "15m"</span>
       </button>
       <button type="button" id="agent-replay-tab-2" aria-controls="agent-replay-panel-2">
-        <span class="switcher-number" aria-hidden="true">02</span><span>Change to 30 minutes</span>
+        <span class="switcher-number" aria-hidden="true">02</span><span>window: "30m"</span>
       </button>
     </div>
-    <div id="agent-replay-panel-1" data-switcher-panel><div class="evidence-result replay-sample">
-    <p class="evidence-kicker">prometheus.query_metrics</p>
-    <pre><code>{ "service": "payment-api", "window": "15m" }</code></pre>
-    <p class="replay-status">Matched the recorded tool call</p>
-    <pre><code>{
+    <div id="agent-replay-panel-1" data-switcher-panel><div class="replay-run" data-replay>
+    <ol class="console-lines">
+      <li class="line-recorded"><span class="line-tag">recorded</span><code>prometheus.query_metrics({ "service": "payment-api", "window": "15m" })</code></li>
+      <li><span class="line-tag">replay</span><code data-type>prometheus.query_metrics({ "service": "payment-api", "window": "15m" })</code></li>
+      <li class="line-ok"><span class="line-tag">✓ match</span><span>Matched the recorded tool call</span></li>
+      <li class="line-output"><pre><code>{
   "anomaly": true,
   "p99_latency_ms": 1840.0
-}</code></pre>
-    <p class="evidence-caution">A matching call returns the recorded response without calling the live tool.</p>
+}</code></pre></li>
+    </ol>
+    <p class="demo-caution">A matching call returns the recorded response without calling the live tool.</p>
   </div></div>
-    <div id="agent-replay-panel-2" data-switcher-panel><div class="evidence-result replay-sample">
-    <p class="evidence-kicker">prometheus.query_metrics</p>
-    <pre><code>{ "service": "payment-api", "window": "30m" }</code></pre>
-    <p class="replay-status replay-changed">TrajectoryDivergenceError</p>
-    <pre><code>changed_values.window
-  expected: "15m"
-  actual:   "30m"</code></pre>
-    <p class="evidence-caution">The tool name still matches, but the changed argument is enough to fail the replay.</p>
+    <div id="agent-replay-panel-2" data-switcher-panel><div class="replay-run replay-diverged" data-replay>
+    <ol class="console-lines">
+      <li class="line-recorded"><span class="line-tag">recorded</span><code>prometheus.query_metrics({ "service": "payment-api", "window": "15m" })</code></li>
+      <li><span class="line-tag">replay</span><code data-type>prometheus.query_metrics({ "service": "payment-api", "window": <mark>"30m"</mark> })</code></li>
+      <li class="line-error"><span class="line-tag">✗ fail</span><strong>TrajectoryDivergenceError</strong></li>
+      <li class="line-output"><pre><code>changed_values.window
+<del>- expected: "15m"</del>
+<ins>+ actual:   "30m"</ins></code></pre></li>
+    </ol>
+    <p class="demo-caution">The tool name still matches, but the changed argument is enough to fail the replay.</p>
   </div></div>
   </div>
-      <p class="showcase-note">Recorded replay output · AgentFlight README’s simulated incident</p>
+</div>
+          <p class="chapter-note">Recorded replay output · AgentFlight README’s simulated incident</p>
+        </div>
+      </div>
+    </article>
+      <nav class="exhibition-rail" aria-label="Featured projects">
+        <ol>
+          <li><button type="button" aria-controls="portfolio-showcase-panel-1" data-chapter-link="0"><span aria-hidden="true">01</span>Funa Gigs</button></li>
+          <li><button type="button" aria-controls="portfolio-showcase-panel-2" data-chapter-link="1"><span aria-hidden="true">02</span>Cyber Dragon</button></li>
+          <li><button type="button" aria-controls="portfolio-showcase-panel-3" data-chapter-link="2"><span aria-hidden="true">03</span>AgentFlight</button></li>
+        </ol>
+        <span class="rail-progress" aria-hidden="true"><i></i></span>
+        <p class="rail-counter" aria-hidden="true"><span data-counter>01</span> / 03</p>
+      </nav>
     </div>
-  </article></div>
   </div>
+      <div class="folio-container">
         <div class="section-end"><a class="folio-action folio-action-secondary" href="./work.html">See all project case studies<span aria-hidden="true">→</span></a></div>
       </div>
     </section>
     <section class="home-leadership" aria-labelledby="leadership-heading">
-      <div class="folio-container leadership-grid" data-scroll-reveal="copy">
-        <div><p class="folio-label">02 / Leadership</p><h2 id="leadership-heading">Building teams and products</h2></div>
-        <div><p>I founded Codesphere Innovations and lead Funa Gigs under Jaminsa Ventures Limited. Before that, I led engineering at Waanverse Labs.</p>
-        <a class="folio-action folio-action-secondary" href="./leadership.html">See my leadership roles<span aria-hidden="true">→</span></a>
-        <a class="folio-text-link" href="./cv.html">View my CV <span aria-hidden="true">↗</span></a></div>
+      <div class="folio-container">
+        <div class="folio-section-heading" data-scroll-reveal="copy">
+    <div><p class="folio-label">02 / Leadership</p><h2 id="leadership-heading">Building teams and products</h2></div>
+    <p>I founded Codesphere Innovations and lead Funa Gigs under Jaminsa Ventures Limited. Before that, I led engineering at Waanverse Labs.</p>
+  </div>
+        <ol class="role-track">
+          <li data-scroll-reveal="copy">
+            <p class="role-status is-current">Current</p>
+            <h3>Founder &amp; Managing Director</h3>
+            <p class="role-org">CODESPHERE INNOVATIONS (U) LIMITED</p>
+          </li>
+          <li data-scroll-reveal="copy">
+            <p class="role-status is-current">Current</p>
+            <h3>Founder &amp; Project Lead — Funa Gigs</h3>
+            <p class="role-org">Jaminsa Ventures Limited</p>
+          </li>
+          <li data-scroll-reveal="copy">
+            <p class="role-status">Departed March 2025</p>
+            <h3>Chief Technology Officer (CTO) &amp; Head of Engineering</h3>
+            <p class="role-org">Waanverse Labs Inc.</p>
+          </li>
+          <li data-scroll-reveal="copy">
+            <p class="role-status">Early Venture &amp; Engineering Foundation</p>
+            <h3>Founder &amp; Lead Software Engineer</h3>
+            <p class="role-org">4codex Technologies</p>
+          </li>
+        </ol>
+        <div class="section-end"><a class="folio-action folio-action-secondary" href="./leadership.html">See my leadership roles<span aria-hidden="true">→</span></a><a class="folio-text-link" href="./cv.html">View my CV <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
   </main>
-  <footer class="folio-footer"><div class="folio-container">
-    <span>Akandwanaho Ivan <span class="footer-alias">· Also known as Alvin</span></span>
-    <div><a href="./cv.html">CV</a><a href="./src/media/akandwanaho-ivan.svg" download="akandwanaho-ivan.svg">Download logo</a><a href="https://github.com/codesphere-u">GitHub ↗</a></div>
-  </div></footer>
+  <footer class="site-footer">
+    <div class="folio-container">
+      <section class="footer-cta" aria-labelledby="footer-cta-title">
+      <p class="folio-label">Open to</p>
+      <h2 id="footer-cta-title" data-sort>Let’s build something <em>people can trust.</em></h2>
+      <ul class="footer-offers"><li>Senior / Staff Engineering</li><li>AI &amp; Security Architecture</li><li>Technical Leadership &amp; Open-Source Collaboration</li></ul>
+      <div class="folio-actions"><a class="folio-action" href="./contact.html">Start a conversation<span aria-hidden="true">→</span></a><a class="folio-action folio-action-secondary" href="https://www.linkedin.com/in/the4codex">Message me on LinkedIn<span aria-hidden="true">↗</span></a></div>
+    </section>
+      <div class="footer-grid">
+        <p class="footer-place"><span class="live-dot" aria-hidden="true"></span>Kampala, Uganda<br><span data-local-time>EAT</span></p>
+        <nav class="footer-links" aria-label="Footer">
+          <div><p class="folio-label">Pages</p><ul><li><a href="./index.html">Home</a></li><li><a href="./work.html">Work</a></li><li><a href="./leadership.html">Leadership</a></li><li><a href="./cv.html">CV</a></li><li><a href="./contact.html">Contact</a></li></ul></div>
+          <div><p class="folio-label">Elsewhere</p><ul><li><a href="https://github.com/codesphere-u">GitHub ↗</a></li><li><a href="https://www.linkedin.com/in/the4codex">LinkedIn ↗</a></li><li><a href="https://www.codesphereug.com">Codesphere ↗</a></li></ul></div>
+          <div><p class="folio-label">Files</p><ul><li><a href="./src/media/akandwanaho-ivan-cv.pdf" download>Download CV</a></li><li><a href="./src/media/akandwanaho-ivan.svg" download="akandwanaho-ivan.svg">Download logo</a></li></ul></div>
+        </nav>
+      </div>
+      <p class="footer-wordmark" aria-hidden="true">Akandwanaho&nbsp;Ivan</p>
+      <div class="footer-legal"><span>© 2026 · Also known as Alvin</span><a href="#main-content">Back to top <span aria-hidden="true">↑</span></a></div>
+    </div>
+  </footer>
   <script type="module" src="./src/ui/site-nav.mjs"></script>
   <script type="module" src="./src/ui/showcase.mjs"></script>
+  <script type="module" src="./src/ui/hero.mjs"></script>
 </body>
 </html>

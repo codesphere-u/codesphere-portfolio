@@ -1,0 +1,131 @@
+/* The home page opening.
+   Everything here plays once and then gets out of the way: the portrait compiles from code into
+   the photograph, the headline sorts itself, the numbers roll into place. Afterwards the page is still. */
+
+.folio-opening .hero-stage { --exit: 0; }
+.folio-opening .folio-hero {
+  position: relative; z-index: 2; display: grid; grid-template-rows: minmax(0, 1fr) auto; align-items: center;
+  min-height: max(600px, calc(100svh - 78px)); padding-block: clamp(30px, 4vw, 56px) 0;
+}
+.folio-opening .hero-copy {
+  translate: 0 calc(var(--exit) * -56px);
+  opacity: calc(1 - var(--exit) * .65);
+}
+
+/* Fine film grain gives the dark stage some texture. */
+.folio-opening .hero-stage::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .06; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Portrait: compiled from code on load (hero.mjs), then a plain photograph that recedes on scroll. */
+.folio-opening .hero-visual {
+  transform: scale(calc(1 + var(--exit) * .1));
+  filter: brightness(calc(1 - var(--exit) * .5));
+  transform-origin: 70% 30%;
+}
+.hero-compile { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* Headline: split into letters by motion.mjs (shared .sort-* classes in site.css). */
+.folio-hero h1 .sort-line { padding-right: .1em; }
+.folio-hero h1 em.sort-line { padding-bottom: .16em; margin-bottom: -.16em; }
+.hero-underline {
+  position: absolute; left: -3%; bottom: -.16em; width: 106%; height: .32em; overflow: visible; pointer-events: none;
+}
+.hero-underline path {
+  fill: none; stroke: #d0603f; stroke-width: 3.2; stroke-linecap: round; vector-effect: non-scaling-stroke;
+}
+
+/* Ledger along the foot of the stage: real numbers, the time in Kampala, and the current role. */
+.hero-proof {
+  display: grid; grid-template-columns: repeat(4, auto) minmax(0, 1fr); align-items: end; gap: 16px clamp(24px, 4vw, 60px);
+  margin: clamp(28px, 4vw, 48px) 0 0; padding-block: 22px clamp(22px, 3vw, 34px); border-top: 1px solid #ffffff1c;
+}
+.hero-now { justify-self: end; max-width: 32ch; text-align: right; }
+.hero-proof .hero-now dd { font: 400 clamp(1rem, 1.3vw, 1.15rem)/1.3 var(--display); letter-spacing: -.01em; color: var(--muted); }
+.hero-proof div { display: grid; gap: 4px; }
+.hero-proof dt { order: 2; font: 600 .64rem/1.3 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: #b9adb9; }
+.hero-proof dd {
+  margin: 0; font: 400 clamp(1.6rem, 2.5vw, 2.2rem)/1 var(--display); letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.hero-clock dd { display: flex; align-items: center; gap: 9px; }
+.hero-clock dd::before {
+  content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: #7ed7a1; box-shadow: 0 0 0 0 #7ed7a180;
+}
+.hero-clock small { font: 600 .62rem/1 var(--mono); letter-spacing: .08em; color: #b9adb9; align-self: flex-end; margin-bottom: .45em; }
+
+/* Odometer digits: each digit is a strip of 0–9 that rolls into place. */
+.odo { display: inline-flex; }
+.odo-digit { display: inline-block; height: 1.2em; overflow: hidden; line-height: 1.2; }
+.odo-strip { display: flex; flex-direction: column; align-items: center; }
+.odo-strip > span { display: block; height: 1.2em; }
+.odo-sep { display: inline-block; line-height: 1.2; }
+
+.hero-copy .folio-action { transition-property: background-color, color, border-color, translate; transition-duration: .2s, .2s, .2s, .45s; transition-timing-function: ease, ease, ease, cubic-bezier(.2,.9,.3,1.4); }
+
+/* The band of problem areas between the opening and the work. */
+.hero-marquee {
+  overflow: hidden; background: #191722; color: #faf3e9;
+  padding-block: clamp(22px, 3.4vw, 40px); border-top: 1px solid #ffffff12;
+}
+.marquee-track { display: flex; align-items: center; width: max-content; }
+.marquee-item,.marquee-star { flex: none; margin-inline-end: clamp(22px, 3vw, 46px); }
+.marquee-item {
+  font: 400 clamp(2.4rem, 6vw, 5.6rem)/1.05 var(--display); letter-spacing: -.055em; white-space: nowrap;
+  color: transparent; -webkit-text-stroke: 1px #faf3e9a6; transition: color .35s ease;
+}
+.marquee-item:hover { color: #faf3e9; }
+.marquee-item-alt { color: #ffcb8d; -webkit-text-stroke: 0; font-style: italic; }
+.marquee-star { display: inline-block; color: #d0603f; font-size: clamp(1.1rem, 2.2vw, 1.9rem); }
+
+@media (max-width: 760px) {
+  .folio-opening .folio-hero { min-height: auto; padding-top: 36px; }
+  .hero-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 18px; }
+  .hero-now { grid-column: 1 / -1; justify-self: start; text-align: left; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .folio-opening .hero-copy h1 { animation: none; }
+  /* Hold the photo back briefly so it never flashes before the compile starts; JS releases it. */
+  .folio-opening .hero-visual img { animation: hero-photo-hold 2.4s step-end both; }
+  .folio-opening[data-compiled] .hero-visual img { animation: none; }
+  .folio-hero h1 .sort-split { animation: hero-split-in .3s ease-out both; }
+  .hero-underline path { stroke-dasharray: 1; animation: hero-underline-draw .9s cubic-bezier(.7,0,.25,1) both; animation-delay: 1.55s; }
+  .folio-opening .hero-intro,.folio-opening .hero-copy .folio-actions { animation: folio-enter .8s cubic-bezier(.2,.7,.3,1) both; animation-delay: .75s; }
+  .folio-opening .hero-copy .folio-actions { animation-delay: .88s; }
+  .hero-proof div { animation: hero-proof-rise .8s cubic-bezier(.2,.8,.3,1) both; animation-delay: calc(1s + var(--n, 0) * 90ms); }
+  .hero-proof div:nth-child(2) { --n: 1; }
+  .hero-proof div:nth-child(3) { --n: 2; }
+  .hero-proof div:nth-child(4) { --n: 3; }
+  .hero-proof div:nth-child(5) { --n: 4; }
+  .hero-proof { animation: hero-rule-grow 1.2s .9s cubic-bezier(.7,0,.2,1) both; }
+  .hero-clock dd::before { animation: hero-live 2.4s ease-out infinite; }
+  .odo-strip { transition: transform 1.9s cubic-bezier(.16,1,.3,1); }
+  .marquee-track { animation: hero-marquee 52s linear infinite; }
+  .marquee-star { animation: hero-star-spin 9s linear infinite; }
+
+  /* Section headings wipe upward into view. */
+  .folio-section-heading.is-revealed h2 {
+    animation: hero-heading-wipe 1.1s cubic-bezier(.7,0,.2,1) both;
+  }
+  .folio-section-heading.is-revealed > p {
+    animation: folio-enter .9s .25s cubic-bezier(.2,.7,.3,1) both;
+  }
+}
+
+@keyframes hero-photo-hold { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hero-split-in { from { opacity: 0; } }
+@keyframes hero-underline-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes hero-proof-rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes hero-rule-grow { from { border-top-color: transparent; } }
+@keyframes hero-live {
+  0% { box-shadow: 0 0 0 0 #7ed7a18c; }
+  70%, 100% { box-shadow: 0 0 0 9px #7ed7a100; }
+}
+@keyframes hero-marquee { to { transform: translateX(-50%); } }
+@keyframes hero-star-spin { to { rotate: 360deg; } }
+@keyframes hero-heading-wipe {
+  from { clip-path: inset(0 0 100% 0); translate: 0 .35em; }
+  to { clip-path: inset(-10% 0 -20% 0); translate: 0 0; }
+}
