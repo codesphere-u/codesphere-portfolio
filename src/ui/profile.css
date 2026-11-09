@@ -10,7 +10,7 @@
   --mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-padding-top: 88px; }
+html { scroll-padding-top: 96px; }
 .folio { margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.6 var(--sans); }
 .folio a { color: inherit; text-underline-offset: .24em; }
 .folio :focus-visible { outline: 2px solid #b64c3a; outline-offset: 5px; }
@@ -36,11 +36,25 @@ html { scroll-padding-top: 88px; }
 /* Header: direct page links and a separate disclosure for project shortcuts. */
 [hidden] { display: none !important; }
 .folio-header {
-  position: sticky; top: 0; z-index: 5;
+  position: sticky; top: 0; z-index: 5; min-height: 78px;
   background: #f9f6ef; border-bottom: 1px solid #ddd5c8;
 }
 .folio-header-inner {
-  min-height: 77px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  position: relative; min-height: 77px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.folio-header.is-docked { background: transparent; border-bottom-color: transparent; }
+.folio-header.is-docked .folio-header-inner {
+  max-width: min(calc(100% - 32px), 1180px); min-height: 61px; padding-inline: 20px;
+  transform: translateY(8px); border-radius: 13px;
+  background: #f9f6ef; box-shadow: 0 1px 0 #dcd0bf, 0 10px 32px #2419272b;
+}
+.reading-line {
+  display: block; pointer-events: none; position: absolute;
+  inset: auto 13px 0; height: 2px; overflow: hidden; border-radius: 3px;
+}
+.reading-line::before {
+  content: ""; display: block; width: 100%; height: 100%; background: #a64831;
+  transform: scaleX(var(--reading-progress, 0)); transform-origin: left center;
 }
 .folio-brand {
   display: inline-flex; align-items: center; gap: 11px;
@@ -74,22 +88,28 @@ html { scroll-padding-top: 88px; }
 .project-disclosure[open] summary span,.nav-toggle[aria-expanded="true"] span { transform: rotate(225deg) translate(-1px,-1px); }
 .nav-toggle { display: none; border: 1px solid #c8beb1; background: transparent; }
 .nav-panel {
-  position: absolute; top: calc(100% + 12px); right: 0; width: 310px; padding: 17px;
-  border: 1px solid #cdc1b4; border-radius: 8px; background: #fffaf0;
+  position: absolute; top: calc(100% + 12px); right: 0; width: 366px; max-height: calc(100dvh - 88px); overflow: auto; padding: 16px;
+  border: 1px solid #d0c4b6; border-radius: 10px; background: #fffaf0;
   box-shadow: 0 16px 45px #241b2830;
 }
-.nav-panel ul { margin-top: 7px; }
+.nav-panel ul { display: grid; gap: 3px; margin-top: 9px; }
 .nav-panel li a {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0 8px;
-  border-bottom: 1px solid #e5d9ce; padding: 8px 9px; text-decoration: none;
+  display: grid; grid-template-columns: 65px minmax(0, 1fr) auto; align-items: center; gap: 11px;
+  padding: 7px; border-radius: 5px; text-decoration: none;
 }
-.nav-panel li a:hover,.nav-panel .nav-all-work:hover { background: #f3e9db; }
-.nav-panel li strong { font-size: .93rem; }
-.nav-panel li small { grid-row: 2; font-size: .76rem; color: var(--muted); }
-.nav-panel li a > span { grid-column: 2; grid-row: 1/3; color: var(--accent); }
+.nav-panel li a:hover,.nav-panel .nav-all-work:hover { background: #f1e8db; }
+.nav-project-label { display: grid; gap: 1px; }
+.nav-project-label strong { font-size: .93rem; }
+.nav-project-label small { font-size: .76rem; color: var(--muted); }
+.nav-panel li a > span:last-child { color: var(--accent); padding-right: 5px; }
+.nav-project-thumb { display: grid; place-items: center; height: 47px; overflow: hidden; border-radius: 4px; background: #29253b; }
+.nav-project-thumb img { width: 100%; height: 47px; object-fit: cover; object-position: top; }
+.nav-project-thumb.preview-funa-gigs { background: #e2ad43; }
+.nav-project-thumb.preview-funa-gigs img { width: 32px; }
+.nav-project-thumb .hero-trace { font-size: .5rem; gap: 4px; }
 .nav-panel .nav-all-work {
-  display: flex; align-items: center; justify-content: space-between;
-  min-height: 44px; padding-inline: 9px; margin-top: 5px; font-size: .83rem; font-weight: 680;
+  display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #e5d9ce;
+  min-height: 44px; padding-inline: 9px; margin-top: 7px; font-size: .83rem; font-weight: 680;
 }
 
 /* A full-bleed photograph anchors the opening, with the work visible beneath it. */
@@ -314,7 +334,9 @@ html { scroll-padding-top: 88px; }
   .hero-project-image { display: none; }
 }
 @media (max-width: 760px) {
-  html { scroll-padding-top: 68px; }
+  html { scroll-padding-top: 78px; }
+  .folio-header { min-height: 63px; }
+  .folio-header:not(:has(.nav-toggle:not([hidden]))) { position: relative; }
   .folio-header-inner { min-height: 62px; flex-wrap: wrap; column-gap: 8px; row-gap: 0; }
   .folio-brand img { width: 34px; height: 34px; }
   .folio-brand { gap: 8px; font-size: .88rem; }
@@ -325,14 +347,16 @@ html { scroll-padding-top: 88px; }
   .nav-pages > li > a,.project-disclosure summary { padding-inline: 8px; font-size: .82rem; }
   .nav-pages .nav-contact > a { margin-left: 0; padding-inline: 11px; }
   .folio-header:has(.nav-toggle:not([hidden])) nav {
-    position: absolute; inset: 100% 0 auto; width: auto; max-height: calc(100dvh - 62px);
-    overflow: auto; background: #f9f6ef; border-bottom: 1px solid #ddd5c8; box-shadow: 0 16px 36px #241b2830;
-    padding: 12px clamp(20px,5.2vw,84px) 18px;
+    position: absolute; inset: calc(100% + 5px) 8px auto; width: auto; max-height: calc(100dvh - 82px);
+    overflow: auto; background: #f9f6ef; border: 1px solid #ddd5c8; border-radius: 10px;
+    box-shadow: 0 16px 36px #241b2830; padding: 12px;
   }
-  .folio-header:has(.nav-toggle:not([hidden])) .nav-pages { display: grid; }
+  .folio-header.is-docked .folio-header-inner { max-width: calc(100% - 20px); min-height: 56px; transform: translateY(5px); padding-inline: 10px; }
+  .folio-header.is-docked nav { inset-inline: 0; }
+  .folio-header:has(.nav-toggle:not([hidden])) .nav-pages { display: grid; padding-bottom: 0; }
   .folio-header:has(.nav-toggle:not([hidden])) .nav-pages > li > a,.folio-header:has(.nav-toggle:not([hidden])) .project-disclosure summary { justify-content: space-between; padding-inline: 12px; }
   .nav-projects:has(.project-disclosure[open]) { width: 100%; }
-  .nav-panel { position: static; width: 100%; margin-top: 6px; box-shadow: none; }
+  .nav-panel { position: static; width: 100%; max-height: none; overflow: visible; margin-top: 6px; padding: 10px; box-shadow: none; }
   .hero-stage { display: flex; flex-direction: column; }
   .folio-hero { min-height: auto; padding-block: 40px 24px; width: 100%; }
   .hero-copy { width: 100%; }
@@ -362,7 +386,16 @@ html { scroll-padding-top: 88px; }
   .hero-projects li { animation: folio-enter .55s .16s both; }
   .hero-projects li:nth-child(2) { animation-delay: .24s; }
   .hero-projects li:nth-child(3) { animation-delay: .32s; }
-  .project-disclosure[open] .nav-panel,.folio-header nav:not([hidden]) { animation: nav-enter .18s ease-out both; }
+  .folio-header-inner { transition: max-width .28s cubic-bezier(.2,.7,.3,1), min-height .28s ease, transform .28s ease, box-shadow .28s ease, border-radius .28s ease; }
+  .project-disclosure[open] .nav-panel,.folio-header:has(.nav-toggle:not([hidden])) nav:not([hidden]) { animation: nav-enter .2s ease-out both; }
+  [data-scroll-reveal].is-revealed { animation: section-enter .58s cubic-bezier(.2,.7,.3,1) both; }
+  [data-scroll-reveal="media"].is-revealed { animation-duration: .75s; }
+  [data-scroll-reveal="media"].is-revealed img { animation: project-image-enter .78s cubic-bezier(.2,.7,.3,1) both; }
+  .folio-section-heading.is-revealed .folio-label::after {
+    content: ""; display: inline-block; width: 36px; height: 1px; margin-left: 10px;
+    vertical-align: middle; background: currentColor; transform-origin: left;
+    animation: line-enter .65s ease-out both;
+  }
   @view-transition { navigation: auto; }
   ::view-transition-old(root),::view-transition-new(root) { animation-duration: .18s; }
 }
@@ -371,6 +404,8 @@ html { scroll-padding-top: 88px; }
   .folio-action:hover span { transform: none; }
 }
 @keyframes line-enter { from { transform: scaleX(.25); } }
-@keyframes folio-enter { from { opacity: .72; transform: translateY(11px); } }
-@keyframes nav-enter { from { opacity: .75; transform: translateY(-4px); } }
+@keyframes folio-enter { from { transform: translateY(11px); } }
+@keyframes section-enter { from { transform: translateY(18px); } }
+@keyframes project-image-enter { from { opacity: .82; clip-path: inset(3% 2% 0); } to { clip-path: inset(0); } }
+@keyframes nav-enter { from { transform: translateY(-4px); } }
 @keyframes portrait-enter { from { opacity: .72; transform: scale(1.06); } }
