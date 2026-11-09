@@ -21,13 +21,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career & Strict Accuracy Rules", () => {
-  it('validates overall portfolio schema and 928 verified automated tests/suites across 15 repositories', () => {
+  it('validates overall portfolio schema and 931 verified automated tests/suites across 15 repositories', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.equal(
       check.totalTests,
-      928,
-      `Expected exactly 928 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
+      931,
+      `Expected exactly 931 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
     );
   });
 
@@ -177,11 +177,11 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(nexusAegis.visualMotif, 'aegis');
 
     const cortexMcp = getProjectById('cortex-mcp');
-    assert.equal(cortexMcp.automatedTests, 84);
+    assert.equal(cortexMcp.automatedTests, 85);
     assert.equal(cortexMcp.visualMotif, 'graph');
 
     const agentflight = getProjectById('agentflight');
-    assert.equal(agentflight.automatedTests, 90);
+    assert.equal(agentflight.automatedTests, 91);
     assert.equal(agentflight.visualMotif, 'cassette');
 
     const patchpilot = getProjectById('patchpilot');
@@ -214,7 +214,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(agentshield.automatedTests, 42);
 
     const flowledger = getProjectById('flowledger');
-    assert.equal(flowledger.automatedTests, 94);
+    assert.equal(flowledger.automatedTests, 95);
 
     const stackpulse = getProjectById('stackpulse');
     assert.equal(stackpulse.automatedTests, 65);
@@ -368,7 +368,7 @@ describe('Portfolio pages and server', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
     assert.equal(summary.totalProjects, 15);
-    assert.equal(summary.totalAutomatedTests, 928);
+    assert.equal(summary.totalAutomatedTests, 931);
     assert.match(html, /class="skip-link"/);
     assert.match(html, /application\/ld\+json/);
     assert.match(html, /href="\.\/index\.html" aria-current="page"/);
@@ -411,7 +411,7 @@ describe('Portfolio pages and server', () => {
       assert.equal(body.version, '2.0.0');
       assert.equal(body.owner, 'Akandwanaho Ivan');
       assert.equal(body.totalProjects, 15);
-      assert.equal(body.totalAutomatedTests, 928);
+      assert.equal(body.totalAutomatedTests, 931);
     });
 
     it('serves /api/projects with domain and query filtering', async () => {

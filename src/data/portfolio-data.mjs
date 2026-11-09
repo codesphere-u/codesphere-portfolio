@@ -891,14 +891,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/cortex-mcp',
       languages: ['Python 3.12', 'MCP JSON-RPC 2.0', 'BM25 + Graph RAG', 'SHA-256 Merkle'],
-      automatedTests: 84,
+      automatedTests: 85,
       headlineMetric: {
         label: 'Bi-Temporal Recall & Stale Suppression',
-        value: '100% Stale Suppression · 84 Tests',
-        detail: '0.003 ms P50 fact upsert, semantic contradiction auditing, and TruthGate citation bundle export across 84 passing tests'
+        value: '100% Stale Suppression · 85 Tests',
+        detail: '0.003 ms P50 fact upsert, semantic contradiction auditing, and TruthGate citation bundle export across 85 passing tests'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '84 passing (pytest)' },
+        { label: 'Automated Tests', value: '85 passing (pytest)' },
         { label: 'Fact Upsert Latency', value: '0.003 ms P50 / 0.004 ms P95' },
         { label: '2-Hop Subgraph Query', value: '0.123 ms P50 / 0.185 ms P95' },
         { label: 'Stale Fact Leakage', value: '0.0% (150/150 superseded)' }
@@ -950,7 +950,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires structured (subject, predicate, object) extraction alongside free-text episodes, but guarantees 100% suppression of superseded facts while preserving point-in-time historical queries.',
           verification:
-            'Verified across 84 pytest tests, bi-temporal semantic contradiction auditing, and TruthGate citation bundle export.'
+            'Verified across 85 pytest tests, bi-temporal semantic contradiction auditing, and TruthGate citation bundle export.'
         }
       ],
       cliQuickstart: [
@@ -972,7 +972,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '84 Pytest Verification Suite',
+          label: '85 Pytest Verification Suite',
           path: 'tests/test_cortex_mcp.py',
           url: 'https://github.com/codesphere-u/cortex-mcp/blob/main/tests/test_cortex_mcp.py',
           kind: 'test'
@@ -1008,14 +1008,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/agentflight',
       languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'OTel W3C Export'],
-      automatedTests: 90,
+      automatedTests: 91,
       headlineMetric: {
         label: 'Deterministic Replay & Ergonomics Gate',
-        value: '2.83 µs/span · 90 Tests',
+        value: '2.83 µs/span · 91 Tests',
         detail: '353,356 spans/sec deterministic $0 CI replay + Trajectory Diff Analyzer + W3C OTel exporter + 10-rule MCP linter'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '90 passing (pytest)' },
+        { label: 'Automated Tests', value: '91 passing (pytest)' },
         { label: 'Cassette Replay Speed', value: '2.83 µs/span (353k spans/s)' },
         { label: 'MCP Linter Rules', value: '10 rules (TS001–TS010)' },
         { label: 'Circuit Breaker Overhead', value: '3.01 µs/span (332k spans/s)' }
@@ -1061,7 +1061,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires re-recording golden cassettes when intentional prompt or tool-schema changes alter agent trajectories, but makes CI regression testing 10,000x faster and $0 cost.',
           verification:
-            'Verified across 90 pytest tests in tests/test_agentflight.py and tests/test_diff_and_otel.py with W3C OTel trace export.'
+            'Verified across 91 pytest tests in tests/test_agentflight.py and tests/test_diff_and_otel.py with W3C OTel trace export.'
         }
       ],
       cliQuickstart: [
@@ -1083,7 +1083,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '90 Pytest Verification Suite',
+          label: '91 Pytest Verification Suite',
           path: 'tests/test_agentflight.py',
           url: 'https://github.com/codesphere-u/agentflight/blob/main/tests/test_agentflight.py',
           kind: 'test'
@@ -1586,14 +1586,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Fintech',
       repoUrl: 'https://github.com/codesphere-u/flowledger',
       languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'Double-Entry Engine'],
-      automatedTests: 94,
+      automatedTests: 95,
       headlineMetric: {
         label: 'Ledger Invariant Integrity',
-        value: '0 Imbalance · 94 Verified Tests',
+        value: '0 Imbalance · 95 Verified Tests',
         detail: '100% balanced debits == credits across 12 currencies, M-Pesa Daraja 2.0, ISO 20022, FX corridors, and offline vouchers'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '94 passing (pytest)' },
+        { label: 'Automated Tests', value: '95 passing (pytest)' },
         { label: 'Supported Currencies', value: '12 (Pan-African & Stablecoin)' },
         { label: '3-Way Reconciliation', value: '50 synthetic txs classified' },
         { label: 'Storage Engine', value: 'SQLite WAL + Merkle Proofs' }
@@ -1648,7 +1648,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires explicit currency minor-unit scaling at display boundaries, but guarantees zero rounding drift and complete auditability.',
           verification:
-            'Verified across 66 automated tests in tests/test_ledger_invariants.py, tests/test_reconciliation_and_api.py, tests/test_camt053_and_csv.py, tests/test_split_and_escrow.py, and tests/test_mcp_and_aegis.py.'
+            'Verified across 95 automated tests in tests/test_ledger_invariants.py, tests/test_reconciliation_and_api.py, tests/test_camt053_and_csv.py, tests/test_split_and_escrow.py, tests/test_mcp_and_aegis.py, and tests/test_v2_pan_african.py.'
         }
       ],
       cliQuickstart: [
@@ -2358,7 +2358,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'AgentFlight v1.1',
       repoSlug: 'codesphere-u/agentflight',
       domain: 'AI',
-      automatedTests: 90,
+      automatedTests: 91,
       primaryLatencyLabel: 'Deterministic Cassette Replay',
       primaryLatencyMs: 0.0028,
       throughputOrAccuracyLabel: 'Replay, Diff & OTel Export',
@@ -2371,7 +2371,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'Cortex MCP v1.1',
       repoSlug: 'codesphere-u/cortex-mcp',
       domain: 'AI',
-      automatedTests: 84,
+      automatedTests: 85,
       primaryLatencyLabel: 'Bi-Temporal Fact Upsert (P50)',
       primaryLatencyMs: 0.003,
       throughputOrAccuracyLabel: 'Stale Suppression & Contradiction Audit',
@@ -2475,11 +2475,11 @@ export const PORTFOLIO_DATA = {
       projectName: 'FlowLedger v2.0',
       repoSlug: 'codesphere-u/flowledger',
       domain: 'Fintech',
-      automatedTests: 94,
+      automatedTests: 95,
       primaryLatencyLabel: 'Double-Entry Commit & Hash',
       primaryLatencyMs: 0.22,
       throughputOrAccuracyLabel: 'Trial Balance & Invariant Verification',
-      throughputOrAccuracyValue: '0 Imbalance (94 Tests · Pan-African Rails, ISO 20022 & FX)',
+      throughputOrAccuracyValue: '0 Imbalance (95 Tests · Pan-African Rails, ISO 20022 & FX)',
       determinismGuarantee: 'Integer Minor Units + SHA-256 Chain + Merkle Tree',
       verificationCommand: 'cd flowledger && pytest -v && python -m flowledger.cli verify-invariants'
     },
