@@ -891,7 +891,7 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/cortex-mcp',
       languages: ['Python 3.12', 'MCP JSON-RPC 2.0', 'BM25 + Graph RAG', 'SHA-256 Merkle'],
-      automatedTests: 99,
+      automatedTests: 100,
       headlineMetric: {
         label: 'Bi-Temporal Recall & Stale Suppression',
         value: '100% Stale Suppression · 87 Tests',
@@ -1008,7 +1008,7 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/agentflight',
       languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'OTel W3C Export'],
-      automatedTests: 105,
+      automatedTests: 106,
       headlineMetric: {
         label: 'Deterministic Replay & Ergonomics Gate',
         value: '2.83 µs/span · 93 Tests',
@@ -1119,7 +1119,7 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/patchpilot',
       languages: ['Python 3.12', 'AST Analysis', 'MCP JSON-RPC 2.0', 'Automated Repair'],
-      automatedTests: 85,
+      automatedTests: 86,
       headlineMetric: {
         label: 'Fault Localization & Anti-Cheat Gate',
         value: '100% Top-1 · -96.6% Tokens · 73 Tests',
@@ -1230,7 +1230,7 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/synapse-router',
       languages: ['Python 3.12', 'Multi-Model Router', '64-Bit SimHash Cache', 'MCP JSON-RPC 2.0'],
-      automatedTests: 89,
+      automatedTests: 90,
       headlineMetric: {
         label: 'Cost Reduction & Failover Resilience',
         value: '90.6% Cost Saved · 100% Failover · 77 Tests',
