@@ -65,7 +65,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.match(html, /<div class="hero-now"><dt>Currently<\/dt>/);
     assert.match(html, /<section class="folio-opening" aria-labelledby="hero-heading" data-hero>/);
     assert.match(html, /<canvas class="hero-compile" aria-hidden="true" hidden><\/canvas>/);
-    assert.match(html, /<dd data-count="931">931<\/dd>/);
+    assert.match(html, /<dd data-count="937">937<\/dd>/);
     assert.match(html, /data-kampala-time/);
     assert.match(html, /<div class="hero-marquee" aria-hidden="true">/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/hero\.mjs"><\/script>/);
