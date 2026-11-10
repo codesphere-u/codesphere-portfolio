@@ -2,7 +2,7 @@
 
 ## 1. System Overview
 
-**Codesphere Portfolio** (`codesphere-portfolio`) is a zero-dependency, ultra-fast engineering portfolio, showcase platform, and headless API built with modern standards-compliant ES Modules (Node.js 20+). It renders an editorial presentation of 16 production software systems, 989 verified automated tests across 15 repositories, interactive architecture benchmarks, and an in-browser safe terminal emulator.
+**Codesphere Portfolio** (`codesphere-portfolio`) is a zero-dependency, ultra-fast engineering portfolio, showcase platform, and headless API built with modern standards-compliant ES Modules (Node.js 20+). It renders an editorial presentation of 16 production software systems, 998 verified automated tests across 15 repositories, interactive architecture benchmarks, and an in-browser safe terminal emulator.
 
 ---
 
@@ -20,7 +20,7 @@
 |                       Node.js HTTP Server (server.mjs)                            |
 |                                                                                   |
 |  Static Asset Router                   REST API Endpoints                         |
-|  - Content-Type detection              - GET /api/health (status, 989 tests, sha) |
+|  - Content-Type detection              - GET /api/health (status, 998 tests, sha) |
 |  - Security headers (CSP, HSTS)        - GET /api/projects?domain=&q=             |
 |  - Clean URL routing (/work, /about)   - GET /api/benchmarks (latency sorted)     |
 +-------------------+-------------------------------------------+-------------------+
@@ -54,7 +54,7 @@
 ### 3.2 Dual-Mode Delivery (Static + API Server)
 - **Static Hosting**: The compiled `dist/` directory can be deployed directly to Vercel, Cloudflare Pages, or GitHub Pages.
 - **Dynamic Node Server (`server.mjs`)**: Lightweight HTTP/1.1 server serving both static HTML and three live JSON endpoints:
-  - `/api/health`: System health, total verified test counts (989), active git commit SHA, and uptime.
+  - `/api/health`: System health, total verified test counts (998), active git commit SHA, and uptime.
   - `/api/projects`: Query and domain category filtering across projects, problem statements, and ADR citations.
   - `/api/benchmarks`: Latency and throughput comparisons across the open-source flagships.
 
@@ -73,4 +73,4 @@ The data layer enforces strict real-world identity boundaries verified by unit t
   - Funa Gigs under Jaminsa Ventures Limited (Principal Platform & Security Architect, Sept 2024 – Feb 2025).
   - Waanverse Labs (Co-Founder & Chief Technology Officer, Jan 2024 – March 2025).
   - 4codex Technologies (Core Backend Engineer, Aug 2023 – April 2024).
-- **Test Metric Verification**: Exactly 989 automated tests across 15 flagship repositories, validated via automated test assertions.
+- **Test Metric Verification**: Exactly 998 automated tests across 15 flagship repositories, validated via automated test assertions.

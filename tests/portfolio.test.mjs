@@ -22,13 +22,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 
 describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career & Strict Accuracy Rules", () => {
-  it('validates overall portfolio schema and 989 verified automated tests/suites across 15 repositories', () => {
+  it('validates overall portfolio schema and 998 verified automated tests/suites across 15 repositories', () => {
     const check = validatePortfolioIntegrity(PORTFOLIO_DATA);
     assert.equal(check.valid, true, `Errors: ${check.errors.join(', ')}`);
     assert.equal(
       check.totalTests,
-      989,
-      `Expected exactly 989 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
+      998,
+      `Expected exactly 998 verified automated tests/suites across the 15 repos, got ${check.totalTests}`
     );
   });
 
@@ -65,7 +65,7 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.match(html, /<div class="hero-now"><dt>Currently<\/dt>/);
     assert.match(html, /<section class="folio-opening" aria-labelledby="hero-heading" data-hero>/);
     assert.match(html, /<canvas class="hero-compile" aria-hidden="true" hidden><\/canvas>/);
-    assert.match(html, /<dd data-count="989">989<\/dd>/);
+    assert.match(html, /<dd data-count="998">998<\/dd>/);
     assert.match(html, /data-kampala-time/);
     assert.match(html, /<div class="hero-marquee" aria-hidden="true">/);
     assert.match(html, /<script type="module" src="\.\/src\/ui\/hero\.mjs"><\/script>/);
@@ -188,15 +188,15 @@ describe("Codesphere Portfolio v2.0 — THE BUILDER'S JOURNEY Identity, Career &
     assert.equal(cortexMcp.visualMotif, 'graph');
 
     const agentflight = getProjectById('agentflight');
-    assert.equal(agentflight.automatedTests, 106);
+    assert.equal(agentflight.automatedTests, 109);
     assert.equal(agentflight.visualMotif, 'cassette');
 
     const patchpilot = getProjectById('patchpilot');
-    assert.equal(patchpilot.automatedTests, 86);
+    assert.equal(patchpilot.automatedTests, 89);
     assert.equal(patchpilot.visualMotif, 'ast');
 
     const synapseRouter = getProjectById('synapse-router');
-    assert.equal(synapseRouter.automatedTests, 90);
+    assert.equal(synapseRouter.automatedTests, 93);
     assert.equal(synapseRouter.visualMotif, 'router');
 
     const swarmweaver = getProjectById('swarmweaver');
@@ -381,7 +381,7 @@ describe('Portfolio pages and server', () => {
     const { html, elapsedMs, summary } = generatePortfolioHtml();
     assert.ok(Number(elapsedMs) < 500, `Build took too long: ${elapsedMs}ms`);
     assert.equal(summary.totalProjects, 15);
-    assert.equal(summary.totalAutomatedTests, 989);
+    assert.equal(summary.totalAutomatedTests, 998);
     assert.match(html, /class="skip-link"/);
     assert.match(html, /application\/ld\+json/);
     assert.match(html, /href="\.\/index\.html" aria-current="page"/);
@@ -435,7 +435,7 @@ describe('Portfolio pages and server', () => {
       assert.equal(body.version, '2.0.0');
       assert.equal(body.owner, 'Akandwanaho Ivan');
       assert.equal(body.totalProjects, 15);
-      assert.equal(body.totalAutomatedTests, 989);
+      assert.equal(body.totalAutomatedTests, 998);
     });
 
     it('serves /api/projects with domain and query filtering', async () => {
