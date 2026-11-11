@@ -90,7 +90,7 @@
   /* Hold the photo back briefly so it never flashes before the compile starts; JS releases it. */
   .folio-opening .hero-visual img { animation: hero-photo-hold 2.4s step-end both; }
   .folio-opening[data-compiled] .hero-visual img { animation: none; }
-  .folio-hero h1 .sort-split { animation: hero-split-in .3s ease-out both; }
+  .folio-hero h1 .sort-split { animation: hero-split-in .35s .32s ease-out both; }
   .hero-underline path { stroke-dasharray: 1; animation: hero-underline-draw .9s cubic-bezier(.7,0,.25,1) both; animation-delay: 1.55s; }
   .folio-opening .hero-intro,.folio-opening .hero-copy .folio-actions { animation: folio-enter .8s cubic-bezier(.2,.7,.3,1) both; animation-delay: .75s; }
   .folio-opening .hero-copy .folio-actions { animation-delay: .88s; }

@@ -1007,6 +1007,7 @@ export const PORTFOLIO_DATA = {
       domains: ['AI', 'Cybersecurity', 'Backend'],
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/agentflight',
+      liveDemoUrl: 'https://agentflight-tau.vercel.app',
       languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'OTel W3C Export'],
       automatedTests: 109,
       headlineMetric: {

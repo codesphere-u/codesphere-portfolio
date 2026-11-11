@@ -521,7 +521,7 @@ function caseSection(number, label, title, content) {
   </section>`;
 }
 
-function caseOpening(id, facts, visual) {
+function caseOpening(id, facts, visual, extraAction = '') {
   const [name, area, headline, summary] = projectLeads[id];
   return `<section class="case-hero ${worldOf(id)}" aria-labelledby="case-title"><div class="folio-container">
     <a class="folio-back" href="../work.html"><span aria-hidden="true">←</span> All work</a>
@@ -531,6 +531,7 @@ function caseOpening(id, facts, visual) {
         <h1 id="case-title" data-sort>${name}</h1>
         <p class="case-headline">${headline}</p>
         ${summary ? `<p class="case-intro">${summary}</p>` : ''}
+        ${extraAction ? `<div class="case-hero-cta" style="margin: 18px 0 10px 0;">${extraAction}</div>` : ''}
         <dl class="case-facts">${facts.map(([key, value]) => `<div><dt>${key}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl>
       </div>
       ${visual}
@@ -586,10 +587,12 @@ function renderTechnicalCase(project) {
   </details>`).join('');
   const constraints = [...new Set([...project.securityConsiderations, ...architectureBlueprint.invariants])];
   const visual = featuredIds.includes(id) ? projectMedia(id, '../') : technicalVisual(project);
-  const { end, next: nextBand } = caseFooter(action(repoUrl, 'View source on GitHub') + (liveDemoUrl ? action(liveDemoUrl, 'Open the live demo', { secondary: true }) : ''), next);
+  const liveLabel = id === 'agentflight' ? '🚀 Launch Live Mission Control' : 'Open the live demo';
+  const liveHeroCta = liveDemoUrl ? `<a class="folio-action" href="${escapeHtml(liveDemoUrl)}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-weight: 700;"><span>${liveLabel}</span><span aria-hidden="true">↗</span></a>` : '';
+  const { end, next: nextBand } = caseFooter(action(repoUrl, 'View source on GitHub') + (liveDemoUrl ? action(liveDemoUrl, liveLabel, { secondary: true }) : ''), next);
   return frame({
     page: 'project', title: name, description: headline, prefix: '../', type: 'article',
-    body: `${caseOpening(id, [['Type', 'Open-source engineering'], ['Release', version], ['Stack', languages.join(' · ')], ['Automated tests', String(project.automatedTests)]], visual)}
+    body: `${caseOpening(id, [['Type', 'Open-source engineering'], ['Release', version], ['Stack', languages.join(' · ')], ['Automated tests', String(project.automatedTests)]], visual, liveHeroCta)}
     ${caseBody([
       ['01', 'Problem', 'Why it exists', `<p class="case-lead">${escapeHtml(problemStatement)}</p>`],
       ['02', 'Design', 'How it works', `

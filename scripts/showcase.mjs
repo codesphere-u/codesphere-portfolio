@@ -157,7 +157,11 @@ function chapter({ id, category, name, headline, intro, demo, footnote }, index)
           <h3 id="chapter-title-${index + 1}">${name}</h3>
           <p class="chapter-headline">${headline}</p>
           <p class="chapter-intro">${intro}</p>
-          <a class="chapter-link" href="./work/${id}.html"><span>Read the ${name} case study</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 14px;">
+            <a class="chapter-link" href="./work/${id}.html"><span>Read the ${name} case study</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>
+            ${id === 'agentflight' ? `<a class="chapter-link" href="https://agentflight-tau.vercel.app/" target="_blank" rel="noopener" style="color: var(--gold, #f4b94c); font-weight: 600;"><span>🚀 Launch Mission Control</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>` : ''}
+            ${id === 'cyber-dragon' ? `<a class="chapter-link" href="https://cyber-dragon-ivory.vercel.app/" target="_blank" rel="noopener" style="color: var(--gold, #f4b94c); font-weight: 600;"><span>🛡️ Launch Live App</span><span class="chapter-link-arrow" aria-hidden="true">↗</span></a>` : ''}
+          </div>
         </div>
         <div class="chapter-stage">
           ${demo}
