@@ -23,6 +23,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Verify zero-dependency supply chain & audit
+        run: |
+          node -e "const p=JSON.parse(require('fs').readFileSync('package.json','utf8')); if(Object.keys(p.dependencies||{}).length||Object.keys(p.devDependencies||{}).length){throw new Error('Unexpected external dependencies');}"
+          npm install --package-lock-only --ignore-scripts --silent
+          npm audit --omit=dev
+          rm -f package-lock.json
+
       - name: Build static bundle
         run: npm run build
 
