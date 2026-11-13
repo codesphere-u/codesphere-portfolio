@@ -31,6 +31,13 @@ const staticAssets = new Map([
 ]);
 
 export function handlePortfolioRequest(req, res) {
+  const method = (req.method || 'GET').toUpperCase();
+  const isHead = method === 'HEAD';
+  const finish = (status, headers, body) => {
+    res.writeHead(status, headers);
+    res.end(isHead ? undefined : body);
+  };
+
   try {
     const url = new URL(req.url || '/', 'http://localhost');
 
@@ -39,10 +46,27 @@ export function handlePortfolioRequest(req, res) {
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
-    if (url.pathname === '/api/health') {
+    if (method !== 'GET' && !isHead) {
+      finish(
+        405,
+        {
+          'Content-Type': 'application/json; charset=utf-8',
+          Allow: 'GET, HEAD',
+          'Cache-Control': 'no-store'
+        },
+        JSON.stringify({ error: 'Method Not Allowed', allowed: ['GET', 'HEAD'] })
+      );
+      return;
+    }
+
+    if (url.pathname === '/api/health' || url.pathname === '/health') {
       const summary = computePortfolioSummary(PORTFOLIO_DATA);
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(
+      finish(
+        200,
+        {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'no-store'
+        },
         JSON.stringify({
           status: 'ok',
           service: 'codesphere-portfolio',
@@ -61,8 +85,12 @@ export function handlePortfolioRequest(req, res) {
       const domain = url.searchParams.get('domain') || 'All';
       const query = url.searchParams.get('q') || '';
       const results = filterProjects({ domain, query });
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(
+      finish(
+        200,
+        {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'no-store'
+        },
         JSON.stringify({
           domain,
           query,
@@ -77,8 +105,12 @@ export function handlePortfolioRequest(req, res) {
       const sort = url.searchParams.get('sort') || 'tests-desc';
       const benchmarks = sortBenchmarks(PORTFOLIO_DATA.benchmarks, sort);
       const summary = computePortfolioSummary(PORTFOLIO_DATA);
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(
+      finish(
+        200,
+        {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Cache-Control': 'no-store'
+        },
         JSON.stringify({
           totalAutomatedTests: summary.totalAutomatedTests,
           benchmarks
@@ -89,8 +121,7 @@ export function handlePortfolioRequest(req, res) {
 
     const page = pages.get(url.pathname);
     if (page) {
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(page);
+      finish(200, { 'Content-Type': 'text/html; charset=utf-8' }, page);
       return;
     }
 
@@ -100,16 +131,21 @@ export function handlePortfolioRequest(req, res) {
       if (url.pathname === '/' + cvPdf) {
         res.setHeader('Content-Disposition', 'attachment; filename="akandwanaho-ivan-cv.pdf"');
       }
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(file);
+      finish(200, { 'Content-Type': contentType }, file);
       return;
     }
 
-    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(renderNotFoundPage('/'));
+    finish(404, { 'Content-Type': 'text/html; charset=utf-8' }, renderNotFoundPage('/'));
   } catch (err) {
-    res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify({ error: 'Internal Server Error', message: err?.message }));
+    console.error('[codesphere-portfolio] Unhandled request error:', err);
+    finish(
+      500,
+      {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'no-store'
+      },
+      JSON.stringify({ error: 'Internal Server Error' })
+    );
   }
 }
 
@@ -124,6 +160,17 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const port = Number(process.env.PORT || 4173);
   const host = process.env.HOST || '127.0.0.1';
   const server = createPortfolioServer();
+  let closing = false;
+  const shutdown = (signal) => {
+    if (closing) return;
+    closing = true;
+    console.log(`[codesphere-portfolio] Received ${signal}; closing server`);
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(1), 5000).unref();
+  };
+  process.once('SIGTERM', () => shutdown('SIGTERM'));
+  process.once('SIGINT', () => shutdown('SIGINT'));
+
   server.listen(port, host, () => {
     console.log(
       `codesphere-portfolio server running at http://${host}:${port}`

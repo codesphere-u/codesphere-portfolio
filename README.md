@@ -3,8 +3,8 @@
 [![CI](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/codesphere-u/codesphere-portfolio/actions/workflows/ci.yml)
 [![Node.js 20+](https://img.shields.io/badge/node.js-20%2B%20%7C%2022%2B-green.svg)](https://nodejs.org/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external%20runtime-emerald.svg)](package.json)
-[![Automated Tests](https://img.shields.io/badge/tests-20%20passed-brightgreen.svg)](tests/)
-[![Verified System Tests](https://img.shields.io/badge/ecosystem%20tests-1067%20verified-blue.svg)](https://github.com/codesphere-u)
+[![Automated Tests](https://img.shields.io/badge/tests-21%20passed-brightgreen.svg)](tests/)
+[![Verified System Tests](https://img.shields.io/badge/ecosystem%20tests-1144%20verified-blue.svg)](https://github.com/codesphere-u)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **High-Performance Engineering Portfolio, System Showcase, Interactive Architecture Benchmarks & Controlled Terminal Emulator for Akandwanaho Ivan (Alvin).**
@@ -19,7 +19,7 @@ Rather than relying on heavy client frameworks or bloated JavaScript bundlers, t
 
 ### Key Features
 - **16 Production System Case Studies**: In-depth breakdowns of real systems (`Funa Gigs`, `Cyber Dragon`, `AgentFlight`, `Nexus-Aegis`, `Cortex-MCP`, `TruthGate`, etc.) detailing architectural tradeoffs, ADRs, and evidence.
-- **1,067 Verified Automated Tests**: Exact automated test assertions across 15 repositories continuously verified for 100% truthfulness.
+- **1,144 Verified Automated Tests**: Exact automated test assertions across 15 repositories continuously verified for 100% truthfulness.
 - **In-Browser Terminal Emulator**: Controlled, sandboxed REPL executing commands (`help`, `projects`, `benchmarks`, `skills`) with zero OS system calls.
 - **Interactive Architecture Benchmarks**: Live latency, throughput, and memory footprint metrics across distributed systems.
 - **Dual-Mode Serving**: Deployable as static files (`dist/`) or served with built-in Node.js HTTP server exposing `/api/health`, `/api/projects`, and `/api/benchmarks`.
@@ -40,7 +40,7 @@ Rather than relying on heavy client frameworks or bloated JavaScript bundlers, t
 |                       Node.js HTTP Server (server.mjs)                            |
 |                                                                                   |
 |  Static Asset Router                   REST API Endpoints                         |
-|  - Content-Type detection              - GET /api/health (status, 1067 tests, sha) |
+|  - Content-Type detection              - GET /api/health (status, 1144 tests, sha) |
 |  - Security headers (CSP, HSTS)        - GET /api/projects?domain=&q=             |
 |  - Clean URL routing (/work, /about)   - GET /api/benchmarks (latency sorted)     |
 +-------------------+-------------------------------------------+-------------------+
@@ -82,7 +82,7 @@ codesphere-portfolio/
 │   ├── data/                     # Strictly verified biographical & project data
 │   └── styles/                   # Modern vanilla CSS design system
 ├── tests/
-│   └── portfolio.test.mjs        # 20 automated assertions & API tests
+│   └── portfolio.test.mjs        # 21 automated assertions & API tests
 ├── .editorconfig                 # Coding & whitespace standards
 ├── CHANGELOG.md                  # Semantic release log
 ├── CODE_OF_CONDUCT.md            # Contributor Covenant Code of Conduct
@@ -108,7 +108,7 @@ git clone https://github.com/codesphere-u/codesphere-portfolio.git
 cd codesphere-portfolio
 npm test
 ```
-Runs the 20 automated test suites and compiles the static site into `dist/`.
+Runs the 21 automated test suites and compiles the static site into `dist/`.
 
 ### 2. Start the Local Server
 ```bash
@@ -132,7 +132,7 @@ Returns system status, active version, total verified ecosystem test count, and 
 {
   "status": "healthy",
   "version": "2.0.0",
-  "ecosystem_tests": 1067,
+  "ecosystem_tests": 1144,
   "flagship_repositories": 15
 }
 ```

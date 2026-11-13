@@ -26,5 +26,5 @@ jobs:
       - name: Build static bundle
         run: npm run build
 
-      - name: Run automated test suite (22 tests)
+      - name: Run automated test suite (21 tests)
         run: npm test

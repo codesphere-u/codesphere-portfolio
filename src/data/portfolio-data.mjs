@@ -287,14 +287,14 @@ export const PORTFOLIO_DATA = {
       repoUrl: 'https://github.com/codesphere-u/cyber-dragon',
       liveDemoUrl: 'https://cyber-dragon-ivory.vercel.app',
       languages: ['TypeScript', 'Python', 'Next.js 15', 'FastAPI'],
-      automatedTests: 21,
+      automatedTests: 25,
       headlineMetric: {
         label: 'Heuristic Latency & Accuracy',
         value: '0.28 ms · 8/8 Corpus',
         detail: '100% expected risk-level match across 8 curated fraud & benign control scenarios with zero external network calls'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '21 passing (12 Node + 9 Pytest)' },
+        { label: 'Automated Tests', value: '25 passing (12 Node + 13 Pytest)' },
         { label: 'Mean Latency', value: '0.28 ms / payload' },
         { label: 'Outbound Network Calls', value: '0 (Strictly SSRF-Free)' },
         { label: 'Live Deployment', value: 'cyber-dragon-ivory.vercel.app' }
@@ -350,7 +350,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Cannot inspect destination DOM content behind shortened URLs (bit.ly), which are therefore flagged as obfuscated links requiring independent verification.',
           verification:
-            'Verified across 12 Node.js unit tests, 8 benchmark scenarios, and 9 FastAPI endpoint tests.'
+            'Verified across 12 Node.js unit tests, 8 benchmark scenarios, and 13 FastAPI endpoint tests.'
         }
       ],
       cliQuickstart: [
@@ -524,14 +524,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/ARGUS-AI',
       languages: ['Python 3.12', 'Pydantic', 'Pandas / NumPy', 'MCP Server'],
-      automatedTests: 62,
+      automatedTests: 77,
       headlineMetric: {
         label: 'Adversarial Veto Precision',
-        value: '3 Trap Trades Vetoed · 62 Tests',
+        value: '3 Trap Trades Vetoed · 77 Tests',
         detail: 'Walk-forward simulation where Devil’s Advocate vetoed 3 flash-crash/blow-off traps ($488.37 counterfactual loss avoided)'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '62 passing (pytest)' },
+        { label: 'Automated Tests', value: '77 passing (pytest)' },
         { label: 'Committee Architecture', value: '7 Specialized Agents' },
         { label: 'Leakage Protection', value: 'PointInTimeGuard Verified' },
         { label: 'Protocol Integration', value: 'Model Context Protocol (MCP)' }
@@ -589,7 +589,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Reduces total trade frequency in choppy markets, but substantially cuts maximum drawdown and avoids bull-trap reversals.',
           verification:
-            'Verified across 62 pytest tests including tests/test_backtest_engine.py and tests/test_argus_committee.py.'
+            'Verified across 77 pytest tests including tests/test_backtest_engine.py, tests/test_argus_committee.py, tests/test_http_server.py, and tests/test_mcp_and_http.py.'
         }
       ],
       cliQuickstart: [
@@ -647,14 +647,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Cybersecurity',
       repoUrl: 'https://github.com/codesphere-u/agentshield',
       languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'CLI / SDK'],
-      automatedTests: 42,
+      automatedTests: 49,
       headlineMetric: {
         label: 'OWASP 2026 Benchmark Suite',
         value: '100% Recall · 0% FPR',
         detail: '25/25 exact verdict accuracy across 21 synthetic attack scenarios and 4 benign controls'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '42 passing (pytest + Ruff)' },
+        { label: 'Automated Tests', value: '49 passing (pytest + Ruff)' },
         { label: 'Red-Team Corpus', value: '25 OWASP 2026 scenarios' },
         { label: 'Attack Recall / FPR', value: '100.0% Recall / 0.0% FPR' },
         { label: 'Audit Trail', value: 'SHA-256 Hash-Chained Ledger' }
@@ -712,7 +712,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires declaring tool schemas and sandbox roots upfront, but guarantees deterministic enforcement even under complete prompt compromise.',
           verification:
-            'Verified across 42 pytest tests and the 25-scenario OWASP 2026 evaluation suite.'
+            'Verified across 49 pytest tests and the 25-scenario OWASP 2026 evaluation suite.'
         }
       ],
       cliQuickstart: [
@@ -734,7 +734,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '42 Security & API Tests',
+          label: '49 Security & API Tests',
           path: 'tests/test_agentshield.py',
           url: 'https://github.com/codesphere-u/agentshield/blob/main/tests/test_agentshield.py',
           kind: 'test'
@@ -770,14 +770,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/nexus-aegis',
       languages: ['Python 3.12', 'RFC 6962 Merkle Proofs', 'PCAE Kernel', 'MCP JSON-RPC 2.0'],
-      automatedTests: 77,
+      automatedTests: 87,
       headlineMetric: {
         label: '7-Gate Attestation & Merkle Proofs',
-        value: '100% Recall · 0.27 ms P50 · 77 Tests',
+        value: '100% Recall · 0.27 ms P50 · 87 Tests',
         detail: '100% recall (0% FPR) across 35 multi-agent scenarios + 245/245 RFC 6962 selective-disclosure Merkle proofs verified'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '77 passing (pytest)' },
+        { label: 'Automated Tests', value: '87 passing (pytest)' },
         { label: '35-Scenario PCAE Suite', value: '100.0% Recall / 0.0% FPR' },
         { label: 'Selective Merkle Proofs', value: '245 / 245 Verified (RFC 6962)' },
         { label: 'Full 7-Gate P50 Latency', value: '0.27 ms (P95: 0.46 ms)' }
@@ -833,7 +833,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Adds ~0.04 ms of cryptographic hashing overhead per run, but provides mathematical tamper-evidence and selective disclosure.',
           verification:
-            'Verified across 77 pytest tests, 35 multi-agent scenarios, and 245 tampered-proof rejection tests.'
+            'Verified across 87 pytest tests, 35 multi-agent scenarios, and 245 tampered-proof rejection tests.'
         }
       ],
       cliQuickstart: [
@@ -855,7 +855,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '77 Pytest Verification Suite',
+          label: '87 Pytest Verification Suite',
           path: 'tests/test_nexus_aegis.py',
           url: 'https://github.com/codesphere-u/nexus-aegis/blob/main/tests/test_nexus_aegis.py',
           kind: 'test'
@@ -1346,14 +1346,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/swarmweaver',
       languages: ['Python 3.12', 'DAG Scheduler', 'MCP JSON-RPC 2.0', 'Concurrency Control'],
-      automatedTests: 65,
+      automatedTests: 70,
       headlineMetric: {
         label: 'Collision Prevention & Resume Savings',
         value: '0 Race Conditions · 70% Tokens Saved',
         detail: '100% file-collision prevention across 50 parallel conflicting tasks and 0.0072 ms/node checkpoint replay'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '65 passing (pytest)' },
+        { label: 'Automated Tests', value: '70 passing (pytest)' },
         { label: '200-Task DAG Compile P50', value: '0.973 ms (5.93x speedup)' },
         { label: 'File Collision Prevention', value: '100.0% (0 race conditions)' },
         { label: 'Checkpoint Replay Speed', value: '0.0072 ms / node (70% tok saved)' }
@@ -1407,7 +1407,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires tasks to declare read/write glob patterns upfront, but eliminates race conditions and achieves a 5.93x parallel speedup on 200-node graphs.',
           verification:
-            'Verified across 65 pytest tests and a 4-part benchmark suite.'
+            'Verified across 70 pytest tests and a 4-part benchmark suite.'
         }
       ],
       cliQuickstart: [
@@ -1465,14 +1465,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/truthgate',
       languages: ['Python 3.12', 'AST Grounding', 'NLI Entailment', 'MCP JSON-RPC 2.0'],
-      automatedTests: 67,
+      automatedTests: 75,
       headlineMetric: {
         label: 'Hallucination Recall & Latency',
         value: '100% Recall · 0% FPR · 0.115 ms',
         detail: '40/40 exact accuracy across 30 adversarial hallucination scenarios (TG001–TG008) and 10 grounded controls'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '67 passing (pytest)' },
+        { label: 'Automated Tests', value: '75 passing (pytest)' },
         { label: '40-Scenario Benchmark', value: '100.0% Precision & Recall (0% FPR)' },
         { label: 'Verification P50 Latency', value: '0.115 ms / response' },
         { label: 'Deterministic Rules', value: '8 Rules (TG001–TG008) + MCP' }
@@ -1526,7 +1526,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Focuses on structural, numeric, polarity, citation, and AST grounding errors rather than open-ended stylistic critique, executing 10,000x faster (0.115 ms P50).',
           verification:
-            'Verified across 67 pytest tests and a 40-scenario benchmark (100% precision, 100% recall, 0% FPR).'
+            'Verified across 75 pytest tests and a 40-scenario benchmark (100% precision, 100% recall, 0% FPR).'
         }
       ],
       cliQuickstart: [
@@ -1548,7 +1548,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '67 Pytest Verification Suite',
+          label: '75 Pytest Verification Suite',
           path: 'tests/test_corrector_and_pipeline.py',
           url: 'https://github.com/codesphere-u/truthgate/blob/main/tests/test_corrector_and_pipeline.py',
           kind: 'test'
@@ -1590,14 +1590,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Fintech',
       repoUrl: 'https://github.com/codesphere-u/flowledger',
       languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'Double-Entry Engine'],
-      automatedTests: 97,
+      automatedTests: 103,
       headlineMetric: {
         label: 'Ledger Invariant Integrity',
-        value: '0 Imbalance · 97 Verified Tests',
+        value: '0 Imbalance · 103 Verified Tests',
         detail: '100% balanced debits == credits across 12 currencies, M-Pesa Daraja 2.0, ISO 20022, FX corridors, and offline vouchers'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '97 passing (pytest)' },
+        { label: 'Automated Tests', value: '103 passing (pytest)' },
         { label: 'Supported Currencies', value: '12 (Pan-African & Stablecoin)' },
         { label: '3-Way Reconciliation', value: '50 synthetic txs classified' },
         { label: 'Storage Engine', value: 'SQLite WAL + Merkle Proofs' }
@@ -1652,7 +1652,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires explicit currency minor-unit scaling at display boundaries, but guarantees zero rounding drift and complete auditability.',
           verification:
-            'Verified across 97 automated tests in tests/test_ledger_invariants.py, tests/test_reconciliation_and_api.py, tests/test_camt053_and_csv.py, tests/test_split_and_escrow.py, tests/test_mcp_and_aegis.py, and tests/test_v2_pan_african.py.'
+            'Verified across 103 automated tests in tests/test_ledger_invariants.py, tests/test_reconciliation_and_api.py, tests/test_camt053_and_csv.py, tests/test_split_and_escrow.py, tests/test_mcp_and_aegis.py, tests/test_server_hardening.py, and tests/test_v2_pan_african.py.'
         }
       ],
       cliQuickstart: [
@@ -1711,14 +1711,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Cloud',
       repoUrl: 'https://github.com/codesphere-u/stackpulse',
       languages: ['Python 3.12', 'FastAPI', 'OpenTelemetry', 'Docker Compose'],
-      automatedTests: 65,
+      automatedTests: 83,
       headlineMetric: {
         label: 'Trace DAG Critical-Path Speed',
         value: '19,525 traces/s · 51.2 µs/trace',
         detail: 'Reconstructs W3C span trees, identifies critical-path bottlenecks, and flags N+1 query patterns'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '65 passing (pytest + Ruff)' },
+        { label: 'Automated Tests', value: '83 passing (pytest + Ruff)' },
         { label: 'DAG Assembly Speed', value: '19,525 traces/sec' },
         { label: 'Critical-Path Latency', value: '51.2 µs / trace' },
         { label: 'SLO Alerting Model', value: 'Multi-Window Burn Rate (14.4x / 6x)' }
@@ -1775,7 +1775,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires sorting child span intervals per parent node (O(k log k)), which executes in ~51 µs per trace.',
           verification:
-            'Verified across 65 pytest tests in tests/test_stackpulse.py and tests/test_otlp_and_alerts.py and benchmarked across 500 traces (3,625 spans).'
+            'Verified across 83 pytest tests in tests/test_stackpulse.py, tests/test_otlp_and_alerts.py, and tests/test_server_hardening.py, and benchmarked across 500 traces (3,625 spans).'
         }
       ],
       cliQuickstart: [
@@ -1797,7 +1797,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '65 Observability Tests',
+          label: '83 Observability Tests',
           path: 'tests/test_stackpulse.py',
           url: 'https://github.com/codesphere-u/stackpulse/blob/main/tests/test_stackpulse.py',
           kind: 'test'
@@ -1833,14 +1833,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'Backend',
       repoUrl: 'https://github.com/codesphere-u/agrisignal',
       languages: ['Python 3.12', 'FastAPI', 'Pydantic v2', 'HLC / LWW Sync'],
-      automatedTests: 60,
+      automatedTests: 64,
       headlineMetric: {
         label: 'Multilingual SMS & Sync Guarantee',
-        value: '≤160 Chars (en, lg, sw) · 60 Tests',
+        value: '≤160 Chars (en, lg, sw) · 64 Tests',
         detail: '100% deterministic LWW conflict resolution across 20 offline records and 3 rural devices'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '60 passing (pytest)' },
+        { label: 'Automated Tests', value: '64 passing (pytest)' },
         { label: 'Crops & Agro-Zones', value: '6 Crops × 4 East African Zones' },
         { label: 'SMS Budget Guarantee', value: '≤ 160 GSM-7 chars (en, lg, sw)' },
         { label: 'Offline Sync Protocol', value: 'HLC + LWW-Element-Set + SHA-256' }
@@ -1894,7 +1894,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires deterministic tie-breaking on HLC node IDs, but operates with zero data loss across multi-day offline partitions.',
           verification:
-            'Verified across 60 parametrized pytest tests in tests/test_agrisignal.py.'
+            'Verified across 64 parametrized pytest tests in tests/test_agrisignal.py and tests/test_server_hardening.py.'
         }
       ],
       cliQuickstart: [
@@ -1916,7 +1916,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '60 Parametrized Tests',
+          label: '64 Parametrized Tests',
           path: 'tests/test_agrisignal.py',
           url: 'https://github.com/codesphere-u/agrisignal/blob/main/tests/test_agrisignal.py',
           kind: 'test'
@@ -2388,7 +2388,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'Nexus Aegis v1.0',
       repoSlug: 'codesphere-u/nexus-aegis',
       domain: 'AI',
-      automatedTests: 77,
+      automatedTests: 87,
       primaryLatencyLabel: '7-Gate PCAE + Merkle Attestation',
       primaryLatencyMs: 0.27,
       throughputOrAccuracyLabel: '35-Scenario Recall & Selective Proofs',
@@ -2401,7 +2401,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'TruthGate v1.0',
       repoSlug: 'codesphere-u/truthgate',
       domain: 'AI',
-      automatedTests: 67,
+      automatedTests: 75,
       primaryLatencyLabel: 'Citation & AST Grounding (P50)',
       primaryLatencyMs: 0.115,
       throughputOrAccuracyLabel: '40-Scenario Hallucination Suite',
@@ -2414,7 +2414,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'SwarmWeaver v1.0',
       repoSlug: 'codesphere-u/swarmweaver',
       domain: 'AI',
-      automatedTests: 65,
+      automatedTests: 70,
       primaryLatencyLabel: 'Checkpoint Node Replay (P50)',
       primaryLatencyMs: 0.0072,
       throughputOrAccuracyLabel: 'Collision Prevention & Resume Savings',
@@ -2427,8 +2427,8 @@ export const PORTFOLIO_DATA = {
       projectName: 'ARGUS AI v2.1',
       repoSlug: 'codesphere-u/ARGUS-AI',
       domain: 'AI',
-      automatedTests: 62,
-      primaryLatencyLabel: 'Walk-Forward Backtest (62 Tests)',
+      automatedTests: 77,
+      primaryLatencyLabel: 'Walk-Forward Backtest (77 Tests)',
       primaryLatencyMs: 7.8,
       throughputOrAccuracyLabel: 'Adversarial Veto Precision',
       throughputOrAccuracyValue: '100% (3/3 Traps Vetoed · $488.37 Saved)',
@@ -2453,7 +2453,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'AgriSignal v1.0',
       repoSlug: 'codesphere-u/agrisignal',
       domain: 'Backend',
-      automatedTests: 60,
+      automatedTests: 64,
       primaryLatencyLabel: 'Rule & Uncertainty Eval',
       primaryLatencyMs: 0.18,
       throughputOrAccuracyLabel: 'SMS & Offline Sync Guarantee',
@@ -2479,11 +2479,11 @@ export const PORTFOLIO_DATA = {
       projectName: 'FlowLedger v2.0',
       repoSlug: 'codesphere-u/flowledger',
       domain: 'Fintech',
-      automatedTests: 97,
+      automatedTests: 103,
       primaryLatencyLabel: 'Double-Entry Commit & Hash',
       primaryLatencyMs: 0.22,
       throughputOrAccuracyLabel: 'Trial Balance & Invariant Verification',
-      throughputOrAccuracyValue: '0 Imbalance (97 Tests · Pan-African Rails, ISO 20022 & FX)',
+      throughputOrAccuracyValue: '0 Imbalance (103 Tests · Pan-African Rails, ISO 20022 & FX)',
       determinismGuarantee: 'Integer Minor Units + SHA-256 Chain + Merkle Tree',
       verificationCommand: 'cd flowledger && pytest -v && python -m flowledger.cli verify-invariants'
     },
@@ -2492,7 +2492,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'StackPulse v1.1',
       repoSlug: 'codesphere-u/stackpulse',
       domain: 'Cloud',
-      automatedTests: 65,
+      automatedTests: 83,
       primaryLatencyLabel: 'Critical-Path DAG Assembly',
       primaryLatencyMs: 0.051,
       throughputOrAccuracyLabel: 'DAG & Span Throughput',
@@ -2505,7 +2505,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'AgentShield v1.0',
       repoSlug: 'codesphere-u/agentshield',
       domain: 'Cybersecurity',
-      automatedTests: 42,
+      automatedTests: 49,
       primaryLatencyLabel: 'Policy & Injection Evaluation',
       primaryLatencyMs: 0.31,
       throughputOrAccuracyLabel: 'OWASP 2026 25-Scenario Suite',
@@ -2531,7 +2531,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'Cyber Dragon v1.0',
       repoSlug: 'codesphere-u/cyber-dragon',
       domain: 'Cybersecurity',
-      automatedTests: 21,
+      automatedTests: 25,
       primaryLatencyLabel: '5-Dimension Static Scan',
       primaryLatencyMs: 0.28,
       throughputOrAccuracyLabel: 'Curated Fraud Benchmark',
