@@ -524,14 +524,14 @@ export const PORTFOLIO_DATA = {
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/ARGUS-AI',
       languages: ['Python 3.12', 'Pydantic', 'Pandas / NumPy', 'MCP Server'],
-      automatedTests: 61,
+      automatedTests: 62,
       headlineMetric: {
         label: 'Adversarial Veto Precision',
-        value: '3 Trap Trades Vetoed · 61 Tests',
+        value: '3 Trap Trades Vetoed · 62 Tests',
         detail: 'Walk-forward simulation where Devil’s Advocate vetoed 3 flash-crash/blow-off traps ($488.37 counterfactual loss avoided)'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '61 passing (pytest)' },
+        { label: 'Automated Tests', value: '62 passing (pytest)' },
         { label: 'Committee Architecture', value: '7 Specialized Agents' },
         { label: 'Leakage Protection', value: 'PointInTimeGuard Verified' },
         { label: 'Protocol Integration', value: 'Model Context Protocol (MCP)' }
@@ -589,7 +589,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Reduces total trade frequency in choppy markets, but substantially cuts maximum drawdown and avoids bull-trap reversals.',
           verification:
-            'Verified across 61 pytest tests including tests/test_backtest_engine.py and tests/test_argus_committee.py.'
+            'Verified across 62 pytest tests including tests/test_backtest_engine.py and tests/test_argus_committee.py.'
         }
       ],
       cliQuickstart: [
@@ -890,15 +890,16 @@ export const PORTFOLIO_DATA = {
       domains: ['AI', 'Backend', 'Full-Stack'],
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/cortex-mcp',
+      liveDemoUrl: 'https://cortex-mcp-steel.vercel.app',
       languages: ['Python 3.12', 'MCP JSON-RPC 2.0', 'BM25 + Graph RAG', 'SHA-256 Merkle'],
-      automatedTests: 100,
+      automatedTests: 104,
       headlineMetric: {
         label: 'Bi-Temporal Recall & Stale Suppression',
-        value: '100% Stale Suppression · 87 Tests',
-        detail: '0.003 ms P50 fact upsert, semantic contradiction auditing, and TruthGate citation bundle export across 87 passing tests'
+        value: '100% Stale Suppression · 104 Tests',
+        detail: '0.003 ms P50 fact upsert, semantic contradiction auditing, and TruthGate citation bundle export across 104 passing tests'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '87 passing (pytest)' },
+        { label: 'Automated Tests', value: '104 passing (pytest)' },
         { label: 'Fact Upsert Latency', value: '0.003 ms P50 / 0.004 ms P95' },
         { label: '2-Hop Subgraph Query', value: '0.123 ms P50 / 0.185 ms P95' },
         { label: 'Stale Fact Leakage', value: '0.0% (150/150 superseded)' }
@@ -950,7 +951,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires structured (subject, predicate, object) extraction alongside free-text episodes, but guarantees 100% suppression of superseded facts while preserving point-in-time historical queries.',
           verification:
-            'Verified across 87 pytest tests, bi-temporal semantic contradiction auditing, and TruthGate citation bundle export.'
+            'Verified across 104 pytest tests, bi-temporal semantic contradiction auditing, and TruthGate citation bundle export.'
         }
       ],
       cliQuickstart: [
@@ -972,7 +973,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '87 Pytest Verification Suite',
+          label: '104 Pytest Verification Suite',
           path: 'tests/test_cortex_mcp.py',
           url: 'https://github.com/codesphere-u/cortex-mcp/blob/main/tests/test_cortex_mcp.py',
           kind: 'test'
@@ -984,7 +985,7 @@ export const PORTFOLIO_DATA = {
       id: 'agentflight',
       slug: 'agentflight',
       name: 'AgentFlight',
-      version: 'v1.1.0',
+      version: 'v1.4.0',
       isPrimaryFlagship: true,
       visualMotif: 'cassette',
       accentColor: '#F4B94C',
@@ -1009,14 +1010,14 @@ export const PORTFOLIO_DATA = {
       repoUrl: 'https://github.com/codesphere-u/agentflight',
       liveDemoUrl: 'https://agentflight-tau.vercel.app',
       languages: ['Python 3.12', 'MCP Schema Linter', 'Deterministic Replay', 'OTel W3C Export'],
-      automatedTests: 109,
+      automatedTests: 167,
       headlineMetric: {
         label: 'Deterministic Replay & Ergonomics Gate',
-        value: '2.83 µs/span · 93 Tests',
+        value: '2.83 µs/span · 167 Tests',
         detail: '353,356 spans/sec deterministic $0 CI replay + Trajectory Diff Analyzer + W3C OTel exporter + 10-rule MCP linter'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '93 passing (pytest)' },
+        { label: 'Automated Tests', value: '167 passing (pytest)' },
         { label: 'Cassette Replay Speed', value: '2.83 µs/span (353k spans/s)' },
         { label: 'MCP Linter Rules', value: '10 rules (TS001–TS010)' },
         { label: 'Circuit Breaker Overhead', value: '3.01 µs/span (332k spans/s)' }
@@ -1062,7 +1063,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires re-recording golden cassettes when intentional prompt or tool-schema changes alter agent trajectories, but makes CI regression testing 10,000x faster and $0 cost.',
           verification:
-            'Verified across 93 pytest tests in tests/test_agentflight.py and tests/test_diff_and_otel.py with W3C OTel trace export.'
+            'Verified across 167 pytest tests (90%+ coverage), live OpenAny provider integration, and W3C OTel trace export.'
         }
       ],
       cliQuickstart: [
@@ -1084,7 +1085,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '93 Pytest Verification Suite',
+          label: '167 Pytest Verification Suite',
           path: 'tests/test_agentflight.py',
           url: 'https://github.com/codesphere-u/agentflight/blob/main/tests/test_agentflight.py',
           kind: 'test'
@@ -1119,15 +1120,16 @@ export const PORTFOLIO_DATA = {
       domains: ['AI', 'Cybersecurity', 'Backend'],
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/patchpilot',
+      liveDemoUrl: 'https://patchpilot-eta.vercel.app',
       languages: ['Python 3.12', 'AST Analysis', 'MCP JSON-RPC 2.0', 'Automated Repair'],
-      automatedTests: 89,
+      automatedTests: 92,
       headlineMetric: {
         label: 'Fault Localization & Anti-Cheat Gate',
-        value: '100% Top-1 · -96.6% Tokens · 73 Tests',
+        value: '100% Top-1 · -96.6% Tokens · 92 Tests',
         detail: '100% Top-1 fault localization across 25 scenarios and 100% recall (0% FPR) blocking 20 reward-hacking patches (RH001–RH008)'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '73 passing (pytest)' },
+        { label: 'Automated Tests', value: '92 passing (pytest)' },
         { label: 'Fault Localization', value: '100% Top-1 (0.373 ms P50)' },
         { label: 'Context Token Savings', value: '96.6% prompt reduction' },
         { label: 'Anti-Reward-Hacking', value: '100% Recall / 0% FPR (RH01-08)' }
@@ -1173,7 +1175,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Requires language-aware AST parsing prior to running tests, but adds only 0.098 ms P50 latency while eliminating reward-hacked green builds.',
           verification:
-            'Verified across 73 pytest tests, unified git diff parsing, and Nexus Aegis G5 bridge.'
+            'Verified across 92 pytest tests, unified git diff parsing, and Nexus Aegis G5 bridge.'
         }
       ],
       cliQuickstart: [
@@ -1195,7 +1197,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '73 Pytest Verification Suite',
+          label: '92 Pytest Verification Suite',
           path: 'tests/test_guard.py',
           url: 'https://github.com/codesphere-u/patchpilot/blob/main/tests/test_guard.py',
           kind: 'test'
@@ -1230,15 +1232,16 @@ export const PORTFOLIO_DATA = {
       domains: ['AI', 'Cloud', 'Backend'],
       primaryDomain: 'AI',
       repoUrl: 'https://github.com/codesphere-u/synapse-router',
+      liveDemoUrl: 'https://synapse-router.vercel.app',
       languages: ['Python 3.12', 'Multi-Model Router', '64-Bit SimHash Cache', 'MCP JSON-RPC 2.0'],
-      automatedTests: 93,
+      automatedTests: 96,
       headlineMetric: {
         label: 'Cost Reduction & Failover Resilience',
-        value: '90.6% Cost Saved · 100% Failover · 77 Tests',
+        value: '90.6% Cost Saved · 100% Failover · 96 Tests',
         detail: '0.74 ms P50 routing across 500 multi-agent requests ($3.74 → $0.35 USD) with 100% cascade quality retention and 13/13 HTTP 429 recoveries'
       },
       secondaryMetrics: [
-        { label: 'Automated Tests', value: '77 passing (pytest)' },
+        { label: 'Automated Tests', value: '96 passing (pytest)' },
         { label: 'USD Cost Reduction', value: '90.59% saved (500-req bench)' },
         { label: 'Routing Latency', value: '0.74 ms P50 / 1.10 ms P95' },
         { label: 'HTTP 429 Failover', value: '100% recovered (13/13 faults)' }
@@ -1285,7 +1288,7 @@ export const PORTFOLIO_DATA = {
           tradeOffs:
             'Incurs a small cascade retry overhead on the ~10–15% of steps that escalate, but reduces overall multi-agent workflow cost by 79–90% while preserving 100% quality retention.',
           verification:
-            'Verified across 77 pytest tests, sliding-window rate governor, and Nexus Aegis G2 bridge.'
+            'Verified across 96 pytest tests, sliding-window rate governor, and Nexus Aegis G2 bridge.'
         }
       ],
       cliQuickstart: [
@@ -1307,7 +1310,7 @@ export const PORTFOLIO_DATA = {
           kind: 'source'
         },
         {
-          label: '77 Pytest Verification Suite',
+          label: '96 Pytest Verification Suite',
           path: 'tests/test_budget_and_router.py',
           url: 'https://github.com/codesphere-u/synapse-router/blob/main/tests/test_budget_and_router.py',
           kind: 'test'
@@ -2356,10 +2359,10 @@ export const PORTFOLIO_DATA = {
   benchmarks: [
     {
       projectId: 'agentflight',
-      projectName: 'AgentFlight v1.1',
+      projectName: 'AgentFlight v1.4',
       repoSlug: 'codesphere-u/agentflight',
       domain: 'AI',
-      automatedTests: 96,
+      automatedTests: 167,
       primaryLatencyLabel: 'Deterministic Cassette Replay',
       primaryLatencyMs: 0.0028,
       throughputOrAccuracyLabel: 'Replay, Diff & OTel Export',
@@ -2372,7 +2375,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'Cortex MCP v1.1',
       repoSlug: 'codesphere-u/cortex-mcp',
       domain: 'AI',
-      automatedTests: 90,
+      automatedTests: 104,
       primaryLatencyLabel: 'Bi-Temporal Fact Upsert (P50)',
       primaryLatencyMs: 0.003,
       throughputOrAccuracyLabel: 'Stale Suppression & Contradiction Audit',
@@ -2424,8 +2427,8 @@ export const PORTFOLIO_DATA = {
       projectName: 'ARGUS AI v2.1',
       repoSlug: 'codesphere-u/ARGUS-AI',
       domain: 'AI',
-      automatedTests: 61,
-      primaryLatencyLabel: 'Walk-Forward Backtest (61 Tests)',
+      automatedTests: 62,
+      primaryLatencyLabel: 'Walk-Forward Backtest (62 Tests)',
       primaryLatencyMs: 7.8,
       throughputOrAccuracyLabel: 'Adversarial Veto Precision',
       throughputOrAccuracyValue: '100% (3/3 Traps Vetoed · $488.37 Saved)',
@@ -2437,11 +2440,11 @@ export const PORTFOLIO_DATA = {
       projectName: 'Synapse Router v1.1',
       repoSlug: 'codesphere-u/synapse-router',
       domain: 'AI',
-      automatedTests: 77,
+      automatedTests: 96,
       primaryLatencyLabel: 'Pareto Routing & SimHash Cache',
       primaryLatencyMs: 0.7426,
       throughputOrAccuracyLabel: 'USD Cost Reduction & Failover',
-      throughputOrAccuracyValue: '90.59% Cost Saved · 100% Failover · 77 Tests',
+      throughputOrAccuracyValue: '90.59% Cost Saved · 100% Failover · 96 Tests',
       determinismGuarantee: 'Confidence-Gated Cascade + Rate Governor + Aegis G2',
       verificationCommand: 'cd synapse-router && pytest -v && python -m synapse_router.cli benchmark'
     },
@@ -2463,7 +2466,7 @@ export const PORTFOLIO_DATA = {
       projectName: 'PatchPilot v1.1',
       repoSlug: 'codesphere-u/patchpilot',
       domain: 'AI',
-      automatedTests: 76,
+      automatedTests: 92,
       primaryLatencyLabel: 'AST Anti-Cheat Guard (P50)',
       primaryLatencyMs: 0.098,
       throughputOrAccuracyLabel: 'Fault Localization & Guard Recall',
